@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "Impact | NATIV",
   description:
-    "Hoe NATIV bijdraagt aan een betere wereld. Elke opdracht draagt bij aan maatschappelijke impact.",
+    "Elke diagnostiekrespons draagt bij aan een goed doel. Betere data, betere wereld. The Efficiency Dividend.",
 };
 
 export default function ImpactPage() {
@@ -21,8 +21,8 @@ export default function ImpactPage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed max-w-2xl mx-auto">
-              Wij geloven dat efficiëntie niet alleen winst hoeft te betekenen. 
-              Daarom investeren we een deel van elke opdracht in maatschappelijke impact.
+              Elke keer dat iemand een diagnostiekvragenlijst invult, gaat er een donatie 
+              naar een goed doel. Hogere respons. Betere data. Maatschappelijke impact.
             </p>
           </FadeIn>
         </div>
@@ -40,23 +40,23 @@ export default function ImpactPage() {
             {[
               {
                 step: "1",
-                title: "Wij leveren waarde",
-                desc: "Elke Scan, Build of Deploy-opdracht genereert meetbare efficiëntiewinst voor onze klanten.",
+                title: "Kies goede doelen",
+                desc: "Bij elke diagnostiek kies je 3 geregistreerde goede doelen die aansluiten bij jouw waarden — lokaal of internationaal.",
               },
               {
                 step: "2",
-                title: "Een deel gaat terug",
-                desc: "Een vast percentage van onze omzet gaat naar goede doelen — automatisch, bij elke opdracht.",
+                title: "Stel je donatie in",
+                desc: "Bepaal het bedrag per respons (€0,01 – €10). Jij hebt volledige controle over je bijdrage.",
               },
               {
                 step: "3",
-                title: "Klant kiest mee",
-                desc: "Onze klanten mogen meebeslissen welke initiatieven we steunen. Jouw project, jouw keuze.",
+                title: "Respondenten kiezen",
+                desc: "Wanneer medewerkers of stakeholders de vragenlijst openen, kiezen zij welk goed doel hun donatie krijgt.",
               },
               {
                 step: "4",
-                title: "Transparant bijhouden",
-                desc: "We rapporteren openlijk hoeveel er gedoneerd is en aan welke doelen. Geen verborgen agenda.",
+                title: "Volg je impact",
+                desc: "Bekijk live hoeveel er gedoneerd is, per goed doel, en hoe je responsrate stijgt door het charity-mechanisme.",
               },
             ].map((item, i) => (
               <FadeIn key={item.step} delay={i * 150}>
@@ -75,12 +75,75 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* Focus Areas */}
+      {/* Results */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-[800px] mx-auto text-center">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-12">
+              Waarom het werkt
+            </h2>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                <p className="text-4xl md:text-5xl font-serif text-sage">↑</p>
+                <p className="mt-3 font-serif text-lg">Hogere responsrate</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">
+                  Respondenten vullen eerder en vollediger in als hun deelname direct bijdraagt aan een goed doel.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                <p className="text-4xl md:text-5xl font-serif text-sage">€</p>
+                <p className="mt-3 font-serif text-lg">Lage kosten, groot effect</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">
+                  Vanaf €0,01 per respons. Een klein bedrag dat zich terugverdient in betere data en hogere betrokkenheid.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                <p className="text-4xl md:text-5xl font-serif text-sage">📊</p>
+                <p className="mt-3 font-serif text-lg">Transparant dashboard</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">
+                  Realtime inzicht in totale donaties, verdeling per goed doel en responsratetrends.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Flexibility */}
+      <section className="py-20 md:py-28 px-6 bg-white">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-8">
+              Volledige flexibiliteit
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="space-y-6 text-lg font-light leading-relaxed text-grey/80">
+              <p>
+                Kies zelf je goede doelen — elk geregistreerd goed doel is mogelijk. 
+                Lokaal of internationaal, groot of klein.
+              </p>
+              <p>
+                Pas je donatiebedrag aan per diagnostiek. Meer budget? Hogere donatie. 
+                Krap budget? Zelfs €0,01 maakt verschil als honderden mensen deelnemen.
+              </p>
+              <p>
+                Het charity-mechanisme is ingebouwd in elke diagnostiek die via ons platform loopt — 
+                van AI Opportunity Scans tot lopende kennisvergaringsworkflows.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Beyond Diagnostics */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
-              Waar we in investeren
+              Daarnaast investeren we in
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -88,17 +151,17 @@ export default function ImpactPage() {
               {
                 emoji: "🎓",
                 title: "AI-educatie",
-                desc: "Gratis AI-scans en workshops voor non-profits en sociale ondernemingen. Kennis hoort niet achter een paywall.",
+                desc: "Gratis AI-scans en workshops voor non-profits en sociale ondernemingen.",
               },
               {
                 emoji: "🌍",
                 title: "Duurzame technologie",
-                desc: "We kiezen bewust voor EU-gehoste, energie-efficiënte AI-modellen. En steunen initiatieven die technologie inzetten voor klimaatactie.",
+                desc: "EU-gehoste, energie-efficiënte AI-modellen. Bewust kiezen voor duurzame infra.",
               },
               {
                 emoji: "🤝",
                 title: "Open kennis",
-                desc: "We delen onze inzichten via blogs, talks en open-source tools. Wat we leren, delen we terug met de community.",
+                desc: "Inzichten delen via blogs, talks en open-source tools. Wat we leren, delen we terug.",
               },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 150}>
@@ -115,45 +178,18 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-20 md:py-28 px-6 bg-white">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-12">
-              Onze impact tot nu toe
-            </h2>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <p className="text-4xl md:text-5xl font-serif text-sage">3</p>
-                <p className="mt-2 text-sm text-grey/60 font-light">Pro bono projecten</p>
-              </div>
-              <div>
-                <p className="text-4xl md:text-5xl font-serif text-sage">100%</p>
-                <p className="mt-2 text-sm text-grey/60 font-light">EU-gehost</p>
-              </div>
-              <div>
-                <p className="text-4xl md:text-5xl font-serif text-sage">Open</p>
-                <p className="mt-2 text-sm text-grey/60 font-light">Kennisdeling</p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
-              Samen impact maken?
+              Klaar om impact te maken?
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
-              Ben je een non-profit of sociale onderneming? Of wil je als klant 
-              meebeslissen waar jouw efficiency dividend naartoe gaat? Neem contact op.
+              Betere data verzamelen én bijdragen aan een betere wereld. 
+              Setup duurt minder dan 5 minuten.
             </p>
           </FadeIn>
           <FadeIn delay={300}>
@@ -162,7 +198,7 @@ export default function ImpactPage() {
                 href="/contact"
                 className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block"
               >
-                Neem contact op →
+                Plan een gesprek →
               </Link>
             </div>
           </FadeIn>
