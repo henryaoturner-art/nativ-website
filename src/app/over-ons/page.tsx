@@ -115,7 +115,7 @@ export default function OverOnsPage() {
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-8 text-lg font-light leading-relaxed text-grey/80">
-              We practice what we preach. Ons eigen bedrijf draait op dezelfde
+              We doen wat we zeggen. Ons eigen bedrijf draait op dezelfde
               principes die we aan klanten leveren. Alles wat we bouwen, testen
               we eerst op onszelf.
             </p>

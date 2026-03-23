@@ -43,7 +43,7 @@ export default function CasesPage() {
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
-              Wat we&apos;ve gebouwd
+              Wat we hebben gebouwd
             </h1>
           </FadeIn>
           <FadeIn delay={200}>

@@ -28,7 +28,7 @@ const layers = [
     step: "Stap 2",
     title: "Build",
     lead: "We bouwen je AI-kennisbank — de context die AI écht nuttig maakt.",
-    body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft — in hoofden, systemen, processen — tot een levende kennisbank die AI begrijpt.\n\nDit is het fundament. Zonder dit stap is elke AI-investering een gok.",
+    body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft — in hoofden, systemen, processen — tot een levende kennisbank die AI begrijpt.\n\nDit is het fundament. Zonder deze stap is elke AI-investering een gok.",
     features: [
       "Gestructureerde bedrijfskennis, toegankelijk voor AI",
       "Integratie met bestaande systemen",

@@ -32,7 +32,7 @@ const tiers = [
     features: [
       "Alles van Quick Start",
       "Gestructureerde diagnostische intake",
-      "Tacit knowledge extractie",
+      "Impliciete kennisextractie",
       "Digitale collega's (tot 3)",
       "Maandelijkse optimalisatie",
     ],

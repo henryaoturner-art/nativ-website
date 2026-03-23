@@ -46,7 +46,7 @@ export default function ScanPage() {
             <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
               In één week weten waar AI het meeste oplevert in jouw organisatie.
               <br />
-              Concreet. Actionable. Geen vaag advies.
+              Concreet. Toepasbaar. Geen vaag advies.
             </p>
           </FadeIn>
           <FadeIn delay={400}>

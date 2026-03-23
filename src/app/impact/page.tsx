@@ -56,7 +56,7 @@ export default function ImpactPage() {
               {
                 step: "4",
                 title: "Volg je impact",
-                desc: "Bekijk live hoeveel er gedoneerd is, per goed doel, en hoe je responsrate stijgt door het charity-mechanisme.",
+                desc: "Bekijk live hoeveel er gedoneerd is, per goed doel, en hoe je responspercentage stijgt door het donatiemechanisme.",
               },
             ].map((item, i) => (
               <FadeIn key={item.step} delay={i * 150}>
@@ -87,7 +87,7 @@ export default function ImpactPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
                 <p className="text-4xl md:text-5xl font-serif text-sage">↑</p>
-                <p className="mt-3 font-serif text-lg">Hogere responsrate</p>
+                <p className="mt-3 font-serif text-lg">Hogere responspercentage</p>
                 <p className="mt-2 text-sm text-grey/60 font-light">
                   Respondenten vullen eerder en vollediger in als hun deelname direct bijdraagt aan een goed doel.
                 </p>
@@ -103,7 +103,7 @@ export default function ImpactPage() {
                 <p className="text-4xl md:text-5xl font-serif text-sage">📊</p>
                 <p className="mt-3 font-serif text-lg">Transparant dashboard</p>
                 <p className="mt-2 text-sm text-grey/60 font-light">
-                  Realtime inzicht in totale donaties, verdeling per goed doel en responsratetrends.
+                  Realtime inzicht in totale donaties, verdeling per goed doel en responspercentagetrends.
                 </p>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function ImpactPage() {
                 Krap budget? Zelfs €0,01 maakt verschil als honderden mensen deelnemen.
               </p>
               <p>
-                Het charity-mechanisme is ingebouwd in elke diagnostiek die via ons platform loopt — 
+                Het donatiemechanisme is ingebouwd in elke diagnostiek die via ons platform loopt — 
                 van AI Opportunity Scans tot lopende kennisvergaringsworkflows.
               </p>
             </div>
