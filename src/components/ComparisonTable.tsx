@@ -7,7 +7,7 @@ const tableTranslations = {
   nl: {
     oldHeader: "Traditioneel adviesbureau",
     rows: [
-      { label: "Kosten", old: "€30.000 – €80.000", nativ: "Vanaf €495" },
+      { label: "Kosten", old: "€30.000 – €80.000", nativ: "Vanaf €2.495" },
       { label: "Doorlooptijd", old: "4–8 weken", nativ: "1 week" },
       { label: "Resultaat", old: "PDF die op de plank belandt", nativ: "Levende kennisbank" },
       { label: "Updates", old: "Eenmalige snapshot", nativ: "Continu bijgewerkt" },
@@ -17,7 +17,7 @@ const tableTranslations = {
   en: {
     oldHeader: "Traditional consultancy",
     rows: [
-      { label: "Cost", old: "€30,000 – €80,000", nativ: "From €495" },
+      { label: "Cost", old: "€30,000 – €80,000", nativ: "From €2,495" },
       { label: "Timeline", old: "4–8 weeks", nativ: "1 week" },
       { label: "Result", old: "PDF that gathers dust", nativ: "Living knowledge base" },
       { label: "Updates", old: "One-time snapshot", nativ: "Continuously updated" },
