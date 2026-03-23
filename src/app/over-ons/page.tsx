@@ -10,18 +10,18 @@ export const metadata: Metadata = {
 const team = [
   {
     name: "Livius van Heemstra",
-    role: "CEO & Strategy",
-    bio: "Verbindt bedrijfsstrategie met AI-mogelijkheden. Achtergrond in consulting en tech. Overtuigd dat de beste AI-oplossingen beginnen bij het begrijpen van de business.",
+    role: "Co-founder · Product & Strategy",
+    bio: "Bouwde het originele platform en de Company Brain-methodologie. Verbindt bedrijfsstrategie met AI-mogelijkheden — overtuigd dat de beste AI-oplossingen beginnen bij het begrijpen van de business.",
   },
   {
     name: "Gokul Menon",
-    role: "Technology",
+    role: "Co-founder · Technology & Architecture",
     bio: "Bouwt de technische kern van Nativ. Van kennisbank-architectuur tot AI-integraties. Gelooft in simpele, robuuste systemen die écht werken.",
   },
   {
     name: "Jorus Everaerd",
-    role: "Operations & Delivery",
-    bio: "Zorgt dat elke klant krijgt wat beloofd is. Hands-on, scherp op kwaliteit, en altijd eerlijk over wat wel en niet kan.",
+    role: "Co-founder · Sales & Strategy",
+    bio: "Brengt Nativ naar de markt. Scherp op kansen, eerlijk over wat wel en niet kan, en altijd hands-on met klanten.",
   },
 ];
 
