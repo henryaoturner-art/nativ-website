@@ -3,9 +3,9 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Impact",
+  title: "Impact | NATIV",
   description:
-    "Hoe NATIV bijdraagt aan een betere wereld. Technologie inzetten voor maatschappelijke impact.",
+    "Hoe NATIV bijdraagt aan een betere wereld. Elke opdracht draagt bij aan maatschappelijke impact.",
 };
 
 export default function ImpactPage() {
@@ -16,68 +16,55 @@ export default function ImpactPage() {
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
-              Impact
+              The Efficiency Dividend
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
-              Technologie is pas waardevol als het de wereld beter maakt.
+            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed max-w-2xl mx-auto">
+              Wij geloven dat efficiëntie niet alleen winst hoeft te betekenen. 
+              Daarom investeren we een deel van elke opdracht in maatschappelijke impact.
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* Our Commitment */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
-              Onze belofte
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8 space-y-6 text-lg font-light leading-relaxed text-grey/80">
-              <p>
-                Bij NATIV geloven we dat AI-kennis niet alleen voor grote
-                corporates hoort te zijn. We investeren actief in het
-                toegankelijk maken van AI voor organisaties die écht impact
-                maken.
-              </p>
-              <p>
-                We doneren een vast percentage van onze omzet aan initiatieven
-                die technologie inzetten voor maatschappelijk goed.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* How We Give Back */}
+      {/* How It Works */}
       <section className="py-20 md:py-28 px-6 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
-              Hoe we bijdragen
+              Hoe het werkt
             </h2>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               {
-                title: "Pro bono projecten",
-                desc: "We bieden gratis AI-scans aan non-profits en sociale ondernemingen die een meetbare maatschappelijke impact maken.",
+                step: "1",
+                title: "Wij leveren waarde",
+                desc: "Elke Scan, Build of Deploy-opdracht genereert meetbare efficiëntiewinst voor onze klanten.",
               },
               {
-                title: "Kennisdeling",
-                desc: "We delen onze inzichten open via blogs, talks en workshops. Kennis hoort niet achter een paywall.",
+                step: "2",
+                title: "Een deel gaat terug",
+                desc: "Een vast percentage van onze omzet gaat naar goede doelen — automatisch, bij elke opdracht.",
               },
               {
-                title: "Duurzame AI",
-                desc: "We kiezen bewust voor EU-gehoste, energie-efficiënte AI-modellen en transparante datapraktijken.",
+                step: "3",
+                title: "Klant kiest mee",
+                desc: "Onze klanten mogen meebeslissen welke initiatieven we steunen. Jouw project, jouw keuze.",
+              },
+              {
+                step: "4",
+                title: "Transparant bijhouden",
+                desc: "We rapporteren openlijk hoeveel er gedoneerd is en aan welke doelen. Geen verborgen agenda.",
               },
             ].map((item, i) => (
-              <FadeIn key={item.title} delay={i * 150}>
-                <div className="bg-cream rounded-xl p-8 h-full">
-                  <h3 className="font-serif text-xl mb-3">{item.title}</h3>
+              <FadeIn key={item.step} delay={i * 150}>
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center mx-auto mb-4">
+                    <span className="text-sage font-serif text-lg">{item.step}</span>
+                  </div>
+                  <h3 className="font-serif text-lg mb-2">{item.title}</h3>
                   <p className="text-grey/70 font-light leading-relaxed text-sm">
                     {item.desc}
                   </p>
@@ -85,6 +72,73 @@ export default function ImpactPage() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Focus Areas */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-[1200px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
+              Waar we in investeren
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                emoji: "🎓",
+                title: "AI-educatie",
+                desc: "Gratis AI-scans en workshops voor non-profits en sociale ondernemingen. Kennis hoort niet achter een paywall.",
+              },
+              {
+                emoji: "🌍",
+                title: "Duurzame technologie",
+                desc: "We kiezen bewust voor EU-gehoste, energie-efficiënte AI-modellen. En steunen initiatieven die technologie inzetten voor klimaatactie.",
+              },
+              {
+                emoji: "🤝",
+                title: "Open kennis",
+                desc: "We delen onze inzichten via blogs, talks en open-source tools. Wat we leren, delen we terug met de community.",
+              },
+            ].map((item, i) => (
+              <FadeIn key={item.title} delay={i * 150}>
+                <div className="bg-white rounded-xl p-8 h-full shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                  <span className="text-3xl">{item.emoji}</span>
+                  <h3 className="font-serif text-xl mt-4 mb-3">{item.title}</h3>
+                  <p className="text-grey/70 font-light leading-relaxed text-[15px]">
+                    {item.desc}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-20 md:py-28 px-6 bg-white">
+        <div className="max-w-[800px] mx-auto text-center">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-12">
+              Onze impact tot nu toe
+            </h2>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <p className="text-4xl md:text-5xl font-serif text-sage">3</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">Pro bono projecten</p>
+              </div>
+              <div>
+                <p className="text-4xl md:text-5xl font-serif text-sage">100%</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">EU-gehost</p>
+              </div>
+              <div>
+                <p className="text-4xl md:text-5xl font-serif text-sage">Open</p>
+                <p className="mt-2 text-sm text-grey/60 font-light">Kennisdeling</p>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -98,8 +152,8 @@ export default function ImpactPage() {
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
-              Ben je een non-profit of sociale onderneming? Neem contact op —
-              misschien kunnen we helpen.
+              Ben je een non-profit of sociale onderneming? Of wil je als klant 
+              meebeslissen waar jouw efficiency dividend naartoe gaat? Neem contact op.
             </p>
           </FadeIn>
           <FadeIn delay={300}>

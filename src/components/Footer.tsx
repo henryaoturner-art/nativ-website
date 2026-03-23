@@ -36,6 +36,16 @@ export default function Footer() {
                   Digitale Collega&apos;s
                 </Link>
               </li>
+              <li>
+                <Link href="/impact" className="text-white/60 hover:text-white transition-colors">
+                  Impact
+                </Link>
+              </li>
+              <li>
+                <Link href="/security" className="text-white/60 hover:text-white transition-colors">
+                  Security & Privacy
+                </Link>
+              </li>
             </ul>
           </div>
 
