@@ -37,7 +37,7 @@ export default function Navigation() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-16 md:h-20" aria-label="Hoofdnavigatie">
+      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 md:h-24" aria-label="Hoofdnavigatie">
         <Logo />
 
         {/* Desktop nav */}
