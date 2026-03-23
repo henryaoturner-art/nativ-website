@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/lib/language-context";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,16 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className="h-full antialiased">
+    <html lang="nl" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
-        <a href="#main-content" className="skip-link">
-          Naar inhoud
-        </a>
-        <Navigation />
-        <main id="main-content" className="flex-1 pt-16 md:pt-20">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <a href="#main-content" className="skip-link">
+            Naar inhoud
+          </a>
+          <Navigation />
+          <main id="main-content" className="flex-1 pt-16 md:pt-20">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

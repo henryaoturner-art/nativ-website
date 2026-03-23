@@ -4,19 +4,36 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/lib/language-context";
 
-const links = [
-  { href: "/scan", label: "Scan" },
-  { href: "/diensten", label: "Diensten" },
-  { href: "/over-ons", label: "Over ons" },
-  { href: "/cases", label: "Cases" },
-  { href: "/pricing", label: "Pricing" },
-];
+const navLinks = {
+  nl: [
+    { href: "/scan", label: "Scan" },
+    { href: "/diensten", label: "Diensten" },
+    { href: "/over-ons", label: "Over ons" },
+    { href: "/cases", label: "Cases" },
+    { href: "/pricing", label: "Pricing" },
+  ],
+  en: [
+    { href: "/scan", label: "Scan" },
+    { href: "/diensten", label: "Services" },
+    { href: "/over-ons", label: "About" },
+    { href: "/cases", label: "Cases" },
+    { href: "/pricing", label: "Pricing" },
+  ],
+};
+
+const ctaText = { nl: "Plan een gesprek →", en: "Book a call →" };
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const links = t(navLinks);
+  const cta = t(ctaText);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -53,11 +70,12 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <LanguageToggle />
           <Link
             href="/contact"
             className="bg-sage text-white text-sm px-6 py-2.5 rounded-lg hover:bg-sage-dark transition-colors"
           >
-            Plan een gesprek →
+            {cta}
           </Link>
         </div>
 
@@ -93,11 +111,14 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <div className="py-2">
+              <LanguageToggle />
+            </div>
             <Link
               href="/contact"
               className="block bg-sage text-white text-center px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors mt-4"
             >
-              Plan een gesprek →
+              {cta}
             </Link>
           </div>
         </div>

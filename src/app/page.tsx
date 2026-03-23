@@ -1,8 +1,93 @@
+"use client";
+
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import ComparisonTable from "@/components/ComparisonTable";
+import { useLanguage } from "@/lib/language-context";
+
+const translations = {
+  nl: {
+    heroTitle: "Je bedrijf weet meer dan je denkt.",
+    heroSub1: "Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. ",
+    heroSub2: "Geen AI-tools zonder context. Geen consultancy zonder resultaat. De brug ertussenin.",
+    ctaPrimary: "Plan een vrijblijvend gesprek →",
+    ctaSecondary: "Bekijk onze aanpak",
+    problemTitle: "Het probleem dat niemand benoemt",
+    problemP1: "De meeste bedrijven verspillen 40% van hun potentieel.",
+    problemP2a: "Niet door slechte mensen. Niet door slechte tools.",
+    problemP2b: "Maar omdat cruciale informatie vastzit in de hoofden van mensen, verspreid over inboxes, of begraven in spreadsheets.",
+    problemP3: "AI kan helpen. Maar alleen als het wéét wat jouw bedrijf weet.",
+    howTitle: "Hoe we werken",
+    steps: [
+      {
+        num: "1", title: "Scan",
+        desc: "We brengen in kaart waar AI de meeste impact heeft — en wat het kost om niets te doen.",
+        detail: "In 1 week weet je precies waar de kansen liggen.",
+      },
+      {
+        num: "2", title: "Build",
+        desc: "We bouwen je AI Operating System — een levende kennisbank die AI de context geeft van jouw bedrijf.",
+        detail: "Merkidentiteit, processen, marktdata — gestructureerd en altijd actueel.",
+      },
+      {
+        num: "3", title: "Deploy",
+        desc: "We zetten digitale collega's in die putten uit jouw kennisbank en echt werk leveren.",
+        detail: "Geen speelgoed. Geen demo's. Resultaat.",
+      },
+    ],
+    startScan: "Start met een Scan →",
+    whySwitch: "Waarom bedrijven switchen",
+    trustEU: "🇪🇺 EU Data Hosting",
+    trustGDPR: "🔒 GDPR Compliant",
+    trustNoCure: "🤝 No Cure, No Pay",
+    closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
+    closerSub: "Plan een vrijblijvend gesprek. Geen verkooppraatje — gewoon een eerlijk gesprek over wat AI voor jouw organisatie kan betekenen.",
+    closerCta: "Plan een gesprek →",
+  },
+  en: {
+    heroTitle: "Your company knows more than you think.",
+    heroSub1: "Digital colleagues that draw from the collective intelligence of your company. ",
+    heroSub2: "Not another AI tool without context. Not a consultancy without results. The bridge between.",
+    ctaPrimary: "Book a free consultation →",
+    ctaSecondary: "See our approach",
+    problemTitle: "The problem nobody talks about",
+    problemP1: "Most companies waste 40% of their potential.",
+    problemP2a: "Not because of bad people. Not because of bad tools.",
+    problemP2b: "But because critical information is stuck in people\u2019s heads, scattered across inboxes, or buried in spreadsheets.",
+    problemP3: "AI can help. But only if it knows what your company knows.",
+    howTitle: "How we work",
+    steps: [
+      {
+        num: "1", title: "Scan",
+        desc: "We map where AI has the highest impact — and what it costs to do nothing.",
+        detail: "In 1 week you know exactly where the opportunities are.",
+      },
+      {
+        num: "2", title: "Build",
+        desc: "We build your AI Operating System — a living knowledge base that gives AI the context of your business.",
+        detail: "Brand identity, processes, market data — structured and always current.",
+      },
+      {
+        num: "3", title: "Deploy",
+        desc: "We deploy digital colleagues that draw from your knowledge base and actually get work done.",
+        detail: "No toys. No demos. Results.",
+      },
+    ],
+    startScan: "Start with a Scan →",
+    whySwitch: "Why companies switch",
+    trustEU: "🇪🇺 EU Data Hosting",
+    trustGDPR: "🔒 GDPR Compliant",
+    trustNoCure: "🤝 No Cure, No Pay",
+    closerTitle: "Ready to discover what your company really knows?",
+    closerSub: "Book a free consultation. No sales pitch — just an honest conversation about what AI can do for your organisation.",
+    closerCta: "Book a call →",
+  },
+};
 
 export default function HomePage() {
+  const { t } = useLanguage();
+  const c = t(translations);
+
   return (
     <>
       {/* Hero */}
@@ -10,14 +95,14 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-grey max-w-3xl mx-auto">
-              Je bedrijf weet meer dan je denkt.
+              {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-6 md:mt-8 text-lg md:text-xl font-light text-grey/70 max-w-2xl mx-auto leading-relaxed">
-              Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.
+              {c.heroSub1}
               <br className="hidden md:block" />
-              Nativ maakt die kennis toegankelijk — zodat AI écht waarde levert.
+              {c.heroSub2}
             </p>
           </FadeIn>
           <FadeIn delay={400}>
@@ -26,13 +111,13 @@ export default function HomePage() {
                 href="/contact"
                 className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors text-base"
               >
-                Plan een vrijblijvend gesprek →
+                {c.ctaPrimary}
               </Link>
               <Link
                 href="/diensten"
                 className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
-                Bekijk onze aanpak
+                {c.ctaSecondary}
               </Link>
             </div>
           </FadeIn>
@@ -45,21 +130,18 @@ export default function HomePage() {
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
-              Het probleem dat niemand benoemt
+              {c.problemTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-8 space-y-6 text-lg font-light leading-relaxed text-grey/80">
-              <p>De meeste bedrijven verspillen 40% van hun potentieel.</p>
+              <p>{c.problemP1}</p>
               <p>
-                Niet door slechte mensen. Niet door slechte tools.
+                {c.problemP2a}
                 <br />
-                Maar omdat cruciale informatie vastzit in de hoofden van mensen,
-                verspreid over inboxes, of begraven in spreadsheets.
+                {c.problemP2b}
               </p>
-              <p>
-                AI kan helpen. Maar alleen als het wéét wat jouw bedrijf weet.
-              </p>
+              <p>{c.problemP3}</p>
             </div>
           </FadeIn>
         </div>
@@ -70,33 +152,12 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
-              Hoe we werken
+              {c.howTitle}
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative">
-            {/* Connecting line (desktop) */}
             <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-px bg-sage/20" aria-hidden="true" />
-
-            {[
-              {
-                num: "1",
-                title: "Scan",
-                desc: "We scannen waar AI de meeste waarde creëert in jouw organisatie.",
-                detail: "In 1 week weet je precies waar de kansen liggen.",
-              },
-              {
-                num: "2",
-                title: "Build",
-                desc: "We bouwen je AI-kennisbank — de context die AI écht nuttig maakt.",
-                detail: "Jouw bedrijfskennis, gestructureerd en toegankelijk.",
-              },
-              {
-                num: "3",
-                title: "Deploy",
-                desc: "We zetten digitale collega's in die echt werk leveren.",
-                detail: "Geen speelgoed. Geen demo's. Resultaat.",
-              },
-            ].map((step, i) => (
+            {c.steps.map((step, i) => (
               <FadeIn key={step.num} delay={i * 150}>
                 <div className="text-center md:text-left">
                   <span className="inline-block text-5xl font-serif text-sage mb-4">
@@ -121,7 +182,7 @@ export default function HomePage() {
                 href="/scan"
                 className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block"
               >
-                Start met een Scan →
+                {c.startScan}
               </Link>
             </div>
           </FadeIn>
@@ -133,7 +194,7 @@ export default function HomePage() {
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-12">
-              Waarom bedrijven switchen
+              {c.whySwitch}
             </h2>
           </FadeIn>
           <ComparisonTable />
@@ -145,11 +206,11 @@ export default function HomePage() {
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-grey/60">
-              <span>🇪🇺 EU Data Hosting</span>
+              <span>{c.trustEU}</span>
               <span aria-hidden="true">·</span>
-              <span>🔒 GDPR Compliant</span>
+              <span>{c.trustGDPR}</span>
               <span aria-hidden="true">·</span>
-              <span>🤝 No Cure, No Pay</span>
+              <span>{c.trustNoCure}</span>
             </div>
           </FadeIn>
         </div>
@@ -160,13 +221,12 @@ export default function HomePage() {
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
-              Klaar om te ontdekken wat jouw bedrijf écht weet?
+              {c.closerTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
-              Plan een vrijblijvend gesprek. Geen verkooppraatje — gewoon een
-              eerlijk gesprek over wat AI voor jouw organisatie kan betekenen.
+              {c.closerSub}
             </p>
           </FadeIn>
           <FadeIn delay={300}>
@@ -175,7 +235,7 @@ export default function HomePage() {
                 href="/contact"
                 className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block text-base"
               >
-                Plan een gesprek →
+                {c.closerCta}
               </Link>
             </div>
           </FadeIn>
