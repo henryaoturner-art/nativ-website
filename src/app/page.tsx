@@ -11,11 +11,11 @@ const translations = {
     heroSub2: "Nativ maakt die kennis toegankelijk — zodat AI écht waarde levert.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk onze aanpak",
-    problemTitle: "Meer kennis dan je benut",
-    problemP1: "40% van de kennis in jouw organisatie zit in de hoofden van mensen.",
-    problemP2a: "In inboxes. In processen. In ervaring die nergens vastligt.",
-    problemP2b: "Wij maken die kennis zichtbaar, toegankelijk en klaar voor AI.",
-    problemP3: "Zodat elke beslissing beter wordt. Elke medewerker slimmer werkt. Elke klant sneller geholpen is.",
+    problemTitle: "Jouw grootste asset zit al in huis",
+    problemP1: "De kennis van je team is het krachtigste wat je hebt.",
+    problemP2a: "In hoofden, in ervaring, in jaren van expertise — wachtend om ingezet te worden.",
+    problemP2b: "Wij structureren die kennis zodat AI er direct mee aan de slag kan.",
+    problemP3: "Het resultaat: betere beslissingen, snellere groei en een team dat meer bereikt.",
     howTitle: "Hoe we werken",
     steps: [
       {
@@ -48,11 +48,11 @@ const translations = {
     heroSub2: "Nativ makes that knowledge accessible — so AI actually delivers.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See our approach",
-    problemTitle: "More knowledge than you\u2019re using",
-    problemP1: "40% of the knowledge in your organisation lives in people\u2019s heads.",
-    problemP2a: "In inboxes. In processes. In experience that\u2019s never been captured.",
-    problemP2b: "We make that knowledge visible, accessible, and ready for AI.",
-    problemP3: "So every decision gets better. Every employee works smarter. Every client is served faster.",
+    problemTitle: "Your greatest asset is already in-house",
+    problemP1: "Your team\u2019s knowledge is the most powerful thing you have.",
+    problemP2a: "In minds, in experience, in years of expertise — ready to be activated.",
+    problemP2b: "We structure that knowledge so AI can put it to work immediately.",
+    problemP3: "The result: better decisions, faster growth, and a team that achieves more.",
     howTitle: "How we work",
     steps: [
       {
