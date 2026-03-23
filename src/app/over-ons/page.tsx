@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   nl: {
     heroTitle: "Wij zijn Nativ",
-    heroSub1: "Drie mensen. Dertig mensen output.",
+    heroSub1: "Drie mensen. Dertig man output.",
     heroSub2: "Niet door harder te werken — door AI-native te zijn.",
     storyTitle: "Waarom Nativ bestaat",
     storyP1: "We zagen het steeds weer. Bedrijven die duizenden euro\u2019s uitgeven aan AI-tools. Die er vervolgens niets mee doen. Niet omdat de tools slecht zijn — maar omdat niemand de bedrijfskennis had gestructureerd die AI nodig heeft om nuttig te zijn.",
