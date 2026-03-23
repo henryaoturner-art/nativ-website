@@ -8,15 +8,15 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   nl: {
     heroTitle: "Je bedrijf weet meer dan je denkt.",
-    heroSub1: "Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. ",
-    heroSub2: "Geen AI-tools zonder context. Geen consultancy zonder resultaat. De brug ertussenin.",
+    heroSub1: "Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.",
+    heroSub2: "Nativ maakt die kennis toegankelijk — zodat AI écht waarde levert.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk onze aanpak",
-    problemTitle: "Het probleem dat niemand benoemt",
-    problemP1: "De meeste bedrijven verspillen 40% van hun potentieel.",
-    problemP2a: "Niet door slechte mensen. Niet door slechte tools.",
-    problemP2b: "Maar omdat cruciale informatie vastzit in de hoofden van mensen, verspreid over inboxes, of begraven in spreadsheets.",
-    problemP3: "AI kan helpen. Maar alleen als het wéét wat jouw bedrijf weet.",
+    problemTitle: "Meer kennis dan je benut",
+    problemP1: "40% van de kennis in jouw organisatie zit in de hoofden van mensen.",
+    problemP2a: "In inboxes. In processen. In ervaring die nergens vastligt.",
+    problemP2b: "Wij maken die kennis zichtbaar, toegankelijk en klaar voor AI.",
+    problemP3: "Zodat elke beslissing beter wordt. Elke medewerker slimmer werkt. Elke klant sneller geholpen is.",
     howTitle: "Hoe we werken",
     steps: [
       {
@@ -46,15 +46,15 @@ const translations = {
   },
   en: {
     heroTitle: "Your company knows more than you think.",
-    heroSub1: "Digital colleagues that draw from the collective intelligence of your company. ",
-    heroSub2: "Not another AI tool without context. Not a consultancy without results. The bridge between.",
+    heroSub1: "Critical knowledge is locked in people\u2019s heads, inboxes and spreadsheets.",
+    heroSub2: "Nativ makes that knowledge accessible — so AI actually delivers.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See our approach",
-    problemTitle: "The problem nobody talks about",
-    problemP1: "Most companies waste 40% of their potential.",
-    problemP2a: "Not because of bad people. Not because of bad tools.",
-    problemP2b: "But because critical information is stuck in people\u2019s heads, scattered across inboxes, or buried in spreadsheets.",
-    problemP3: "AI can help. But only if it knows what your company knows.",
+    problemTitle: "More knowledge than you\u2019re using",
+    problemP1: "40% of the knowledge in your organisation lives in people\u2019s heads.",
+    problemP2a: "In inboxes. In processes. In experience that\u2019s never been captured.",
+    problemP2b: "We make that knowledge visible, accessible, and ready for AI.",
+    problemP3: "So every decision gets better. Every employee works smarter. Every client is served faster.",
     howTitle: "How we work",
     steps: [
       {
