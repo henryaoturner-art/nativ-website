@@ -22,7 +22,7 @@ const translations = {
       {
         name: "Professional", setup: "€10.000–15.000", monthly: "€1.500–2.500/mo", badge: "Meest gekozen",
         features: ["Alles van Quick Start", "Diepte-interviews met je team", "Kennis uit hoofden, op papier — en bruikbaar voor AI", "Digitale collega's (tot 3)", "Maandelijkse optimalisatie"],
-        ideal: "Groeiende organisaties (50-200 FTE)", highlighted: true, cta: "Plan een gesprek →",
+        ideal: "Groeiende organisaties (20-200 FTE)", highlighted: true, cta: "Plan een gesprek →",
       },
       {
         name: "Enterprise", setup: "Vanaf €25.000", monthly: "€3.500–5.000/mo",
@@ -54,7 +54,7 @@ const translations = {
       {
         name: "Professional", setup: "€10,000–15,000", monthly: "€1,500–2,500/mo", badge: "Most popular",
         features: ["Everything in Quick Start", "In-depth interviews with your team", "Knowledge from heads onto paper — and usable for AI", "Digital colleagues (up to 3)", "Monthly optimisation"],
-        ideal: "Growing organisations (50-200 FTE)", highlighted: true, cta: "Book a call →",
+        ideal: "Growing organisations (20-200 FTE)", highlighted: true, cta: "Book a call →",
       },
       {
         name: "Enterprise", setup: "From €25,000", monthly: "€3,500–5,000/mo",
