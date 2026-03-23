@@ -47,6 +47,7 @@ const translations = {
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [calLoaded, setCalLoaded] = useState(false);
   const { t } = useLanguage();
   const c = t(translations);
 
@@ -80,11 +81,21 @@ export default function ContactPage() {
             <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] h-full">
               <h2 className="font-serif text-2xl mb-4">{c.calTitle}</h2>
               <p className="text-grey/60 font-light text-sm mb-6">{c.calMeta}</p>
-              <div className="bg-cream rounded-lg h-80 flex items-center justify-center text-grey/40 text-sm">
-                <div className="text-center">
-                  <p className="mb-2">{c.calPlaceholder}</p>
-                  <p className="text-xs text-grey/30">{c.calSub}</p>
-                </div>
+              <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
+                {!calLoaded && (
+                  <div className="bg-cream h-[580px] flex items-center justify-center text-grey/40 text-sm">
+                    <p>Kalender laden...</p>
+                  </div>
+                )}
+                <iframe
+                  src="https://calendly.com/livius-vanheemstra-goniftyai/30min"
+                  width="100%"
+                  height="580"
+                  frameBorder="0"
+                  title="Plan een gesprek"
+                  onLoad={() => setCalLoaded(true)}
+                  style={{ display: calLoaded ? 'block' : 'none' }}
+                />
               </div>
             </div>
           </FadeIn>
