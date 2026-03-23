@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ComparisonTable from "@/components/ComparisonTable";
 import { useLanguage } from "@/lib/language-context";
 
 const translations = {
@@ -36,7 +35,6 @@ const translations = {
       },
     ],
     startScan: "Start met een Scan →",
-    whySwitch: "Waarom bedrijven switchen",
     trustEU: "🇪🇺 EU Data Hosting",
     trustGDPR: "🔒 GDPR Compliant",
     trustNoCure: "🤝 No Cure, No Pay",
@@ -74,7 +72,6 @@ const translations = {
       },
     ],
     startScan: "Start with a Scan →",
-    whySwitch: "Why companies switch",
     trustEU: "🇪🇺 EU Data Hosting",
     trustGDPR: "🔒 GDPR Compliant",
     trustNoCure: "🤝 No Cure, No Pay",
@@ -186,18 +183,6 @@ export default function HomePage() {
               </Link>
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-[800px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-12">
-              {c.whySwitch}
-            </h2>
-          </FadeIn>
-          <ComparisonTable />
         </div>
       </section>
 
