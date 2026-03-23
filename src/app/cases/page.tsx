@@ -45,7 +45,7 @@ export default function CasesPage() {
 
               {/* Headline */}
               <h2 className="font-serif text-2xl md:text-3xl leading-snug text-grey">
-                Van onvervulbare vacature naar 9 digitale collega&apos;s — in 4 weken
+                Van onvervulbare vacature naar 14 digitale collega&apos;s — in 4 weken
               </h2>
 
               <p className="mt-4 text-grey/70 font-light leading-relaxed">
@@ -74,7 +74,7 @@ export default function CasesPage() {
                   </div>
                   <div>
                     <p className="font-medium text-grey">Deploy</p>
-                    <p>We zetten 9 digitale collega&apos;s in, elk gespecialiseerd in een ander domein: strategie, contentcreatie, campagne-optimalisatie, concurrentie-analyse, branding en meer. Allemaal gevoed door dezelfde kennisbank.</p>
+                    <p>We zetten 14 digitale collega&apos;s in, elk gespecialiseerd in een ander domein: strategie, contentcreatie, campagne-optimalisatie, concurrentie-analyse, branding en meer. Allemaal gevoed door dezelfde kennisbank.</p>
                   </div>
                 </div>
               </div>
