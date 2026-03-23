@@ -9,11 +9,11 @@ const translations = {
     heroSub: "Jouw data is van jou. Wij passen erop.",
     principlesTitle: "Onze principes",
     principles: [
-      { title: "EU Data Hosting", desc: "Al onze data wordt opgeslagen en verwerkt binnen de Europese Unie. Geen uitzonderingen." },
+      { title: "EU Data Hosting", desc: "Al onze data wordt opgeslagen en verwerkt binnen de Europese Unie (AWS EU-North-1, Stockholm). Geen uitzonderingen." },
       { title: "GDPR Compliant", desc: "We voldoen volledig aan de AVG/GDPR. Je hebt altijd controle over je data — inzage, correctie en verwijdering op verzoek." },
-      { title: "Encryptie", desc: "Data wordt versleuteld in transit (TLS 1.3) en at rest (AES-256). Geen concessies." },
-      { title: "Geen doorverkoop", desc: "Jouw bedrijfsdata wordt nooit gebruikt om AI-modellen te trainen of doorverkocht aan derden. Nooit." },
-      { title: "Toegangscontrole", desc: "Strikte toegangscontrole op basis van need-to-know. Alleen geautoriseerde teamleden hebben toegang tot klantdata." },
+      { title: "Encryptie", desc: "Data wordt versleuteld in transit (SSL/TLS) en at rest. Alle verbindingen zijn beveiligd." },
+      { title: "Jouw data blijft van jou", desc: "Jouw bedrijfsdata wordt nooit gebruikt om AI-modellen te trainen of doorverkocht aan derden. Alles draait op jouw accounts, volledig overdraagbaar." },
+      { title: "Multi-tenant isolatie", desc: "Strikte scheiding tussen klantdata op database-niveau. Alleen geautoriseerde teamleden hebben toegang." },
       { title: "Transparantie", desc: "We zijn altijd open over hoe we data verwerken. Vraag het ons — we leggen het uit." },
     ],
     trustTitle: "Vertrouwd door",
@@ -25,12 +25,12 @@ const translations = {
     heroSub: "Your data is yours. We guard it.",
     principlesTitle: "Our principles",
     principles: [
-      { title: "EU Data Hosting", desc: "All our data is stored and processed within the European Union. No exceptions." },
+      { title: "EU Data Hosting", desc: "All our data is stored and processed within the European Union (AWS EU-North-1, Stockholm). No exceptions." },
       { title: "GDPR Compliant", desc: "We fully comply with GDPR. You always have control over your data — access, correction and deletion on request." },
-      { title: "Encryption", desc: "Data is encrypted in transit (TLS 1.3) and at rest (AES-256). No compromises." },
-      { title: "No resale", desc: "Your company data is never used to train AI models or sold to third parties. Ever." },
-      { title: "Access control", desc: "Strict access control on a need-to-know basis. Only authorised team members have access to client data." },
-      { title: "Transparency", desc: "We are always open about how we process data. Ask us — we\u2019ll explain." },
+      { title: "Encryption", desc: "Data is encrypted in transit (SSL/TLS) and at rest. All connections are secured." },
+      { title: "Your data stays yours", desc: "Your company data is never used to train AI models or sold to third parties. Everything runs on your accounts, fully transferable." },
+      { title: "Multi-tenant isolation", desc: "Strict separation of client data at database level. Only authorised team members have access." },
+      { title: "Transparency", desc: "We are always open about how we process data. Ask us \u2014 we\u2019ll explain." },
     ],
     trustTitle: "Trusted by",
     questionTitle: "Questions about security?",
@@ -90,8 +90,8 @@ export default function SecurityPage() {
             <div className="flex flex-wrap items-center justify-center gap-8 text-grey/40">
               <div className="text-center"><span className="text-3xl">🇪🇺</span><p className="text-xs mt-1">EU Data</p></div>
               <div className="text-center"><span className="text-3xl">🔒</span><p className="text-xs mt-1">GDPR</p></div>
-              <div className="text-center"><span className="text-3xl">🛡️</span><p className="text-xs mt-1">TLS 1.3</p></div>
-              <div className="text-center"><span className="text-3xl">🔐</span><p className="text-xs mt-1">AES-256</p></div>
+              <div className="text-center"><span className="text-3xl">🛡️</span><p className="text-xs mt-1">SSL/TLS</p></div>
+              <div className="text-center"><span className="text-3xl">🔐</span><p className="text-xs mt-1">Encrypted</p></div>
             </div>
           </FadeIn>
         </div>
