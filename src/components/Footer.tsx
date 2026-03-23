@@ -43,7 +43,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-grey text-white/80 mt-auto" role="contentinfo">
-      <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
+      <div className="max-w-[1200px] mx-auto px-6 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {/* Brand */}
           <div>

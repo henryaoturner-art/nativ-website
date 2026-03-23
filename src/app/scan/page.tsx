@@ -101,7 +101,7 @@ export default function ScanPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
@@ -127,7 +127,7 @@ export default function ScanPage() {
       </section>
 
       {/* What You Get */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.whatTitle}</h2>
@@ -158,7 +158,7 @@ export default function ScanPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.howTitle}</h2>
@@ -186,7 +186,7 @@ export default function ScanPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center">{c.investTitle}</h2>
@@ -222,7 +222,7 @@ export default function ScanPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">{c.faqTitle}</h2>

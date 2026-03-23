@@ -49,7 +49,7 @@ export default function OverOnsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
@@ -67,7 +67,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Story */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.storyTitle}</h2>
@@ -83,7 +83,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 md:py-28 px-6 bg-white">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.teamTitle}</h2>
@@ -110,7 +110,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* How We Work */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.howTitle}</h2>

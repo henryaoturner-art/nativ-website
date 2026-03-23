@@ -70,7 +70,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <article className="py-24 md:py-32 px-6">
+    <article className="py-10 md:py-14 px-6">
       <div className="max-w-[680px] mx-auto">
         <FadeIn>
           <Link

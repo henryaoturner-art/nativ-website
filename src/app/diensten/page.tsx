@@ -92,7 +92,7 @@ export default function DienstenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
@@ -111,7 +111,7 @@ export default function DienstenPage() {
 
       {/* Service Layers */}
       {c.layers.map((layer, i) => (
-        <section key={layer.step} className={`py-20 md:py-28 px-6 ${i % 2 === 1 ? "bg-white" : ""}`}>
+        <section key={layer.step} className={`py-12 md:py-16 px-6 ${i % 2 === 1 ? "bg-white" : ""}`}>
           <div className="max-w-[680px] mx-auto">
             <FadeIn>
               <span className="text-sage text-sm font-medium tracking-wide uppercase">{layer.step}</span>
@@ -160,7 +160,7 @@ export default function DienstenPage() {
       ))}
 
       {/* Why This Order */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.whyTitle}</h2>

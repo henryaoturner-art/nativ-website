@@ -70,7 +70,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>

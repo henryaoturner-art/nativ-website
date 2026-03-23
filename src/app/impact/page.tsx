@@ -74,7 +74,7 @@ export default function ImpactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>
@@ -86,7 +86,7 @@ export default function ImpactPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 md:py-28 px-6 bg-white">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.howTitle}</h2>
@@ -108,7 +108,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Results */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-12">{c.whyTitle}</h2>
@@ -128,7 +128,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Flexibility */}
-      <section className="py-20 md:py-28 px-6 bg-white">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-8">{c.flexTitle}</h2>
@@ -144,7 +144,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Beyond Diagnostics */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.beyondTitle}</h2>
@@ -164,7 +164,7 @@ export default function ImpactPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.ctaTitle}</h2>

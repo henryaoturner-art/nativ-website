@@ -88,7 +88,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 md:py-32 lg:py-40 px-6">
+      <section className="py-10 md:py-14 lg:py-40 px-6">
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-grey max-w-3xl mx-auto">
@@ -123,7 +123,7 @@ export default function HomePage() {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
@@ -145,7 +145,7 @@ export default function HomePage() {
       </section>
 
       {/* Three-Step Journey */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-12 md:py-16 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
@@ -187,7 +187,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust Signals */}
-      <section className="py-16 md:py-20 px-6">
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-grey/60">
@@ -202,7 +202,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA / Closer */}
-      <section className="py-20 md:py-28 px-6 bg-cream">
+      <section className="py-12 md:py-16 px-6 bg-cream">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
