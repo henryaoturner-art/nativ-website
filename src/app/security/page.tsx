@@ -1,0 +1,138 @@
+import type { Metadata } from "next";
+import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: "Security & Privacy",
+  description:
+    "Hoe NATIV jouw data beschermt. EU-hosting, GDPR-compliant, transparante datapraktijken.",
+};
+
+export default function SecurityPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="py-24 md:py-32 px-6">
+        <div className="max-w-[800px] mx-auto text-center">
+          <FadeIn>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+              Security & Privacy
+            </h1>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+              Jouw data is van jou. Wij passen erop.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Principles */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              Onze principes
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="mt-10 space-y-8">
+              {[
+                {
+                  title: "EU Data Hosting",
+                  desc: "Al onze data wordt opgeslagen en verwerkt binnen de Europese Unie. Geen uitzonderingen.",
+                },
+                {
+                  title: "GDPR Compliant",
+                  desc: "We voldoen volledig aan de AVG/GDPR. Je hebt altijd controle over je data — inzage, correctie en verwijdering op verzoek.",
+                },
+                {
+                  title: "Encryptie",
+                  desc: "Data wordt versleuteld in transit (TLS 1.3) en at rest (AES-256). Geen concessies.",
+                },
+                {
+                  title: "Geen doorverkoop",
+                  desc: "Jouw bedrijfsdata wordt nooit gebruikt om AI-modellen te trainen of doorverkocht aan derden. Nooit.",
+                },
+                {
+                  title: "Toegangscontrole",
+                  desc: "Strikte toegangscontrole op basis van need-to-know. Alleen geautoriseerde teamleden hebben toegang tot klantdata.",
+                },
+                {
+                  title: "Transparantie",
+                  desc: "We zijn altijd open over hoe we data verwerken. Vraag het ons — we leggen het uit.",
+                },
+              ].map((item, i) => (
+                <div key={item.title} className="flex gap-5">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center mt-0.5" aria-hidden="true">
+                    <span className="text-sage text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg">{item.title}</h3>
+                    <p className="mt-1 text-grey/70 font-light leading-relaxed text-sm">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Certifications & Trust */}
+      <section className="py-20 md:py-28 px-6 bg-white">
+        <div className="max-w-[680px] mx-auto text-center">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">
+              Vertrouwd door
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="flex flex-wrap items-center justify-center gap-8 text-grey/40">
+              <div className="text-center">
+                <span className="text-3xl">🇪🇺</span>
+                <p className="text-xs mt-1">EU Data</p>
+              </div>
+              <div className="text-center">
+                <span className="text-3xl">🔒</span>
+                <p className="text-xs mt-1">GDPR</p>
+              </div>
+              <div className="text-center">
+                <span className="text-3xl">🛡️</span>
+                <p className="text-xs mt-1">TLS 1.3</p>
+              </div>
+              <div className="text-center">
+                <span className="text-3xl">🔐</span>
+                <p className="text-xs mt-1">AES-256</p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Contact for security */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-[680px] mx-auto text-center">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              Vragen over security?
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+              We beantwoorden graag al je vragen over hoe we met data omgaan.
+            </p>
+            <p className="mt-4">
+              <a
+                href="mailto:info@gonativ.nl"
+                className="text-sage hover:underline"
+              >
+                info@gonativ.nl
+              </a>
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+    </>
+  );
+}
