@@ -8,7 +8,7 @@ const translations = {
   nl: {
     heroTitle: "Je bedrijf weet meer dan je denkt.",
     heroSub1: "Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.",
-    heroSub2: "Nativ maakt die kennis toegankelijk — zodat AI écht waarde levert.",
+    heroSub2: "Nativ maakt die kennis toegankelijk — zodat je digitale collega's kunnen shinen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk onze aanpak",
     problemTitle: "Jouw grootste asset zit al in huis",
