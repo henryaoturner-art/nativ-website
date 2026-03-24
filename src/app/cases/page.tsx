@@ -45,7 +45,7 @@ export default function CasesPage() {
 
               {/* Headline */}
               <h2 className="font-serif text-2xl md:text-3xl leading-snug text-grey">
-                Van onvervulbare vacature naar 14 digitale collega&apos;s — in 4 weken
+                AI Marketing Manager: Van onvervulbare vacature naar 14 digitale collega&apos;s — in 4 weken
               </h2>
 
               <p className="mt-4 text-grey/70 font-light leading-relaxed">
