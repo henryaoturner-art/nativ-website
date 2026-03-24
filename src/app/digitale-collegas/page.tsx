@@ -125,12 +125,20 @@ export default function DigitaleCollegasPage() {
         </div>
       </section>
 
-      {/* Colleagues row */}
+      {/* Colleagues layout: Alice top center, 4 others below */}
       <section className="px-6 pb-24 md:pb-32">
         <div className="max-w-[1100px] mx-auto">
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10">
-            {colleagues.map((colleague, i) => (
-              <FadeIn key={colleague.id} delay={i * 100}>
+          {/* Alice — centered on top */}
+          <div className="flex justify-center mb-10 md:mb-14">
+            <FadeIn>
+              <ColleagueCard colleague={colleagues[0]} />
+            </FadeIn>
+          </div>
+
+          {/* 4 others — evenly distributed */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 justify-items-center">
+            {colleagues.slice(1).map((colleague, i) => (
+              <FadeIn key={colleague.id} delay={(i + 1) * 100}>
                 <ColleagueCard colleague={colleague} />
               </FadeIn>
             ))}
