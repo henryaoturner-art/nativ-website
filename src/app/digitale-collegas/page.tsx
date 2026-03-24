@@ -1,87 +1,52 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useState, useRef } from "react";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
-/* ── Digital Colleagues data ── */
+/* ── Digital Colleagues ── */
 interface Colleague {
   id: string;
   name: string;
-  role: string;
-  description: string;
-  avatar: string; // placeholder color/emoji for now — swap for real images later
-  audioSrc?: string; // optional audio file path
+  tagline: string;
+  color: string; // gradient accent
+  audioSrc?: string;
 }
 
 const colleagues: Colleague[] = [
   {
-    id: "marketing-manager",
-    name: "AI Marketing Manager",
-    role: "Marketing & Content",
-    description:
-      "Beheert je merkidentiteit, creëert content, optimaliseert campagnes en analyseert de concurrentie. Voor beide merken tegelijk.",
-    avatar: "📣",
+    id: "lisa",
+    name: "Lisa",
+    tagline: "Jouw persoonlijke assistent.",
+    color: "from-sage/30 to-sage/10",
   },
   {
-    id: "sales-assistant",
-    name: "AI Sales Assistant",
-    role: "Sales & Acquisitie",
-    description:
-      "Kwalificeert leads, bereidt verkoopgesprekken voor, schrijft offertes en houdt je CRM up-to-date.",
-    avatar: "🤝",
+    id: "max",
+    name: "Max",
+    tagline: "Marketing machine. Altijd aan.",
+    color: "from-amber-200/40 to-amber-100/20",
   },
   {
-    id: "kennisbeheerder",
-    name: "AI Kennisbeheerder",
-    role: "Kennismanagement",
-    description:
-      "Structureert, actualiseert en ontsluit de collectieve kennis van je organisatie. Het kloppend hart van je AI Operating System.",
-    avatar: "🧠",
+    id: "Nova",
+    name: "Nova",
+    tagline: "Data-analist. Glashelder.",
+    color: "from-blue-200/40 to-blue-100/20",
   },
   {
-    id: "hr-coordinator",
-    name: "AI HR Coördinator",
-    role: "HR & Recruitment",
-    description:
-      "Screent sollicitaties, plant interviews, beantwoordt veelgestelde vragen van medewerkers en beheert onboarding.",
-    avatar: "👥",
+    id: "finn",
+    name: "Finn",
+    tagline: "Alles finance. Geregeld.",
+    color: "from-emerald-200/40 to-emerald-100/20",
   },
   {
-    id: "finance-analyst",
-    name: "AI Finance Analyst",
-    role: "Finance & Rapportage",
-    description:
-      "Analyseert financiële data, genereert rapporten, signaleert afwijkingen en bereidt managementinformatie voor.",
-    avatar: "📊",
-  },
-  {
-    id: "customer-success",
-    name: "AI Customer Success",
-    role: "Klantenservice & Support",
-    description:
-      "Beantwoordt klantvragen met context, escaleert complexe issues en houdt klanttevredenheid bij.",
-    avatar: "💬",
-  },
-  {
-    id: "operations-manager",
-    name: "AI Operations Manager",
-    role: "Operations & Processen",
-    description:
-      "Optimaliseert workflows, bewaakt deadlines, coördineert tussen teams en signaleert bottlenecks.",
-    avatar: "⚙️",
-  },
-  {
-    id: "data-analyst",
-    name: "AI Data Analyst",
-    role: "Data & Inzichten",
-    description:
-      "Duikt in je data, vindt patronen, bouwt dashboards en vertaalt cijfers naar actionable inzichten.",
-    avatar: "📈",
+    id: "stella",
+    name: "Stella",
+    tagline: "Sales tijger. Rawrrr.",
+    color: "from-rose-200/40 to-rose-100/20",
   },
 ];
 
-function ColleagueCard({ colleague }: { colleague: Colleague }) {
+function ColleagueCard({ colleague, index }: { colleague: Colleague; index: number }) {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -98,42 +63,53 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
     }
   };
 
+  // Placeholder avatar colors per colleague
+  const avatarColors = [
+    "bg-sage/20",
+    "bg-amber-100",
+    "bg-blue-100",
+    "bg-emerald-100",
+    "bg-rose-100",
+  ];
+
   return (
     <button
       onClick={handleClick}
-      className="group w-full text-left bg-white rounded-xl p-6 md:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all duration-300 cursor-pointer"
+      className="group flex flex-col items-center text-center cursor-pointer"
       aria-label={`${colleague.name} — klik om te beluisteren`}
     >
-      {/* Avatar */}
-      <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-sage/10 flex items-center justify-center text-4xl md:text-5xl mb-4 group-hover:bg-sage/20 transition-colors">
-        {colleague.avatar}
-      </div>
+      {/* Photo card */}
+      <div
+        className={`relative w-36 h-44 md:w-44 md:h-52 rounded-2xl overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.1)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-all duration-300 group-hover:scale-[1.03] ${avatarColors[index]}`}
+      >
+        {/* Placeholder avatar — replace with real photos */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white/50 flex items-center justify-center text-4xl md:text-5xl font-serif text-grey/60">
+            {colleague.name[0]}
+          </div>
+        </div>
 
-      {/* Name & role */}
-      <h3 className="font-serif text-xl md:text-2xl text-grey leading-snug">
-        {colleague.name}
-      </h3>
-      <p className="text-sm text-sage font-medium mt-1">{colleague.role}</p>
+        {/* Name overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent pt-8 pb-3 px-3">
+          <p className="text-white font-serif text-lg md:text-xl font-medium">
+            {colleague.name}
+          </p>
+        </div>
 
-      {/* Description */}
-      <p className="mt-3 text-grey/70 font-light leading-relaxed text-[15px]">
-        {colleague.description}
-      </p>
-
-      {/* Audio indicator */}
-      <div className="mt-4 flex items-center gap-2 text-sm text-grey/40">
-        {colleague.audioSrc ? (
-          <>
-            <span className={playing ? "text-sage" : ""}>
-              {playing ? "⏸ Pauzeren" : "▶ Beluister introductie"}
-            </span>
-          </>
-        ) : (
-          <span className="italic">🎙 Audio binnenkort beschikbaar</span>
+        {/* Play indicator */}
+        {colleague.audioSrc && (
+          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-sage text-sm">
+            {playing ? "⏸" : "▶"}
+          </div>
         )}
       </div>
 
-      {/* Hidden audio element */}
+      {/* Tagline below card */}
+      <p className="mt-3 text-sm md:text-[15px] text-grey/70 font-light max-w-[180px]">
+        {colleague.tagline}
+      </p>
+
+      {/* Audio */}
       {colleague.audioSrc && (
         <audio
           ref={audioRef}
@@ -154,38 +130,33 @@ export default function DigitaleCollegasPage() {
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
-              Digitale Collega&apos;s
+              Maak kennis met je nieuwe collega&apos;s
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/70 max-w-[600px] mx-auto">
-              Geen chatbots. Geen speelgoed. Digitale collega&apos;s die putten
-              uit de collectieve intelligentie van jouw bedrijf.
-            </p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <p className="mt-4 text-base font-light text-grey/50">
-              Klik op een collega om de introductie te beluisteren.
+              Digitale collega&apos;s die putten uit de collectieve intelligentie
+              van jouw bedrijf. Klik om ze te ontmoeten.
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* Colleagues grid */}
+      {/* Colleagues row */}
       <section className="py-10 md:py-16 px-6 pb-20 md:pb-28">
         <div className="max-w-[1000px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {colleagues.map((colleague, i) => (
               <FadeIn key={colleague.id} delay={i * 100}>
-                <ColleagueCard colleague={colleague} />
+                <ColleagueCard colleague={colleague} index={i} />
               </FadeIn>
             ))}
           </div>
         </div>
 
         {/* CTA */}
-        <FadeIn delay={400}>
-          <div className="max-w-[680px] mx-auto text-center mt-16">
+        <FadeIn delay={600}>
+          <div className="max-w-[680px] mx-auto text-center mt-20">
             <p className="font-serif text-2xl md:text-3xl text-grey">
               Welke digitale collega heeft jouw team nodig?
             </p>
