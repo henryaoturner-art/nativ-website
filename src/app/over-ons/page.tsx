@@ -14,9 +14,9 @@ const translations = {
     storyQuote: "Nativ bouwt de brug tussen wat je bedrijf weet en wat AI kan.",
     teamTitle: "Het team",
     team: [
-      { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/" },
-      { name: "Gokul Menon", role: "Co-founder · Technology & Architecture", linkedin: "https://www.linkedin.com/in/gokul-m-9a18b09b/" },
-      { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/" },
+      { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
+      { name: "Gokul Menon", role: "Co-founder · Technology & Architecture", linkedin: "https://www.linkedin.com/in/gokul-m-9a18b09b/", photo: "/images/gokul.jpg" },
+      { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/", photo: "/images/jorus.jpg" },
     ],
     howTitle: "Hoe wij werken",
     howP: "Ons eigen bedrijf is onze eerste en meest geteste klant. Dezelfde kennisbank die we voor klanten bouwen, draait al maanden intern. We doen wat we zeggen — en we bewijzen het elke dag op onszelf.",
@@ -32,9 +32,9 @@ const translations = {
     storyQuote: "Nativ builds the bridge between what your company knows and what AI can do.",
     teamTitle: "The team",
     team: [
-      { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/" },
-      { name: "Gokul Menon", role: "Co-founder · Technology & Architecture", linkedin: "https://www.linkedin.com/in/gokul-m-9a18b09b/" },
-      { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/" },
+      { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
+      { name: "Gokul Menon", role: "Co-founder · Technology & Architecture", linkedin: "https://www.linkedin.com/in/gokul-m-9a18b09b/", photo: "/images/gokul.jpg" },
+      { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/", photo: "/images/jorus.jpg" },
     ],
     howTitle: "How we work",
     howP: "Our own company is our first and most battle-tested client. The same knowledge base we build for clients has been running internally for months. We do what we say — and we prove it on ourselves every day.",
@@ -92,8 +92,12 @@ export default function OverOnsPage() {
             {c.team.map((member, i) => (
               <FadeIn key={member.name} delay={i * 150}>
                 <div className="text-center">
-                  <div className="w-32 h-32 rounded-full bg-sage/10 mx-auto mb-6 flex items-center justify-center" aria-hidden="true">
-                    <span className="font-serif text-sage text-3xl">{member.name.charAt(0)}</span>
+                  <div className="w-32 h-32 rounded-full bg-sage/10 mx-auto mb-6 overflow-hidden flex items-center justify-center" aria-hidden="true">
+                    {member.photo ? (
+                      <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="font-serif text-sage text-3xl">{member.name.charAt(0)}</span>
+                    )}
                   </div>
                   <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-sage transition-colors">
                     <h3 className="font-serif text-xl">{member.name}</h3>
