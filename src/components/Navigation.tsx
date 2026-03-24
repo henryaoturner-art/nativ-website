@@ -11,6 +11,7 @@ const navLinks = {
   nl: [
     { href: "/scan", label: "Scan" },
     { href: "/diensten", label: "Diensten" },
+    { href: "/digitale-collegas", label: "Digitale Collega's" },
     { href: "/over-ons", label: "Over ons" },
     { href: "/cases", label: "Cases" },
     { href: "/pricing", label: "Pricing" },
@@ -18,6 +19,7 @@ const navLinks = {
   en: [
     { href: "/scan", label: "Scan" },
     { href: "/diensten", label: "Services" },
+    { href: "/digitale-collegas", label: "Digital Colleagues" },
     { href: "/over-ons", label: "About" },
     { href: "/cases", label: "Cases" },
     { href: "/pricing", label: "Pricing" },

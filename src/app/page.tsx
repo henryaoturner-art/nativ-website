@@ -10,7 +10,7 @@ const translations = {
     heroSub1: "Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.",
     heroSub2: "Nativ maakt die kennis toegankelijk — zodat je digitale collega's kunnen shinen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
-    ctaSecondary: "Bekijk onze aanpak",
+    ctaSecondary: "Bekijk de Digitale Collega's",
     problemTitle: "Jouw grootste asset zit al in huis",
     problemP1: "De kennis van je team is het krachtigste wat je hebt.",
     problemP2a: "In hoofden, in ervaring, in jaren van expertise — wachtend om ingezet te worden.",
@@ -47,7 +47,7 @@ const translations = {
     heroSub1: "Critical knowledge is locked in people\u2019s heads, inboxes and spreadsheets.",
     heroSub2: "Nativ makes that knowledge accessible — so AI actually delivers.",
     ctaPrimary: "Book a free consultation →",
-    ctaSecondary: "See our approach",
+    ctaSecondary: "Meet the Digital Colleagues",
     problemTitle: "Your greatest asset is already in-house",
     problemP1: "Your team\u2019s knowledge is the most powerful thing you have.",
     problemP2a: "In minds, in experience, in years of expertise — ready to be activated.",
@@ -111,7 +111,7 @@ export default function HomePage() {
                 {c.ctaPrimary}
               </Link>
               <Link
-                href="/diensten"
+                href="/digitale-collegas"
                 className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
                 {c.ctaSecondary}
