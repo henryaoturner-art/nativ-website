@@ -7,107 +7,151 @@ import FadeIn from "@/components/FadeIn";
 interface Colleague {
   id: string;
   name: string;
+  role: string;
   tagline: string;
+  intro: string;
   image: string;
-  audioSrc?: string;
+  audioSrc: string;
 }
 
 const colleagues: Colleague[] = [
   {
     id: "alice",
     name: "Alice",
-    tagline: "Personal Assistant.",
+    role: "Personal Assistant",
+    tagline: "Je rechterhand die nooit vrij neemt.",
+    intro:
+      "Hi, ik ben Alice, je personal assistant. Je kunt mij alles vragen wat je wilt — ingesproken of getypt. Ik zoek het antwoord voor je op, maak rapporten, doe research en zet afspraken in je agenda. Zie mij als je rechterhand die nooit vrij neemt.",
     image: "/images/colleagues/alice.jpg",
-  },
-  {
-    id: "chrystal",
-    name: "Chrystal",
-    tagline: "Chrystal clear data analist.",
-    image: "/images/colleagues/chrystal.jpg",
-  },
-  {
-    id: "bill",
-    name: "Bill",
-    tagline: "All things finance. Covered.",
-    image: "/images/colleagues/bill.jpg",
+    audioSrc: "/audio/alice.mp3",
   },
   {
     id: "pablo",
     name: "Pablo",
-    tagline: "Creative genius. (His words)",
+    role: "Marketing",
+    tagline: "Van strategie tot social post.",
+    intro:
+      "Hey, ik ben Pablo, je marketing collega. Campagnes bedenken, content creëren, concurrentie analyseren — dat is mijn ding. Ik ken je merk door en door en zorg dat elke uiting on-brand is. Van strategie tot social post, ik regel het.",
     image: "/images/colleagues/pablo.jpg",
+    audioSrc: "/audio/pablo.mp3",
   },
   {
     id: "hunter",
     name: "Hunter",
+    role: "Sales",
     tagline: "Sales Tiger. Rawrrr.",
+    intro:
+      "Hoi, ik ben Hunter, je sales collega. Leads kwalificeren, verkoopgesprekken voorbereiden, offertes opstellen — ik ben er voor. Ik ken je klanten, je markt en je propositie. Elke deal die binnenkomt, heb ik voorbereid. Rawrrr.",
     image: "/images/colleagues/hunter.jpg",
+    audioSrc: "/audio/hunter.mp3",
+  },
+  {
+    id: "chrystal",
+    name: "Chrystal",
+    role: "HR",
+    tagline: "Alles rondom HR, kristalhelder.",
+    intro:
+      "Hi, ik ben Chrystal. Ik ben je HR collega. Sollicitaties screenen, onboarding regelen, veelgestelde vragen van medewerkers beantwoorden — ik neem het van je over. Ik ken je bedrijfscultuur, je processen en je mensen. Alles rondom HR, kristalhelder.",
+    image: "/images/colleagues/chrystal.jpg",
+    audioSrc: "/audio/chrystal.mp3",
+  },
+  {
+    id: "bill",
+    name: "Bill",
+    role: "Finance",
+    tagline: "All things finance. Covered.",
+    intro:
+      "Hallo, ik ben Bill, je finance collega. Financiële rapportages, budgetanalyses, cashflow-prognoses — ik heb het onder controle. Ik signaleer afwijkingen voordat ze problemen worden en zorg dat je altijd inzicht hebt in de cijfers. Covered.",
+    image: "/images/colleagues/bill.jpg",
+    audioSrc: "/audio/bill.mp3",
   },
 ];
 
 function ColleagueCard({ colleague }: { colleague: Colleague }) {
   const [playing, setPlaying] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleClick = () => {
-    if (colleague.audioSrc && audioRef.current) {
+    if (audioRef.current) {
       if (playing) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
         setPlaying(false);
+        setShowIntro(false);
       } else {
         audioRef.current.play();
         setPlaying(true);
+        setShowIntro(true);
       }
     }
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="group flex flex-col items-center text-center cursor-pointer"
-      aria-label={`${colleague.name} — klik om te beluisteren`}
-    >
-      {/* Photo card */}
-      <div className="relative w-40 h-48 md:w-48 md:h-56 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
-        <Image
-          src={colleague.image}
-          alt={colleague.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 160px, 192px"
-        />
+    <div className="flex flex-col items-center text-center">
+      <button
+        onClick={handleClick}
+        className="group flex flex-col items-center cursor-pointer"
+        aria-label={`${colleague.name} — klik om introductie te beluisteren`}
+      >
+        {/* Photo card */}
+        <div className="relative w-40 h-48 md:w-48 md:h-56 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
+          <Image
+            src={colleague.image}
+            alt={colleague.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 160px, 192px"
+          />
 
-        {/* Name overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-grey/70 to-transparent pt-10 pb-3 px-3">
-          <p className="text-white font-serif text-xl md:text-2xl">
-            {colleague.name}
-          </p>
-        </div>
+          {/* Name + role overlay */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-grey/70 to-transparent pt-10 pb-3 px-3">
+            <p className="text-white font-serif text-xl md:text-2xl">
+              {colleague.name}
+            </p>
+            <p className="text-white/80 text-xs mt-0.5">{colleague.role}</p>
+          </div>
 
-        {/* Play indicator */}
-        {colleague.audioSrc && (
-          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-sage text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+          {/* Play indicator */}
+          <div
+            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all ${
+              playing
+                ? "bg-sage text-white scale-110"
+                : "bg-white/80 text-sage opacity-0 group-hover:opacity-100"
+            }`}
+          >
             {playing ? "⏸" : "▶"}
           </div>
-        )}
+        </div>
+
+        {/* Tagline */}
+        <p className="mt-4 text-[15px] text-grey/70 font-light">
+          {colleague.tagline}
+        </p>
+      </button>
+
+      {/* Intro text — shown while playing */}
+      <div
+        className={`mt-4 max-w-[220px] overflow-hidden transition-all duration-500 ${
+          showIntro ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p className="text-[13px] text-grey/60 font-light leading-relaxed italic">
+          &ldquo;{colleague.intro}&rdquo;
+        </p>
       </div>
 
-      {/* Tagline */}
-      <p className="mt-4 text-[15px] text-grey/70 font-light">
-        {colleague.tagline}
-      </p>
-
       {/* Audio */}
-      {colleague.audioSrc && (
-        <audio
-          ref={audioRef}
-          src={colleague.audioSrc}
-          onEnded={() => setPlaying(false)}
-          preload="none"
-        />
-      )}
-    </button>
+      <audio
+        ref={audioRef}
+        src={colleague.audioSrc}
+        onEnded={() => {
+          setPlaying(false);
+          setTimeout(() => setShowIntro(false), 2000);
+        }}
+        preload="none"
+      />
+    </div>
   );
 }
 
@@ -122,14 +166,19 @@ export default function DigitaleCollegasPage() {
               Maak kennis met je nieuwe collega&apos;s
             </h1>
           </FadeIn>
+          <FadeIn delay={200}>
+            <p className="mt-4 text-base font-light text-grey/50">
+              Klik op een collega om de introductie te beluisteren.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Colleagues layout: Alice top center, 4 others below */}
+      {/* Colleagues: Alice top center, 4 others below */}
       <section className="px-6 pb-24 md:pb-32">
         <div className="max-w-[1100px] mx-auto">
           {/* Alice — centered on top */}
-          <div className="flex justify-center mb-10 md:mb-14">
+          <div className="flex justify-center mb-12 md:mb-16">
             <FadeIn>
               <ColleagueCard colleague={colleagues[0]} />
             </FadeIn>
