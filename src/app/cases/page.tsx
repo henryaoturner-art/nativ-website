@@ -85,7 +85,7 @@ export default function CasesPage() {
                 <ul className="space-y-3 text-grey/80 font-light">
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">↓</span>
-                    Van onvervulde vacature (€3.000–4.000/maand) naar AI Marketing Manager (€995/maand) — 7 tot 10x kostenreductie
+                    Van onvervulde vacature (€3.000–4.000/maand) naar AI Marketing Manager (€995/maand) — 3 tot 4x kostenreductie
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">×2</span>
