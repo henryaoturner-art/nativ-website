@@ -88,7 +88,7 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
         aria-label={`${colleague.name} — klik om de introductie te bekijken`}
       >
         {/* Video card */}
-        <div className="relative w-48 h-56 md:w-56 md:h-64 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
+        <div className="relative w-48 h-64 md:w-56 md:h-80 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
           <video
             ref={videoRef}
             src={colleague.videoSrc}
