@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
 interface Colleague {
@@ -10,8 +9,7 @@ interface Colleague {
   role: string;
   tagline: string;
   intro: string;
-  image: string;
-  audioSrc: string;
+  videoSrc: string;
 }
 
 const colleagues: Colleague[] = [
@@ -21,66 +19,61 @@ const colleagues: Colleague[] = [
     role: "Personal Assistant",
     tagline: "Je rechterhand die nooit vrij neemt.",
     intro:
-      "Hi, ik ben Alice, je personal assistant. Je kunt mij alles vragen wat je wilt — ingesproken of getypt. Ik zoek het antwoord voor je op, maak rapporten, doe research en zet afspraken in je agenda. Zie mij als je rechterhand die nooit vrij neemt.",
-    image: "/images/colleagues/alice.jpg",
-    audioSrc: "/audio/alice.mp3",
+      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent bij Nativ. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
+    videoSrc: "/videos/alice.mp4",
   },
   {
-    id: "pablo",
-    name: "Pablo",
+    id: "brandon",
+    name: "Brandon",
     role: "Marketing",
-    tagline: "Van strategie tot social post.",
+    tagline: "Data-gedreven marketing, dat is mijn ding.",
     intro:
-      "Hey, ik ben Pablo, je marketing collega. Campagnes bedenken, content creëren, concurrentie analyseren — dat is mijn ding. Ik ken je merk door en door en zorg dat elke uiting on-brand is. Van strategie tot social post, ik regel het.",
-    image: "/images/colleagues/pablo.jpg",
-    audioSrc: "/audio/pablo.mp3",
+      "Hey, ik ben Brandon, hoofd marketing bij Nativ. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse — ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
+    videoSrc: "/videos/brandon.mp4",
   },
   {
     id: "hunter",
     name: "Hunter",
     role: "Sales",
-    tagline: "Sales Tiger. Rawrrr.",
+    tagline: "Klaar om te scoren.",
     intro:
-      "Hoi, ik ben Hunter, je sales collega. Leads kwalificeren, verkoopgesprekken voorbereiden, offertes opstellen — ik ben er voor. Ik ken je klanten, je markt en je propositie. Elke deal die binnenkomt, heb ik voorbereid. Rawrrr.",
-    image: "/images/colleagues/hunter.jpg",
-    audioSrc: "/audio/hunter.mp3",
+      "Hi, ik ben Hunter, je digitale sales manager bij Nativ. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing — ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
+    videoSrc: "/videos/hunter.mp4",
   },
   {
     id: "chrystal",
     name: "Chrystal",
     role: "HR",
-    tagline: "Alles rondom HR, kristalhelder.",
+    tagline: "Mensen zijn het belangrijkste.",
     intro:
-      "Hi, ik ben Chrystal. Ik ben je HR collega. Sollicitaties screenen, onboarding regelen, veelgestelde vragen van medewerkers beantwoorden — ik neem het van je over. Ik ken je bedrijfscultuur, je processen en je mensen. Alles rondom HR, kristalhelder.",
-    image: "/images/colleagues/chrystal.jpg",
-    audioSrc: "/audio/chrystal.mp3",
+      "Hoi, ik ben Chrystal, je digitale HR-manager bij Nativ. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
+    videoSrc: "/videos/chrystal.mp4",
   },
   {
     id: "bill",
     name: "Bill",
     role: "Finance",
-    tagline: "All things finance. Covered.",
+    tagline: "Geen verrassingen aan het eind van de maand.",
     intro:
-      "Hallo, ik ben Bill, je finance collega. Financiële rapportages, budgetanalyses, cashflow-prognoses — ik heb het onder controle. Ik signaleer afwijkingen voordat ze problemen worden en zorg dat je altijd inzicht hebt in de cijfers. Covered.",
-    image: "/images/colleagues/bill.jpg",
-    audioSrc: "/audio/bill.mp3",
+      "Hallo, ik ben Bill, je digitale financieel adviseur bij Nativ. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
+    videoSrc: "/videos/bill.mp4",
   },
 ];
 
 function ColleagueCard({ colleague }: { colleague: Colleague }) {
   const [playing, setPlaying] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
-    if (audioRef.current) {
+    if (videoRef.current) {
       if (playing) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
         setPlaying(false);
         setShowIntro(false);
       } else {
-        audioRef.current.play();
+        videoRef.current.play();
         setPlaying(true);
         setShowIntro(true);
       }
@@ -92,20 +85,28 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
       <button
         onClick={handleClick}
         className="group flex flex-col items-center cursor-pointer"
-        aria-label={`${colleague.name} — klik om introductie te beluisteren`}
+        aria-label={`${colleague.name} — klik om de introductie te bekijken`}
       >
-        {/* Photo card */}
-        <div className="relative w-40 h-48 md:w-48 md:h-56 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
-          <Image
-            src={colleague.image}
-            alt={colleague.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 160px, 192px"
+        {/* Video card */}
+        <div className="relative w-48 h-56 md:w-56 md:h-64 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
+          <video
+            ref={videoRef}
+            src={colleague.videoSrc}
+            className="w-full h-full object-cover"
+            playsInline
+            onEnded={() => {
+              setPlaying(false);
+              setTimeout(() => setShowIntro(false), 2000);
+            }}
+            preload="metadata"
           />
 
-          {/* Name + role overlay */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-grey/70 to-transparent pt-10 pb-3 px-3">
+          {/* Name + role overlay — hidden while playing */}
+          <div
+            className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-grey/70 to-transparent pt-10 pb-3 px-3 transition-opacity duration-300 ${
+              playing ? "opacity-0" : "opacity-100"
+            }`}
+          >
             <p className="text-white font-serif text-xl md:text-2xl">
               {colleague.name}
             </p>
@@ -132,25 +133,14 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
 
       {/* Intro text — shown while playing */}
       <div
-        className={`mt-4 max-w-[220px] overflow-hidden transition-all duration-500 ${
-          showIntro ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+        className={`mt-4 max-w-[240px] overflow-hidden transition-all duration-500 ${
+          showIntro ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <p className="text-[13px] text-grey/60 font-light leading-relaxed italic">
           &ldquo;{colleague.intro}&rdquo;
         </p>
       </div>
-
-      {/* Audio */}
-      <audio
-        ref={audioRef}
-        src={colleague.audioSrc}
-        onEnded={() => {
-          setPlaying(false);
-          setTimeout(() => setShowIntro(false), 2000);
-        }}
-        preload="none"
-      />
     </div>
   );
 }
@@ -168,7 +158,7 @@ export default function DigitaleCollegasPage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-4 text-base font-light text-grey/50">
-              Klik op een collega om de introductie te beluisteren.
+              Klik op een collega om de introductie te bekijken.
             </p>
           </FadeIn>
         </div>
