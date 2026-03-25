@@ -15,7 +15,7 @@ const translations = {
     allPlans: "Alle plannen: No cure, no pay op de initiële Scan.",
     tiers: [
       {
-        name: "Quick Start", setup: "€2.495", monthly: "€495/mo",
+        name: "Quick Start", setup: "€2.495 - €4.495", monthly: "€495/mo",
         features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Alice zonder custom context", "Standaard integraties"],
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
@@ -47,7 +47,7 @@ const translations = {
     allPlans: "All plans: No cure, no pay on the initial Scan.",
     tiers: [
       {
-        name: "Quick Start", setup: "€2,495", monthly: "€495/mo",
+        name: "Quick Start", setup: "€2,495 - €4,495", monthly: "€495/mo",
         features: ["AI Opportunity Scan", "MCP connections to existing systems", "Alice without custom context", "Standard integrations"],
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
