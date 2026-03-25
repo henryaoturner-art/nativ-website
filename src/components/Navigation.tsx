@@ -9,7 +9,7 @@ import { useLanguage } from "@/lib/language-context";
 
 const navLinks = {
   nl: [
-    { href: "/scan", label: "Scan" },
+    { href: "/scan", label: "AI Scan" },
     { href: "/diensten", label: "Diensten" },
     { href: "/digitale-collegas", label: "Digitale Collega's" },
     { href: "/over-ons", label: "Over ons" },
@@ -17,7 +17,7 @@ const navLinks = {
     { href: "/pricing", label: "Pricing" },
   ],
   en: [
-    { href: "/scan", label: "Scan" },
+    { href: "/scan", label: "AI Scan" },
     { href: "/diensten", label: "Services" },
     { href: "/digitale-collegas", label: "Digital Colleagues" },
     { href: "/over-ons", label: "About" },
