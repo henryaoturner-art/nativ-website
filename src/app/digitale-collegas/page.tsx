@@ -92,7 +92,7 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
           <video
             ref={videoRef}
             src={colleague.videoSrc}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
             playsInline
             onEnded={() => {
               setPlaying(false);

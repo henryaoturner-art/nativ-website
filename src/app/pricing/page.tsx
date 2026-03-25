@@ -25,7 +25,7 @@ const translations = {
         ideal: "Groeiende organisaties die AI willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
       {
-        name: "AI Native", setup: "€49.950", monthly: "€4.995/mo",
+        name: "AI Native", setup: "Vanaf €49.950", monthly: "€4.995/mo",
         features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt digitale collega's", "Custom agents op maat", "Dedicated support & optimalisatie"],
         ideal: "Organisaties die volledig AI-native willen werken", highlighted: false, cta: "Neem contact op →",
       },
@@ -57,7 +57,7 @@ const translations = {
         ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
       },
       {
-        name: "AI Native", setup: "€49,950", monthly: "€4,995/mo",
+        name: "AI Native", setup: "From €49,950", monthly: "€4,995/mo",
         features: ["Everything in Professional", "Full AI transformation", "Unlimited digital colleagues", "Custom agents built to spec", "Dedicated support & optimisation"],
         ideal: "Organisations going fully AI-native", highlighted: false, cta: "Get in touch →",
       },
