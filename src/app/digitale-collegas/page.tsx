@@ -19,7 +19,7 @@ const colleagues: Colleague[] = [
     role: "Personal Assistant",
     tagline: "Je rechterhand die nooit vrij neemt.",
     intro:
-      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent bij Nativ. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
+      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
     videoSrc: "/videos/alice.mp4",
   },
   {
@@ -28,7 +28,7 @@ const colleagues: Colleague[] = [
     role: "Marketing",
     tagline: "Data-gedreven marketing, dat is mijn ding.",
     intro:
-      "Hey, ik ben Brandon, hoofd marketing bij Nativ. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse — ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
+      "Hey, ik ben Brandon, hoofd marketing. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse — ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
     videoSrc: "/videos/brandon.mp4",
   },
   {
@@ -37,7 +37,7 @@ const colleagues: Colleague[] = [
     role: "Sales",
     tagline: "Klaar om te scoren.",
     intro:
-      "Hi, ik ben Hunter, je digitale sales manager bij Nativ. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing — ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
+      "Hi, ik ben Hunter, je digitale sales manager. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing — ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
     videoSrc: "/videos/hunter.mp4",
   },
   {
@@ -46,7 +46,7 @@ const colleagues: Colleague[] = [
     role: "HR",
     tagline: "Mensen zijn het belangrijkste.",
     intro:
-      "Hoi, ik ben Chrystal, je digitale HR-manager bij Nativ. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
+      "Hoi, ik ben Chrystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
     videoSrc: "/videos/chrystal.mp4",
   },
   {
@@ -55,7 +55,7 @@ const colleagues: Colleague[] = [
     role: "Finance",
     tagline: "Geen verrassingen aan het eind van de maand.",
     intro:
-      "Hallo, ik ben Bill, je digitale financieel adviseur bij Nativ. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
+      "Hallo, ik ben Bill, je digitale financieel adviseur. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
     videoSrc: "/videos/bill.mp4",
   },
 ];
