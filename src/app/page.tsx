@@ -20,7 +20,7 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We brengen in kaart waar AI de meeste impact heeft — en wat het kost om niets te doen.",
+        desc: "We brengen in kaart waar AI de meeste impact heeft — en wat het oplevert.",
         detail: "In 1 week weet je precies waar de kansen liggen.",
       },
       {
