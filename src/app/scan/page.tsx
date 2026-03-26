@@ -38,7 +38,7 @@ const translations = {
     card2Title: "Deep Dive AI Scan — Op Maat",
     card2Price: "Vanaf €2.495",
     card2Desc1: "Volledig op maat",
-    card2Desc2: "Voor complexe organisaties",
+    card2Desc2: "Voor specifieke vraagstukken",
     card2Cta: "Plan een intake →",
     noCure: "Beide opties: No cure, no pay. Niet tevreden? Je betaalt niets.",
     faqTitle: "Veelgestelde vragen",
