@@ -23,7 +23,7 @@ const translations = {
         step: "Stap 2", title: "Build",
         lead: "We bouwen je AI-kennisbank — de context die AI écht nuttig maakt.",
         body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft — in hoofden, systemen, processen — tot een levend AI Operating System dat AI begrijpt.\n\nDit systeem werkt met drie kennislagen: stabiele kennis (merkidentiteit, kernprocessen — jaarlijks bijgewerkt), evoluerende kennis (marktpositie, concurrentie — maandelijks bijgewerkt), en dynamische kennis (campagnedata, klantfeedback — wekelijks of vaker). Daardoor is het geen eenmalige snapshot, maar een systeem dat meegroeit met je organisatie.\n\nDit is het fundament. Zonder deze stap is elke AI-investering een gok.",
-        features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Drie kennislagen: stabiel, evoluerend, dynamisch", "Integratie met bestaande systemen", "Continue updates — een levend systeem, geen eenmalige snapshot"],
+        features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Een digitale assistent voor alle medewerkers", "Drie kennislagen: stabiel, evoluerend, dynamisch", "Integratie met bestaande systemen", "Continue updates — een levend systeem, geen eenmalige snapshot"],
         meta: "Doorlooptijd: 2–6 weken | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Meer weten →", ctaLink: "/contact", primary: false,
