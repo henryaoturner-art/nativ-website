@@ -8,7 +8,7 @@ const translations = {
   nl: {
     heroTitle: "Je bedrijf weet meer dan je denkt.",
     heroSub1: "Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.",
-    heroSub2: "Nativ maakt die kennis toegankelijk — zodat je digitale collega's kunnen shinen.",
+    heroSub2: "Nativ maakt die kennis toegankelijk — en geeft alle medewerkers een digitale assistent en extra digitale collega's.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de Digitale Collega's",
     problemTitle: "Je grootste asset heb je al in huis",
