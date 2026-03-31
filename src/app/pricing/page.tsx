@@ -22,7 +22,7 @@ const translations = {
       {
         name: "Professional", setup: "€12.495", monthly: "€1.249/mo per extra digitale collega", badge: "Meest gekozen",
         features: ["Alles van Quick Start", "Company Brain met digitale assistent", "Tot 4 extra digitale collega's", "Geen implementatiekosten per digitale collega", "Maandelijks opzegbaar"],
-        ideal: "Groeiende organisaties die AI willen inzetten", highlighted: true, cta: "Plan een gesprek →",
+        ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
       {
         name: "AI Native", setup: "Vanaf €49.950", monthly: "€4.995/mo",
