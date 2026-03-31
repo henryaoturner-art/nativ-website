@@ -16,7 +16,7 @@ const colleagues: Colleague[] = [
   {
     id: "alice",
     name: "Alice",
-    role: "Personal Assistant",
+    role: "Digitale Assistent",
     tagline: "Je rechterhand die nooit vrij neemt.",
     intro:
       "Hallo, ik ben Alice, jouw digitale persoonlijke assistent. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
