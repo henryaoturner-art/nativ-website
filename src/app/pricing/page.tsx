@@ -16,17 +16,17 @@ const translations = {
     tiers: [
       {
         name: "Quick Start", setup: "€2.495 - €4.495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Alice zonder custom context", "Standaard integraties"],
+        features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Alice zonder custom context", "Standaard integraties", "Exclusief tokenkosten"],
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
       {
         name: "Professional", setup: "€12.495", monthly: "€1.249/mo per extra digitale collega", badge: "Meest gekozen",
-        features: ["Alles van Quick Start", "Company Brain met digitale assistent", "Tot 4 extra digitale collega's", "Geen implementatiekosten per digitale collega", "Maandelijks opzegbaar"],
+        features: ["Alles van Quick Start", "Company Brain met digitale assistent", "Tot 4 extra digitale collega's", "Geen implementatiekosten per digitale collega", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
         ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
       {
         name: "AI Native", setup: "Vanaf €49.950", monthly: "€4.995/mo",
-        features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt digitale collega's", "Custom agents op maat", "Dedicated support & optimalisatie"],
+        features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt digitale collega's", "Custom agents op maat", "Dedicated support & optimalisatie", "Exclusief tokenkosten"],
         ideal: "Organisaties die volledig AI-native willen werken", highlighted: false, cta: "Neem contact op →",
       },
     ],
@@ -48,17 +48,17 @@ const translations = {
     tiers: [
       {
         name: "Quick Start", setup: "€2,495 - €4,495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP connections to existing systems", "Alice without custom context", "Standard integrations"],
+        features: ["AI Opportunity Scan", "MCP connections to existing systems", "Alice without custom context", "Standard integrations", "Excluding token costs"],
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
       {
         name: "Professional", setup: "€12,495", monthly: "€1,249/mo per digital colleague", badge: "Most popular",
-        features: ["Everything in Quick Start", "Company Brain with business context", "Up to 4 standard digital colleagues", "No implementation fees per digital colleague", "Cancel monthly"],
+        features: ["Everything in Quick Start", "Company Brain with business context", "Up to 4 standard digital colleagues", "No implementation fees per digital colleague", "Cancel monthly", "Excluding token costs"],
         ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
       },
       {
         name: "AI Native", setup: "From €49,950", monthly: "€4,995/mo",
-        features: ["Everything in Professional", "Full AI transformation", "Unlimited digital colleagues", "Custom agents built to spec", "Dedicated support & optimisation"],
+        features: ["Everything in Professional", "Full AI transformation", "Unlimited digital colleagues", "Custom agents built to spec", "Dedicated support & optimisation", "Excluding token costs"],
         ideal: "Organisations going fully AI-native", highlighted: false, cta: "Get in touch →",
       },
     ],
