@@ -16,7 +16,7 @@ const translations = {
     tiers: [
       {
         name: "Quick Start", setup: "€2.495 - €4.495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Alice zonder custom context", "Standaard integraties", "Exclusief tokenkosten"],
+        features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Digitale assistent die je documenten kent, maar je bedrijf nog niet", "Standaard integraties", "Exclusief tokenkosten"],
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
       {
@@ -48,7 +48,7 @@ const translations = {
     tiers: [
       {
         name: "Quick Start", setup: "€2,495 - €4,495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP connections to existing systems", "Alice without custom context", "Standard integrations", "Excluding token costs"],
+        features: ["AI Opportunity Scan", "MCP connections to existing systems", "Digital assistant that knows your documents, but not yet your business", "Standard integrations", "Excluding token costs"],
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
       {
