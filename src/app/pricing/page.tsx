@@ -20,8 +20,8 @@ const translations = {
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
       {
-        name: "Professional", setup: "€12.495", monthly: "€1.249/mo per extra digitale collega", badge: "Meest gekozen",
-        features: ["Alles van Quick Start", "Company Brain met digitale assistent", "Tot 4 extra digitale collega's", "Geen implementatiekosten per digitale collega", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
+        name: "Professional", setup: "€12.495", monthly: "€495/mo", badge: "Meest gekozen",
+        features: ["Alles van Quick Start", "Company Brain met digitale assistent", "Tot 4 extra digitale collega's", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
         ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
       {
@@ -52,8 +52,8 @@ const translations = {
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
       {
-        name: "Professional", setup: "€12,495", monthly: "€1,249/mo per digital colleague", badge: "Most popular",
-        features: ["Everything in Quick Start", "Company Brain with business context", "Up to 4 standard digital colleagues", "No implementation fees per digital colleague", "Cancel monthly", "Excluding token costs"],
+        name: "Professional", setup: "€12,495", monthly: "€495/mo", badge: "Most popular",
+        features: ["Everything in Quick Start", "Company Brain with business context", "Up to 4 standard digital colleagues", "Cancel monthly", "Excluding token costs"],
         ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
       },
       {
