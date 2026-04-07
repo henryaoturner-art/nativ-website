@@ -20,7 +20,7 @@ const translations = {
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
       {
-        name: "Professional", setup: "€12.495", monthly: "€495/mo", badge: "Meest gekozen",
+        name: "Professional", setup: "€12.495", monthly: "€495/mo\nen\n€1.295/mo per extra digitale collega", badge: "Meest gekozen",
         features: ["Alles van Quick Start", "Company Brain: de ongeschreven kennis van je bedrijf, vastgelegd", "Digitale assistent en tot vier extra digitale collega's", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
         ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
@@ -52,7 +52,7 @@ const translations = {
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
       {
-        name: "Professional", setup: "€12,495", monthly: "€495/mo", badge: "Most popular",
+        name: "Professional", setup: "€12,495", monthly: "€495/mo\nand\n€1,295/mo per extra digital colleague", badge: "Most popular",
         features: ["Everything in Quick Start", "Company Brain: your company's unwritten knowledge, captured", "Digital assistant and up to four extra digital colleagues", "Cancel monthly", "Excluding token costs"],
         ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
       },
@@ -112,7 +112,15 @@ export default function PricingPage() {
                 </div>
                 <div className="mt-3">
                   <p className="text-sm text-grey/50 uppercase tracking-wide">{c.monthlyLabel}</p>
-                  <p className="text-xl font-serif text-grey">{tier.monthly}</p>
+                  {tier.monthly.includes("\n") ? (
+                    <div className="text-xl font-serif text-grey">
+                      {tier.monthly.split("\n").map((line, i) => (
+                        <p key={i} className={line === "en" || line === "and" ? "text-sm text-grey/50 my-1" : ""}>{line}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xl font-serif text-grey">{tier.monthly}</p>
+                  )}
                 </div>
                 <ul className="mt-6 space-y-2.5 flex-1">
                   {tier.features.map((f) => (
