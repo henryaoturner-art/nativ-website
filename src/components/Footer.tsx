@@ -52,7 +52,7 @@ export default function Footer() {
               {f.tagline}
             </p>
             <p className="mt-6 text-white/40 text-xs">
-              © 2026 NiftyAI B.V.
+              © 2026 Nativ B.V. All rights reserved.
             </p>
           </div>
 
