@@ -53,7 +53,7 @@ const colleagues: Colleague[] = [
     id: "billy",
     name: "Billy",
     role: "Finance",
-    tagline: "Ontdek Billy.",
+    tagline: "Geen verrassingen aan het eind van de maand.",
     intro:
       "De finance collega die Exact Online koppelt, data analyseert en context verzamelt voor betere beslissingen.",
     videoSrc: "/videos/billy.mp4",
