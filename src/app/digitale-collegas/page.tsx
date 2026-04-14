@@ -50,13 +50,13 @@ const colleagues: Colleague[] = [
     videoSrc: "/videos/chrystal.mp4?v=2",
   },
   {
-    id: "bill",
-    name: "Bill",
+    id: "billy",
+    name: "Billy",
     role: "Finance",
     tagline: "Geen verrassingen aan het eind van de maand.",
     intro:
-      "Hallo, ik ben Bill, je digitale financieel adviseur. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
-    videoSrc: "/videos/bill.mp4?v=2",
+      "Hallo, ik ben Billy, je digitale financieel adviseur. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
+    videoSrc: "/videos/billy.mp4",
   },
 ];
 
