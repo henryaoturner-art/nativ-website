@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "NATIV — Je bedrijf weet meer dan je denkt",
+    default: "NATIV — AI die je snapt",
     template: "%s | NATIV",
   },
   description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     url: "https://gonativ.nl",
     siteName: "NATIV",
-    title: "NATIV — Je bedrijf weet meer dan je denkt",
+    title: "NATIV — AI that gets you",
     description:
       "Nativ maakt bedrijfskennis toegankelijk zodat AI écht waarde levert.",
   },
