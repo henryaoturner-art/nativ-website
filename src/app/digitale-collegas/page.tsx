@@ -41,13 +41,13 @@ const colleagues: Colleague[] = [
     videoSrc: "/videos/hunter.mp4?v=2",
   },
   {
-    id: "chrystal",
-    name: "Chrystal",
+    id: "crystal",
+    name: "Crystal",
     role: "HR",
     tagline: "Mensen zijn het belangrijkste.",
     intro:
-      "Hoi, ik ben Chrystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
-    videoSrc: "/videos/chrystal.mp4?v=2",
+      "Hoi, ik ben Crystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
+    videoSrc: "/videos/chrystal.mp4",
   },
   {
     id: "billy",
