@@ -53,9 +53,9 @@ const colleagues: Colleague[] = [
     id: "billy",
     name: "Billy",
     role: "Finance",
-    tagline: "Geen verrassingen aan het eind van de maand.",
+    tagline: "Ontdek Billy.",
     intro:
-      "Hallo, ik ben Billy, je digitale financieel adviseur. Ik werk naast je bestaande boekhoudsoftware en geef je de context die je mist. Van cashflow-analyses tot business cases en treasury — ik maak financiële data begrijpelijk en actionable. Zo heb je geen verrassingen aan het eind van de maand.",
+      "De finance collega die Exact Online koppelt, data analyseert en context verzamelt voor betere beslissingen.",
     videoSrc: "/videos/billy.mp4",
   },
 ];
