@@ -7,10 +7,10 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   en: {
     logo: "Nativ",
-    heroTitle: "Context Engineering:",
-    heroTitle2: "The Missing Infrastructure Layer for Enterprise AI",
+    heroTitle: "It's in your head",
+    heroTitle2: "",
     heroSub:
-      "Why 80% of enterprise AI projects fail — and how capturing what your people know changes the equation.",
+      "Why the biggest obstacle for AI in your company isn't technology — it's context.",
 
     // What's inside
     insideTitle: "What's inside",
@@ -42,10 +42,10 @@ const translations = {
   },
   nl: {
     logo: "Nativ",
-    heroTitle: "Context Engineering:",
-    heroTitle2: "De Ontbrekende Infrastructuurlaag voor Enterprise AI",
+    heroTitle: "Het zit in je hoofd",
+    heroTitle2: "",
     heroSub:
-      "Waarom 80% van enterprise AI-projecten faalt — en hoe het vastleggen van kennis van je mensen het verschil maakt.",
+      "Waarom het grootste obstakel voor AI in je bedrijf geen technologie is, maar context.",
 
     insideTitle: "Wat erin staat",
     inside1: "Waarom 80% van AI-projecten faalt (en het ligt niet aan het model)",
@@ -124,8 +124,7 @@ export default function WhitepaperPage() {
           <FadeIn delay={100}>
             <h1 className="font-serif text-3xl md:text-5xl lg:text-[52px] leading-[1.15] text-grey">
               {c.heroTitle}
-              <br />
-              {c.heroTitle2}
+              {c.heroTitle2 && <><br />{c.heroTitle2}</>}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
