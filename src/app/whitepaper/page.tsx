@@ -18,7 +18,7 @@ const translations = {
     inside2: "The scientific basis: from tacit knowledge to context engineering",
     inside3: "The MVC™ Framework: 10 context blocks that cover 80%+ of AI agent tasks",
     inside4: "The Ring Model: organizing context for delivery",
-    inside5: "Implementation roadmap: from scan to deployment",
+    inside5: "Implementation approach: from scan to deployment",
     inside6: "Full references and research sources",
 
     // Gate / CTA
@@ -51,7 +51,7 @@ const translations = {
     inside2: "De wetenschappelijke basis: van tacit knowledge tot context engineering",
     inside3: "Het MVC™ Framework: 10 contextblokken die 80%+ van AI-agenttaken afdekken",
     inside4: "Het ringmodel: context organiseren voor levering",
-    inside5: "Implementatie-roadmap: van scan tot deployment",
+    inside5: "Implementatie-aanpak: van scan tot deployment",
     inside6: "Volledige referenties en onderzoeksbronnen",
 
     gateTitle: "Download het complete white paper",
