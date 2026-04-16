@@ -32,9 +32,10 @@ const translations = {
     linkedinPlaceholder: "https://linkedin.com/in/...",
     submit: "Send me the white paper →",
     submitting: "Sending...",
-    thankYou: "Check your inbox!",
+    thankYou: "Here's your white paper",
     thankYouSub:
-      "The full white paper is on its way to your email. If you don't see it within a few minutes, check your spam folder.",
+      "Click the button below to download the full white paper. We've also sent a copy to your email.",
+    downloadBtn: "Download white paper (PDF)",
     privacy: "We respect your privacy. No spam, ever.",
 
     footerCopy: "© 2026 Nativ B.V. All rights reserved.",
@@ -64,9 +65,10 @@ const translations = {
     linkedinPlaceholder: "https://linkedin.com/in/...",
     submit: "Stuur mij het white paper →",
     submitting: "Verzenden...",
-    thankYou: "Check je inbox!",
+    thankYou: "Hier is je white paper",
     thankYouSub:
-      "Het volledige white paper is onderweg naar je e-mail. Zie je het niet binnen een paar minuten? Check je spam-map.",
+      "Klik op de knop hieronder om het volledige white paper te downloaden. We hebben ook een kopie naar je e-mail gestuurd.",
+    downloadBtn: "Download white paper (PDF)",
     privacy: "Wij respecteren je privacy. Geen spam, ooit.",
 
     footerCopy: "© 2026 Nativ B.V. Alle rechten voorbehouden.",
@@ -164,6 +166,13 @@ export default function WhitepaperPage() {
                   <p className="mt-3 text-grey/60 font-light text-sm leading-relaxed">
                     {c.thankYouSub}
                   </p>
+                  <a
+                    href="/downloads/nativ-whitepaper-nl-volledig.pdf"
+                    download
+                    className="inline-block mt-6 bg-sage text-white py-3 px-8 rounded-lg hover:bg-sage-dark transition-colors font-medium"
+                  >
+                    {c.downloadBtn}
+                  </a>
                 </div>
               ) : (
                 <>
