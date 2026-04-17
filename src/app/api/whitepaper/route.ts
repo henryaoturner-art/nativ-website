@@ -5,7 +5,8 @@ import { promises as fs } from "fs";
 import path from "path";
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-const LEADS_FILE = path.join(process.cwd(), "data", "whitepaper-leads.json");
+const WHITEPAPER_AUDIENCE_ID = "b2df0faf-195b-4bdf-aa9e-75d78e3ff4b5";
+const GOOGLE_SHEET_WEBHOOK = process.env.GOOGLE_SHEET_WEBHOOK_URL || "";
 
 interface Lead {
   name: string;
@@ -15,26 +16,41 @@ interface Lead {
   timestamp: string;
 }
 
-async function saveLead(lead: Lead) {
+async function saveLeadToResend(lead: Lead) {
   try {
-    // Ensure data directory exists
-    const dir = path.dirname(LEADS_FILE);
-    await fs.mkdir(dir, { recursive: true });
+    if (!process.env.RESEND_API_KEY) return;
 
-    // Read existing leads or start fresh
-    let leads: Lead[] = [];
-    try {
-      const existing = await fs.readFile(LEADS_FILE, "utf-8");
-      leads = JSON.parse(existing);
-    } catch {
-      // File doesn't exist yet — start empty
-    }
+    // Split name into first/last
+    const nameParts = lead.name.split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
 
-    leads.push(lead);
-    await fs.writeFile(LEADS_FILE, JSON.stringify(leads, null, 2), "utf-8");
+    await resend.contacts.create({
+      audienceId: WHITEPAPER_AUDIENCE_ID,
+      email: lead.email,
+      firstName,
+      lastName,
+      unsubscribed: false,
+    });
+
+    console.log("RESEND_CONTACT_SAVED:", lead.email);
   } catch (error) {
-    console.error("Failed to save lead:", error);
-    // Don't fail the request if lead saving fails
+    console.error("Failed to save lead to Resend:", error);
+  }
+}
+
+async function saveLeadToGoogleSheet(lead: Lead) {
+  if (!GOOGLE_SHEET_WEBHOOK) return;
+
+  try {
+    await fetch(GOOGLE_SHEET_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+    });
+    console.log("GOOGLE_SHEET_SAVED:", lead.email);
+  } catch (error) {
+    console.error("Failed to save lead to Google Sheet:", error);
   }
 }
 
@@ -58,11 +74,14 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    // Save lead to file
-    await saveLead(lead);
-
-    // Also log to console for Vercel logs
+    // Log to Vercel logs (always works)
     console.log("WHITEPAPER_LEAD:", JSON.stringify(lead));
+
+    // Save lead to Resend Contacts (persistent, viewable in dashboard)
+    await saveLeadToResend(lead);
+
+    // Save lead to Google Sheet (if webhook configured)
+    await saveLeadToGoogleSheet(lead);
 
     // Read the PDF attachment
     const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-nl-volledig.pdf");
