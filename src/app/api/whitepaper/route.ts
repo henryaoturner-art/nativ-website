@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     console.log("WHITEPAPER_LEAD:", JSON.stringify(lead));
 
     // Read the PDF attachment
-    const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-nl-compleet.pdf");
+    const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-nl-volledig.pdf");
     let pdfBuffer: Buffer | null = null;
     try {
       pdfBuffer = await fs.readFile(pdfPath) as Buffer;
