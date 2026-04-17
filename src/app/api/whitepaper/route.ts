@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
         from: `Nativ <${FROM_EMAIL}>`,
         to: [lead.email],
-        subject: "Your Nativ White Paper — It's in your head",
+        subject: "Je Nativ White Paper — Het zit in je hoofd",
         html: whitepaperEmailHtml({ name: lead.name }),
       };
 
