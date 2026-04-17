@@ -162,7 +162,7 @@ export default function WhitepaperPage() {
                     {c.thankYouSub}
                   </p>
                   <a
-                    href="/downloads/nativ-whitepaper-nl-volledig.pdf"
+                    href="/downloads/nativ-whitepaper-nl-compleet.pdf"
                     download
                     className="inline-block mt-6 bg-sage text-white py-3 px-8 rounded-lg hover:bg-sage-dark transition-colors font-medium"
                   >
