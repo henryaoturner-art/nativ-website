@@ -28,8 +28,6 @@ const translations = {
     emailLabel: "Email",
     companyLabel: "Company",
     roleLabel: "Role",
-    linkedinLabel: "LinkedIn URL",
-    linkedinPlaceholder: "https://linkedin.com/in/...",
     submit: "Send me the white paper →",
     submitting: "Sending...",
     thankYou: "Here's your white paper",
@@ -61,8 +59,6 @@ const translations = {
     emailLabel: "E-mail",
     companyLabel: "Bedrijf",
     roleLabel: "Functie",
-    linkedinLabel: "LinkedIn URL",
-    linkedinPlaceholder: "https://linkedin.com/in/...",
     submit: "Stuur mij het white paper →",
     submitting: "Verzenden...",
     thankYou: "Hier is je white paper",
@@ -93,7 +89,7 @@ export default function WhitepaperPage() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       company: (form.elements.namedItem("company") as HTMLInputElement).value,
       role: (form.elements.namedItem("role") as HTMLInputElement).value,
-      linkedin: (form.elements.namedItem("linkedin") as HTMLInputElement).value,
+
     };
 
     try {
@@ -227,18 +223,7 @@ export default function WhitepaperPage() {
                         className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="linkedin" className="block text-sm text-grey/60 mb-1.5">
-                        {c.linkedinLabel}
-                      </label>
-                      <input
-                        type="url"
-                        id="linkedin"
-                        name="linkedin"
-                        placeholder={c.linkedinPlaceholder}
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey placeholder:text-grey/30 focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
-                      />
-                    </div>
+
 
                     {error && <p className="text-error text-sm">{error}</p>}
 

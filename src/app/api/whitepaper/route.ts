@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
           email: body.email,
           company: body.company || "",
           role: body.role || "",
-          linkedin: body.linkedin || "",
           timestamp: new Date().toISOString(),
         }),
       });
