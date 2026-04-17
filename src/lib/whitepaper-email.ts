@@ -57,8 +57,11 @@ export function whitepaperEmailHtml({ name }: WhitepaperEmailProps): string {
                 <li>Een praktische implementatie-aanpak</li>
               </ul>
 
+              <p style="margin:0 0 8px;font-size:16px;color:#4A4A48;line-height:1.6;font-weight:300;">
+                Vragen? Of benieuwd wat AI voor jouw organisatie kan betekenen?
+              </p>
               <p style="margin:0 0 32px;font-size:16px;color:#4A4A48;line-height:1.6;font-weight:300;">
-                Vragen? Of benieuwd wat AI voor jouw organisatie kan betekenen? We praten er graag over.
+                We praten er graag over.
               </p>
 
               <!-- CTA Button -->
