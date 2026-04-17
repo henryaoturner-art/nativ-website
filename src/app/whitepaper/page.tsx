@@ -22,18 +22,18 @@ const translations = {
     inside6: "Full references and research sources",
 
     // Gate / CTA
-    gateTitle: "Download the complete white paper",
+    gateTitle: "Download the complete whitepaper",
     gateNote: "Free · Delivered to your inbox as PDF",
     nameLabel: "Name",
     emailLabel: "Email",
     companyLabel: "Company",
     roleLabel: "Role",
-    submit: "Send me the full white paper →",
+    submit: "Send me the full whitepaper →",
     submitting: "Sending...",
-    thankYou: "Here's your white paper",
+    thankYou: "Here's your whitepaper",
     thankYouSub:
-      "Click the button below to download the full white paper. We've also sent a copy to your email.",
-    downloadBtn: "Download white paper (PDF)",
+      "Click the button below to download the full whitepaper. We've also sent a copy to your email.",
+    downloadBtn: "Download whitepaper (PDF)",
     privacy: "We respect your privacy. No spam, ever.",
 
     footerCopy: "© 2026 Nativ B.V. All rights reserved.",
@@ -53,18 +53,18 @@ const translations = {
     inside5: "Implementatie-aanpak: van scan tot deployment",
     inside6: "Volledige referenties en onderzoeksbronnen",
 
-    gateTitle: "Download het complete white paper",
+    gateTitle: "Download het complete whitepaper",
     gateNote: "Gratis · Als PDF in je inbox",
     nameLabel: "Naam",
     emailLabel: "E-mail",
     companyLabel: "Bedrijf",
     roleLabel: "Functie",
-    submit: "Stuur mij het volledige white paper →",
+    submit: "Stuur mij het volledige whitepaper →",
     submitting: "Verzenden...",
-    thankYou: "Hier is je white paper",
+    thankYou: "Hier is je whitepaper",
     thankYouSub:
-      "Klik op de knop hieronder om het volledige white paper te downloaden. We hebben ook een kopie naar je e-mail gestuurd.",
-    downloadBtn: "Download white paper (PDF)",
+      "Klik op de knop hieronder om het volledige whitepaper te downloaden. We hebben ook een kopie naar je e-mail gestuurd.",
+    downloadBtn: "Download whitepaper (PDF)",
     privacy: "Wij respecteren je privacy. Geen spam, ooit.",
 
     footerCopy: "© 2026 Nativ B.V. Alle rechten voorbehouden.",

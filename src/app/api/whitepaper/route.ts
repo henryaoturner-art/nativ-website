@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
     try {
       pdfBuffer = await fs.readFile(pdfPath) as Buffer;
     } catch {
-      console.warn("White paper PDF not found at", pdfPath, "— sending email without attachment");
+      console.warn("Whitepaper PDF not found at", pdfPath, "— sending email without attachment");
     }
 
     // Send email via Resend
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
         from: `Nativ <${FROM_EMAIL}>`,
         to: [lead.email],
-        subject: "Je Nativ White Paper — Het zit in je hoofd",
+        subject: "Je Nativ Whitepaper — Het zit in je hoofd",
         html: whitepaperEmailHtml({ name: lead.name }),
       };
 

@@ -1,5 +1,5 @@
 /**
- * Branded HTML email template for white paper delivery (Dutch).
+ * Branded HTML email template for whitepaper delivery (Dutch).
  * Matches Nativ brand: sage (#8B9A6B), cream (#F2EDE4), grey (#4A4A48).
  */
 
@@ -16,7 +16,7 @@ export function whitepaperEmailHtml({ name }: WhitepaperEmailProps): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Je Nativ White Paper</title>
+  <title>Je Nativ Whitepaper</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F2EDE4;font-family:Georgia,'Times New Roman',serif;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#F2EDE4;">
@@ -35,11 +35,11 @@ export function whitepaperEmailHtml({ name }: WhitepaperEmailProps): string {
           <tr>
             <td style="padding:40px;">
               <h1 style="margin:0 0 16px;font-size:26px;color:#4A4A48;font-weight:400;line-height:1.3;">
-                Hoi ${firstName}, hier is je white paper
+                Hoi ${firstName}, hier is je whitepaper
               </h1>
               
               <p style="margin:0 0 20px;font-size:16px;color:#4A4A48;line-height:1.6;font-weight:300;">
-                Bedankt voor je interesse in Nativ. In de bijlage vind je ons white paper:
+                Bedankt voor je interesse in Nativ. In de bijlage vind je ons whitepaper:
               </p>
 
               <p style="margin:0 0 24px;font-size:18px;color:#4A4A48;font-style:italic;line-height:1.5;">
