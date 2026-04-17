@@ -28,7 +28,7 @@ const translations = {
     emailLabel: "Email",
     companyLabel: "Company",
     roleLabel: "Role",
-    submit: "Send me the white paper →",
+    submit: "Send me the full white paper →",
     submitting: "Sending...",
     thankYou: "Here's your white paper",
     thankYouSub:
@@ -59,7 +59,7 @@ const translations = {
     emailLabel: "E-mail",
     companyLabel: "Bedrijf",
     roleLabel: "Functie",
-    submit: "Stuur mij het white paper →",
+    submit: "Stuur mij het volledige white paper →",
     submitting: "Verzenden...",
     thankYou: "Hier is je white paper",
     thankYouSub:
