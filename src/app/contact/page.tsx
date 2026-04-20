@@ -88,7 +88,7 @@ export default function ContactPage() {
                   </div>
                 )}
                 <iframe
-                  src="https://calendly.com/livius-vanheemstra-goniftyai/30min"
+                  src="https://calendly.com/jorus-nativ/30min"
                   width="100%"
                   height="580"
                   frameBorder="0"
