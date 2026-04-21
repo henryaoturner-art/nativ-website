@@ -26,7 +26,7 @@ const navLinks = {
   ],
 };
 
-const ctaText = { nl: "Plan een gesprek →", en: "Book a call →" };
+const ctaText = { nl: "Download de whitepaper →", en: "Download the whitepaper →" };
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -74,7 +74,7 @@ export default function Navigation() {
           ))}
           <LanguageToggle />
           <Link
-            href="/contact"
+            href="/whitepaper"
             className="bg-sage text-white text-sm px-6 py-2.5 rounded-lg hover:bg-sage-dark transition-colors"
           >
             {cta}
@@ -117,7 +117,7 @@ export default function Navigation() {
               <LanguageToggle />
             </div>
             <Link
-              href="/contact"
+              href="/whitepaper"
               className="block bg-sage text-white text-center px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors mt-4"
             >
               {cta}
