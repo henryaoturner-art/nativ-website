@@ -7,10 +7,10 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   en: {
     logo: "Nativ",
-    heroTitle: "It's in your head",
+    heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
-      "Why the biggest obstacle for AI in your company isn't technology — it's context.",
+      "Knowledge from the minds of employees: minimum viable context (MVC™). Theory and practice.",
 
     // What's inside
     insideTitle: "What's inside",
@@ -40,10 +40,10 @@ const translations = {
   },
   nl: {
     logo: "Nativ",
-    heroTitle: "Het zit in je hoofd",
+    heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
-      "Waarom het grootste obstakel voor AI in je bedrijf geen technologie is, maar context.",
+      "Kennis uit de hoofden van medewerkers: minimum viable context (MVC™). De theorie en praktijk.",
 
     insideTitle: "Wat erin staat",
     inside1: "Waarom 80% van AI-projecten faalt (en het ligt niet aan het model)",
@@ -112,11 +112,7 @@ export default function WhitepaperPage() {
       {/* Hero */}
       <section className="py-16 md:py-24 px-6">
         <div className="max-w-[800px] mx-auto">
-          <FadeIn>
-            <p className="text-sage font-sans text-sm font-semibold tracking-[0.15em] uppercase mb-8">
-              {c.logo}
-            </p>
-          </FadeIn>
+
           <FadeIn delay={100}>
             <h1 className="font-serif text-3xl md:text-5xl lg:text-[52px] leading-[1.15] text-grey">
               {c.heroTitle}
