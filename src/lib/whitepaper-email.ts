@@ -43,7 +43,7 @@ export function whitepaperEmailHtml({ name }: WhitepaperEmailProps): string {
               </p>
 
               <p style="margin:0 0 24px;font-size:18px;color:#4A4A48;font-style:italic;line-height:1.5;">
-                &ldquo;Het zit in je hoofd &mdash; Waarom het grootste obstakel voor AI in je bedrijf geen technologie is, maar context.&rdquo;
+                &ldquo;Company brain &mdash; Kennis uit de hoofden van medewerkers: minimum viable context (MVC&trade;). De theorie en praktijk.&rdquo;
               </p>
 
               <p style="margin:0 0 20px;font-size:16px;color:#4A4A48;line-height:1.6;font-weight:300;">

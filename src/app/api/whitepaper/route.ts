@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
         from: `Nativ <${FROM_EMAIL}>`,
         to: [lead.email],
-        subject: "Je Nativ Whitepaper — Het zit in je hoofd",
+        subject: "Je Nativ Whitepaper — Company brain",
         html: whitepaperEmailHtml({ name: lead.name }),
       };
 
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
       if (pdfBuffer) {
         emailPayload.attachments = [
           {
-            filename: "nativ-whitepaper-het-zit-in-je-hoofd.pdf",
+            filename: "nativ-whitepaper-company-brain.pdf",
             content: pdfBuffer,
           },
         ];
