@@ -116,6 +116,12 @@ export default function HomePage() {
               >
                 {c.ctaSecondary}
               </Link>
+              <Link
+                href="/whitepaper"
+                className="text-sage hover:text-sage-dark transition-colors text-base flex items-center gap-2"
+              >
+                📄 Download whitepaper
+              </Link>
             </div>
           </FadeIn>
         </div>
