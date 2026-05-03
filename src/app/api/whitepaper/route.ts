@@ -83,8 +83,8 @@ export async function POST(req: NextRequest) {
     // Save lead to Google Sheet (if webhook configured)
     await saveLeadToGoogleSheet(lead);
 
-    // Read the PDF attachment
-    const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-nl-volledig.pdf");
+    // Read the PDF attachment - MEI 2026 DEFINITIEVE VERSIE
+    const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-mei-2026-definitief.pdf");
     let pdfBuffer: Buffer | null = null;
     try {
       pdfBuffer = await fs.readFile(pdfPath) as Buffer;
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
       if (pdfBuffer) {
         emailPayload.attachments = [
           {
-            filename: "nativ-whitepaper-company-brain.pdf",
+            filename: "nativ-whitepaper-company-brain-mei-2026.pdf",
             content: pdfBuffer,
           },
         ];
