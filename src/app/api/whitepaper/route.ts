@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     // Save lead to Google Sheet (if webhook configured)
     await saveLeadToGoogleSheet(lead);
 
-    // Read the PDF attachment - MEI 2026 DEFINITIEVE VERSIE (updated 2026-05-04)
+    // Read the PDF attachment - MEI 2026 DEFINITIEVE VERSIE (verified 2026-05-04 10:58)
     const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-mei-2026-definitief.pdf");
     let pdfBuffer: Buffer | null = null;
     try {
