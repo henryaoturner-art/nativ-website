@@ -67,6 +67,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Determine language from request
+    const language = body.language || 'nl'; // Default to Dutch
+
     const lead: Lead = {
       name: body.name.trim(),
       email: body.email.trim(),
@@ -85,9 +88,6 @@ export async function POST(req: NextRequest) {
     // Save lead to Google Sheet (if webhook configured)
     await saveLeadToGoogleSheet(lead);
 
-    // Determine language from request
-    const language = body.language || 'nl'; // Default to Dutch
-    
     // Read the appropriate PDF attachment based on language
     const pdfFilename = language === 'en' 
       ? 'nativ-whitepaper-mei-2026-definitief-EN.pdf'
