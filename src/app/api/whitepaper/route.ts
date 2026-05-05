@@ -14,6 +14,7 @@ interface Lead {
   company: string;
   role: string;
   timestamp: string;
+  language?: string;
 }
 
 async function saveLeadToResend(lead: Lead) {
@@ -72,6 +73,7 @@ export async function POST(req: NextRequest) {
       company: body.company?.trim() || "",
       role: body.role?.trim() || "",
       timestamp: new Date().toISOString(),
+      language: language,
     };
 
     // Log to Vercel logs (always works)
@@ -83,8 +85,14 @@ export async function POST(req: NextRequest) {
     // Save lead to Google Sheet (if webhook configured)
     await saveLeadToGoogleSheet(lead);
 
-    // Read the PDF attachment - MEI 2026 DEFINITIEVE VERSIE (verified 2026-05-04 10:58)
-    const pdfPath = path.join(process.cwd(), "public", "downloads", "nativ-whitepaper-mei-2026-definitief.pdf");
+    // Determine language from request
+    const language = body.language || 'nl'; // Default to Dutch
+    
+    // Read the appropriate PDF attachment based on language
+    const pdfFilename = language === 'en' 
+      ? 'nativ-whitepaper-mei-2026-definitief-EN.pdf'
+      : 'nativ-whitepaper-mei-2026-definitief.pdf';
+    const pdfPath = path.join(process.cwd(), "public", "downloads", pdfFilename);
     let pdfBuffer: Buffer | null = null;
     try {
       pdfBuffer = await fs.readFile(pdfPath) as Buffer;
@@ -97,15 +105,19 @@ export async function POST(req: NextRequest) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
         from: `Nativ <${FROM_EMAIL}>`,
         to: [lead.email],
-        subject: "Je Nativ Whitepaper — Company brain",
-        html: whitepaperEmailHtml({ name: lead.name }),
+        subject: language === 'en' 
+          ? "Your Nativ Whitepaper — Company brain"
+          : "Je Nativ Whitepaper — Company brain",
+        html: whitepaperEmailHtml({ name: lead.name, language }),
       };
 
       // Attach PDF if available
       if (pdfBuffer) {
         emailPayload.attachments = [
           {
-            filename: "nativ-whitepaper-company-brain-mei-2026.pdf",
+            filename: language === 'en'
+              ? "nativ-whitepaper-company-brain-may-2026-EN.pdf"
+              : "nativ-whitepaper-company-brain-mei-2026.pdf",
             content: pdfBuffer,
           },
         ];

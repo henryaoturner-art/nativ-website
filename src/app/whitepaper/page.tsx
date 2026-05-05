@@ -75,7 +75,8 @@ export default function WhitepaperPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { t } = useLanguage();
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(""); // Empty means auto-detect
+  const { t, language } = useLanguage();
   const c = t(translations);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -89,7 +90,7 @@ export default function WhitepaperPage() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       company: (form.elements.namedItem("company") as HTMLInputElement).value,
       role: (form.elements.namedItem("role") as HTMLInputElement).value,
-
+      language: selectedLanguage || language, // Use selected language or auto-detect from context
     };
 
     try {
@@ -157,13 +158,25 @@ export default function WhitepaperPage() {
                   <p className="mt-3 text-grey/60 font-light text-sm leading-relaxed">
                     {c.thankYouSub}
                   </p>
-                  <a
-                    href="/downloads/nativ-whitepaper-mei-2026-definitief.pdf"
-                    download
-                    className="inline-block mt-6 bg-sage text-white py-3 px-8 rounded-lg hover:bg-sage-dark transition-colors font-medium"
-                  >
-                    {c.downloadBtn}
-                  </a>
+                  <div className="mt-6 space-y-3">
+                    <div className="text-xs text-grey/60 font-medium">Choose language:</div>
+                    <div className="flex gap-3">
+                      <a
+                        href="/downloads/nativ-whitepaper-mei-2026-definitief.pdf"
+                        download
+                        className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
+                      >
+                        📄 Nederlands
+                      </a>
+                      <a
+                        href="/downloads/nativ-whitepaper-mei-2026-definitief-EN.pdf"
+                        download
+                        className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
+                      >
+                        📄 English
+                      </a>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -218,6 +231,25 @@ export default function WhitepaperPage() {
                         name="role"
                         className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
                       />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="language" className="block text-sm text-grey/60 mb-1.5">
+                        {language === 'en' ? 'Whitepaper language' : 'Taal whitepaper'}
+                      </label>
+                      <select
+                        id="language"
+                        name="language"
+                        value={selectedLanguage}
+                        onChange={(e) => setSelectedLanguage(e.target.value)}
+                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                      >
+                        <option value="">
+                          {language === 'en' ? 'Auto-detect (based on website language)' : 'Automatisch detecteren (op basis van website taal)'}
+                        </option>
+                        <option value="nl">🇳🇱 Nederlands</option>
+                        <option value="en">🇬🇧 English</option>
+                      </select>
                     </div>
 
 
