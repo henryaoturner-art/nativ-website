@@ -5,3 +5,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+// Deploy trigger for Gokul photo update - Tue May 12 15:18:46 CEST 2026
