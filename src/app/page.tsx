@@ -92,6 +92,7 @@ const orgSchema = {
   name: "nativ",
   legalName: "Nativ B.V.",
   url: "https://gonativ.nl",
+  logo: "https://gonativ.nl/nativ-logo.png",
   description:
     "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
   email: "info@gonativ.nl",
