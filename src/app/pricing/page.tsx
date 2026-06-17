@@ -33,7 +33,7 @@ const translations = {
     faqTitle: "Veelgestelde vragen over pricing",
     faqItems: [
       { question: "Wat als ik halverwege wil stoppen?", answer: "Geen lock-in. Je kunt maandelijks opzeggen." },
-      { question: "Zijn er extra kosten voor AI-gebruik?", answer: "Nee. Genereus gebruik zit in elk plan. Bij uitzonderlijk hoog volume bespreken we het." },
+      { question: "Zijn er extra kosten voor AI-gebruik?", answer: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de digitale collega's." },
       { question: "Kan ik upgraden?", answer: "Ja, op elk moment. Je bestaande kennisbank groeit gewoon mee." },
       { question: "Wat zit er niet in de prijs?", answer: "Custom integraties met legacy systemen kunnen extra kosten met zich meebrengen. We zijn daar altijd transparant over." },
     ],
@@ -65,7 +65,7 @@ const translations = {
     faqTitle: "Frequently asked questions about pricing",
     faqItems: [
       { question: "What if I want to stop halfway?", answer: "No lock-in. You can cancel monthly." },
-      { question: "Are there extra costs for AI usage?", answer: "No. Generous usage is included in every plan. For exceptionally high volume, we\u2019ll discuss it." },
+      { question: "Are there extra costs for AI usage?", answer: "Yes. The token costs for the AI usage are for your account and fall outside the subscription; that's why every plan notes 'Excluding token costs'. The subscription covers the platform and the digital colleagues." },
       { question: "Can I upgrade?", answer: "Yes, at any time. Your existing knowledge base simply grows with you." },
       { question: "What\u2019s not included?", answer: "Custom integrations with legacy systems may involve additional costs. We\u2019re always transparent about that." },
     ],
