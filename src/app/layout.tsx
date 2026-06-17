@@ -6,24 +6,27 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "NATIV — AI die je snapt",
-    template: "%s | NATIV",
+    default: "Company Brain & digitale collega's voor het mkb | nativ",
+    template: "%s | nativ",
   },
   description:
-    "Nativ maakt bedrijfskennis toegankelijk zodat AI écht waarde levert. Van AI Opportunity Scan tot werkende digitale collega's.",
+    "nativ bouwt een Company Brain: één AI-kennisbank voor je bedrijf, plus digitale collega's voor marketing, sales, finance en hr. Voor het Nederlandse mkb.",
   metadataBase: new URL("https://gonativ.nl"),
   openGraph: {
     type: "website",
     locale: "nl_NL",
     url: "https://gonativ.nl",
-    siteName: "NATIV",
-    title: "NATIV — AI that gets you",
+    siteName: "nativ",
+    title: "Company Brain & digitale collega's voor het mkb | nativ",
     description:
-      "Nativ maakt bedrijfskennis toegankelijk zodat AI écht waarde levert.",
+      "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@gonativ",
+    site: "@gonativnl",
+    title: "Company Brain & digitale collega's voor het mkb | nativ",
+    description:
+      "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
   },
   robots: { index: true, follow: true },
 };

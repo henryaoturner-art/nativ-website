@@ -1,206 +1,222 @@
-"use client";
-
-import { useState, useRef } from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ColleagueShowcase from "./ColleagueShowcase";
 
-interface Colleague {
-  id: string;
-  name: string;
-  role: string;
-  tagline: string;
-  intro: string;
-  videoSrc: string;
-}
+export const metadata: Metadata = {
+  title: {
+    absolute: "Digitale collega's voor marketing, sales, finance & hr | nativ",
+  },
+  description:
+    "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, daarna sales, finance en hr. Voor het mkb.",
+  alternates: { canonical: "/digitale-collegas" },
+};
 
-const colleagues: Colleague[] = [
+const collegas = [
   {
-    id: "alice",
-    name: "Alice",
-    role: "Digitale Assistent",
-    tagline: "Je rechterhand die nooit vrij neemt.",
-    intro:
-      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
-    videoSrc: "/videos/alice.mp4?v=3",
+    href: "/digitale-collega-marketing",
+    title: "Marketing-collega",
+    live: true,
+    desc: "Doet research, bedenkt ideeën, schrijft content, maakt beeld, controleert SEO, plant in en meet de resultaten. In jullie eigen toon, want hij put uit je Company Brain.",
   },
   {
-    id: "brandon",
-    name: "Brandon",
-    role: "Marketing",
-    tagline: "Data-gedreven marketing, dat is mijn ding.",
-    intro:
-      "Hey, ik ben Brandon, hoofd marketing. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse — ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
-    videoSrc: "/videos/brandon.mp4?v=2",
+    href: "/digitale-collega-sales",
+    title: "Sales-collega",
+    live: false,
+    desc: "Bouwt rijke profielen van prospects en accounts, bereidt elk verkoopgesprek voor, herkent kansen bij bestaande klanten, kwalificeert binnenkomende leads, en schrijft outreach en offertes in jullie stem.",
   },
   {
-    id: "hunter",
-    name: "Hunter",
-    role: "Sales",
-    tagline: "Klaar om te scoren.",
-    intro:
-      "Hi, ik ben Hunter, je digitale sales manager. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing — ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
-    videoSrc: "/videos/hunter.mp4?v=2",
+    href: "/digitale-collega-finance",
+    title: "Finance-collega",
+    live: false,
+    desc: "Leest je cijfers (zoals uit Exact Online), maakt maandrapportages die over locaties vergelijkbaar zijn, signaleert afwijkingen tot op de bron, zet business cases in één structuur, en geeft een rollende forecast.",
   },
   {
-    id: "crystal",
-    name: "Crystal",
-    role: "HR",
-    tagline: "Mensen zijn het belangrijkste.",
-    intro:
-      "Hoi, ik ben Crystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
-    videoSrc: "/videos/chrystal.mp4",
-  },
-  {
-    id: "billy",
-    name: "Billy",
-    role: "Finance",
-    tagline: "Geen verrassingen aan het eind van de maand.",
-    intro:
-      "De finance collega die Exact Online koppelt, data analyseert en context verzamelt voor betere beslissingen.",
-    videoSrc: "/videos/billy.mp4",
+    href: "/digitale-collega-hr",
+    title: "HR-collega",
+    live: false,
+    desc: "Een digitale collega voor de hr-functie, in ontwikkeling. De persoonlijke assistent beantwoordt vandaag al de bedrijfsvragen van je medewerkers.",
   },
 ];
-
-function ColleagueCard({ colleague }: { colleague: Colleague }) {
-  const [playing, setPlaying] = useState(false);
-  const [showIntro, setShowIntro] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleClick = () => {
-    if (videoRef.current) {
-      if (playing) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-        setPlaying(false);
-        setShowIntro(false);
-      } else {
-        videoRef.current.play();
-        setPlaying(true);
-        setShowIntro(true);
-      }
-    }
-  };
-
-  return (
-    <div className="flex flex-col items-center text-center">
-      <button
-        onClick={handleClick}
-        className="group flex flex-col items-center cursor-pointer"
-        aria-label={`${colleague.name} — klik om de introductie te bekijken`}
-      >
-        {/* Video card */}
-        <div className="relative w-48 h-64 md:w-56 md:h-80 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
-          <video
-            ref={videoRef}
-            src={colleague.videoSrc}
-            className="w-full h-full object-cover object-top"
-            playsInline
-            onEnded={() => {
-              setPlaying(false);
-              setTimeout(() => setShowIntro(false), 2000);
-            }}
-            preload="metadata"
-          />
-
-          {/* Name + role overlay — hidden while playing */}
-          <div
-            className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-grey/70 to-transparent pt-10 pb-3 px-3 transition-opacity duration-300 ${
-              playing ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            <p className="text-white font-serif text-xl md:text-2xl">
-              {colleague.name}
-            </p>
-            <p className="text-white/80 text-xs mt-0.5">{colleague.role}</p>
-          </div>
-
-          {/* Play indicator */}
-          <div
-            className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all ${
-              playing
-                ? "bg-sage text-white scale-110"
-                : "bg-white/80 text-sage opacity-0 group-hover:opacity-100"
-            }`}
-          >
-            {playing ? "⏸" : "▶"}
-          </div>
-        </div>
-
-        {/* Tagline */}
-        <p className="mt-4 text-[15px] text-grey/70 font-light">
-          {colleague.tagline}
-        </p>
-      </button>
-
-      {/* Intro text — shown while playing */}
-      <div
-        className={`mt-4 max-w-[240px] overflow-hidden transition-all duration-500 ${
-          showIntro ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p className="text-[13px] text-grey/60 font-light leading-relaxed italic">
-          &ldquo;{colleague.intro}&rdquo;
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function DigitaleCollegasPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-12 md:py-20 px-6">
+      {/* Hero + direct answer */}
+      <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
-              Maak kennis met je nieuwe collega&apos;s
+              Digitale collega&apos;s die echt meewerken
             </h1>
           </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-4 text-base font-light text-grey/50">
-              Klik op een collega om de introductie te bekijken.
+          <FadeIn delay={150}>
+            <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed max-w-2xl mx-auto">
+              Een digitale collega is geen tool die je koopt. Het is een collega
+              die werkt vanuit je Company Brain: hij kent jullie toon, jullie
+              klanten, jullie afspraken. Hoe langer hij meedraait, hoe
+              productiever hij wordt. Geen losse chatbot die elke vraag vanaf nul
+              beantwoordt, maar iemand die jullie context al kent.
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* Colleagues: Alice top center, 4 others below */}
-      <section className="px-6 pb-24 md:pb-32">
-        <div className="max-w-[1100px] mx-auto">
-          {/* Alice — centered on top */}
-          <div className="flex justify-center mb-12 md:mb-16">
-            <FadeIn>
-              <ColleagueCard colleague={colleagues[0]} />
-            </FadeIn>
-          </div>
+      {/* The basis: personal assistant */}
+      <section className="py-8 md:py-12 px-6">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+              De basis: een persoonlijke assistent voor iedereen
+            </h2>
+            <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+              <p>
+                Zodra je een Company Brain hebt, krijgt elke medewerker een
+                persoonlijke assistent. Eén plek om het bedrijf alles te vragen,
+                met een bronvermelding bij elk antwoord. Dat is de basis.
+              </p>
+              <p>
+                Het is ook de manier waarop je hele team went aan werken met AI.
+                Mensen ontdekken wat het kan, en uit dat gebruik komen vanzelf de
+                vragen die om meer vragen. Vaak is dat het moment waarop een
+                digitale collega voor een specifieke functie zinvol wordt.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
 
-          {/* 4 others — evenly distributed */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 justify-items-center">
-            {colleagues.slice(1).map((colleague, i) => (
-              <FadeIn key={colleague.id} delay={(i + 1) * 100}>
-                <ColleagueCard colleague={colleague} />
+      {/* Showcase (videos) */}
+      <section className="py-8 md:py-12 px-6">
+        <div className="max-w-[800px] mx-auto text-center mb-10 md:mb-14">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+              Maak kennis met de collega&apos;s
+            </h2>
+            <p className="mt-4 text-base font-light text-grey/50">
+              Klik op een collega om de introductie te bekijken.
+            </p>
+          </FadeIn>
+        </div>
+        <ColleagueShowcase />
+      </section>
+
+      {/* Scale per colleague */}
+      <section className="py-8 md:py-12 px-6">
+        <div className="max-w-[760px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+              Opschalen per collega
+            </h2>
+            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+              Boven op die basis schakel je digitale collega&apos;s in, per
+              functie. Je begint niet met alles tegelijk; je breidt uit waar de
+              meeste tijd in gaat zitten. Bij elke collega staat of die live is
+              of in ontwikkeling.
+            </p>
+          </FadeIn>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+            {collegas.map((c, i) => (
+              <FadeIn key={c.href} delay={i * 100}>
+                <Link
+                  href={c.href}
+                  className="group block h-full bg-white rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="font-serif text-xl text-grey">{c.title}</h3>
+                    {c.live ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-sage/15 text-sage px-2.5 py-0.5 text-xs font-medium shrink-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sage" aria-hidden="true" />
+                        Live
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-grey/10 text-grey/60 px-2.5 py-0.5 text-xs font-medium shrink-0">
+                        In ontwikkeling
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-3 text-grey/70 font-light leading-relaxed">
+                    {c.desc}
+                  </p>
+                  <span className="mt-4 inline-block text-sage text-sm font-medium group-hover:text-sage-dark transition-colors">
+                    Lees meer →
+                  </span>
+                </Link>
               </FadeIn>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <FadeIn delay={600}>
-          <div className="max-w-[680px] mx-auto text-center mt-20">
+      {/* How they work with your team */}
+      <section className="py-8 md:py-12 px-6">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+              Hoe ze samenwerken met je team
+            </h2>
+            <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+              <p>
+                Een digitale collega vervangt je team niet. Hij neemt het werk
+                over dat zich herhaalt en dat opschaalt, zodat je mensen tijd
+                houden voor het werk dat mensen beter doen.
+              </p>
+              <p>
+                De mens blijft aan het stuur. Bij elke stap die ertoe doet zit
+                een goedkeuringsmoment: jij beslist wat de deur uitgaat. Een
+                collega die zelfstandig de verkeerde mail verstuurt, is precies
+                wat we niet bouwen.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* How to start */}
+      <section className="py-12 md:py-16 px-6">
+        <div className="max-w-[680px] mx-auto text-center">
+          <FadeIn>
             <p className="font-serif text-2xl md:text-3xl text-grey">
               Welke digitale collega heeft jouw team nodig?
             </p>
-            <p className="mt-4 text-grey/60 font-light">
-              We bouwen ze op maat — gevoed door jouw bedrijfskennis.
+            <p className="mt-4 text-grey/70 font-light leading-relaxed">
+              Je begint met een Company Brain en de persoonlijke assistent. Je
+              team went aan AI, en je breidt uit met een collega zodra je ziet
+              waar de meeste winst zit. Klein beginnen, opschalen wanneer je
+              wilt.
             </p>
-            <a
+            <Link
               href="/contact"
               className="mt-6 inline-block bg-sage text-white px-8 py-3.5 rounded-lg hover:bg-sage-dark transition-colors"
             >
               Plan een gesprek →
-            </a>
-          </div>
-        </FadeIn>
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Related */}
+      <section className="pb-16 px-6">
+        <div className="max-w-[680px] mx-auto flex flex-wrap gap-x-6 gap-y-2 justify-center text-base">
+          <Link
+            href="/kennis/wat-is-een-bedrijfsbrein"
+            className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
+          >
+            Wat is een Company Brain?
+          </Link>
+          <Link
+            href="/company-brain"
+            className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
+          >
+            Company Brain
+          </Link>
+          <Link
+            href="/scan"
+            className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
+          >
+            AI Opportunity Scan
+          </Link>
+        </div>
       </section>
     </>
   );

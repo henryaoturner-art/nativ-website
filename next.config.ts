@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // KAN-308: keep the keyword URL alive without duplicating /scan.
+      {
+        source: "/ai-opportunity-scan",
+        destination: "/scan",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
-// Deploy trigger for Gokul photo update - Tue May 12 15:18:46 CEST 2026

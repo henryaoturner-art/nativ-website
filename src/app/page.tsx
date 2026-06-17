@@ -12,6 +12,8 @@ const translations = {
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de Digitale Collega's",
     ctaWhitepaper: "Whitepaper downloaden",
+    heroSeoLine:
+      "Een Company Brain met digitale collega's voor het Nederlandse mkb.",
     problemTitle: "Je grootste asset heb je al in huis",
     problemP1: "De kennis van je team is het krachtigste wat je hebt.",
     problemP2a: "In hoofden, in ervaring, in jaren van expertise — wachtend om ingezet te worden.",
@@ -50,6 +52,7 @@ const translations = {
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "Meet the Digital Colleagues",
     ctaWhitepaper: "Download whitepaper",
+    heroSeoLine: "A Company Brain with digital colleagues for Dutch SMEs.",
     problemTitle: "Your greatest asset — you already have it",
     problemP1: "Your team\u2019s knowledge is the most powerful thing you have.",
     problemP2a: "In minds, in experience, in years of expertise — ready to be activated.",
@@ -83,12 +86,98 @@ const translations = {
   },
 };
 
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "nativ",
+  legalName: "Nativ B.V.",
+  url: "https://gonativ.nl",
+  description:
+    "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
+  email: "info@gonativ.nl",
+  foundingDate: "2025-03-10",
+  vatID: "NL005222736B97",
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "KvK",
+    value: "96646756",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Beethovenlaan 37",
+    postalCode: "1217 CH",
+    addressLocality: "Hilversum",
+    addressCountry: "NL",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/116051208/",
+    "https://x.com/gonativnl",
+  ],
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "nativ Company Brain",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "Eén centrale AI-kennisbank voor je bedrijf, met digitale collega's voor marketing, sales, finance en hr plus een persoonlijke AI-assistent voor elke medewerker.",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+  },
+  provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Wat is een Company Brain (bedrijfsbrein)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en documenten. Daarop draaien AI-assistenten en digitale collega's die echt snappen hoe jullie werken.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wat is een digitale collega?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Een digitale collega is geen tool die je koopt, maar een AI-collega die werkt vanuit je Company Brain en die elke maand productiever wordt. nativ levert digitale collega's voor marketing, sales, finance en hr.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is dit geschikt voor het mkb?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja. nativ is gebouwd voor Nederlandse mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
+      },
+    },
+  ],
+};
+
+const homepageJsonLd = [orgSchema, softwareSchema, faqSchema];
+
 export default function HomePage() {
   const { t } = useLanguage();
   const c = t(translations);
 
   return (
     <>
+      {homepageJsonLd.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       {/* Hero */}
       <section className="py-10 md:py-14 lg:py-40 px-6">
         <div className="max-w-[1200px] mx-auto text-center">
@@ -103,6 +192,11 @@ export default function HomePage() {
               <br className="hidden md:block" />
               {c.heroSub2}
             </p>
+          </FadeIn>
+          <FadeIn delay={300}>
+            <h2 className="mt-5 text-base md:text-lg font-medium text-grey/60 max-w-2xl mx-auto">
+              {c.heroSeoLine}
+            </h2>
           </FadeIn>
           <FadeIn delay={400}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
