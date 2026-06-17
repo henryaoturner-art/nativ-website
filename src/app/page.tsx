@@ -11,6 +11,7 @@ const translations = {
     heroSub2: "Nativ maakt die kennis toegankelijk — en geeft alle medewerkers een digitale assistent en extra digitale collega's.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de Digitale Collega's",
+    ctaWhitepaper: "Whitepaper downloaden",
     problemTitle: "Je grootste asset heb je al in huis",
     problemP1: "De kennis van je team is het krachtigste wat je hebt.",
     problemP2a: "In hoofden, in ervaring, in jaren van expertise — wachtend om ingezet te worden.",
@@ -48,6 +49,7 @@ const translations = {
     heroSub2: "Nativ makes that knowledge accessible — so AI actually delivers.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "Meet the Digital Colleagues",
+    ctaWhitepaper: "Download whitepaper",
     problemTitle: "Your greatest asset — you already have it",
     problemP1: "Your team\u2019s knowledge is the most powerful thing you have.",
     problemP2a: "In minds, in experience, in years of expertise — ready to be activated.",
@@ -118,9 +120,27 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/whitepaper"
-                className="text-sage hover:text-sage-dark transition-colors text-base flex items-center gap-2"
+                className="group inline-flex items-center gap-2 text-base text-sage hover:text-sage-dark transition-colors"
               >
-                📄 Download whitepaper
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-200 group-hover:translate-y-0.5"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3v12" />
+                  <path d="m7 10 5 5 5-5" />
+                  <path d="M5 21h14" />
+                </svg>
+                <span className="border-b border-transparent pb-0.5 transition-colors group-hover:border-current">
+                  {c.ctaWhitepaper}
+                </span>
               </Link>
             </div>
           </FadeIn>
