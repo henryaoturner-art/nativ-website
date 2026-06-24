@@ -6,6 +6,7 @@ description: "80% van wat je team weet staat nooit opgeschreven. Ontdek waarom C
 tag: "Kennismanagement"
 readTime: "8 min"
 author: "nativ"
+image: "/blog/kennisoverdracht-mkb.jpg"
 ---
 
 _Hoe kun je AI laten werken met kennis die nooit in een document is opgeschreven? Daar zit een groot probleem dat mkb-directeuren elke dag geld kost._
