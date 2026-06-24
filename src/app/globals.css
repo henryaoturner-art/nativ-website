@@ -81,3 +81,60 @@ h1, h2, h3, h4, h5, h6 {
 .skip-link:focus {
   top: 0;
 }
+
+/* Blog post content (markdown rendered via marked) */
+.blog-prose {
+  font-weight: 300;
+  line-height: 1.7;
+}
+.blog-prose h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.blog-prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.blog-prose p {
+  margin-bottom: 1.25rem;
+}
+.blog-prose ul,
+.blog-prose ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
+.blog-prose li {
+  margin-bottom: 0.5rem;
+}
+.blog-prose strong {
+  font-weight: 600;
+}
+.blog-prose a {
+  color: var(--color-sage-dark);
+  text-decoration: underline;
+}
+.blog-prose em {
+  font-style: italic;
+}
+.blog-prose blockquote {
+  border-left: 3px solid var(--color-sage);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: rgba(74, 74, 72, 0.75);
+}
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid rgba(74, 74, 72, 0.15);
+  margin: 2.5rem 0;
+}

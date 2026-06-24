@@ -57,7 +57,13 @@ async function saveLeadToGoogleSheet(lead: Lead) {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body = (await req.json()) as {
+      name?: string;
+      email?: string;
+      company?: string;
+      role?: string;
+      language?: string;
+    };
 
     // Validate required fields
     if (!body.name?.trim() || !body.email?.trim()) {

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://gonativ.nl";
@@ -30,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/kennis/wat-is-een-bedrijfsbrein",
   ]);
 
-  return pages.map((path) => ({
+  const staticEntries: MetadataRoute.Sitemap = pages.map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
     changeFrequency: path === "/blog" ? "weekly" : "monthly",
@@ -43,4 +44,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             ? 0.8
             : 0.7,
   }));
+
+  // One entry per blog post, dated on the post's own publish/update date.
+  const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${base}/blog/${post.slug}`,
+    lastModified: post.updated
+      ? new Date(post.updated)
+      : post.date
+        ? new Date(post.date)
+        : new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...blogEntries];
 }
