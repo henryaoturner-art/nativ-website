@@ -9,9 +9,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/digitale-collega-marketing" },
 };
 
+const faqItems = [
+  {
+    question: "Wat doet een digitale marketing-collega?",
+    answer:
+      "Een digitale marketing-collega werkt vanuit je Company Brain aan research, content, beeld, SEO en inplannen, in de eigen toon van je merk.",
+  },
+  {
+    question: "Werkt het in onze eigen huisstijl en toon?",
+    answer:
+      "Ja. De marketing-collega put uit je Company Brain, dus content komt in jullie eigen toon en op basis van jullie kennis, niet generiek.",
+  },
+  {
+    question: "Voor wie is de marketing-collega?",
+    answer:
+      "Voor het Nederlandse mkb dat marketing wil versnellen zonder de eigen stem te verliezen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function MarketingColleaguePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">

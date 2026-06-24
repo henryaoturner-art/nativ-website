@@ -39,9 +39,42 @@ const collegas = [
   },
 ];
 
+const faqItems = [
+  {
+    question: "Wat is een digitale collega?",
+    answer:
+      "Een digitale collega is geen losse chatbot, maar een AI-collega die vanuit je Company Brain werkt en echt meewerkt. Hij kent jullie manier van werken en wordt elke maand productiever.",
+  },
+  {
+    question: "Welke digitale collega's zijn er?",
+    answer:
+      "Vandaag een marketing-collega; sales, finance en hr volgen. Elke collega draait op dezelfde Company Brain, zodat opgebouwde kennis gedeeld wordt.",
+  },
+  {
+    question: "Wat is het verschil met ChatGPT of een chatbot?",
+    answer:
+      "Een chatbot geeft algemene antwoorden. Een digitale collega werkt vanuit de kennis van jóuw bedrijf en levert echt werk op, in jullie eigen toon en processen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function DigitaleCollegasPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">

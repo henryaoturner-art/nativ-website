@@ -9,9 +9,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/digitale-collega-sales" },
 };
 
+const faqItems = [
+  {
+    question: "Wat doet een digitale sales-collega?",
+    answer:
+      "Een digitale sales-collega werkt vanuit je Company Brain aan klantprofielen, gespreksvoorbereiding, leads, outreach en offertes.",
+  },
+  {
+    question: "Is de sales-collega al beschikbaar?",
+    answer:
+      "De sales-collega is in ontwikkeling. Het Company Brain en de persoonlijke AI-assistent staan vandaag al klaar als basis.",
+  },
+  {
+    question: "Voor wie is de sales-collega?",
+    answer:
+      "Voor mkb-salesteams die voorbereiding en opvolging willen versnellen vanuit hun eigen bedrijfskennis.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function SalesColleaguePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">

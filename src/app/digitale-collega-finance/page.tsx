@@ -9,9 +9,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/digitale-collega-finance" },
 };
 
+const faqItems = [
+  {
+    question: "Wat doet een digitale finance-collega?",
+    answer:
+      "Een digitale finance-collega werkt vanuit je Company Brain aan maandrapportage, afwijkingsanalyse, business cases en forecasting.",
+  },
+  {
+    question: "Is de finance-collega al beschikbaar?",
+    answer:
+      "De finance-collega is in ontwikkeling. Het Company Brain en de persoonlijke assistent vormen vandaag al de basis.",
+  },
+  {
+    question: "Voor wie is de finance-collega?",
+    answer:
+      "Voor mkb-bedrijven die financiële rapportage en analyse willen versnellen op basis van hun eigen cijfers en context.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function FinanceColleaguePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">

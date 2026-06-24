@@ -9,9 +9,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/digitale-collega-hr" },
 };
 
+const faqItems = [
+  {
+    question: "Wat doet een digitale hr-collega?",
+    answer:
+      "Een digitale hr-collega ondersteunt de mensgerichte processen van je bedrijf. Vandaag beantwoordt de persoonlijke assistent al de bedrijfsvragen van je medewerkers.",
+  },
+  {
+    question: "Is de hr-collega al beschikbaar?",
+    answer:
+      "De volledige hr-collega is in ontwikkeling. De persoonlijke assistent die medewerkersvragen beantwoordt, werkt vandaag al.",
+  },
+  {
+    question: "Voor wie is de hr-collega?",
+    answer:
+      "Voor het Nederlandse mkb dat medewerkers sneller antwoord wil geven op bedrijfsvragen.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function HrColleaguePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">

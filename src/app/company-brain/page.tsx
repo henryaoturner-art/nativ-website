@@ -9,9 +9,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/company-brain" },
 };
 
+const faqItems = [
+  {
+    question: "Wat is een Company Brain?",
+    answer:
+      "Een Company Brain is één centrale kennislaag voor je bedrijf: alles wat je bedrijf weet, uit de hoofden van je mensen, je systemen en documenten, op één plek en klaar voor AI. Het is de basis waarop een persoonlijke assistent en digitale collega's draaien.",
+  },
+  {
+    question: "Waarom heb je een Company Brain nodig voor AI?",
+    answer:
+      "Bedrijfs-AI loopt niet vast op een te dom model, maar op te weinig context. Een Company Brain geeft AI de specifieke kennis van jouw bedrijf, zodat antwoorden kloppen in plaats van algemeen blijven.",
+  },
+  {
+    question: "Voor wie is een Company Brain?",
+    answer:
+      "Voor het Nederlandse mkb dat AI bedrijfsbreed wil inzetten, niet als los experiment maar als vaste basis onder het werk.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
 export default function CompanyBrainPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero + direct answer */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">
