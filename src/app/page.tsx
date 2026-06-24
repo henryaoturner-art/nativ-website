@@ -113,6 +113,8 @@ const orgSchema = {
   sameAs: [
     "https://www.linkedin.com/company/116051208/",
     "https://x.com/gonativnl",
+    "https://www.sortlist.com/agency/nativ",
+    "https://clutch.co/profile/nativ-0",
   ],
 };
 
