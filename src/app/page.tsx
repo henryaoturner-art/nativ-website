@@ -116,6 +116,7 @@ const orgSchema = {
     "https://www.sortlist.com/agency/nativ",
     "https://clutch.co/profile/nativ-0",
     "https://www.g2.com/products/nativ-company-brain",
+    "https://feedbax.nl/bedrijf/nativ",
   ],
 };
 
