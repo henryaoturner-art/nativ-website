@@ -17,6 +17,10 @@ Nativ B.V. (gonativ.nl) is een Nederlands bedrijf — KvK 96646756, btw NL005222
 - [Digitale collega — Finance](https://gonativ.nl/digitale-collega-finance)
 - [Digitale collega — HR](https://gonativ.nl/digitale-collega-hr)
 
+## Blog
+- [Kennisoverdracht in het mkb: wat je team weet maar nooit opschrijft](https://gonativ.nl/blog/kennisoverdracht-mkb): waarom ongeveer 80% van bedrijfskennis nooit wordt opgeschreven, waarom zoektools als Copilot en Notion AI dat deel niet oplossen, en hoe een Company Brain impliciete kennis vastlegt zodra ze ontstaat.
+- [Twee bedrijven, één blokkade: niemand weet precies wat het bedrijf al weet](https://gonativ.nl/blog/twee-bedrijven-een-blokkade): waarom groeiende mkb-bedrijven vastlopen op versnipperde kennis, waarom AI daar niet vanzelf overheen gaat zonder eerst de context te ordenen, en drie signalen dat je bedrijf toe is aan een Company Brain.
+
 ## Meer
 - [Diensten](https://gonativ.nl/diensten): wat we leveren en hoe een traject loopt.
 - [Cases](https://gonativ.nl/cases): klantvoorbeelden en resultaten.
