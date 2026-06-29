@@ -1,4 +1,15 @@
-# Nativ
+import { getAllPosts } from "@/lib/blog";
+
+// llms.txt — the map LLM-aware crawlers (ChatGPT, Claude, Perplexity) read to
+// understand the site. Generated at build time so every new blog post lands here
+// automatically, the same way sitemap.ts auto-includes posts. Replaces the old
+// static public/llms.txt (a static file would shadow this route).
+
+export const dynamic = "force-static";
+
+const BASE = "https://gonativ.nl";
+
+const HEADER = `# Nativ
 
 > Nativ bouwt een Company Brain met digitale collega's voor het Nederlandse mkb: we leggen de kennis vast die nu vastzit in hoofden, inboxen en spreadsheets, en zetten daar digitale collega's op die echt werk leveren. Company Brain | Digital Colleagues.
 
@@ -15,16 +26,26 @@ Nativ B.V. (gonativ.nl) is een Nederlands bedrijf — KvK 96646756, btw NL005222
 - [Digitale collega — Marketing](https://gonativ.nl/digitale-collega-marketing)
 - [Digitale collega — Sales](https://gonativ.nl/digitale-collega-sales)
 - [Digitale collega — Finance](https://gonativ.nl/digitale-collega-finance)
-- [Digitale collega — HR](https://gonativ.nl/digitale-collega-hr)
+- [Digitale collega — HR](https://gonativ.nl/digitale-collega-hr)`;
 
-## Blog
-- [Kennisoverdracht in het mkb: wat je team weet maar nooit opschrijft](https://gonativ.nl/blog/kennisoverdracht-mkb): waarom ongeveer 80% van bedrijfskennis nooit wordt opgeschreven, waarom zoektools als Copilot en Notion AI dat deel niet oplossen, en hoe een Company Brain impliciete kennis vastlegt zodra ze ontstaat.
-- [Twee bedrijven, één blokkade: niemand weet precies wat het bedrijf al weet](https://gonativ.nl/blog/twee-bedrijven-een-blokkade): waarom groeiende mkb-bedrijven vastlopen op versnipperde kennis, waarom AI daar niet vanzelf overheen gaat zonder eerst de context te ordenen, en drie signalen dat je bedrijf toe is aan een Company Brain.
-
-## Meer
+const FOOTER = `## Meer
 - [Diensten](https://gonativ.nl/diensten): wat we leveren en hoe een traject loopt.
 - [Cases](https://gonativ.nl/cases): klantvoorbeelden en resultaten.
 - [Over ons](https://gonativ.nl/over-ons): wie Nativ is.
 - [Security & privacy](https://gonativ.nl/security): EU-hosting, GDPR, hoe we met gevoelige data omgaan.
 - [Whitepaper](https://gonativ.nl/whitepaper): de onderbouwing achter context engineering en het MVC-framework.
-- [Contact](https://gonativ.nl/contact)
+- [Contact](https://gonativ.nl/contact)`;
+
+export function GET() {
+  const blogLines = getAllPosts()
+    .map((p) => `- [${p.title}](${BASE}/blog/${p.slug}): ${p.description || p.excerpt}`)
+    .join("\n");
+
+  const blogSection = blogLines ? `## Blog\n${blogLines}\n\n` : "";
+
+  const body = `${HEADER}\n\n${blogSection}${FOOTER}\n`;
+
+  return new Response(body, {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
+}
