@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/diensten",
     "/over-ons",
     "/cases",
+    "/ai-agenda",
     "/pricing",
     "/impact",
     "/security",
