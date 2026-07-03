@@ -3,10 +3,10 @@ import { getAgendaEvents } from "@/lib/events";
 import AgendaView from "./AgendaView";
 
 export const metadata: Metadata = {
-  title: { absolute: "AI Agenda: AI-events en meetups in Nederland | nativ" },
+  title: { absolute: "AI Events: AI-events en meetups in Nederland | nativ" },
   description:
     "De AI-events, meetups en workshops die er in Nederland en online toe doen — live samengesteld uit Luma en Meetup, altijd actueel. Samengesteld door Nativ.",
-  alternates: { canonical: "/ai-agenda" },
+  alternates: { canonical: "/ai-events" },
 };
 
 // Refresh the feed a few times a day; pin the function to an EU region so

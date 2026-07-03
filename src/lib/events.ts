@@ -1,4 +1,4 @@
-// AI Agenda data layer — aggregates AI events from Luma + Meetup, live.
+// AI Events data layer — aggregates AI events from Luma + Meetup, live.
 //
 // Two public feeds, no auth, read-only:
 //  - Luma:   per-calendar API (api.lu.ma/calendar/get-items) over a curated set

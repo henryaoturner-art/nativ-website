@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
         destination: "/scan",
         permanent: true,
       },
+      // Renamed /ai-agenda → /ai-events (2026-07-03); keep the short-lived old path alive.
+      {
+        source: "/ai-agenda",
+        destination: "/ai-events",
+        permanent: true,
+      },
     ];
   },
 };

@@ -9,7 +9,7 @@ type Filter = "all" | "online" | "in-person";
 
 const copy = {
   nl: {
-    title: "AI Agenda",
+    title: "AI Events",
     sub: "De AI-events, meetups en workshops die er in Nederland en online toe doen — op één plek, altijd actueel.",
     source: "Live samengesteld uit Luma en Meetup",
     all: "Alles",
@@ -23,7 +23,7 @@ const copy = {
     locale: "nl-NL",
   },
   en: {
-    title: "AI Agenda",
+    title: "AI Events",
     sub: "The AI events, meetups and workshops that matter in the Netherlands and online — in one place, always current.",
     source: "Compiled live from Luma and Meetup",
     all: "All",
