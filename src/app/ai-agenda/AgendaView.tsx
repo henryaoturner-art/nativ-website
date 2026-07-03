@@ -39,7 +39,7 @@ const copy = {
 };
 
 export default function AgendaView({ events }: { events: AgendaEvent[] }) {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const c = t(copy);
   const [filter, setFilter] = useState<Filter>("all");
 

@@ -147,7 +147,7 @@ async function fetchMeetup(): Promise<AgendaEvent[]> {
   } catch {
     return [];
   }
-  const m = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/s);
+  const m = html.match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
   if (!m) return [];
   let json: unknown;
   try {
