@@ -39,6 +39,10 @@ const LUMA_CALENDARS: { id: string; name: string }[] = [
   { id: "cal-cIL2FvDfGyDzLLI", name: "AI Builders" },
   { id: "cal-TOpA5LAFfuDeFpu", name: "Claude Community" },
   { id: "cal-iOipAs7mv59Hbuz", name: "OpenClaw Meetups" },
+  // Randstad-breed (2026-07-03):
+  { id: "cal-PNQy0jNSXzZqxES", name: "AAIF Amsterdam" }, // hosts MLOps Community A'dam
+  { id: "cal-xfRCBuSHDpIoEmp", name: "AI Salon" }, // global; The Hague editions pass the NL filter
+  { id: "cal-iqbh7689hPT1Ep6", name: "Cursor Utrecht" },
 ];
 
 // Curated NL AI Meetup groups. Read directly (not via keyword search, which is
@@ -58,6 +62,18 @@ const MEETUP_GROUPS: string[] = [
   "haarlem-code-collective",
   "dutch-cloud-native", // Dutch Cloud Native & AI
   "gen-ai-amsterdam", // GenAI Amsterdam
+  // Randstad-breed (2026-07-03). Several announce late — a group with 0 upcoming
+  // events today contributes nothing until it publishes, then appears automatically.
+  "werkspoortalks", // WerkspoorTalks — Utrecht (Werkspoorkathedraal)
+  "engineeringleadershipnl", // Engineering Leadership NL — Utrecht
+  "global-ai-utrecht", // Global AI Utrecht
+  "data-science-rdm", // Data Science Rotterdam
+  "the-hague-ai", // The Hague AI (AI Lab One)
+  "ai4all-den-haag-meetup", // AI4ALL Den Haag
+  "leiden-ai-community", // Leiden AI Community
+  "delft-developers-group", // Delft Developers (recurring AI/LLM talks)
+  "datacouncil-amsterdam", // Data Council / Xebia — NL data engineering & science
+  "analytics-engineering", // Analytics Engineering Amsterdam
 ];
 
 // MLM / "get rich with AI" spam that clutters Meetup's AI search.
@@ -318,5 +334,16 @@ export async function getAgendaEvents(): Promise<{ events: AgendaEvent[]; update
   }
 
   all.sort((a, b) => a.start.localeCompare(b.start));
-  return { events: all, updatedAt: new Date().toISOString() };
+
+  // Recurring-series cap: weekly/monthly series (same title + host, e.g. "LLM
+  // Paper Club") would otherwise flood the list. Keep the next 2 occurrences.
+  const seriesCount = new Map<string, number>();
+  const capped = all.filter((e) => {
+    const key = `${e.host}|${e.title.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 32)}`;
+    const n = (seriesCount.get(key) ?? 0) + 1;
+    seriesCount.set(key, n);
+    return n <= 2;
+  });
+
+  return { events: capped, updatedAt: new Date().toISOString() };
 }
