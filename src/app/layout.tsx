@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   description:
     "nativ bouwt een Company Brain: één AI-kennisbank voor je bedrijf, plus digitale collega's voor marketing, sales, finance en hr. Voor het Nederlandse mkb.",
   metadataBase: new URL("https://gonativ.nl"),
+  // Homepage canonical. Every other route overrides this with its own
+  // alternates.canonical (in its page.tsx or a sibling layout.tsx), so this
+  // default only ever resolves for "/". Any NEW route MUST set its own canonical.
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "nl_NL",

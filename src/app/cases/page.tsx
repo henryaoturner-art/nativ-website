@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Cases",
   description:
     "Echte resultaten bij echte bedrijven. Bekijk hoe Nativ organisaties helpt met AI.",
+  alternates: { canonical: "/cases" },
 };
 
 export default function CasesPage() {
