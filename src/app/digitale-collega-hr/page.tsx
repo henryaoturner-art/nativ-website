@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
@@ -42,7 +43,12 @@ export default function HrColleaguePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            webPage("/digitale-collega-hr", "Digitale collega voor hr", "Een digitale hr-collega, in ontwikkeling. De persoonlijke assistent beantwoordt vandaag al de bedrijfsvragen van je medewerkers. Voor het mkb."),
+            faqSchema,
+          ]),
+        }}
       />
 
       {/* Hero + direct answer */}

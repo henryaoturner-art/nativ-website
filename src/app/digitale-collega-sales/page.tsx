@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
@@ -42,7 +43,12 @@ export default function SalesColleaguePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            webPage("/digitale-collega-sales", "Digitale collega voor sales", "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. In ontwikkeling."),
+            faqSchema,
+          ]),
+        }}
       />
 
       {/* Hero + direct answer */}

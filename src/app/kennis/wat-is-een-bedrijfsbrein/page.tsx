@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
+import LastUpdated from "@/components/LastUpdated";
+import { webPage } from "@/lib/site-meta";
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +47,16 @@ export default function PillarBedrijfsbreinPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            webPage(
+              "/kennis/wat-is-een-bedrijfsbrein",
+              "Wat is een Company Brain (bedrijfsbrein)?",
+              "Een Company Brain is één centrale AI-kennislaag voor je bedrijf: wat het is, hoe het wordt gevuld en hoe je begint.",
+            ),
+            faqSchema,
+          ]),
+        }}
       />
 
       {/* Hero + direct answer */}
@@ -68,6 +79,11 @@ export default function PillarBedrijfsbreinPage() {
               die snappen hoe jullie werken, in plaats van algemene antwoorden te
               geven. nativ bouwt zo'n Company Brain voor het Nederlandse mkb.
             </p>
+          </FadeIn>
+          <FadeIn delay={250}>
+            <div className="mt-6">
+              <LastUpdated />
+            </div>
           </FadeIn>
         </div>
       </section>

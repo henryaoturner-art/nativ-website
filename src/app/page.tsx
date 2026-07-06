@@ -3,6 +3,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
@@ -164,10 +165,40 @@ const faqSchema = {
         text: "Ja. nativ is gebouwd voor Nederlandse mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
       },
     },
+    {
+      "@type": "Question",
+      name: "Hoe werkt AI-kennismanagement?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI-kennismanagement legt de kennis van je bedrijf vast in één centrale laag, het Company Brain, uit de hoofden van je mensen, uit je systemen en uit je documenten. AI-assistenten en digitale collega's werken vervolgens vanuit die laag, zodat ze antwoorden geven die kloppen met hoe jullie echt werken.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wat is het verschil met gewoon ChatGPT gebruiken?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ChatGPT weet niets van jouw bedrijf en begint elk gesprek opnieuw. Een Company Brain geeft AI de context van jullie organisatie: jullie kennis, afspraken en manier van werken. Zo krijg je consistente, herkenbare antwoorden in plaats van algemene, en die kennis blijft van jou.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hoeveel kost een Company Brain?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "De investering hangt af van de omvang en het aantal digitale collega's. We beginnen klein en omkeerbaar, met een eerste stap in enkele weken. Vraag een vrijblijvend gesprek aan voor een prijs die past bij jullie situatie.",
+      },
+    },
   ],
 };
 
-const homepageJsonLd = [orgSchema, softwareSchema, faqSchema];
+const homepageSchema = webPage(
+  "/",
+  "nativ — Company Brain en digitale collega's voor het mkb",
+  "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb: één centrale AI-kennislaag met digitale collega's voor marketing, sales, finance en hr.",
+);
+
+const homepageJsonLd = [orgSchema, softwareSchema, faqSchema, homepageSchema];
 
 export default function HomePage() {
   const { t } = useLanguage();

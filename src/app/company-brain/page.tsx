@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
@@ -42,7 +43,12 @@ export default function CompanyBrainPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            webPage("/company-brain", "Company Brain: één AI-kennisbank voor je bedrijf", "Eén centrale AI-kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke digitale collega, voor het mkb."),
+            faqSchema,
+          ]),
+        }}
       />
 
       {/* Hero + direct answer */}

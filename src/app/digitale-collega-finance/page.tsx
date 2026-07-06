@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
@@ -42,7 +43,12 @@ export default function FinanceColleaguePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            webPage("/digitale-collega-finance", "Digitale collega voor finance", "Een digitale finance-collega die vanuit je Company Brain werkt: maandrapportage, afwijkingsanalyse, business cases en forecasting. In ontwikkeling."),
+            faqSchema,
+          ]),
+        }}
       />
 
       {/* Hero + direct answer */}
