@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 type Clause = { num: string; text: string };
 type Article = { n: number; title: string; intro?: string; clauses: Clause[] };
 
-const VERSIE = "Versie 0.2 · 6 juli 2026";
+const VERSIE = "Versie 0.3 · 6 juli 2026";
 
 const articles: Article[] = [
   {
@@ -257,8 +257,9 @@ export default function VoorwaardenPage() {
           <FadeIn>
             <div className="mt-12 pt-8 border-t border-grey/10">
               <p className="text-grey/60 font-light leading-relaxed text-sm">
-                Bij de overeenkomst horen twee bijlagen die bij het sluiten worden
-                verstrekt: <span className="text-grey">Bijlage A — Verwerkersovereenkomst</span> (AVG
+                Deze voorwaarden worden aangevuld met twee bijlagen die je bij het sluiten
+                van een overeenkomst ontvangt:{" "}
+                <span className="text-grey">Bijlage A — Verwerkersovereenkomst</span> (AVG
                 art. 28) en <span className="text-grey">Bijlage B — Service Level Agreement</span>.
               </p>
               <p className="mt-4 text-grey/60 font-light leading-relaxed text-sm">
