@@ -4,6 +4,56 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
+import { webPage } from "@/lib/site-meta";
+
+// Answer-first pricing Q&A in FAQPage schema so AI answer-engines can cite our
+// pricing model (the PRICING fan-out: "wat kost een Company Brain", "extra kosten").
+// Canonical NL, mirrors translations.nl.faqItems below. Figures stay single-source
+// on this page; nothing is duplicated elsewhere.
+const pricingFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Hoeveel kost een Company Brain?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "nativ werkt met een eenmalige setup voor de Company Brain plus een vaste maandelijkse vergoeding, en een maandbedrag per digitale collega. Een Quick Start begint vanaf €2.495 setup en €495 per maand; het meest gekozen Professional-plan is €12.495 setup en €495 per maand plus €1.295 per maand per extra digitale collega. Tokenkosten van je eigen gebruik vallen daarbuiten.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Zijn er extra kosten voor AI-gebruik?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de digitale collega's.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Waarom een maandelijkse vergoeding en geen eenmalig bedrag?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Een digitale collega werkt elke dag voor je, beweegt mee met je bedrijf en wordt na verloop van tijd beter. Dat lijkt meer op iemand die je aanneemt dan op software die je koopt. Wat eenmalig werk is rekenen we eenmalig; wat doorlopend werk is, rekenen we doorlopend. Je kunt maandelijks opzeggen na een minimumtermijn van drie maanden.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wat zit er niet in de prijs?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Custom integraties met legacy systemen kunnen extra kosten met zich meebrengen. We zijn daar altijd transparant over en bespreken het vooraf.",
+      },
+    },
+  ],
+};
+
+const pricingWebPage = webPage(
+  "/pricing",
+  "Prijzen — Company Brain en digitale collega's",
+  "Wat kost een Company Brain en een digitale collega bij nativ? Setup, maandbedrag per plan en wat er wel en niet in de prijs zit.",
+);
 
 const translations = {
   nl: {
@@ -78,6 +128,13 @@ export default function PricingPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([pricingWebPage, pricingFaqSchema]),
+        }}
+      />
+
       {/* Hero */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">

@@ -26,6 +26,16 @@ const faqItems = [
     answer:
       "Voor het Nederlandse mkb dat AI bedrijfsbreed wil inzetten, niet als los experiment maar als vaste basis onder het werk.",
   },
+  {
+    question: "Wat is het verschil tussen een Company Brain en een chatbot zoals ChatGPT?",
+    answer:
+      "Een losse chatbot weet niets van jouw bedrijf en begint elk gesprek opnieuw. Een Company Brain geeft AI de context van jouw organisatie: jullie kennis, afspraken en manier van werken. Zo krijg je consistente antwoorden die kloppen met hoe jullie echt werken, en die kennis blijft van jou in plaats van te verdwijnen in losse chats.",
+  },
+  {
+    question: "Waarom niet gewoon losse AI-tools gebruiken?",
+    answer:
+      "Losse tools lossen elk een stukje op, maar delen geen kennis en bouwen niets op. Een Company Brain legt de kennis één keer vast en laat elke digitale collega eruit werken. Je bouwt aan één laag die met je bedrijf meegroeit, in plaats van losse abonnementen die niets van elkaar weten.",
+  },
 ];
 
 const faqSchema = {
