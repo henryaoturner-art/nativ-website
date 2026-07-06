@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { webPage } from "@/lib/site-meta";
 
 export const metadata: Metadata = {
   title: "Cases",
@@ -9,9 +10,55 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cases" },
 };
 
+const SORTLIST_REVIEW_URL = "https://www.sortlist.com/agency/nativ";
+
+// Real, publicly verifiable client review (Sortlist). Feeds the REPUTATION/TRUST
+// fan-out so AI answer-engines have a citeable trust signal. Honest figures only:
+// 4.5/5, 1 review. Klant gaf akkoord om bij naam te tonen (staat publiek op Sortlist).
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "nativ",
+  url: "https://gonativ.nl",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.5",
+    reviewCount: "1",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: {
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" },
+    author: {
+      "@type": "Person",
+      name: "Dirk Westdijk",
+      jobTitle: "CEO",
+      worksFor: { "@type": "Organization", name: "JobTraining" },
+    },
+    datePublished: "2026-06-24",
+    reviewBody:
+      "nativ heeft voor ons een Company Brain met digitale collega's gebouwd die echt meewerken in onze marketing. Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken. Het team is bereikbaar, helder en snel, en denkt echt mee over wat resultaat oplevert. Een aanrader voor elk mkb-bedrijf dat AI serieus wil inzetten.",
+    publisher: { "@type": "Organization", name: "Sortlist" },
+  },
+};
+
+const casesWebPage = webPage(
+  "/cases",
+  "Cases — wat we hebben gebouwd",
+  "Echte resultaten bij echte bedrijven, met een geverifieerde klantreview. Zo helpt nativ organisaties met AI.",
+);
+
 export default function CasesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([casesWebPage, reviewSchema]),
+        }}
+      />
+
       {/* Hero */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
@@ -105,6 +152,35 @@ export default function CasesPage() {
             </article>
           </FadeIn>
         </div>
+
+        {/* Client testimonial — verified Sortlist review (Dirk Westdijk, JobTraining) */}
+        <FadeIn delay={300}>
+          <figure className="max-w-[800px] mx-auto mt-12">
+            <div className="bg-sage/5 border border-sage-light rounded-xl p-8 md:p-10">
+              <div className="flex items-center gap-2 text-sage" aria-label="Beoordeling 4,5 van 5">
+                <span aria-hidden="true" className="text-lg tracking-wide">★★★★★</span>
+                <span className="text-sm text-grey/60">4,5 / 5</span>
+              </div>
+              <blockquote className="mt-4 font-serif text-xl md:text-2xl leading-snug text-grey">
+                &ldquo;nativ heeft voor ons een Company Brain met digitale collega&apos;s gebouwd die echt meewerken in onze marketing. Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken. Het team is bereikbaar, helder en snel, en denkt echt mee over wat resultaat oplevert. Een aanrader voor elk mkb-bedrijf dat AI serieus wil inzetten.&rdquo;
+              </blockquote>
+              <figcaption className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="font-medium text-grey">Dirk Westdijk</span>
+                <span className="text-grey/50">·</span>
+                <span className="text-grey/70 font-light">CEO, JobTraining</span>
+                <span className="text-grey/50">·</span>
+                <a
+                  href={SORTLIST_REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sage text-sm hover:underline"
+                >
+                  Geverifieerde review op Sortlist →
+                </a>
+              </figcaption>
+            </div>
+          </figure>
+        </FadeIn>
 
         {/* CTA for future cases */}
         <FadeIn delay={400}>
