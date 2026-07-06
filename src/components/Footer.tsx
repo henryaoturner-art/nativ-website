@@ -93,7 +93,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-6 text-xs text-white/40">
             <Link href="/security" className="hover:text-white/70 transition-colors">{f.privacy}</Link>
-            <Link href="/security" className="hover:text-white/70 transition-colors">{f.terms}</Link>
+            <Link href="/algemene-voorwaarden" className="hover:text-white/70 transition-colors">{f.terms}</Link>
           </div>
           <div className="flex items-center gap-4 text-xs text-white/40">
             <span>🇪🇺 EU Data</span>
