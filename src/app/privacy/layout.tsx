@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site-meta";
 
-export const metadata: Metadata = {
-  title: "Privacyverklaring",
-  description:
-    "Hoe Nativ omgaat met persoonsgegevens van bezoekers van gonativ.nl: welke gegevens we verwerken, waarom, cookies, bewaartermijn en jouw rechten.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata: Metadata = pageMeta(
+  "/privacy",
+  "Privacyverklaring | nativ",
+  "Hoe nativ omgaat met persoonsgegevens van bezoekers van gonativ.nl: welke gegevens we verwerken, waarom, cookies, bewaartermijn en jouw rechten.",
+);
 
 export default function PrivacyLayout({
   children,

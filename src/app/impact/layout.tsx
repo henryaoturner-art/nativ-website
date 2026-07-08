@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site-meta";
 
-export const metadata: Metadata = {
-  title: "Impact",
-  description:
-    "Waar nativ voor staat en hoe we bijdragen. Onze kijk op verantwoorde AI voor het mkb.",
-  alternates: { canonical: "/impact" },
-};
+export const metadata: Metadata = pageMeta(
+  "/impact",
+  "Impact | nativ",
+  "Waar nativ voor staat en hoe we bijdragen. Onze kijk op verantwoorde AI voor het mkb.",
+);
 
 export default function ImpactLayout({
   children,
