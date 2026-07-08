@@ -7,8 +7,8 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Het meeste van wat je bedrijf weet, staat nergens vastgelegd.",
-    heroSub1: "Het zit in hoofden, en loopt de deur uit zodra iemand vertrekt.",
+    heroTitle: "De belangrijkste kennis van je bedrijf staat nergens vastgelegd.",
+    heroSub1: "Ze zit in de hoofden van je medewerkers, en loopt de deur uit zodra iemand vertrekt.",
     heroSub2: "nativ legt die kennis vast in een Company Brain en geeft alle medewerkers een digitale assistent en extra digitale collega's.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de Digitale Collega's",
@@ -16,8 +16,8 @@ const translations = {
     heroSeoLine:
       "Een Company Brain met digitale collega's voor het Nederlandse mkb.",
     problemTitle: "Wat er verandert als die kennis wél vastligt",
-    problemP1: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
-    problemP2a: "Iedereen geeft een klant hetzelfde antwoord, omdat iedereen uit dezelfde bron put.",
+    problemP1: "Dan kun je digitale collega's inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
+    problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
     problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
     problemP3: "Dat is wat een Company Brain doet: het maakt de kennis van je team herbruikbaar, voor je mensen en voor AI.",
     howTitle: "Hoe we werken",
@@ -47,16 +47,16 @@ const translations = {
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "Most of what your company knows isn’t written down anywhere.",
-    heroSub1: "It lives in people’s heads, and walks out the door when someone leaves.",
+    heroTitle: "Your company’s most important knowledge isn’t written down anywhere.",
+    heroSub1: "It lives in your people’s heads, and walks out the door when someone leaves.",
     heroSub2: "nativ captures that knowledge in one Company Brain and gives every employee a digital assistant and extra digital colleagues.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "Meet the Digital Colleagues",
     ctaWhitepaper: "Download whitepaper",
     heroSeoLine: "A Company Brain with digital colleagues for Dutch SMEs.",
     problemTitle: "What changes once that knowledge is written down",
-    problemP1: "A new colleague is up to speed in days, not months.",
-    problemP2a: "Everyone gives a client the same answer, because everyone draws on the same source.",
+    problemP1: "You can put digital colleagues to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
+    problemP2a: "A new colleague is up to speed in days, not months.",
     problemP2b: "And when someone leaves, what they knew stays behind.",
     problemP3: "That is what a Company Brain does: it makes your team\u2019s knowledge reusable, for your people and for AI.",
     howTitle: "How we work",
