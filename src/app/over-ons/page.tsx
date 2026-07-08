@@ -5,13 +5,13 @@ import { useLanguage } from "@/lib/language-context";
 
 const translations = {
   nl: {
-    heroTitle: "Wij zijn Nativ",
+    heroTitle: "Wij zijn nativ",
     heroSub1: "Drie mensen. Dertig man output.",
-    heroSub2: "Niet door harder te werken — door AI-native te zijn.",
-    storyTitle: "Waarom Nativ bestaat",
-    storyP1: "We zagen het steeds weer. Bedrijven die duizenden euro\u2019s uitgeven aan AI-tools. Die er vervolgens niets mee doen. Niet omdat de tools slecht zijn — maar omdat niemand de bedrijfskennis had gestructureerd die AI nodig heeft om nuttig te zijn.",
+    heroSub2: "Niet door harder te werken, maar door AI-native te zijn.",
+    storyTitle: "Waarom nativ bestaat",
+    storyP1: "We zagen het steeds weer. Bedrijven die duizenden euro\u2019s uitgeven aan AI-tools. Die er vervolgens niets mee doen. Niet omdat de tools slecht zijn, maar omdat niemand de bedrijfskennis had gestructureerd die AI nodig heeft om nuttig te zijn.",
     storyP2: "Consultants vragen €30K+ voor een PDF. AI-vendors verkopen tools zonder context. Daar tussenin zit een gat. Dat gat zijn wij.",
-    storyQuote: "Nativ bouwt de brug tussen wat je bedrijf weet en wat AI kan.",
+    storyQuote: "nativ bouwt de brug tussen wat je bedrijf weet en wat AI kan.",
     teamTitle: "Het team",
     team: [
       { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
@@ -19,17 +19,17 @@ const translations = {
       { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/", photo: "/images/jorus.jpg" },
     ],
     howTitle: "Hoe wij werken",
-    howP: "Ons eigen bedrijf is onze eerste en meest geteste klant. Dezelfde kennisbank die we voor klanten bouwen, draait al maanden intern. We doen wat we zeggen — en we bewijzen het elke dag op onszelf.",
+    howP: "Ons eigen bedrijf is onze eerste en meest geteste klant. Dezelfde kennisbank die we voor klanten bouwen, draait al maanden intern. We doen wat we zeggen, en we bewijzen het elke dag op onszelf.",
     howItems: ["AI-native sinds dag één", "Ons eigen AI Operating System is het meest geteste systeem dat we hebben", "Lean team, grote output", "Eerlijk over wat AI wel en niet kan"],
   },
   en: {
-    heroTitle: "We are Nativ",
+    heroTitle: "We are nativ",
     heroSub1: "Three people. Thirty people\u2019s output.",
-    heroSub2: "Not by working harder — by being AI-native.",
-    storyTitle: "Why Nativ exists",
-    storyP1: "We saw it happen again and again. Companies spending thousands on AI tools. Then doing nothing with them. Not because the tools are bad — but because nobody had structured the company knowledge that AI needs to be useful.",
+    heroSub2: "Not by working harder, but by being AI-native.",
+    storyTitle: "Why nativ exists",
+    storyP1: "We saw it happen again and again. Companies spending thousands on AI tools. Then doing nothing with them. Not because the tools are bad, but because nobody had structured the company knowledge that AI needs to be useful.",
     storyP2: "Consultants charge €30K+ for a PDF. AI vendors sell tools without context. In between sits a gap. We are that gap.",
-    storyQuote: "Nativ builds the bridge between what your company knows and what AI can do.",
+    storyQuote: "nativ builds the bridge between what your company knows and what AI can do.",
     teamTitle: "The team",
     team: [
       { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
@@ -37,7 +37,7 @@ const translations = {
       { name: "Jorus Everaerd", role: "Co-founder · Sales & Strategy", linkedin: "https://linkedin.com/in/joruseveraerd/", photo: "/images/jorus.jpg" },
     ],
     howTitle: "How we work",
-    howP: "Our own company is our first and most battle-tested client. The same knowledge base we build for clients has been running internally for months. We do what we say — and we prove it on ourselves every day.",
+    howP: "Our own company is our first and most battle-tested client. The same knowledge base we build for clients has been running internally for months. We do what we say, and we prove it on ourselves every day.",
     howItems: ["AI-native since day one", "Our own AI Operating System is the most tested system we have", "Lean team, big output", "Honest about what AI can and can\u2019t do"],
   },
 };
@@ -83,7 +83,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Team */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.teamTitle}</h2>

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { webPage } from "@/lib/site-meta";
+import { pageMeta, webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
-export const metadata: Metadata = {
-  title: { absolute: "Digitale collega voor sales | nativ" },
-  description:
-    "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. In ontwikkeling, voor het mkb.",
-  alternates: { canonical: "/digitale-collega-sales" },
-};
+export const metadata: Metadata = pageMeta(
+  "/digitale-collega-sales",
+  "Digitale collega voor sales | nativ",
+  "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. In ontwikkeling, voor het mkb.",
+);
 
 const faqItems = [
   {
@@ -183,7 +182,7 @@ export default function SalesColleaguePage() {
 
       {/* How to start */}
       <section className="py-12 md:py-16 px-6">
-        <div className="max-w-[680px] mx-auto text-center bg-white rounded-2xl px-8 py-12 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
               Hoe je begint

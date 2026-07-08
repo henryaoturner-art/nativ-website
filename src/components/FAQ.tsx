@@ -13,7 +13,7 @@ export default function FAQ({ items }: { items: FAQItem[] }) {
   return (
     <div className="space-y-3">
       {items.map((item, i) => (
-        <div key={i} className="bg-white rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div key={i} className="bg-surface rounded-xl border border-sage-light">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"

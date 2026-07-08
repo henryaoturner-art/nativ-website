@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { webPage } from "@/lib/site-meta";
+import { pageMeta, webPage } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import ColleagueShowcase from "./ColleagueShowcase";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Digitale collega's voor marketing, sales, finance & hr | nativ",
-  },
-  description:
-    "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, daarna sales, finance en hr. Voor het mkb.",
-  alternates: { canonical: "/digitale-collegas" },
-};
+export const metadata: Metadata = pageMeta(
+  "/digitale-collegas",
+  "Digitale collega's voor marketing, sales, finance & hr | nativ",
+  "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, daarna sales, finance en hr. Voor het mkb.",
+);
 
 const collegas = [
   {
@@ -159,7 +156,7 @@ export default function DigitaleCollegasPage() {
               <FadeIn key={c.href} delay={i * 100}>
                 <Link
                   href={c.href}
-                  className="group block h-full bg-white rounded-2xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow"
+                  className="group block h-full bg-surface rounded-2xl p-6 border border-sage-light hover:border-sage transition-colors"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="font-serif text-xl text-grey">{c.title}</h3>

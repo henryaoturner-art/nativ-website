@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site-meta";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { getAllPosts } from "@/lib/blog";
 
-export const metadata: Metadata = {
-  title: { absolute: "Blog: inzichten over AI, kennis en het mkb | nativ" },
-  description:
-    "Inzichten over AI, kennismanagement en het Company Brain voor het Nederlandse mkb. Praktisch en eerlijk, zonder hype.",
-  alternates: { canonical: "/blog" },
-};
+export const metadata: Metadata = pageMeta(
+  "/blog",
+  "Blog: inzichten over AI, kennis en het mkb | nativ",
+  "Inzichten over AI, kennismanagement en het Company Brain voor het Nederlandse mkb. Praktisch en eerlijk, zonder hype.",
+);
 
 function formatDate(dateStr: string) {
   if (!dateStr) return "";
@@ -49,7 +49,7 @@ export default function BlogPage() {
           {posts.map((post, i) => (
             <FadeIn key={post.slug} delay={i * 100}>
               <Link href={`/blog/${post.slug}`} className="block group">
-                <article className="bg-white rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)]">
+                <article className="bg-surface rounded-xl overflow-hidden border border-sage-light group-hover:border-sage transition-colors">
                   {post.image && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img

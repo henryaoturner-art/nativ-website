@@ -7,30 +7,30 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Je bedrijf weet meer dan je denkt.",
-    heroSub1: "Cruciale kennis zit vast in hoofden, inboxes en spreadsheets.",
-    heroSub2: "Nativ maakt die kennis toegankelijk — en geeft alle medewerkers een digitale assistent en extra digitale collega's.",
+    heroTitle: "Het meeste van wat je bedrijf weet, staat nergens vastgelegd.",
+    heroSub1: "Het zit in hoofden, en loopt de deur uit zodra iemand vertrekt.",
+    heroSub2: "nativ legt die kennis vast in een Company Brain en geeft alle medewerkers een digitale assistent en extra digitale collega's.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de Digitale Collega's",
     ctaWhitepaper: "Whitepaper downloaden",
     heroSeoLine:
       "Een Company Brain met digitale collega's voor het Nederlandse mkb.",
-    problemTitle: "Je grootste asset heb je al in huis",
-    problemP1: "De kennis van je team is het krachtigste wat je hebt.",
-    problemP2a: "In hoofden, in ervaring, in jaren van expertise — wachtend om ingezet te worden.",
-    problemP2b: "Wij structureren die kennis zodat AI er direct mee aan de slag kan.",
-    problemP3: "Het resultaat: betere beslissingen, snellere groei en een team dat meer bereikt.",
+    problemTitle: "Wat er verandert als die kennis wél vastligt",
+    problemP1: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
+    problemP2a: "Iedereen geeft een klant hetzelfde antwoord, omdat iedereen uit dezelfde bron put.",
+    problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
+    problemP3: "Dat is wat een Company Brain doet: het maakt de kennis van je team herbruikbaar, voor je mensen en voor AI.",
     howTitle: "Hoe we werken",
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We brengen in kaart waar AI de meeste impact heeft — en wat het oplevert.",
+        desc: "We brengen in kaart waar AI de meeste impact heeft, en wat het oplevert.",
         detail: "In 1 week weet je precies waar de kansen liggen.",
       },
       {
         num: "2", title: "Build",
-        desc: "We bouwen je AI Operating System — een levende kennisbank die AI de context geeft van jouw bedrijf.",
-        detail: "Merkidentiteit, processen, marktdata — gestructureerd en altijd actueel.",
+        desc: "We bouwen je AI Operating System, een levende kennisbank die AI de context geeft van jouw bedrijf.",
+        detail: "Merkidentiteit, processen, marktdata: gestructureerd en altijd actueel.",
       },
       {
         num: "3", title: "Deploy",
@@ -39,37 +39,37 @@ const translations = {
       },
     ],
     startScan: "Start met een Scan →",
-    trustEU: "🇪🇺 EU Data Hosting",
-    trustGDPR: "🔒 GDPR Compliant",
-    trustNoCure: "🤝 No Cure, No Pay",
+    trustEU: "EU-datahosting",
+    trustGDPR: "GDPR-compliant",
+    trustNoCure: "No cure, no pay",
     closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
-    closerSub: "Plan een vrijblijvend gesprek. Geen verkooppraatje — gewoon een eerlijk gesprek over wat AI voor jouw organisatie kan betekenen.",
+    closerSub: "Plan een vrijblijvend gesprek. Geen verkooppraatje, gewoon een eerlijk gesprek over wat AI voor jouw organisatie kan betekenen.",
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "Your company knows more than you think.",
-    heroSub1: "Critical knowledge is locked in people\u2019s heads, inboxes and spreadsheets.",
-    heroSub2: "Nativ makes that knowledge accessible — so AI actually delivers.",
+    heroTitle: "Most of what your company knows isn’t written down anywhere.",
+    heroSub1: "It lives in people’s heads, and walks out the door when someone leaves.",
+    heroSub2: "nativ captures that knowledge in one Company Brain and gives every employee a digital assistant and extra digital colleagues.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "Meet the Digital Colleagues",
     ctaWhitepaper: "Download whitepaper",
     heroSeoLine: "A Company Brain with digital colleagues for Dutch SMEs.",
-    problemTitle: "Your greatest asset — you already have it",
-    problemP1: "Your team\u2019s knowledge is the most powerful thing you have.",
-    problemP2a: "In minds, in experience, in years of expertise — ready to be activated.",
-    problemP2b: "We structure that knowledge so AI can put it to work immediately.",
-    problemP3: "The result: better decisions, faster growth, and a team that achieves more.",
+    problemTitle: "What changes once that knowledge is written down",
+    problemP1: "A new colleague is up to speed in days, not months.",
+    problemP2a: "Everyone gives a client the same answer, because everyone draws on the same source.",
+    problemP2b: "And when someone leaves, what they knew stays behind.",
+    problemP3: "That is what a Company Brain does: it makes your team\u2019s knowledge reusable, for your people and for AI.",
     howTitle: "How we work",
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We map where AI has the highest impact — and what it costs to do nothing.",
+        desc: "We map where AI has the highest impact, and what it costs to do nothing.",
         detail: "In 1 week you know exactly where the opportunities are.",
       },
       {
         num: "2", title: "Build",
-        desc: "We build your AI Operating System — a living knowledge base that gives AI the context of your business.",
-        detail: "Brand identity, processes, market data — structured and always current.",
+        desc: "We build your AI Operating System, a living knowledge base that gives AI the context of your business.",
+        detail: "Brand identity, processes, market data: structured and always current.",
       },
       {
         num: "3", title: "Deploy",
@@ -78,11 +78,11 @@ const translations = {
       },
     ],
     startScan: "Start with a Scan →",
-    trustEU: "🇪🇺 EU Data Hosting",
-    trustGDPR: "🔒 GDPR Compliant",
-    trustNoCure: "🤝 No Cure, No Pay",
+    trustEU: "EU data hosting",
+    trustGDPR: "GDPR compliant",
+    trustNoCure: "No cure, no pay",
     closerTitle: "Ready to discover what your company really knows?",
-    closerSub: "Book a free consultation. No sales pitch — just an honest conversation about what AI can do for your organisation.",
+    closerSub: "Book a free consultation. No sales pitch, just an honest conversation about what AI can do for your organisation.",
     closerCta: "Book a call →",
   },
 };
@@ -129,10 +129,15 @@ const softwareSchema = {
   operatingSystem: "Web",
   description:
     "Eén centrale AI-kennisbank voor je bedrijf, met digitale collega's voor marketing, sales, finance en hr plus een persoonlijke AI-assistent voor elke medewerker.",
+  // AggregateOffer, not Offer: a bare Offer needs a price, and the Company Brain
+  // is sold in three tiers. lowPrice is the Quick Start setup fee listed on /pricing.
   offers: {
-    "@type": "Offer",
+    "@type": "AggregateOffer",
     priceCurrency: "EUR",
+    lowPrice: "2495",
+    offerCount: 3,
     availability: "https://schema.org/InStock",
+    url: "https://gonativ.nl/pricing",
   },
   provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
 };
@@ -194,7 +199,7 @@ const faqSchema = {
 
 const homepageSchema = webPage(
   "/",
-  "nativ — Company Brain en digitale collega's voor het mkb",
+  "nativ, Company Brain en digitale collega's voor het mkb",
   "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb: één centrale AI-kennislaag met digitale collega's voor marketing, sales, finance en hr.",
 );
 
@@ -278,7 +283,7 @@ export default function HomePage() {
         <div className="max-w-[200px] mx-auto mt-16 md:mt-24 border-t border-sage" />
       </section>
 
-      {/* Problem Statement */}
+      {/* Payoff: what the hero's problem looks like once it is solved */}
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>

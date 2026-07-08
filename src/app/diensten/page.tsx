@@ -13,7 +13,7 @@ const translations = {
       {
         step: "Stap 1", title: "Scan",
         lead: "We scannen waar AI de meeste waarde creëert in jouw organisatie.",
-        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze AI Opportunity Scan brengt in één week in kaart waar de grootste kansen liggen. Geen vage beloftes — concrete, geprioriteerde mogelijkheden.",
+        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze AI Opportunity Scan brengt in één week in kaart waar de grootste kansen liggen. Geen vage beloftes: concrete, geprioriteerde mogelijkheden.",
         features: ["AI-kansenanalyse op maat", "Prioritering op impact en haalbaarheid", "Concreet actieplan"],
         meta: "Doorlooptijd: 1 week | Vanaf €2.495 | No cure, no pay",
         whatLabel: "Wat je krijgt:",
@@ -21,18 +21,18 @@ const translations = {
       },
       {
         step: "Stap 2", title: "Build",
-        lead: "Wij bouwen je Company Brain — de context die AI écht nuttig maakt.",
-        body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft — in hoofden, systemen, processen — tot een levend AI-Operating System dat jouw bedrijf kent.\n\nDit systeem werkt met drie kennislagen: stabiele kennis (merkidentiteit, kernprocessen — jaarlijks bijgewerkt), evoluerende kennis (marktpositie, concurrentie — maandelijks bijgewerkt), en dynamische kennis (campagnedata, klantfeedback — wekelijks of vaker). Daardoor is het geen eenmalige snapshot, maar een systeem dat meegroeit met je organisatie.\n\nDit is het fundament. Zonder deze stap is elke AI-investering een gok.",
-        features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Een digitale assistent voor alle medewerkers", "Drie kennislagen: stabiel, evoluerend, dynamisch", "Integratie met bestaande systemen", "Continue updates — een levend systeem, geen eenmalige snapshot"],
-        meta: "Doorlooptijd: 2–6 weken | Op maat",
+        lead: "Wij bouwen je Company Brain, de context die AI écht nuttig maakt.",
+        body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft (in hoofden, systemen, processen) tot een levend AI-Operating System dat jouw bedrijf kent.\n\nDit systeem werkt met drie kennislagen: stabiele kennis (merkidentiteit, kernprocessen) die jaarlijks wordt bijgewerkt, evoluerende kennis (marktpositie, concurrentie) die maandelijks wordt bijgewerkt, en dynamische kennis (campagnedata, klantfeedback) die wekelijks of vaker verandert. Daardoor is het geen eenmalige snapshot, maar een systeem dat meegroeit met je organisatie.\n\nDit is het fundament. Zonder deze stap is elke AI-investering een gok.",
+        features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Een digitale assistent voor alle medewerkers", "Drie kennislagen: stabiel, evoluerend, dynamisch", "Integratie met bestaande systemen", "Continue updates: een levend systeem, geen eenmalige snapshot"],
+        meta: "Doorlooptijd: 2 tot 6 weken | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Meer weten →", ctaLink: "/contact", primary: false,
       },
       {
         step: "Stap 3", title: "Deploy",
         lead: "We zetten digitale collega's in die echt werk leveren.",
-        body: "Geen chatbot die \"ik weet het niet\" zegt. Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. Die taken overnemen, vragen beantwoorden en processen versnellen — met de volledige context van jouw AI Operating System.",
-        features: ["Digitale collega's op maat, gevoed door jouw kennisbank", "Model-onafhankelijk — altijd de beste technologie", "Integratie in bestaande workflows", "Meetbare resultaten"],
+        body: "Geen chatbot die \"ik weet het niet\" zegt. Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. Die taken overnemen, vragen beantwoorden en processen versnellen, met de volledige context van jouw AI Operating System.",
+        features: ["Digitale collega's op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie in bestaande workflows", "Meetbare resultaten"],
         meta: "Doorlooptijd: doorlopend | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Plan een gesprek →", ctaLink: "/contact", primary: false,
@@ -52,7 +52,7 @@ const translations = {
       {
         step: "Step 1", title: "Scan",
         lead: "We identify where AI creates the most value in your organisation.",
-        body: "You know AI matters. But where do you start? Our AI Opportunity Scan maps out the biggest opportunities in one week. No vague promises — concrete, prioritised possibilities.",
+        body: "You know AI matters. But where do you start? Our AI Opportunity Scan maps out the biggest opportunities in one week. No vague promises: concrete, prioritised possibilities.",
         features: ["Custom AI opportunity analysis", "Prioritisation by impact and feasibility", "Concrete action plan"],
         meta: "Timeline: 1 week | From €2,495 | No cure, no pay",
         whatLabel: "What you get:",
@@ -60,18 +60,18 @@ const translations = {
       },
       {
         step: "Step 2", title: "Build",
-        lead: "We build your AI knowledge base — the context that makes AI actually useful.",
-        body: "AI tools are powerful. But without the right context they\u2019re useless. We structure the knowledge that lives in your organisation — in heads, systems, processes — into a living AI Operating System that AI understands.\n\nThis system works with three knowledge tiers: stable knowledge (brand identity, core processes — updated yearly), evolving knowledge (market position, competition — updated monthly), and dynamic knowledge (campaign data, customer feedback — updated weekly or more). That\u2019s what makes it a living system, not a one-time snapshot.\n\nThis is the foundation. Without this step, every AI investment is a gamble.",
-        features: ["Structured company knowledge, accessible to AI", "Three knowledge tiers: stable, evolving, dynamic", "Integration with existing systems", "Continuous updates — a living system, not a one-time snapshot"],
-        meta: "Timeline: 2–6 weeks | Custom",
+        lead: "We build your Company Brain, the context that makes AI actually useful.",
+        body: "AI tools are powerful. But without the right context they\u2019re useless. We structure the knowledge that lives in your organisation (in heads, systems, processes) into a living AI Operating System that AI understands.\n\nThis system works with three knowledge tiers: stable knowledge (brand identity, core processes) updated yearly, evolving knowledge (market position, competition) updated monthly, and dynamic knowledge (campaign data, customer feedback) updated weekly or more. That\u2019s what makes it a living system, not a one-time snapshot.\n\nThis is the foundation. Without this step, every AI investment is a gamble.",
+        features: ["Structured company knowledge, accessible to AI", "A digital assistant for every employee", "Three knowledge tiers: stable, evolving, dynamic", "Integration with existing systems", "Continuous updates: a living system, not a one-time snapshot"],
+        meta: "Timeline: 2 to 6 weeks | Custom",
         whatLabel: "What you get:",
         cta: "Learn more →", ctaLink: "/contact", primary: false,
       },
       {
         step: "Step 3", title: "Deploy",
         lead: "We deploy digital colleagues that actually get work done.",
-        body: "No chatbot that says \"I don\u2019t know\". Digital colleagues that draw from the collective intelligence of your company. That take over tasks, answer questions and accelerate processes — with context.",
-        features: ["Custom digital colleagues, powered by your knowledge base", "Model-agnostic — always the best technology", "Integration into existing workflows", "Measurable results"],
+        body: "No chatbot that says \"I don\u2019t know\". Digital colleagues that draw from the collective intelligence of your company. That take over tasks, answer questions and accelerate processes, with context.",
+        features: ["Custom digital colleagues, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration into existing workflows", "Measurable results"],
         meta: "Timeline: ongoing | Custom",
         whatLabel: "What you get:",
         cta: "Book a call →", ctaLink: "/contact", primary: false,
@@ -111,7 +111,7 @@ export default function DienstenPage() {
 
       {/* Service Layers */}
       {c.layers.map((layer, i) => (
-        <section key={layer.step} className={`py-12 md:py-16 px-6 ${i % 2 === 1 ? "bg-white" : ""}`}>
+        <section key={layer.step} className={`py-12 md:py-16 px-6 ${i % 2 === 1 ? "bg-surface" : ""}`}>
           <div className="max-w-[680px] mx-auto">
             <FadeIn>
               <span className="text-sage text-sm font-medium tracking-wide uppercase">{layer.step}</span>

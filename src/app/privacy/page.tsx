@@ -27,15 +27,15 @@ const sections: Section[] = [
     body: (
       <ul className="space-y-1.5 list-disc pl-5">
         <li>
-          <span className="text-grey">Contactgegevens</span> — als je ons mailt of via de
+          <span className="text-grey">Contactgegevens</span>: als je ons mailt of via de
           contactpagina contact opneemt: je naam, e-mailadres en de inhoud van je bericht.
         </li>
         <li>
-          <span className="text-grey">Websitegebruik</span> — geanonimiseerde, cookieloze
+          <span className="text-grey">Websitegebruik</span>: geanonimiseerde, cookieloze
           bezoekstatistieken via Vercel Analytics. Deze gegevens zijn niet tot jou herleidbaar.
         </li>
         <li>
-          <span className="text-grey">Technische gegevens</span> — beperkte serverlogs (zoals
+          <span className="text-grey">Technische gegevens</span>: beperkte serverlogs (zoals
           een tijdelijk IP-adres) die nodig zijn om de website te leveren en te beveiligen.
         </li>
       </ul>
@@ -47,12 +47,12 @@ const sections: Section[] = [
     body: (
       <ul className="space-y-1.5 list-disc pl-5">
         <li>
-          Om te reageren op je vraag of verzoek — grondslag: uitvoering van of aanloop naar
-          een overeenkomst, dan wel ons gerechtvaardigd belang bij contact.
+          Om te reageren op je vraag of verzoek (grondslag: uitvoering van of aanloop naar
+          een overeenkomst, dan wel ons gerechtvaardigd belang bij contact).
         </li>
         <li>
-          Om de website te verbeteren, te beveiligen en betrouwbaar te houden — grondslag:
-          ons gerechtvaardigd belang.
+          Om de website te verbeteren, te beveiligen en betrouwbaar te houden (grondslag:
+          ons gerechtvaardigd belang).
         </li>
       </ul>
     ),
@@ -84,7 +84,7 @@ const sections: Section[] = [
     body: (
       <>
         We verkopen je gegevens nooit. We schakelen alleen dienstverleners (verwerkers) in die
-        nodig zijn om de website, statistieken en e-mail te laten werken — waaronder onze
+        nodig zijn om de website, statistieken en e-mail te laten werken, waaronder onze
         hostingpartner (Vercel) en onze e-mail-/kantooromgeving (Google Workspace). Met deze
         partijen zijn de vereiste afspraken gemaakt, en verwerking vindt plaats binnen de EU of
         onder passende waarborgen.
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
             <p className="text-grey/70 font-light leading-relaxed">
-              Nativ vindt jouw privacy belangrijk. Deze verklaring legt uit welke persoonsgegevens
+              nativ vindt jouw privacy belangrijk. Deze verklaring legt uit welke persoonsgegevens
               we verwerken als je onze website bezoekt of contact met ons opneemt, waarom, en welke
               rechten je hebt.
             </p>

@@ -17,9 +17,9 @@ export default function LanguageToggle() {
         aria-label="Nederlands"
         aria-pressed={language === "nl"}
       >
-        🇳🇱
+        NL
       </button>
-      <span className="text-grey/30">|</span>
+      <span className="text-grey/30" aria-hidden="true">|</span>
       <button
         onClick={() => setLanguage("en")}
         className={`px-2 py-1 rounded transition-colors cursor-pointer ${
@@ -30,7 +30,7 @@ export default function LanguageToggle() {
         aria-label="English"
         aria-pressed={language === "en"}
       >
-        🇬🇧
+        EN
       </button>
     </div>
   );

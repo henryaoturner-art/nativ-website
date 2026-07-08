@@ -78,7 +78,7 @@ export default function ContactPage() {
       <section className="px-6 pb-20 md:pb-28">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <FadeIn>
-            <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] h-full">
+            <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
               <h2 className="font-serif text-2xl mb-4">{c.calTitle}</h2>
               <p className="text-grey/60 font-light text-sm mb-6">{c.calMeta}</p>
               <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
@@ -101,7 +101,7 @@ export default function ContactPage() {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] h-full">
+            <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
               <h2 className="font-serif text-2xl mb-6">{c.formTitle}</h2>
               {submitted ? (
                 <div className="flex items-center justify-center h-80 text-center">

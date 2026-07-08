@@ -96,9 +96,9 @@ export default function Footer() {
             <Link href="/algemene-voorwaarden" className="hover:text-white/70 transition-colors">{f.terms}</Link>
           </div>
           <div className="flex items-center gap-4 text-xs text-white/40">
-            <span>🇪🇺 EU Data</span>
-            <span>·</span>
-            <span>GDPR Compliant</span>
+            <span>EU-datahosting</span>
+            <span aria-hidden="true">·</span>
+            <span>GDPR compliant</span>
           </div>
         </div>
       </div>

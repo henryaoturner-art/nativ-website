@@ -6,7 +6,6 @@ import { useLanguage } from "@/lib/language-context";
 
 const translations = {
   en: {
-    logo: "Nativ",
     heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
@@ -39,7 +38,6 @@ const translations = {
     footerCopy: "© 2026 Nativ B.V. All rights reserved.",
   },
   nl: {
-    logo: "Nativ",
     heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
@@ -150,10 +148,9 @@ export default function WhitepaperPage() {
 
           {/* Right: Download form */}
           <FadeIn delay={200}>
-            <div className="bg-white rounded-xl p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+            <div className="bg-surface rounded-xl p-8 border border-sage-light">
               {submitted ? (
                 <div className="text-center py-8">
-                  <div className="text-4xl mb-4">📬</div>
                   <p className="font-serif text-2xl text-sage">{c.thankYou}</p>
                   <p className="mt-3 text-grey/60 font-light text-sm leading-relaxed">
                     {c.thankYouSub}
@@ -166,14 +163,14 @@ export default function WhitepaperPage() {
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
-                        📄 Nederlands
+                        Nederlands (PDF)
                       </a>
                       <a
                         href="/downloads/nativ-whitepaper-mei-2026-definitief-EN.pdf"
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
-                        📄 English
+                        English (PDF)
                       </a>
                     </div>
                   </div>
@@ -247,8 +244,8 @@ export default function WhitepaperPage() {
                         <option value="">
                           {language === 'en' ? 'Auto-detect (based on website language)' : 'Automatisch detecteren (op basis van website taal)'}
                         </option>
-                        <option value="nl">🇳🇱 Nederlands</option>
-                        <option value="en">🇬🇧 English</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="en">English</option>
                       </select>
                     </div>
 

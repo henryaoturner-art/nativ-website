@@ -10,30 +10,30 @@ type Filter = "all" | "online" | "in-person";
 const copy = {
   nl: {
     title: "AI Events",
-    sub: "De AI-events, meetups en workshops die er in Nederland en online toe doen — op één plek, altijd actueel.",
+    sub: "De AI-events, meetups en workshops die er in Nederland en online toe doen, op één plek, altijd actueel.",
     source: "Live samengesteld uit Luma en Meetup",
     all: "Alles",
     online: "Online",
     inPerson: "Op locatie",
-    empty: "Geen komende events gevonden. Kom snel terug — de lijst ververst automatisch.",
+    empty: "Geen komende events gevonden. Kom snel terug, de lijst ververst automatisch.",
     online_pill: "Online",
     register: "Aanmelden",
     by: "door",
-    foot: "Events worden verzameld via Luma en Meetup. Nativ organiseert deze events niet zelf — aanmelden gebeurt bij de organisator.",
+    foot: "Events worden verzameld via Luma en Meetup. nativ organiseert deze events niet zelf, aanmelden gebeurt bij de organisator.",
     locale: "nl-NL",
   },
   en: {
     title: "AI Events",
-    sub: "The AI events, meetups and workshops that matter in the Netherlands and online — in one place, always current.",
+    sub: "The AI events, meetups and workshops that matter in the Netherlands and online, in one place, always current.",
     source: "Compiled live from Luma and Meetup",
     all: "All",
     online: "Online",
     inPerson: "In person",
-    empty: "No upcoming events found. Check back soon — the list refreshes automatically.",
+    empty: "No upcoming events found. Check back soon, the list refreshes automatically.",
     online_pill: "Online",
     register: "Sign up",
     by: "by",
-    foot: "Events are gathered from Luma and Meetup. Nativ does not host these events — registration happens with the organizer.",
+    foot: "Events are gathered from Luma and Meetup. nativ does not host these events, registration happens with the organizer.",
     locale: "en-GB",
   },
 };
@@ -129,7 +129,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                         href={e.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-wrap sm:flex-nowrap items-start gap-4 sm:gap-6 bg-white rounded-2xl px-6 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_6px_20px_rgba(0,0,0,0.09)] hover:-translate-y-0.5"
+                        className="group flex flex-wrap sm:flex-nowrap items-start gap-4 sm:gap-6 bg-surface rounded-2xl px-6 py-5 border border-sage-light transition-all hover:-translate-y-0.5"
                       >
                         {/* Date badge */}
                         <div className="flex sm:flex-col items-baseline sm:items-center gap-2 sm:gap-0 sm:w-[58px] sm:flex-none sm:text-center sm:border-r border-grey/10 sm:pr-5">
@@ -177,7 +177,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
       </section>
 
       {/* Footer note */}
-      <div className="bg-white border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-grey/55">
+      <div className="bg-surface border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-grey/55">
         <p className="max-w-[640px] mx-auto">{c.foot}</p>
       </div>
     </>

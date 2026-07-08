@@ -16,7 +16,7 @@ const translations = {
     whatItems: [
       "Een complete analyse van AI-kansen in jouw organisatie",
       "Prioritering op basis van impact én haalbaarheid",
-      "Concrete eerste stappen — geen PowerPoint, maar een plan",
+      "Concrete eerste stappen: geen PowerPoint, maar een plan",
       "Persoonlijke toelichting van ons team",
     ],
     timeLabel: "Doorlooptijd:",
@@ -25,17 +25,17 @@ const translations = {
     formatValue: "Interactief rapport + persoonlijke sessie",
     howTitle: "Zo werkt het",
     timeline: [
-      { days: "Dag 1–2", title: "Intake", desc: "We leren je organisatie kennen. Korte gesprekken, toegang tot bestaande documentatie." },
-      { days: "Dag 3–5", title: "Analyse", desc: "Onze AI analyseert jouw processen, data en kennisstromen. Wij interpreteren de resultaten." },
-      { days: "Dag 5–7", title: "Oplevering", desc: "Je ontvangt een helder rapport met geprioriteerde AI-kansen en een concreet actieplan." },
+      { days: "Dag 1 tot 2", title: "Intake", desc: "We leren je organisatie kennen. Korte gesprekken, toegang tot bestaande documentatie." },
+      { days: "Dag 3 tot 5", title: "Analyse", desc: "Onze AI analyseert jouw processen, data en kennisstromen. Wij interpreteren de resultaten." },
+      { days: "Dag 5 tot 7", title: "Oplevering", desc: "Je ontvangt een helder rapport met geprioriteerde AI-kansen en een concreet actieplan." },
     ],
     investTitle: "Investering",
-    card1Title: "Deep Dive AI Scan — Standaard",
+    card1Title: "AI Opportunity Scan: standaard",
     card1Price: "€2.495",
     card1Desc1: "Gestandaardiseerde analyse",
     card1Desc2: "Ideaal als startpunt",
     card1Cta: "Start je Scan →",
-    card2Title: "Deep Dive AI Scan — Op Maat",
+    card2Title: "AI Opportunity Scan: op maat",
     card2Price: "Vanaf €2.495",
     card2Desc1: "Volledig op maat",
     card2Desc2: "Voor specifieke vraagstukken",
@@ -46,7 +46,7 @@ const translations = {
       { question: "Wat heb ik nodig om te starten?", answer: "Niets bijzonders. Toegang tot relevante documentatie en 30 minuten van je tijd voor een intake." },
       { question: "Hoe zit het met mijn data?", answer: "Alle data blijft binnen de EU. Wij zijn volledig GDPR-compliant. Na afloop kun je kiezen of we data bewaren of verwijderen." },
       { question: "Wat als het niets oplevert?", answer: "Dan betaal je niets. No cure, no pay. Simpel." },
-      { question: "Kan ik daarna verder met Nativ?", answer: "Ja. De Scan is stap 1 van ons drielaags model. Na de Scan kun je doorpakken met een AI-kennisbank en digitale collega's." },
+      { question: "Kan ik daarna verder met nativ?", answer: "Ja. De Scan is stap 1 van ons drielaags model. Na de Scan kun je doorpakken met een AI-kennisbank en digitale collega's." },
     ],
   },
   en: {
@@ -59,7 +59,7 @@ const translations = {
     whatItems: [
       "A complete analysis of AI opportunities in your organisation",
       "Prioritisation based on impact and feasibility",
-      "Concrete next steps — no PowerPoint, but a plan",
+      "Concrete next steps: no PowerPoint, but a plan",
       "Personal walkthrough from our team",
     ],
     timeLabel: "Timeline:",
@@ -68,17 +68,17 @@ const translations = {
     formatValue: "Interactive report + personal session",
     howTitle: "How it works",
     timeline: [
-      { days: "Day 1–2", title: "Intake", desc: "We get to know your organisation. Short conversations, access to existing documentation." },
-      { days: "Day 3–5", title: "Analysis", desc: "Our AI analyses your processes, data and knowledge flows. We interpret the results." },
-      { days: "Day 5–7", title: "Delivery", desc: "You receive a clear report with prioritised AI opportunities and a concrete action plan." },
+      { days: "Day 1 to 2", title: "Intake", desc: "We get to know your organisation. Short conversations, access to existing documentation." },
+      { days: "Day 3 to 5", title: "Analysis", desc: "Our AI analyses your processes, data and knowledge flows. We interpret the results." },
+      { days: "Day 5 to 7", title: "Delivery", desc: "You receive a clear report with prioritised AI opportunities and a concrete action plan." },
     ],
     investTitle: "Investment",
-    card1Title: "Deep Dive AI Scan — Standard",
+    card1Title: "AI Opportunity Scan: standard",
     card1Price: "€2,495",
     card1Desc1: "Standardised analysis",
     card1Desc2: "Perfect starting point",
     card1Cta: "Start your Scan →",
-    card2Title: "Deep Dive AI Scan — Custom",
+    card2Title: "AI Opportunity Scan: custom",
     card2Price: "From €2,495",
     card2Desc1: "Fully customised",
     card2Desc2: "For complex organisations",
@@ -89,7 +89,7 @@ const translations = {
       { question: "What do I need to get started?", answer: "Nothing special. Access to relevant documentation and 30 minutes of your time for an intake." },
       { question: "What about my data?", answer: "All data stays within the EU. We are fully GDPR-compliant. Afterwards you choose whether we keep or delete your data." },
       { question: "What if it doesn\u2019t deliver?", answer: "Then you pay nothing. No cure, no pay. Simple." },
-      { question: "Can I continue with Nativ after?", answer: "Yes. The Scan is step 1 of our three-layer model. After the Scan you can move forward with an AI knowledge base and digital colleagues." },
+      { question: "Can I continue with nativ after?", answer: "Yes. The Scan is step 1 of our three-layer model. After the Scan you can move forward with an AI knowledge base and digital colleagues." },
     ],
   },
 };
@@ -144,11 +144,11 @@ export default function ScanPage() {
           </FadeIn>
           <FadeIn delay={300}>
             <div className="mt-10 flex flex-wrap gap-6 text-sm">
-              <div className="bg-white rounded-xl px-5 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div className="bg-surface rounded-xl px-5 py-3 border border-sage-light">
                 <span className="text-grey/50">{c.timeLabel}</span>{" "}
                 <span className="font-medium">{c.timeValue}</span>
               </div>
-              <div className="bg-white rounded-xl px-5 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <div className="bg-surface rounded-xl px-5 py-3 border border-sage-light">
                 <span className="text-grey/50">{c.formatLabel}</span>{" "}
                 <span className="font-medium">{c.formatValue}</span>
               </div>
@@ -193,7 +193,7 @@ export default function ScanPage() {
           </FadeIn>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             <FadeIn delay={100}>
-              <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] h-full">
+              <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
                 <h3 className="font-serif text-xl">{c.card1Title}</h3>
                 <p className="text-3xl font-serif text-sage mt-3">{c.card1Price}</p>
                 <p className="mt-4 text-grey/70 font-light">{c.card1Desc1}</p>
@@ -204,7 +204,7 @@ export default function ScanPage() {
               </div>
             </FadeIn>
             <FadeIn delay={250}>
-              <div className="bg-white rounded-xl p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] h-full">
+              <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
                 <h3 className="font-serif text-xl">{c.card2Title}</h3>
                 <p className="text-3xl font-serif text-sage mt-3">{c.card2Price}</p>
                 <p className="mt-4 text-grey/70 font-light">{c.card2Desc1}</p>

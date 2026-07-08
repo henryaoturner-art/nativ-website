@@ -45,7 +45,7 @@ const articles: Article[] = [
     title: "Aanbod & totstandkoming van de overeenkomst",
     clauses: [
       { num: "3.1", text: "Alle aanbiedingen en offertes van Nativ zijn vrijblijvend, tenzij daarin uitdrukkelijk een termijn voor aanvaarding is opgenomen. Een offerte is geldig gedurende dertig (30) dagen na dagtekening, tenzij anders vermeld." },
-      { num: "3.2", text: "De Overeenkomst komt tot stand op het moment dat Klant een aanbod van Nativ schriftelijk aanvaardt, dan wel op het moment dat Nativ een schriftelijke opdracht van Klant schriftelijk bevestigt, dan wel op het moment dat Nativ met de uitvoering aanvangt — al naargelang wat zich het eerst voordoet." },
+      { num: "3.2", text: "De Overeenkomst komt tot stand op het moment dat Klant een aanbod van Nativ schriftelijk aanvaardt, dan wel op het moment dat Nativ een schriftelijke opdracht van Klant schriftelijk bevestigt, dan wel op het moment dat Nativ met de uitvoering aanvangt, al naargelang wat zich het eerst voordoet." },
       { num: "3.3", text: "Kennelijke vergissingen of verschrijvingen in een aanbod binden Nativ niet." },
       { num: "3.4", text: "Nativ mag de personen controleren die namens Klant handelen op hun bevoegdheid; Klant staat ervoor in dat degene die de Overeenkomst aangaat daartoe bevoegd is." },
     ],
@@ -103,7 +103,7 @@ const articles: Article[] = [
       { num: "8.2", text: "Na afloop van de initiële termijn loopt de Overeenkomst voor onbepaalde tijd door en is deze door elke partij maandelijks opzegbaar met inachtneming van een opzegtermijn van 1 maand. Opzegging geschiedt schriftelijk en kan plaatsvinden tegen het einde van de initiële termijn en daarna tegen het einde van elke kalendermaand. Gedurende de initiële termijn is tussentijdse opzegging niet mogelijk, onverminderd artikel 8.3." },
       { num: "8.3", text: "Elke partij mag de Overeenkomst met onmiddellijke ingang schriftelijk (geheel of gedeeltelijk) ontbinden indien: (a) de andere partij toerekenbaar tekortschiet in een wezenlijke verplichting en dit tekortschieten, voor zover nakoming niet blijvend onmogelijk is, niet binnen dertig (30) dagen na schriftelijke ingebrekestelling herstelt; of (b) de andere partij in staat van faillissement wordt verklaard, surseance van betaling aanvraagt of verkrijgt, of zijn onderneming staakt." },
       { num: "8.4", text: "Nativ mag de Overeenkomst voorts opschorten of ontbinden bij een ernstige of herhaalde overtreding van artikel 5 of artikel 9." },
-      { num: "8.5", text: "Bij het einde van de Overeenkomst — ongeacht de oorzaak — geldt met betrekking tot de Company Brain en de data-export het bepaalde in artikel 9.3. Na afloop van de daar genoemde exporttermijn is Nativ gerechtigd de Klantgegevens te verwijderen, behoudens een op Nativ rustende wettelijke bewaarplicht en het bepaalde in de Verwerkersovereenkomst." },
+      { num: "8.5", text: "Bij het einde van de Overeenkomst, ongeacht de oorzaak, geldt met betrekking tot de Company Brain en de data-export het bepaalde in artikel 9.3. Na afloop van de daar genoemde exporttermijn is Nativ gerechtigd de Klantgegevens te verwijderen, behoudens een op Nativ rustende wettelijke bewaarplicht en het bepaalde in de Verwerkersovereenkomst." },
       { num: "8.6", text: "Verplichtingen die naar hun aard bestemd zijn om na het einde van de Overeenkomst voort te duren (waaronder artikel 9, artikel 12 en artikel 13) blijven van kracht." },
     ],
   },
@@ -111,15 +111,15 @@ const articles: Article[] = [
     n: 9,
     title: "Intellectueel eigendom, eigendom van de Company Brain en reverse engineering",
     clauses: [
-      { num: "9.1", text: "Het Nativ-platform — waaronder de programmatuur, de gebruikersinterface, de SaaS-dienst, de onderliggende modellen, algoritmen, prompts, system-instructies, prompt-templates en configuratie, de MVC-methodiek, én de semantische zoek-/vectorlaag en alle daarvan afgeleide indexen — en alle daarin belichaamde kennis blijven het exclusieve eigendom van Nativ B.V. Klant verkrijgt hierop uitsluitend een niet-exclusief, niet-overdraagbaar gebruiksrecht voor de duur van de overeenkomst." },
-      { num: "9.2", text: "De Company Brain van Klant — de in de database (PostgreSQL) vastgelegde kennis en brongegevens van Klant — is en blijft eigendom van Klant. Nativ host en beheert deze gedurende de looptijd van de overeenkomst ten behoeve van Klant. De semantische zoek-/vectorlaag die Nativ over deze gegevens aanbrengt om ze doorzoekbaar en bruikbaar te maken, maakt deel uit van het platform (artikel 9.1) en valt niet onder dit eigendom van Klant." },
+      { num: "9.1", text: "Het Nativ-platform (waaronder de programmatuur, de gebruikersinterface, de SaaS-dienst, de onderliggende modellen, algoritmen, prompts, system-instructies, prompt-templates en configuratie, de MVC-methodiek, én de semantische zoek-/vectorlaag en alle daarvan afgeleide indexen) en alle daarin belichaamde kennis blijven het exclusieve eigendom van Nativ B.V. Klant verkrijgt hierop uitsluitend een niet-exclusief, niet-overdraagbaar gebruiksrecht voor de duur van de overeenkomst." },
+      { num: "9.2", text: "De Company Brain van Klant, de in de database (PostgreSQL) vastgelegde kennis en brongegevens van Klant, is en blijft eigendom van Klant. Nativ host en beheert deze gedurende de looptijd van de overeenkomst ten behoeve van Klant. De semantische zoek-/vectorlaag die Nativ over deze gegevens aanbrengt om ze doorzoekbaar en bruikbaar te maken, maakt deel uit van het platform (artikel 9.1) en valt niet onder dit eigendom van Klant." },
       { num: "9.3", text: "Bij beëindiging van de overeenkomst behoudt Klant zijn Company Brain. Nativ stelt Klant binnen dertig (30) dagen na beëindiging een export ter beschikking van de kennis en brongegevens uit de database (PostgreSQL), in een gangbaar en herbruikbaar formaat, vergezeld van een referentie naar het gebruikte embedding-model (naam, versie en de relevante configuratie) zodat Klant de gegevens desgewenst zelf opnieuw doorzoekbaar kan maken. Deze overdracht betreft uitsluitend de brongegevens van Klant; het platform, de gebruikersinterface, de onderliggende programmatuur, de methodiek en de semantische zoek-/vectorlaag (artikel 9.1) zijn hiervan uitdrukkelijk uitgezonderd en blijven eigendom van Nativ." },
       { num: "9.4", text: "Onverminderd het eigendom van Klant op zijn eigen Company Brain (artikel 9.2), is het Klant niet toegestaan het platform of enig onderdeel daarvan geheel of gedeeltelijk te kopiëren, te verveelvoudigen, te wijzigen, te vertalen, te decompileren, te disassembleren of daarop reverse-engineering toe te passen, dan wel de broncode, modellen, gewichten, algoritmen, prompts of system-instructies daarvan op andere wijze te achterhalen, te reconstrueren of te extraheren (waaronder begrepen model-extractie- of -distillatietechnieken), noch pogingen daartoe te ondernemen." },
       { num: "9.5", text: "Het is Klant niet toegestaan de uitvoer (output) van de dienst, of een bewerkte versie daarvan, te gebruiken om de dienst te reverse-engineeren, om de onderliggende prompts of methodiek te reconstrueren, of om een concurrerend product, model of dienst te ontwikkelen of te trainen." },
       { num: "9.6", text: "Het is Klant niet toegestaan het platform te gebruiken om een product of dienst te ontwikkelen die met het Nativ-platform concurreert, om de kenmerken, functies of werking ervan na te bouwen, of om derden daarbij te ondersteunen." },
       { num: "9.7", text: "Het is Klant niet toegestaan geautomatiseerde middelen (zoals robots, crawlers, scrapers of scripts) te gebruiken om gegevens uit de dienst te onttrekken, anders dan via de daarvoor door Nativ aangeboden interfaces (API's). Dit laat het recht van Klant op export van zijn eigen Company Brain (artikel 9.3) onverlet." },
       { num: "9.8", text: "Klant maakt geen benchmark-, prestatie- of beschikbaarheidsresultaten van de dienst openbaar zonder voorafgaande schriftelijke toestemming van Nativ." },
-      { num: "9.9", text: "De verboden in dit artikel gelden niet, en kunnen niet worden ingeroepen, voor zover (en uitsluitend voor zover) dwingend recht — in het bijzonder de artikelen 45j en 45m van de Auteurswet en de artikelen 5 en 6 van Richtlijn 2009/24/EG (de Softwarerichtlijn) — deze handelingen uitdrukkelijk toestaat ondanks deze beperking. Een beding dat in strijd is met die dwingendrechtelijke bevoegdheden is in zoverre nietig; de overige bepalingen van dit artikel blijven onverkort van kracht." },
+      { num: "9.9", text: "De verboden in dit artikel gelden niet, en kunnen niet worden ingeroepen, voor zover (en uitsluitend voor zover) dwingend recht, in het bijzonder de artikelen 45j en 45m van de Auteurswet en de artikelen 5 en 6 van Richtlijn 2009/24/EG (de Softwarerichtlijn), deze handelingen uitdrukkelijk toestaat ondanks deze beperking. Een beding dat in strijd is met die dwingendrechtelijke bevoegdheden is in zoverre nietig; de overige bepalingen van dit artikel blijven onverkort van kracht." },
       { num: "9.10", text: "Voor zover Klant op grond van het in artikel 9.9 bedoelde dwingend recht gerechtigd is tot decompilatie ten behoeve van interoperabiliteit of tot het verbeteren van fouten, stelt Klant Nativ hiervan eerst schriftelijk in kennis en gunt Nativ een redelijke termijn om de benodigde informatie of een passende oplossing zelf te verstrekken. De aldus verkregen informatie gebruikt Klant uitsluitend voor het wettelijk toegestane doel, verstrekt deze niet aan derden, en gebruikt deze niet voor de ontwikkeling van programmatuur met een in wezen gelijke uitdrukkingsvorm." },
       { num: "9.11", text: "Het platform en de daarin belichaamde programmatuur, modellen, prompts, methodiek en semantische zoek-/vectorlaag (artikel 9.1) vormen bedrijfsgeheimen van Nativ B.V. in de zin van de Wet bescherming bedrijfsgeheimen. De Company Brain en brongegevens van Klant (artikel 9.2) vallen hier uitdrukkelijk niet onder. Niets in dit artikel beperkt de bescherming die Nativ op grond van die wet, het auteursrecht of enig ander recht toekomt." },
     ],
@@ -173,7 +173,7 @@ const articles: Article[] = [
     n: 14,
     title: "Overmacht",
     clauses: [
-      { num: "14.1", text: "Geen van partijen is gehouden tot nakoming van een verplichting indien zij daartoe verhinderd is door Overmacht. Onder Overmacht wordt verstaan elke van de wil van de betrokken partij onafhankelijke omstandigheid waardoor nakoming redelijkerwijs niet kan worden gevergd, waaronder — voor zover van toepassing — storingen in internet, telecommunicatie, hosting of energievoorziening, cyberaanvallen, tekortkomingen van toeleveranciers of onderaannemers, overheidsmaatregelen, epidemieën en werkstakingen." },
+      { num: "14.1", text: "Geen van partijen is gehouden tot nakoming van een verplichting indien zij daartoe verhinderd is door Overmacht. Onder Overmacht wordt verstaan elke van de wil van de betrokken partij onafhankelijke omstandigheid waardoor nakoming redelijkerwijs niet kan worden gevergd, waaronder (voor zover van toepassing) storingen in internet, telecommunicatie, hosting of energievoorziening, cyberaanvallen, tekortkomingen van toeleveranciers of onderaannemers, overheidsmaatregelen, epidemieën en werkstakingen." },
       { num: "14.2", text: "Duurt de Overmacht langer dan zestig (60) dagen, dan mag elke partij de Overeenkomst schriftelijk ontbinden, zonder dat daardoor een verplichting tot schadevergoeding ontstaat. Reeds geleverde prestaties worden naar rato afgerekend." },
     ],
   },
@@ -253,11 +253,11 @@ export default function VoorwaardenPage() {
             </FadeIn>
           ))}
 
-          {/* Bijlage A — Verwerkersovereenkomst */}
+          {/* Bijlage A: Verwerkersovereenkomst */}
           <FadeIn>
             <div className="mt-14 pt-10 border-t border-grey/10">
               <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
-                Bijlage A — Verwerkersovereenkomst (AVG art. 28)
+                Bijlage A: Verwerkersovereenkomst (AVG art. 28)
               </h2>
               <p className="mt-4 text-grey/70 font-light leading-relaxed">
                 Deze verwerkersovereenkomst maakt deel uit van de overeenkomst en regelt hoe
@@ -294,7 +294,7 @@ export default function VoorwaardenPage() {
                 <div>
                   <h3 className="font-normal text-grey">A.3 Categorieën betrokkenen en gegevens</h3>
                   <p className="mt-2 text-grey/70 font-light leading-relaxed">
-                    Betrokkenen en soorten gegevens worden bepaald door de klant — doorgaans
+                    Betrokkenen en soorten gegevens worden bepaald door de klant, doorgaans
                     medewerkers, klanten, contactpersonen en relaties, en gegevens als naam- en
                     contactgegevens, functie/rol en de inhoud van aangeleverde documenten en kennis.
                     Bijzondere categorieën (art. 9 AVG, waaronder medische gegevens) en strafrechtelijke
@@ -405,8 +405,8 @@ export default function VoorwaardenPage() {
                   <h3 className="font-normal text-grey">A.11 Audit</h3>
                   <p className="mt-2 text-grey/70 font-light leading-relaxed">
                     Nativ stelt op verzoek de informatie ter beschikking die nodig is om naleving aan te
-                    tonen en maakt audits mogelijk — ten hoogste eenmaal per jaar, redelijk aangekondigd,
-                    vertrouwelijk en voor rekening van de klant — of verstrekt een onafhankelijk auditrapport.
+                    tonen en maakt audits mogelijk (ten hoogste eenmaal per jaar, redelijk aangekondigd,
+                    vertrouwelijk en voor rekening van de klant), of verstrekt een onafhankelijk auditrapport.
                   </p>
                 </div>
 
@@ -425,7 +425,7 @@ export default function VoorwaardenPage() {
           <FadeIn>
             <div className="mt-14 pt-10 border-t border-grey/10">
               <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
-                Bijlage B — Service Level Agreement
+                Bijlage B: Service Level Agreement
               </h2>
               <p className="mt-4 text-grey/70 font-light leading-relaxed">
                 Deze SLA maakt deel uit van de overeenkomst en beschrijft het serviceniveau van de dienst.
@@ -470,22 +470,22 @@ export default function VoorwaardenPage() {
                       </thead>
                       <tbody className="text-grey/70 font-light">
                         <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P1 — Kritiek</td>
+                          <td className="py-2 pr-4">P1: Kritiek</td>
                           <td className="py-2 pr-4">Dienst onbruikbaar voor alle gebruikers</td>
                           <td className="py-2">binnen 4 uur</td>
                         </tr>
                         <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P2 — Hoog</td>
+                          <td className="py-2 pr-4">P2: Hoog</td>
                           <td className="py-2 pr-4">Belangrijke functie ernstig verstoord, geen workaround</td>
                           <td className="py-2">1 werkdag</td>
                         </tr>
                         <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P3 — Normaal</td>
+                          <td className="py-2 pr-4">P3: Normaal</td>
                           <td className="py-2 pr-4">Beperkte verstoring of workaround beschikbaar</td>
                           <td className="py-2">3 werkdagen</td>
                         </tr>
                         <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P4 — Laag</td>
+                          <td className="py-2 pr-4">P4: Laag</td>
                           <td className="py-2 pr-4">Vraag, verzoek of cosmetisch punt</td>
                           <td className="py-2">5 werkdagen</td>
                         </tr>

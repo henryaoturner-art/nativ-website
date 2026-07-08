@@ -1,52 +1,54 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import { webPage } from "@/lib/site-meta";
+import { pageMeta, webPage, SITE_UPDATED } from "@/lib/site-meta";
 
-export const metadata: Metadata = {
-  title: "Cases",
-  description:
-    "Echte resultaten bij echte bedrijven. Bekijk hoe Nativ organisaties helpt met AI.",
-  alternates: { canonical: "/cases" },
-};
+export const metadata: Metadata = pageMeta(
+  "/cases",
+  "Cases | nativ",
+  "Echte resultaten bij echte bedrijven. Bekijk hoe nativ organisaties helpt met AI.",
+);
 
 const SORTLIST_REVIEW_URL = "https://www.sortlist.com/agency/nativ";
 
-// Real, publicly verifiable client review (Sortlist). Feeds the REPUTATION/TRUST
-// fan-out so AI answer-engines have a citeable trust signal. Honest figures only:
-// 4.5/5, 1 review. Klant gaf akkoord om bij naam te tonen (staat publiek op Sortlist).
-const reviewSchema = {
+// No aggregateRating/Review markup here on purpose. Google's review-snippet
+// guidelines disallow self-serving reviews (an entity marking up a review about
+// itself, on its own site) for Organization, so that markup earns nothing and
+// carries policy risk. The quote stays as visible copy, sourced to Sortlist.
+// The citeable GEO signal is the case study itself, marked up as an Article.
+const caseStudySchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "nativ",
-  url: "https://gonativ.nl",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.5",
-    reviewCount: "1",
-    bestRating: "5",
-    worstRating: "1",
-  },
-  review: {
-    "@type": "Review",
-    reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" },
-    author: {
-      "@type": "Person",
-      name: "Dirk Westdijk",
-      jobTitle: "CEO",
-      worksFor: { "@type": "Organization", name: "JobTraining" },
+  "@type": "Article",
+  headline:
+    "AI Marketing Manager: van onvervulbare vacature naar 14 digitale collega's in 4 weken",
+  description:
+    "Een trainings- en ontwikkelingsbedrijf met twee merken verving een maandenlang onvervulde Senior B2C Marketeer-vacature door een AI Marketing Manager en 14 digitale collega's, operationeel in 4 weken.",
+  datePublished: "2026-06-24",
+  dateModified: SITE_UPDATED,
+  inLanguage: "nl-NL",
+  mainEntityOfPage: { "@type": "WebPage", "@id": "https://gonativ.nl/cases" },
+  author: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
+  publisher: {
+    "@type": "Organization",
+    name: "nativ",
+    url: "https://gonativ.nl",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://gonativ.nl/nativ-logo.png",
     },
-    datePublished: "2026-06-24",
-    reviewBody:
-      "nativ heeft voor ons een Company Brain met digitale collega's gebouwd die echt meewerken in onze marketing. Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken. Het team is bereikbaar, helder en snel, en denkt echt mee over wat resultaat oplevert. Een aanrader voor elk mkb-bedrijf dat AI serieus wil inzetten.",
-    publisher: { "@type": "Organization", name: "Sortlist" },
   },
+  about: {
+    "@type": "Organization",
+    name: "JobTraining",
+    description: "Trainings- en ontwikkelingsbedrijf met twee merken (B2B en B2C), 80+ medewerkers.",
+  },
+  articleSection: "Case study",
 };
 
 const casesWebPage = webPage(
   "/cases",
-  "Cases — wat we hebben gebouwd",
-  "Echte resultaten bij echte bedrijven, met een geverifieerde klantreview. Zo helpt nativ organisaties met AI.",
+  "Cases: wat we hebben gebouwd",
+  "Echte resultaten bij echte bedrijven. Zo helpt nativ organisaties met AI.",
 );
 
 export default function CasesPage() {
@@ -55,7 +57,7 @@ export default function CasesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([casesWebPage, reviewSchema]),
+          __html: JSON.stringify([casesWebPage, caseStudySchema]),
         }}
       />
 
@@ -79,7 +81,7 @@ export default function CasesPage() {
       <section className="py-10 md:py-16 px-6 pb-20 md:pb-28">
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
-            <article className="bg-white rounded-xl p-8 md:p-12 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <article className="bg-surface rounded-xl p-8 md:p-12 border border-sage-light">
               {/* Tags */}
               <div className="flex flex-wrap items-center gap-3 text-sm text-grey/50 mb-6">
                 <span className="bg-sage/10 text-sage px-3 py-1 rounded-full text-xs">
@@ -93,7 +95,7 @@ export default function CasesPage() {
 
               {/* Headline */}
               <h2 className="font-serif text-2xl md:text-3xl leading-snug text-grey">
-                AI Marketing Manager: Van onvervulbare vacature naar 14 digitale collega&apos;s — in 4 weken
+                AI Marketing Manager: Van onvervulbare vacature naar 14 digitale collega&apos;s in 4 weken
               </h2>
 
               <p className="mt-4 text-grey/70 font-light leading-relaxed">
@@ -114,11 +116,11 @@ export default function CasesPage() {
                 <div className="space-y-4 text-grey/80 font-light leading-relaxed">
                   <div>
                     <p className="font-medium text-grey">Scan</p>
-                    <p>De AI Opportunity Scan wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen — tegen een fractie van de kosten.</p>
+                    <p>De AI Opportunity Scan wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
                   </div>
                   <div>
                     <p className="font-medium text-grey">Build</p>
-                    <p>We bouwden een AI Operating System: een gestructureerde kennisbank met merkidentiteit, concurrentie-inzichten, marktdata en campagnehistorie. Voor beide merken. Niet een eenmalige snapshot, maar een levend systeem met kennislagen — van stabiele merkrichtlijnen tot wekelijks veranderende marktdata.</p>
+                    <p>We bouwden een AI Operating System: een gestructureerde kennisbank met merkidentiteit, concurrentie-inzichten, marktdata en campagnehistorie. Voor beide merken. Niet een eenmalige snapshot, maar een levend systeem met kennislagen, van stabiele merkrichtlijnen tot wekelijks veranderende marktdata.</p>
                   </div>
                   <div>
                     <p className="font-medium text-grey">Deploy</p>
@@ -133,18 +135,18 @@ export default function CasesPage() {
                 <ul className="space-y-3 text-grey/80 font-light">
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">↓</span>
-                    Van onvervulde vacature (€3.000–4.000/maand) naar AI Marketing Manager (€995/maand) — 3 tot 4x kostenreductie
+                    Van onvervulde vacature (€3.000 tot €4.000/maand) naar AI Marketing Manager (€995/maand): 3 tot 4x kostenreductie
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">×2</span>
-                    Marketingcapaciteit over beide merken tegelijk — B2B én B2C
+                    Marketingcapaciteit over beide merken tegelijk: B2B én B2C
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">◉</span>
                     Van verspreide kennis naar een levende, continu bijgewerkte kennisbank
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-sage mt-0.5 font-bold">⚡</span>
+                    <span className="text-sage mt-0.5 font-bold">✓</span>
                     Operationeel in 4 weken vanaf start
                   </li>
                 </ul>
@@ -158,7 +160,7 @@ export default function CasesPage() {
           <figure className="max-w-[800px] mx-auto mt-12">
             <div className="bg-sage/5 border border-sage-light rounded-xl p-8 md:p-10">
               <div className="flex items-center gap-2 text-sage" aria-label="Beoordeling 4,5 van 5">
-                <span aria-hidden="true" className="text-lg tracking-wide">★★★★★</span>
+                <span aria-hidden="true" className="text-lg tracking-wide">★★★★☆</span>
                 <span className="text-sm text-grey/60">4,5 / 5</span>
               </div>
               <blockquote className="mt-4 font-serif text-xl md:text-2xl leading-snug text-grey">

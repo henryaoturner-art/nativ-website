@@ -51,7 +51,7 @@ const pricingFaqSchema = {
 
 const pricingWebPage = webPage(
   "/pricing",
-  "Prijzen — Company Brain en digitale collega's",
+  "Prijzen: Company Brain en digitale collega's",
   "Wat kost een Company Brain en een digitale collega bij nativ? Setup, maandbedrag per plan en wat er wel en niet in de prijs zit.",
 );
 
@@ -154,8 +154,8 @@ export default function PricingPage() {
             <FadeIn key={tier.name} delay={i * 150}>
               <div className={`rounded-xl p-8 h-full flex flex-col ${
                 tier.highlighted
-                  ? "bg-white shadow-[0_4px_20px_rgba(139,154,107,0.15)] ring-2 ring-sage relative"
-                  : "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                  ? "bg-surface ring-2 ring-sage relative"
+                  : "bg-surface border border-sage-light"
               }`}>
                 {tier.badge && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-sage text-white text-xs px-4 py-1 rounded-full">

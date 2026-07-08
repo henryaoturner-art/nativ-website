@@ -1,6 +1,6 @@
 /**
  * Branded HTML email template for whitepaper delivery (multilingual).
- * Matches Nativ brand: sage (#8B9A6B), cream (#F2EDE4), grey (#4A4A48).
+ * Matches nativ brand: sage (#8B9A6B), cream (#F2EDE4), grey (#4A4A48).
  */
 
 interface WhitepaperEmailProps {
@@ -13,10 +13,10 @@ const translations = {
     lang: 'en',
     greeting: 'Hi',
     here: ', here\'s your whitepaper',
-    thanks: 'Thank you for your interest in Nativ. Please find our whitepaper attached:',
-    quote: '"Company brain — Knowledge from employees\' minds: minimum viable context (MVC™). Theory and practice."',
+    thanks: 'Thank you for your interest in nativ. Please find our whitepaper attached:',
+    quote: '"Company brain: Knowledge from employees\' minds: minimum viable context (MVC™). Theory and practice."',
     discover: 'In this paper you\'ll discover:',
-    bullet1: 'Why 80% of AI projects fail — and it\'s not the model',
+    bullet1: 'Why 80% of AI projects fail, and it\'s not the model',
     bullet2: 'The MVC™ Framework: 10 context blocks for AI agent tasks',
     bullet3: 'From unwritten knowledge to structured, usable context',
     bullet4: 'A practical implementation approach',
@@ -29,10 +29,10 @@ const translations = {
     lang: 'nl',
     greeting: 'Hoi',
     here: ', hier is je whitepaper',
-    thanks: 'Bedankt voor je interesse in Nativ. In de bijlage vind je ons whitepaper:',
-    quote: '"Company brain — Kennis uit de hoofden van medewerkers: minimum viable context (MVC™). De theorie en praktijk."',
+    thanks: 'Bedankt voor je interesse in nativ. In de bijlage vind je ons whitepaper:',
+    quote: '"Company brain: Kennis uit de hoofden van medewerkers: minimum viable context (MVC™). De theorie en praktijk."',
     discover: 'In dit paper ontdek je:',
-    bullet1: 'Waarom 80% van AI-projecten faalt — en het ligt niet aan het model',
+    bullet1: 'Waarom 80% van AI-projecten faalt, en het ligt niet aan het model',
     bullet2: 'Het MVC™ Framework: 10 contextblokken voor AI-agenttaken',
     bullet3: 'Van ongeschreven kennis naar gestructureerde, bruikbare context',
     bullet4: 'Een praktische implementatie-aanpak',
@@ -53,7 +53,7 @@ export function whitepaperEmailHtml({ name, language = 'nl' }: WhitepaperEmailPr
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${language === 'en' ? 'Your Nativ Whitepaper' : 'Je Nativ Whitepaper'}</title>
+  <title>${language === 'en' ? 'Your nativ Whitepaper' : 'Je nativ Whitepaper'}</title>
 </head>
 <body style="margin:0;padding:0;background-color:#F2EDE4;font-family:Georgia,'Times New Roman',serif;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#F2EDE4;">

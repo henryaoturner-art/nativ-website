@@ -19,7 +19,7 @@ const colleagues: Colleague[] = [
     role: "Digitale Assistent",
     tagline: "Je rechterhand die nooit vrij neemt.",
     intro:
-      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities — ik regel het. Altijd beschikbaar, altijd een stap voor.",
+      "Hallo, ik ben Alice, jouw digitale persoonlijke assistent. Ik beheer je agenda, beantwoord je e-mails en zorg dat jij je kunt focussen op wat er echt toe doet. Van het plannen van vergaderingen tot het opstellen van notities, ik regel het. Altijd beschikbaar, altijd een stap voor.",
     videoSrc: "/videos/alice.mp4?v=3",
   },
   {
@@ -28,7 +28,7 @@ const colleagues: Colleague[] = [
     role: "Marketing",
     tagline: "Data-gedreven marketing, dat is mijn ding.",
     intro:
-      "Hey, ik ben Brandon, hoofd marketing. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse — ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
+      "Hey, ik ben Brandon, hoofd marketing. Ik analyseer je campagnedata, volg je kanalen en optimaliseer je marketingbudget. Van cross-channel tracking tot ROI-analyse, ik geef je de inzichten die je nodig hebt om slimmere beslissingen te nemen. Data-gedreven marketing, dat is mijn ding.",
     videoSrc: "/videos/brandon.mp4?v=2",
   },
   {
@@ -37,7 +37,7 @@ const colleagues: Colleague[] = [
     role: "Sales",
     tagline: "Klaar om te scoren.",
     intro:
-      "Hi, ik ben Hunter, je digitale sales manager. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing — ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
+      "Hi, ik ben Hunter, je digitale sales manager. Ik houd je pipeline scherp, volg je leads op en zorg dat geen enkele kans door je vingers glipt. Van prospecting tot deal closing, ik werk dag en nacht om je omzet te laten groeien. Klaar om te scoren.",
     videoSrc: "/videos/hunter.mp4?v=2",
   },
   {
@@ -46,7 +46,7 @@ const colleagues: Colleague[] = [
     role: "HR",
     tagline: "Mensen zijn het belangrijkste.",
     intro:
-      "Hoi, ik ben Crystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken — ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
+      "Hoi, ik ben Crystal, je digitale HR-manager. Ik help met onboarding, verlofregistratie en personeelsbeheer. Van contracten tot tevredenheidsonderzoeken, ik zorg dat jouw team goed ondersteund wordt. Mensen zijn het belangrijkste, en daar draag ik graag aan bij.",
     videoSrc: "/videos/chrystal.mp4",
   },
   {
@@ -85,10 +85,10 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
       <button
         onClick={handleClick}
         className="group flex flex-col items-center cursor-pointer"
-        aria-label={`${colleague.name} — klik om de introductie te bekijken`}
+        aria-label={`${colleague.name}, klik om de introductie te bekijken`}
       >
         {/* Video card */}
-        <div className="relative w-48 h-64 md:w-56 md:h-80 rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group-hover:scale-[1.03]">
+        <div className="relative w-48 h-64 md:w-56 md:h-80 rounded-2xl overflow-hidden border border-sage-light transition-all duration-300 group-hover:scale-[1.03]">
           <video
             ref={videoRef}
             src={colleague.videoSrc}
@@ -118,7 +118,7 @@ function ColleagueCard({ colleague }: { colleague: Colleague }) {
             className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all ${
               playing
                 ? "bg-sage text-white scale-110"
-                : "bg-white/80 text-sage opacity-0 group-hover:opacity-100"
+                : "bg-surface/80 text-sage opacity-0 group-hover:opacity-100"
             }`}
           >
             {playing ? "⏸" : "▶"}

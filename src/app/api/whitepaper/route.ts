@@ -109,11 +109,11 @@ export async function POST(req: NextRequest) {
     // Send email via Resend
     if (process.env.RESEND_API_KEY) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
-        from: `Nativ <${FROM_EMAIL}>`,
+        from: `nativ <${FROM_EMAIL}>`,
         to: [lead.email],
         subject: language === 'en' 
-          ? "Your Nativ Whitepaper — Company brain"
-          : "Je Nativ Whitepaper — Company brain",
+          ? "Your nativ whitepaper: Company brain"
+          : "Je nativ whitepaper: Company brain",
         html: whitepaperEmailHtml({ name: lead.name, language }),
       };
 

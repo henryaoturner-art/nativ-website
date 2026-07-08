@@ -3,16 +3,13 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import LastUpdated from "@/components/LastUpdated";
-import { webPage } from "@/lib/site-meta";
+import { pageMeta, webPage } from "@/lib/site-meta";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Wat is een Company Brain (bedrijfsbrein)? | nativ",
-  },
-  description:
-    "Een Company Brain is één centrale AI-kennislaag voor je bedrijf: alles wat je bedrijf weet, bruikbaar voor AI. Wat het is, hoe het wordt gevuld, hoe je begint.",
-  alternates: { canonical: "/kennis/wat-is-een-bedrijfsbrein" },
-};
+export const metadata: Metadata = pageMeta(
+  "/kennis/wat-is-een-bedrijfsbrein",
+  "Wat is een Company Brain (bedrijfsbrein)? | nativ",
+  "Een Company Brain is één centrale AI-kennislaag voor je bedrijf: alles wat je bedrijf weet, bruikbaar voor AI. Wat het is, hoe het wordt gevuld, hoe je begint.",
+);
 
 const faqItems = [
   {
@@ -268,7 +265,7 @@ export default function PillarBedrijfsbreinPage() {
 
       {/* How to start */}
       <section className="py-12 md:py-16 px-6">
-        <div className="max-w-[680px] mx-auto text-center bg-white rounded-2xl px-8 py-12 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
               Hoe je begint
