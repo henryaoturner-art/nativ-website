@@ -43,13 +43,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl" className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        {/* FadeIn starts at opacity 0 and is revealed by an IntersectionObserver.
+            Without JS that observer never runs, so every section would stay blank. */}
+        <noscript>
+          <style>{`.fade-in { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+      </head>
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
           <a href="#main-content" className="skip-link">
             Naar inhoud
           </a>
           <Navigation />
-          <main id="main-content" className="flex-1 pt-16 md:pt-20">
+          <main id="main-content" className="flex-1 pt-20 md:pt-24">
             {children}
           </main>
           <Footer />

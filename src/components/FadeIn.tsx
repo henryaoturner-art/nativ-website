@@ -24,7 +24,10 @@ export default function FadeIn({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1 }
+      // Trigger 120px before the element reaches the viewport, so the fade has
+      // finished by the time it is actually on screen. At threshold 0.1 a heading
+      // only began fading once it was already 10% visible, i.e. half-read.
+      { threshold: 0, rootMargin: "0px 0px 120px 0px" }
     );
 
     observer.observe(el);

@@ -6,6 +6,8 @@
   --color-sage-dark: #6B7A4B;
   --color-grey: #4A4A48;
   --color-cream: #F2EDE4;
+  /* Card/panel surface. Lifts off cream without ever being pure #FFFFFF. */
+  --color-surface: #FAF7F2;
   --color-error: #C46B6B;
   --color-white: #FFFFFF;
   --font-serif: Georgia, "Times New Roman", serif;
@@ -36,12 +38,24 @@ h1, h2, h3, h4, h5, h6 {
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in,
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* FAQ Accordion */

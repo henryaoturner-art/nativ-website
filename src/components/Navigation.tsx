@@ -40,7 +40,10 @@ export default function Navigation() {
   const cta = t(ctaText);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    // Any scroll at all makes the bar opaque: content starts directly below the
+    // header, so a translucent bar at scrollY 1..20 let text bleed through it.
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -52,10 +55,10 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-cream/95 backdrop-blur-sm shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
-          : "bg-transparent"
+          ? "bg-cream border-b border-sage-light"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 md:h-24" aria-label="Hoofdnavigatie">
