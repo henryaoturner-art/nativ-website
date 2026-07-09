@@ -12,6 +12,9 @@ const translations = {
     heroSub2: "Concreet. Toepasbaar. Geen vaag advies.",
     heroCta: "Plan je Scan →",
     heroPrice: "Vanaf €2.495 · No cure, no pay",
+    auditStripTitle: "Nog niet toe aan de betaalde Scan?",
+    auditStripText: "Doe eerst de gratis 10-minuten bedrijfskennis-audit. Zie waar de kennis van je bedrijf zit en wat je riskeert.",
+    auditStripCta: "Doe de gratis audit →",
     whatTitle: "Wat je krijgt",
     whatItems: [
       "Een complete analyse van AI-kansen in jouw organisatie",
@@ -55,6 +58,9 @@ const translations = {
     heroSub2: "Concrete. Actionable. No vague advice.",
     heroCta: "Book your Scan →",
     heroPrice: "From €2,495 · No cure, no pay",
+    auditStripTitle: "Not ready for the paid Scan yet?",
+    auditStripText: "Start with the free 10-minute company-knowledge audit. See where your company's knowledge sits and what you're risking.",
+    auditStripCta: "Take the free audit →",
     whatTitle: "What you get",
     whatItems: [
       "A complete analysis of AI opportunities in your organisation",
@@ -121,6 +127,26 @@ export default function ScanPage() {
                 {c.heroCta}
               </Link>
               <p className="mt-3 text-sm text-grey/50">{c.heroPrice}</p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Free audit — the on-ramp to the paid Scan */}
+      <section className="px-6 pb-2">
+        <div className="max-w-[800px] mx-auto">
+          <FadeIn>
+            <div className="bg-white rounded-xl p-6 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+              <div className="flex-1">
+                <h2 className="font-serif text-xl text-grey">{c.auditStripTitle}</h2>
+                <p className="mt-2 text-sm text-grey/70 font-light leading-relaxed">{c.auditStripText}</p>
+              </div>
+              <Link
+                href="/bedrijfskennis-audit"
+                className="shrink-0 border border-sage text-sage px-6 py-3 rounded-lg hover:bg-sage hover:text-white transition-colors text-center text-sm font-medium"
+              >
+                {c.auditStripCta}
+              </Link>
             </div>
           </FadeIn>
         </div>
