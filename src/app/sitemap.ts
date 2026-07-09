@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/ai-events",
     "/pricing",
     "/impact",
+    "/ai-act",
     "/security",
     "/contact",
     "/blog",
