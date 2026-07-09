@@ -6,7 +6,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = pageMeta(
   "/digitale-collega-sales",
   "Digitale collega voor sales | nativ",
-  "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. In ontwikkeling, voor het mkb.",
+  "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. Voor het mkb.",
 );
 
 const faqItems = [
@@ -18,7 +18,7 @@ const faqItems = [
   {
     question: "Is de sales-collega al beschikbaar?",
     answer:
-      "De sales-collega is in ontwikkeling. Het Company Brain en de persoonlijke AI-assistent staan vandaag al klaar als basis.",
+      "Ja. De sales-collega werkt vanuit je Company Brain; dat bouwen we samen met de persoonlijke AI-assistent als basis.",
   },
   {
     question: "Voor wie is de sales-collega?",
@@ -44,7 +44,7 @@ export default function SalesColleaguePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            webPage("/digitale-collega-sales", "Digitale collega voor sales", "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. In ontwikkeling."),
+            webPage("/digitale-collega-sales", "Digitale collega voor sales", "Een digitale sales-collega die vanuit je Company Brain werkt: profielen, gespreksvoorbereiding, leads, outreach en offertes. Voor het mkb."),
             faqSchema,
           ]),
         }}
@@ -54,8 +54,9 @@ export default function SalesColleaguePage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 rounded-full bg-grey/10 text-grey/70 px-3 py-1 text-sm font-medium">
-              In ontwikkeling
+            <span className="inline-flex items-center gap-2 rounded-full bg-sage/15 text-sage px-3 py-1 text-sm font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage" aria-hidden="true" />
+              Live
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
               Een digitale collega voor je sales-team
@@ -63,10 +64,9 @@ export default function SalesColleaguePage() {
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
-              We bouwen een digitale collega voor je sales-team: iemand die
-              vanuit je Company Brain je verkoopproces ondersteunt, van profiel
-              tot offerte. Deze collega is nog in ontwikkeling. Zo zou die eruit
-              kunnen zien:
+              Een digitale collega voor je sales-team: iemand die vanuit je
+              Company Brain je verkoopproces ondersteunt, van profiel tot
+              offerte. Dit is wat hij doet:
             </p>
           </FadeIn>
         </div>
@@ -157,9 +157,9 @@ export default function SalesColleaguePage() {
               Waar we nu staan
             </h2>
             <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
-              De sales-collega is in ontwikkeling. We bouwen 'm in stappen, te
-              beginnen bij de profielopbouw, en ontwerpen hem samen met onze
-              eerste klanten. Wil je meedenken of vroeg instappen? Dat kan.
+              De sales-collega is beschikbaar. We zetten 'm in stappen bij je op,
+              te beginnen bij de profielopbouw, en stemmen hem af op hoe jullie
+              verkopen. Wil je 'm bij je team inrichten? Dat kan.
             </p>
           </FadeIn>
 

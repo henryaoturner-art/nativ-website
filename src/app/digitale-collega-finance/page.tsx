@@ -6,7 +6,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = pageMeta(
   "/digitale-collega-finance",
   "Digitale collega voor finance | nativ",
-  "Een digitale finance-collega die vanuit je Company Brain werkt: maandrapportage, afwijkingsanalyse, business cases en forecasting. In ontwikkeling.",
+  "Een digitale finance-collega die vanuit je Company Brain werkt: maandrapportage, afwijkingsanalyse, business cases en forecasting. Voor het mkb.",
 );
 
 const faqItems = [
@@ -18,7 +18,7 @@ const faqItems = [
   {
     question: "Is de finance-collega al beschikbaar?",
     answer:
-      "De finance-collega is in ontwikkeling. Het Company Brain en de persoonlijke assistent vormen vandaag al de basis.",
+      "Ja. De finance-collega werkt vanuit je Company Brain; dat vormt samen met de persoonlijke assistent de basis.",
   },
   {
     question: "Voor wie is de finance-collega?",
@@ -44,7 +44,7 @@ export default function FinanceColleaguePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            webPage("/digitale-collega-finance", "Digitale collega voor finance", "Een digitale finance-collega die vanuit je Company Brain werkt: maandrapportage, afwijkingsanalyse, business cases en forecasting. In ontwikkeling."),
+            webPage("/digitale-collega-finance", "Digitale collega voor finance", "Een digitale finance-collega die vanuit je Company Brain werkt: maandrapportage, afwijkingsanalyse, business cases en forecasting. Voor het mkb."),
             faqSchema,
           ]),
         }}
@@ -54,8 +54,9 @@ export default function FinanceColleaguePage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 rounded-full bg-grey/10 text-grey/70 px-3 py-1 text-sm font-medium">
-              In ontwikkeling
+            <span className="inline-flex items-center gap-2 rounded-full bg-sage/15 text-sage px-3 py-1 text-sm font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage" aria-hidden="true" />
+              Live
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
               Een digitale collega voor je finance-team
@@ -63,10 +64,9 @@ export default function FinanceColleaguePage() {
           </FadeIn>
           <FadeIn delay={150}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
-              We bouwen een digitale collega voor je finance-team: iemand die
-              vanuit je Company Brain je financiële proces ondersteunt, van
-              maandafsluiting tot forecast. Deze collega is nog in ontwikkeling.
-              Zo zou die eruit kunnen zien:
+              Een digitale collega voor je finance-team: iemand die vanuit je
+              Company Brain je financiële proces ondersteunt, van maandafsluiting
+              tot forecast. Dit is wat hij doet:
             </p>
           </FadeIn>
         </div>
@@ -140,9 +140,9 @@ export default function FinanceColleaguePage() {
               Waar we nu staan
             </h2>
             <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
-              De finance-collega is in ontwikkeling. We bouwen 'm in stappen en
-              ontwerpen hem samen met onze eerste klanten. Wil je meedenken of
-              vroeg instappen? Dat kan.
+              De finance-collega is beschikbaar. We zetten 'm in stappen bij je
+              op en stemmen hem af op hoe jullie werken. Wil je 'm bij je team
+              inrichten? Dat kan.
             </p>
           </FadeIn>
 

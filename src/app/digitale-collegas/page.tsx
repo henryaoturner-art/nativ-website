@@ -7,7 +7,7 @@ import ColleagueShowcase from "./ColleagueShowcase";
 export const metadata: Metadata = pageMeta(
   "/digitale-collegas",
   "Digitale collega's voor marketing, sales, finance & hr | nativ",
-  "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, daarna sales, finance en hr. Voor het mkb.",
+  "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, sales en finance; hr volgt. Voor het mkb.",
 );
 
 const collegas = [
@@ -20,13 +20,13 @@ const collegas = [
   {
     href: "/digitale-collega-sales",
     title: "Sales-collega",
-    live: false,
+    live: true,
     desc: "Bouwt rijke profielen van prospects en accounts, bereidt elk verkoopgesprek voor, herkent kansen bij bestaande klanten, kwalificeert binnenkomende leads, en schrijft outreach en offertes in jullie stem.",
   },
   {
     href: "/digitale-collega-finance",
     title: "Finance-collega",
-    live: false,
+    live: true,
     desc: "Leest je cijfers (zoals uit Exact Online), maakt maandrapportages die over locaties vergelijkbaar zijn, signaleert afwijkingen tot op de bron, zet business cases in één structuur, en geeft een rollende forecast.",
   },
   {
@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "Welke digitale collega's zijn er?",
     answer:
-      "Vandaag een marketing-collega; sales, finance en hr volgen. Elke collega draait op dezelfde Company Brain, zodat opgebouwde kennis gedeeld wordt.",
+      "Vandaag een marketing-, sales- en finance-collega; hr volgt. Elke collega draait op dezelfde Company Brain, zodat opgebouwde kennis gedeeld wordt.",
   },
   {
     question: "Wat is het verschil met ChatGPT of een chatbot?",
@@ -72,7 +72,7 @@ export default function DigitaleCollegasPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            webPage("/digitale-collegas", "Digitale collega's voor marketing, sales, finance en hr", "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, daarna sales, finance en hr."),
+            webPage("/digitale-collegas", "Digitale collega's voor marketing, sales, finance en hr", "Digitale collega's draaien op je Company Brain en werken echt mee, geen losse chatbot. Vandaag voor marketing, sales en finance; hr volgt."),
             faqSchema,
           ]),
         }}
