@@ -22,6 +22,8 @@ const translations = {
     messageLabel: "Bericht",
     messageOptional: "(optioneel)",
     submit: "Verzenden",
+    submitting: "Verzenden...",
+    errorMsg: "Er ging iets mis. Probeer het opnieuw of mail info@gonativ.nl.",
     orEmail: "Of mail ons direct:",
   },
   en: {
@@ -41,19 +43,46 @@ const translations = {
     messageLabel: "Message",
     messageOptional: "(optional)",
     submit: "Send",
+    submitting: "Sending...",
+    errorMsg: "Something went wrong. Please try again or email info@gonativ.nl.",
     orEmail: "Or email us directly:",
   },
 };
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [calLoaded, setCalLoaded] = useState(false);
   const { t } = useLanguage();
   const c = t(translations);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      company: (form.elements.namedItem("company") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to submit");
+      setSubmitted(true);
+    } catch {
+      setError(c.errorMsg);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -130,8 +159,9 @@ export default function ContactPage() {
                     </label>
                     <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition resize-none" />
                   </div>
-                  <button type="submit" className="w-full bg-sage text-white py-3.5 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer">
-                    {c.submit}
+                  {error && <p className="text-error text-sm">{error}</p>}
+                  <button type="submit" disabled={loading} className="w-full bg-sage text-white py-3.5 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+                    {loading ? c.submitting : c.submit}
                   </button>
                 </form>
               )}

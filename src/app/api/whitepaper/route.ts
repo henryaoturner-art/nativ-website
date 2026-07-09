@@ -5,6 +5,7 @@ import { promises as fs } from "fs";
 import path from "path";
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+const NOTIFY_EMAIL = process.env.LEAD_NOTIFY_EMAIL || "jorus@gonativ.nl";
 const WHITEPAPER_AUDIENCE_ID = "b2df0faf-195b-4bdf-aa9e-75d78e3ff4b5";
 const GOOGLE_SHEET_WEBHOOK = process.env.GOOGLE_SHEET_WEBHOOK_URL || "";
 
@@ -137,6 +138,28 @@ export async function POST(req: NextRequest) {
           { error: "Failed to send email. Please try again." },
           { status: 500 }
         );
+      }
+
+      // Notify Jorus that someone downloaded the whitepaper.
+      try {
+        await resend.emails.send({
+          from: `Nativ <${FROM_EMAIL}>`,
+          to: [NOTIFY_EMAIL],
+          replyTo: lead.email,
+          subject: `Nieuwe whitepaper-download: ${lead.name}`,
+          html:
+            `<p>Iemand heeft het whitepaper gedownload:</p>` +
+            `<ul>` +
+            `<li><strong>Naam:</strong> ${lead.name}</li>` +
+            `<li><strong>E-mail:</strong> ${lead.email}</li>` +
+            `<li><strong>Bedrijf:</strong> ${lead.company || "—"}</li>` +
+            `<li><strong>Functie:</strong> ${lead.role || "—"}</li>` +
+            `<li><strong>Taal:</strong> ${lead.language}</li>` +
+            `<li><strong>Tijd:</strong> ${lead.timestamp}</li>` +
+            `</ul>`,
+        });
+      } catch (notifyError) {
+        console.error("Failed to send whitepaper notification to Jorus:", notifyError);
       }
     } else {
       console.warn("RESEND_API_KEY not set — email not sent");
