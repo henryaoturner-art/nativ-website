@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 // AI answer-engines treat undated pages as stale, so every core page emits a
 // WebPage node with dateModified. Bump SITE_UPDATED when core marketing content
 // is meaningfully revised — one edit refreshes the signal site-wide.
-export const SITE_UPDATED = "2026-07-06";
+export const SITE_UPDATED = "2026-07-09";
 
 const SITE_PUBLISHED = "2026-03-10";
 
