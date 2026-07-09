@@ -116,7 +116,7 @@ export default function CasesPage() {
                 <div className="space-y-4 text-grey/80 font-light leading-relaxed">
                   <div>
                     <p className="font-medium text-grey">Scan</p>
-                    <p>De AI Opportunity Scan wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
+                    <p>De <Link href="/scan" className="text-sage hover:underline">AI Opportunity Scan</Link> wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
                   </div>
                   <div>
                     <p className="font-medium text-grey">Build</p>

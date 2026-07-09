@@ -3,8 +3,8 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 
 export const metadata: Metadata = pageMeta(
   "/scan",
-  "AI Opportunity Scan voor het mkb | nativ",
-  "Ontdek in één week wat AI voor jouw bedrijf kan betekenen en waar je kunt beginnen. Een helder beeld, geen pilot, geen verplichting. No cure, no pay.",
+  "AI-scan & innovatiescan voor het mkb — in 1 week | nativ",
+  "De AI-scan (innovatiescan) voor het mkb: ontdek in één week waar AI het meeste oplevert, geprioriteerd op impact en haalbaarheid, met een concreet actieplan. Geen pilot, geen verplichting. No cure, no pay.",
 );
 
 // Answers are copied verbatim from the Dutch FAQ rendered in page.tsx. Google
@@ -14,6 +14,14 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
+    {
+      "@type": "Question",
+      name: "Wat is een AI-scan (innovatiescan)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Een AI-scan, ook wel innovatiescan of AI Opportunity Scan, brengt in één week in kaart waar AI in jouw organisatie het meeste oplevert. Je krijgt een overzicht geprioriteerd op impact en haalbaarheid, plus een concreet actieplan. Geen pilot, geen verplichting.",
+      },
+    },
     {
       "@type": "Question",
       name: "Wat heb ik nodig om te starten?",

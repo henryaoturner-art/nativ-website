@@ -9,7 +9,7 @@ const translations = {
   nl: {
     heroTitle: "AI Opportunity Scan",
     heroSub: "In één week weten waar AI het meeste oplevert in jouw organisatie.",
-    heroSub2: "Concreet. Toepasbaar. Geen vaag advies.",
+    heroSub2: "De AI-scan die concreet en toepasbaar is. Geen vaag advies.",
     heroCta: "Plan je Scan →",
     heroPrice: "Vanaf €2.495 · No cure, no pay",
     auditStripTitle: "Nog niet toe aan de betaalde Scan?",
@@ -46,6 +46,7 @@ const translations = {
     noCure: "Beide opties: No cure, no pay. Niet tevreden? Je betaalt niets.",
     faqTitle: "Veelgestelde vragen",
     faqItems: [
+      { question: "Wat is een AI-scan (innovatiescan)?", answer: "Een AI-scan, ook wel innovatiescan of AI Opportunity Scan, brengt in één week in kaart waar AI in jouw organisatie het meeste oplevert. Je krijgt een overzicht geprioriteerd op impact en haalbaarheid, plus een concreet actieplan. Geen pilot, geen verplichting." },
       { question: "Wat heb ik nodig om te starten?", answer: "Niets bijzonders. Toegang tot relevante documentatie en 30 minuten van je tijd voor een intake." },
       { question: "Hoe zit het met mijn data?", answer: "Alle data blijft binnen de EU. Wij zijn volledig GDPR-compliant. Na afloop kun je kiezen of we data bewaren of verwijderen." },
       { question: "Wat als het niets oplevert?", answer: "Dan betaal je niets. No cure, no pay. Simpel." },
@@ -55,7 +56,7 @@ const translations = {
   en: {
     heroTitle: "AI Opportunity Scan",
     heroSub: "Know exactly where AI delivers the most value in your organisation. In one week.",
-    heroSub2: "Concrete. Actionable. No vague advice.",
+    heroSub2: "The AI scan that's concrete and actionable. No vague advice.",
     heroCta: "Book your Scan →",
     heroPrice: "From €2,495 · No cure, no pay",
     auditStripTitle: "Not ready for the paid Scan yet?",
@@ -92,6 +93,7 @@ const translations = {
     noCure: "Both options: No cure, no pay. Not satisfied? You pay nothing.",
     faqTitle: "Frequently asked questions",
     faqItems: [
+      { question: "What is an AI scan (innovation scan)?", answer: "An AI scan, also called an innovation scan or AI Opportunity Scan, maps in one week where AI delivers the most value in your organisation. You get an overview prioritised by impact and feasibility, plus a concrete action plan. No pilot, no obligation." },
       { question: "What do I need to get started?", answer: "Nothing special. Access to relevant documentation and 30 minutes of your time for an intake." },
       { question: "What about my data?", answer: "All data stays within the EU. We are fully GDPR-compliant. Afterwards you choose whether we keep or delete your data." },
       { question: "What if it doesn\u2019t deliver?", answer: "Then you pay nothing. No cure, no pay. Simple." },
