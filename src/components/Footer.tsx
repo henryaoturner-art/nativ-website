@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language-context";
 
 const footerTranslations = {
   nl: {
-    tagline: "AI die je snapt.",
+    tagline: "company brain | digitalcolleagues",
     servicesTitle: "Diensten",
     services: [
       { href: "/scan", label: "AI Opportunity Scan" },
@@ -22,7 +22,7 @@ const footerTranslations = {
     terms: "Voorwaarden",
   },
   en: {
-    tagline: "AI that gets you.",
+    tagline: "company brain | digitalcolleagues",
     servicesTitle: "Services",
     services: [
       { href: "/scan", label: "AI Opportunity Scan" },
