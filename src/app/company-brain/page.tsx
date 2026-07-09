@@ -244,6 +244,12 @@ export default function CompanyBrainPage() {
           >
             AI Opportunity Scan
           </Link>
+          <Link
+            href="/ai-act"
+            className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
+          >
+            De EU AI Act en herleidbare AI
+          </Link>
         </div>
       </section>
     </>
