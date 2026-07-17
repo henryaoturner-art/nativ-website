@@ -97,8 +97,8 @@ export async function POST(req: NextRequest) {
 
     // Read the appropriate PDF attachment based on language
     const pdfFilename = language === 'en' 
-      ? 'nativ-whitepaper-mei-2026-definitief-EN.pdf'
-      : 'nativ-whitepaper-mei-2026-definitief.pdf';
+      ? 'nativ-whitepaper-v2.2-en.pdf'
+      : 'nativ-whitepaper-v2.2-nl.pdf';
     const pdfPath = path.join(process.cwd(), "public", "downloads", pdfFilename);
     let pdfBuffer: Buffer | null = null;
     try {
@@ -123,8 +123,8 @@ export async function POST(req: NextRequest) {
         emailPayload.attachments = [
           {
             filename: language === 'en'
-              ? "nativ-whitepaper-company-brain-may-2026-EN.pdf"
-              : "nativ-whitepaper-company-brain-mei-2026.pdf",
+              ? "nativ-whitepaper-company-brain-en.pdf"
+              : "nativ-whitepaper-company-brain-nl.pdf",
             content: pdfBuffer,
           },
         ];

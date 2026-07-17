@@ -159,14 +159,14 @@ export default function WhitepaperPage() {
                     <div className="text-xs text-grey/60 font-medium">Choose language:</div>
                     <div className="flex gap-3">
                       <a
-                        href="/downloads/nativ-whitepaper-mei-2026-definitief.pdf"
+                        href="/downloads/nativ-whitepaper-v2.2-nl.pdf"
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
                         Nederlands (PDF)
                       </a>
                       <a
-                        href="/downloads/nativ-whitepaper-mei-2026-definitief-EN.pdf"
+                        href="/downloads/nativ-whitepaper-v2.2-en.pdf"
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
