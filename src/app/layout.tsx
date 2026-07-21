@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -62,6 +63,18 @@ export default function RootLayout({
           <Footer />
         </LanguageProvider>
         <Analytics />
+        {/* Google Ads tag (gtag.js) — AW-18340072378. Loaded site-wide so
+            conversion tracking works on every page. */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18340072378"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18340072378');`}
+        </Script>
       </body>
     </html>
   );
