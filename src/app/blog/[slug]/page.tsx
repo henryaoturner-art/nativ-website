@@ -117,7 +117,22 @@ export default async function BlogPostPage({
           <FadeIn delay={400}>
             <div className="mt-16 pt-8 border-t border-sage-light text-center">
               <p className="text-grey/60 font-light">
-                Benieuwd hoe een Company Brain de kennis van jouw bedrijf vastlegt?
+                Benieuwd hoe een{" "}
+                <Link href="/" className="text-sage hover:underline">
+                  Company Brain
+                </Link>{" "}
+                de kennis van jouw bedrijf vastlegt?
+              </p>
+              <p className="mt-3 text-grey/60 font-light">
+                Lees ook wat onze{" "}
+                <Link href="/digitale-collegas" className="text-sage hover:underline">
+                  digitale collega&apos;s
+                </Link>{" "}
+                doen, of hoe we jouw{" "}
+                <Link href="/diensten" className="text-sage hover:underline">
+                  AI-kennisbank
+                </Link>{" "}
+                bouwen.
               </p>
               <Link
                 href="/contact"

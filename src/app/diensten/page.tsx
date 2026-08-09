@@ -18,6 +18,7 @@ const translations = {
         meta: "Gratis | ± 20 minuten in je eentje | Geen verplichting",
         whatLabel: "Wat je krijgt:",
         cta: "Start met een Scan →", ctaLink: "/scan", primary: true,
+        moreLink: null,
       },
       {
         step: "Stap 2", title: "Build",
@@ -27,6 +28,7 @@ const translations = {
         meta: "Doorlooptijd: 2 tot 6 weken | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Meer weten →", ctaLink: "/contact", primary: false,
+        moreLink: { label: "Meer over de Company Brain", href: "/" },
       },
       {
         step: "Stap 3", title: "Deploy",
@@ -36,6 +38,7 @@ const translations = {
         meta: "Doorlooptijd: doorlopend | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Plan een gesprek →", ctaLink: "/contact", primary: false,
+        moreLink: { label: "Ontdek onze digitale collega's", href: "/digitale-collegas" },
       },
     ],
     whyTitle: "Waarom deze volgorde?",
@@ -57,6 +60,7 @@ const translations = {
         meta: "Free | ± 20 minutes on your own | No obligation",
         whatLabel: "What you get:",
         cta: "Start with a Scan →", ctaLink: "/scan", primary: true,
+        moreLink: null,
       },
       {
         step: "Step 2", title: "Build",
@@ -66,6 +70,7 @@ const translations = {
         meta: "Timeline: 2 to 6 weeks | Custom",
         whatLabel: "What you get:",
         cta: "Learn more →", ctaLink: "/contact", primary: false,
+        moreLink: { label: "More about the Company Brain", href: "/" },
       },
       {
         step: "Step 3", title: "Deploy",
@@ -75,6 +80,7 @@ const translations = {
         meta: "Timeline: ongoing | Custom",
         whatLabel: "What you get:",
         cta: "Book a call →", ctaLink: "/contact", primary: false,
+        moreLink: { label: "Discover our digital colleagues", href: "/digitale-collegas" },
       },
     ],
     whyTitle: "Why this order?",
@@ -153,6 +159,14 @@ export default function DienstenPage() {
                 >
                   {layer.cta}
                 </Link>
+                {layer.moreLink && (
+                  <Link
+                    href={layer.moreLink.href}
+                    className="ml-5 inline-block text-sage hover:underline"
+                  >
+                    {layer.moreLink.label} →
+                  </Link>
+                )}
               </div>
             </FadeIn>
           </div>

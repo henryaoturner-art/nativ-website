@@ -196,6 +196,17 @@ export default function CasesPage() {
             >
               Plan een gesprek →
             </Link>
+            <p className="mt-6 text-sm text-grey/60 font-light">
+              Of lees eerst hoe we een{" "}
+              <Link href="/diensten" className="text-sage hover:underline">
+                AI-kennisbank
+              </Link>{" "}
+              bouwen en wat{" "}
+              <Link href="/digitale-collegas" className="text-sage hover:underline">
+                digitale collega&apos;s
+              </Link>{" "}
+              voor je team doen.
+            </p>
           </div>
         </FadeIn>
       </section>
