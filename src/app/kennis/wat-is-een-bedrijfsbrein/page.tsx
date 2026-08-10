@@ -271,10 +271,10 @@ export default function PillarBedrijfsbreinPage() {
               Hoe je begint
             </h2>
             <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
-              De eerste stap is de AI Opportunity Scan. In één week brengen we in
-              kaart waar AI in jouw bedrijf het meeste oplevert: welke processen,
-              welke kennis, welke risico's. Je krijgt een concreet, geprioriteerd
-              overzicht voordat je iets vastlegt. No cure, no pay.
+              De eerste stap is de gratis AI Opportunity Scan. In ongeveer twintig
+              minuten breng je in kaart waar in jouw bedrijf veel tijd en herhaling
+              in zit. Je krijgt een concreet overzicht, op volgorde van wat het
+              meeste oplevert, voordat je iets vastlegt.
             </p>
             <Link
               href="/scan"

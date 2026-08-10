@@ -62,7 +62,7 @@ const translations = {
     setupLabel: "Setup (eenmalig)",
     monthlyLabel: "Maandelijks",
     idealLabel: "Ideaal voor:",
-    allPlans: "Alle plannen: No cure, no pay op de initiële Scan.",
+    allPlans: "De AI Opportunity Scan is gratis en vrijblijvend, bij elk plan.",
     tiers: [
       {
         name: "Quick Start", setup: "€2.495 - €4.495", monthly: "€495/mo",
@@ -94,7 +94,7 @@ const translations = {
     setupLabel: "Setup (one-time)",
     monthlyLabel: "Monthly",
     idealLabel: "Ideal for:",
-    allPlans: "All plans: No cure, no pay on the initial Scan.",
+    allPlans: "The AI Opportunity Scan is free and without obligation, on every plan.",
     tiers: [
       {
         name: "Quick Start", setup: "€2,495 - €4,495", monthly: "€495/mo",
