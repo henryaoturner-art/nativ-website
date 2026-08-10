@@ -19,7 +19,7 @@ const pricingFaqSchema = {
       name: "Hoeveel kost een Company Brain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "nativ werkt met een eenmalige setup voor de Company Brain plus een vaste maandelijkse vergoeding, en een maandbedrag per digitale collega. Een Quick Start begint vanaf €2.495 setup en €495 per maand; het meest gekozen Professional-plan is €12.495 setup en €495 per maand plus €1.295 per maand per extra digitale collega. Tokenkosten van je eigen gebruik vallen daarbuiten.",
+        text: "nativ werkt met een eenmalige setup voor de Company Brain plus een vaste maandelijkse vergoeding, en een maandbedrag per workflow. Een Quick Start begint vanaf €2.495 setup en €495 per maand; het meest gekozen Professional-plan is €12.495 setup en €495 per maand plus €1.295 per maand per extra workflow. Tokenkosten van je eigen gebruik vallen daarbuiten.",
       },
     },
     {
@@ -27,7 +27,7 @@ const pricingFaqSchema = {
       name: "Zijn er extra kosten voor AI-gebruik?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de digitale collega's.",
+        text: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de workflows.",
       },
     },
     {
@@ -35,7 +35,7 @@ const pricingFaqSchema = {
       name: "Waarom een maandelijkse vergoeding en geen eenmalig bedrag?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Een digitale collega werkt elke dag voor je, beweegt mee met je bedrijf en wordt na verloop van tijd beter. Dat lijkt meer op iemand die je aanneemt dan op software die je koopt. Wat eenmalig werk is rekenen we eenmalig; wat doorlopend werk is, rekenen we doorlopend. Je kunt maandelijks opzeggen na een minimumtermijn van drie maanden.",
+        text: "Een workflow werkt elke dag voor je, beweegt mee met je bedrijf en wordt na verloop van tijd beter. Dat lijkt meer op werk dat doorloopt dan op software die je één keer koopt. Wat eenmalig werk is rekenen we eenmalig; wat doorlopend werk is, rekenen we doorlopend. Je kunt maandelijks opzeggen na een minimumtermijn van drie maanden.",
       },
     },
     {
@@ -51,8 +51,8 @@ const pricingFaqSchema = {
 
 const pricingWebPage = webPage(
   "/pricing",
-  "Prijzen: Company Brain en digitale collega's",
-  "Wat kost een Company Brain en een digitale collega bij nativ? Setup, maandbedrag per plan en wat er wel en niet in de prijs zit.",
+  "Prijzen: Company Brain en workflows",
+  "Wat kost een Company Brain en een workflow bij nativ? Setup, maandbedrag per plan en wat er wel en niet in de prijs zit.",
 );
 
 const translations = {
@@ -70,20 +70,20 @@ const translations = {
         ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
       },
       {
-        name: "Professional", setup: "€12.495", monthly: "€495/mo\nen\n€1.295/mo per extra digitale collega", badge: "Meest gekozen",
-        features: ["Alles van Quick Start", "Company Brain: de ongeschreven kennis van je bedrijf, vastgelegd", "Digitale assistent en tot vier extra digitale collega's", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
+        name: "Professional", setup: "€12.495", monthly: "€495/mo\nen\n€1.295/mo per extra workflow", badge: "Meest gekozen",
+        features: ["Alles van Quick Start", "Company Brain: de ongeschreven kennis van je bedrijf, vastgelegd", "Digitale assistent en tot vier extra workflows", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
         ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
       },
       {
         name: "AI Native", setup: "Vanaf €49.950", monthly: "€4.995/mo",
-        features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt digitale collega's", "Custom agents op maat", "Dedicated support & optimalisatie", "Exclusief tokenkosten"],
+        features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt workflows", "Custom agents op maat", "Dedicated support & optimalisatie", "Exclusief tokenkosten"],
         ideal: "Organisaties die volledig AI-native willen werken", highlighted: false, cta: "Neem contact op →",
       },
     ],
     faqTitle: "Veelgestelde vragen over pricing",
     faqItems: [
       { question: "Wat als ik halverwege wil stoppen?", answer: "Geen lock-in. Je kunt maandelijks opzeggen." },
-      { question: "Zijn er extra kosten voor AI-gebruik?", answer: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de digitale collega's." },
+      { question: "Zijn er extra kosten voor AI-gebruik?", answer: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de workflows." },
       { question: "Kan ik upgraden?", answer: "Ja, op elk moment. Je bestaande kennisbank groeit gewoon mee." },
       { question: "Wat zit er niet in de prijs?", answer: "Custom integraties met legacy systemen kunnen extra kosten met zich meebrengen. We zijn daar altijd transparant over." },
     ],
@@ -102,20 +102,20 @@ const translations = {
         ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
       },
       {
-        name: "Professional", setup: "€12,495", monthly: "€495/mo\nand\n€1,295/mo per extra digital colleague", badge: "Most popular",
-        features: ["Everything in Quick Start", "Company Brain: your company's unwritten knowledge, captured", "Digital assistant and up to four extra digital colleagues", "Cancel monthly", "Excluding token costs"],
+        name: "Professional", setup: "€12,495", monthly: "€495/mo\nand\n€1,295/mo per extra workflow", badge: "Most popular",
+        features: ["Everything in Quick Start", "Company Brain: your company's unwritten knowledge, captured", "Digital assistant and up to four extra workflows", "Cancel monthly", "Excluding token costs"],
         ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
       },
       {
         name: "AI Native", setup: "From €49,950", monthly: "€4,995/mo",
-        features: ["Everything in Professional", "Full AI transformation", "Unlimited digital colleagues", "Custom agents built to spec", "Dedicated support & optimisation", "Excluding token costs"],
+        features: ["Everything in Professional", "Full AI transformation", "Unlimited workflows", "Custom agents built to spec", "Dedicated support & optimisation", "Excluding token costs"],
         ideal: "Organisations going fully AI-native", highlighted: false, cta: "Get in touch →",
       },
     ],
     faqTitle: "Frequently asked questions about pricing",
     faqItems: [
       { question: "What if I want to stop halfway?", answer: "No lock-in. You can cancel monthly." },
-      { question: "Are there extra costs for AI usage?", answer: "Yes. The token costs for the AI usage are for your account and fall outside the subscription; that's why every plan notes 'Excluding token costs'. The subscription covers the platform and the digital colleagues." },
+      { question: "Are there extra costs for AI usage?", answer: "Yes. The token costs for the AI usage are for your account and fall outside the subscription; that's why every plan notes 'Excluding token costs'. The subscription covers the platform and the workflows." },
       { question: "Can I upgrade?", answer: "Yes, at any time. Your existing knowledge base simply grows with you." },
       { question: "What\u2019s not included?", answer: "Custom integrations with legacy systems may involve additional costs. We\u2019re always transparent about that." },
     ],
