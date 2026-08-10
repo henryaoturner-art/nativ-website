@@ -37,7 +37,7 @@ const translations = {
     reportItems: [
       "Het werk waar veel tijd en herhaling in zit, op volgorde van wat het meeste oplevert",
       "Per onderdeel hoe vaak het gebeurt, wat het nu kost en waarom het zich leent voor AI",
-      "Eén klein startpunt waar fouten goedkoop en omkeerbaar zijn",
+      "Eén concreet startpunt: het werk waar je het snelst resultaat ziet",
       "Een rapport dat je kunt delen met wie je wilt",
     ],
 
@@ -109,7 +109,7 @@ const translations = {
     reportItems: [
       "The work with the most time and repetition in it, ordered by what delivers most",
       "Per item: how often it happens, what it costs today and why it lends itself to AI",
-      "One small starting point where mistakes are cheap and reversible",
+      "One concrete starting point: the work where you see results fastest",
       "A report you can share with whoever you like",
     ],
 

@@ -35,7 +35,7 @@ const faqSchema = {
       name: "Hoeveel workflows beginnen we mee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Eén. We kiezen samen het werk waar veel herhaling in zit en waar een fout klein en omkeerbaar is. Uitbreiden doe je pas als die eerste doet wat je ervan verwacht.",
+        text: "Eén. We kiezen samen werk waar veel herhaling in zit en waarvan jij het resultaat direct kunt beoordelen. Uitbreiden doe je pas als die eerste doet wat je ervan verwacht.",
       },
     },
     {

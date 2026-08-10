@@ -45,7 +45,7 @@ const translations = {
     controlTitle: "Jij houdt de regie",
     controlBody: [
       "Een workflow werkt niet buiten je om. Je ziet wat er gemaakt wordt voordat het gebruikt wordt, en jij bepaalt wat er uitgaat.",
-      "We beginnen bewust klein, bij werk waar een fout goedkoop en makkelijk terug te draaien is. Als dat bevalt, breid je uit. Niet andersom.",
+      "We beginnen bewust met werk waarvan je het resultaat meteen kunt beoordelen. Zo zie je binnen een week of het klopt, in plaats van dat je het moet geloven. Bevalt het, dan breid je uit.",
     ],
 
     chatgptTitle: "Waarom niet gewoon ChatGPT?",
@@ -66,7 +66,7 @@ const translations = {
       },
       {
         q: "Hoeveel workflows beginnen we mee?",
-        a: "Eén. We kiezen samen het werk waar veel herhaling in zit en waar een fout klein en omkeerbaar is. Uitbreiden doe je pas als die eerste doet wat je ervan verwacht.",
+        a: "Eén. We kiezen samen werk waar veel herhaling in zit en waarvan jij het resultaat direct kunt beoordelen. Uitbreiden doe je pas als die eerste doet wat je ervan verwacht.",
       },
       {
         q: "Wat als ons werk niet in een vast stappenplan past?",
@@ -123,7 +123,7 @@ const translations = {
     controlTitle: "You stay in control",
     controlBody: [
       "A workflow does not operate behind your back. You see what it produces before it gets used, and you decide what goes out.",
-      "We deliberately start small, with work where a mistake is cheap and easy to undo. If that works out, you expand. Not the other way round.",
+      "We deliberately start with work whose result you can judge straight away. That way you see within a week whether it holds up, instead of having to take our word for it. If it works out, you expand.",
     ],
 
     chatgptTitle: "Why not just ChatGPT?",
@@ -144,7 +144,7 @@ const translations = {
       },
       {
         q: "How many workflows do we start with?",
-        a: "One. Together we pick work with a lot of repetition in it, where a mistake is small and reversible. You expand once that first one does what you expect.",
+        a: "One. Together we pick work with a lot of repetition in it whose result you can judge directly. You expand once that first one does what you expect.",
       },
       {
         q: "What if our work doesn't follow a fixed set of steps?",
