@@ -24,7 +24,7 @@ const servicesSchema = {
         "@type": "Service",
         name: "Scan",
         description:
-          "De AI Opportunity Scan brengt in één week in kaart waar de grootste kansen liggen, geprioriteerd op impact en haalbaarheid.",
+          "De gratis AI Opportunity Scan brengt in kaart welk werk in je bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
         url: "https://gonativ.nl/scan",
       },

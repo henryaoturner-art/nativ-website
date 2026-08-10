@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
         destination: "/scan",
         permanent: true,
       },
+      // The bedrijfskennis-audit lead magnet was retired (week-kickoff 10 Aug 2026):
+      // the free AI Opportunity Scan is the single free front door now. Old links
+      // in sent emails and indexed pages land on the scan instead of a 404.
+      {
+        source: "/bedrijfskennis-audit",
+        destination: "/scan",
+        permanent: true,
+      },
       // Renamed /ai-agenda → /ai-events (2026-07-03); keep the short-lived old path alive.
       {
         source: "/ai-agenda",
