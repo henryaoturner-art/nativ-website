@@ -58,7 +58,7 @@ const pricingFaqSchema = {
       name: "Hoe snel kan ik beginnen?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "De Company Brain staat er meteen. Het opzetten kost ons vijf minuten zodra je tekent. Workflows volgen daarna hun eigen route: intake, ontwerp, prijs.",
+        text: "Zodra je tekent zetten wij je Company Brain op, en daarna kun je meteen aan de slag. Workflows volgen hun eigen route: intake, ontwerp, prijs.",
       },
     },
     {
@@ -143,7 +143,7 @@ const translations = {
     whyTitle: "Waarom dit zo betaalbaar kan",
     whyBody: [
       "De prijzen zijn een stuk lager dan ze waren, en daar zit een reden onder die we niet willen verstoppen: je doet zelf meer.",
-      "Wij zetten de Brain op, en dat kost ons vijf minuten zodra je tekent. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
+      "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
     ],
 
     exitTitle: "Als je weggaat",
@@ -177,7 +177,7 @@ const translations = {
       {
         question: "Hoe snel kan ik beginnen?",
         answer:
-          "De Company Brain staat er meteen. Het opzetten kost ons vijf minuten zodra je tekent. Workflows volgen daarna hun eigen route: intake, ontwerp, prijs.",
+          "Zodra je tekent zetten wij je Company Brain op, en daarna kun je meteen aan de slag. Workflows volgen hun eigen route: intake, ontwerp, prijs.",
       },
       {
         question: "Wat gebeurt er met mijn gegevens als ik stop?",
@@ -250,7 +250,7 @@ const translations = {
     whyTitle: "Why this can be this affordable",
     whyBody: [
       "The prices are considerably lower than they were, and there is a reason underneath that we would rather not hide: you do more yourself.",
-      "We set the Brain up, and that takes us five minutes once you sign. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills. That is the trade.",
+      "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills. That is the trade.",
     ],
 
     exitTitle: "If you leave",
@@ -283,7 +283,7 @@ const translations = {
       {
         question: "How quickly can I start?",
         answer:
-          "The Company Brain is there right away. Setting it up takes us five minutes once you sign. Workflows then follow their own route: intake, design, price.",
+          "Once you sign we set up your Company Brain, and you can get going straight after. Workflows then follow their own route: intake, design, price.",
       },
       {
         question: "What happens to my data if I stop?",
