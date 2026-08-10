@@ -142,9 +142,8 @@ const translations = {
 
     whyTitle: "Waarom dit zo betaalbaar kan",
     whyBody: [
-      "De prijzen zijn een stuk lager dan ze waren, en daar zit een reden onder die we niet willen verstoppen: je doet meer zelf.",
-      "Je zet de Brain zelf op, je vult hem zelf aan en je bepaalt zelf welke workflows je erbij wilt. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
-      "En het gaat snel. De Company Brain staat er meteen: het opzetten kost ons vijf minuten zodra je tekent.",
+      "De prijzen zijn een stuk lager dan ze waren, en daar zit een reden onder die we niet willen verstoppen: je doet zelf meer.",
+      "Wij zetten de Brain op, en dat kost ons vijf minuten zodra je tekent. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
     ],
 
     exitTitle: "Als je weggaat",
@@ -251,8 +250,7 @@ const translations = {
     whyTitle: "Why this can be this affordable",
     whyBody: [
       "The prices are considerably lower than they were, and there is a reason underneath that we would rather not hide: you do more yourself.",
-      "You set up the Brain, you fill it, and you decide which workflows you want. We make sure you can do that without needing technical skills. That is the trade.",
-      "And it is fast. The Company Brain is there right away: setting it up takes us five minutes once you sign.",
+      "We set the Brain up, and that takes us five minutes once you sign. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills. That is the trade.",
     ],
 
     exitTitle: "If you leave",
