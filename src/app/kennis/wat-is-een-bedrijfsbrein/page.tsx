@@ -15,12 +15,12 @@ const faqItems = [
   {
     question: "Wat is een Company Brain (bedrijfsbrein)?",
     answer:
-      "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en documenten. Daarop draaien AI-assistenten en digitale collega's die echt snappen hoe jullie werken.",
+      "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en documenten. Daarop draaien AI-assistenten en workflows die snappen hoe jullie werken.",
   },
   {
-    question: "Wat is een digitale collega?",
+    question: "Wat is een AI-workflow?",
     answer:
-      "Een digitale collega is geen tool die je koopt, maar een AI-collega die werkt vanuit je Company Brain en die elke maand productiever wordt. nativ levert digitale collega's voor marketing, sales, finance en hr.",
+      "Een workflow neemt één terugkerende klus over, van begin tot eind, en werkt vanuit je Company Brain. Omdat die context er is, past het resultaat bij hoe jullie werken in plaats van algemeen te blijven. nativ maakt workflows voor marketing, sales, finance en hr.",
   },
   {
     question: "Is dit geschikt voor het mkb?",
@@ -72,7 +72,7 @@ export default function PillarBedrijfsbreinPage() {
               Een Company Brain (ook wel bedrijfsbrein of tweede brein) is één
               centrale kennislaag waarin samenkomt wat je bedrijf weet: uit de
               hoofden van je mensen, uit je systemen en documenten, en uit live
-              research. Daarbovenop draaien AI-assistenten en digitale collega's
+              research. Daarbovenop draaien AI-assistenten en workflows
               die snappen hoe jullie werken, in plaats van algemene antwoorden te
               geven. nativ bouwt zo'n Company Brain voor het Nederlandse mkb.
             </p>
@@ -208,19 +208,18 @@ export default function PillarBedrijfsbreinPage() {
 
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
-              Digitale collega's bovenop de Brain
+              Workflows bovenop de Brain
             </h2>
             <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
               <p>
-                Op de Brain draaien digitale collega's. Een digitale collega is
-                geen tool die je koopt, maar een collega die werkt vanuit je
-                Company Brain. Hij kent jullie manier van werken en wordt elke
-                maand productiever.
+                Op de Brain draaien workflows. Een workflow neemt één
+                terugkerende klus over, van begin tot eind, en put daarbij uit je
+                Company Brain. Daardoor past het resultaat bij hoe jullie werken.
               </p>
               <p>
-                De marketing-collega draait vandaag: research, content schrijven,
-                beeld maken en inplannen, in jullie eigen toon. Collega's voor
-                sales, finance en hr zijn in ontwikkeling. Daarnaast krijgt elke
+                Waar het meestal over gaat: research en teksten in marketing,
+                gesprekken voorbereiden in sales, maandrapportages in finance, en
+                de terugkerende vragen van medewerkers. Daarnaast krijgt elke
                 medewerker een persoonlijke assistent: één plek om het bedrijf
                 alles te vragen, met een bronvermelding bij elk antwoord.
               </p>
@@ -230,7 +229,7 @@ export default function PillarBedrijfsbreinPage() {
                 href="/workflows"
                 className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
               >
-                Bekijk de digitale collega's
+                Bekijk de workflows
               </Link>
             </p>
           </FadeIn>

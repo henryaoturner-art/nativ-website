@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   nl: {
     heroTitle: "Van inzicht naar impact",
-    heroSub1: "Drie stappen. Van eerste scan tot werkende digitale collega\u2019s.",
+    heroSub1: "Drie stappen. Van gratis scan tot werkende workflows.",
     heroSub2: "Elk op je eigen tempo.",
     layers: [
       {
@@ -30,9 +30,9 @@ const translations = {
       },
       {
         step: "Stap 3", title: "Deploy",
-        lead: "We zetten digitale collega's in die echt werk leveren.",
-        body: "Geen chatbot die \"ik weet het niet\" zegt. Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. Die taken overnemen, vragen beantwoorden en processen versnellen, met de volledige context van jouw AI Operating System.",
-        features: ["Digitale collega's op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie in bestaande workflows", "Meetbare resultaten"],
+        lead: "We zetten workflows in die echt werk leveren.",
+        body: "Geen chatbot die \"ik weet het niet\" zegt. Workflows die putten uit de kennis van jouw bedrijf. Ze nemen terugkerend werk over, beantwoorden vragen en versnellen processen, met de volledige context uit je Company Brain.",
+        features: ["Workflows op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie met je bestaande systemen", "Meetbare resultaten"],
         meta: "Doorlooptijd: doorlopend | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Plan een gesprek →", ctaLink: "/contact", primary: false,
@@ -46,7 +46,7 @@ const translations = {
   },
   en: {
     heroTitle: "From insight to impact",
-    heroSub1: "Three steps. From first scan to working digital colleagues.",
+    heroSub1: "Three steps. From free scan to working workflows.",
     heroSub2: "Each at your own pace.",
     layers: [
       {
@@ -69,9 +69,9 @@ const translations = {
       },
       {
         step: "Step 3", title: "Deploy",
-        lead: "We deploy digital colleagues that actually get work done.",
-        body: "No chatbot that says \"I don\u2019t know\". Digital colleagues that draw from the collective intelligence of your company. That take over tasks, answer questions and accelerate processes, with context.",
-        features: ["Custom digital colleagues, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration into existing workflows", "Measurable results"],
+        lead: "We deploy workflows that actually get work done.",
+        body: "No chatbot that says \"I don\u2019t know\". Workflows that draw on the knowledge of your company. They take over recurring work, answer questions and accelerate processes, with the full context from your Company Brain.",
+        features: ["Custom workflows, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration with your existing systems", "Measurable results"],
         meta: "Timeline: ongoing | Custom",
         whatLabel: "What you get:",
         cta: "Book a call →", ctaLink: "/contact", primary: false,

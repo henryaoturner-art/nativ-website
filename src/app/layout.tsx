@@ -8,11 +8,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Company Brain & digitale collega's voor het mkb | nativ",
+    default: "Company Brain en AI-workflows voor het mkb | nativ",
     template: "%s | nativ",
   },
   description:
-    "nativ bouwt een Company Brain: één AI-kennisbank voor je bedrijf, plus digitale collega's voor marketing, sales, finance en hr. Voor het Nederlandse mkb.",
+    "nativ bouwt een Company Brain: één AI-kennisbank voor je bedrijf, plus workflows die terugkerend werk overnemen in marketing, sales, finance en hr. Voor het Nederlandse mkb.",
   metadataBase: new URL("https://gonativ.nl"),
   // Homepage canonical. Every other route overrides this with its own
   // alternates.canonical (in its page.tsx or a sibling layout.tsx), so this
@@ -23,16 +23,16 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     url: "https://gonativ.nl",
     siteName: "nativ",
-    title: "Company Brain & digitale collega's voor het mkb | nativ",
+    title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
-      "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
+      "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@gonativnl",
-    title: "Company Brain & digitale collega's voor het mkb | nativ",
+    title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
-      "nativ bouwt een Company Brain en digitale collega's voor het Nederlandse mkb.",
+      "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
   },
   robots: { index: true, follow: true },
 };
