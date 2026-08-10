@@ -227,7 +227,7 @@ export default function PillarBedrijfsbreinPage() {
             </div>
             <p className="mt-6 text-base">
               <Link
-                href="/digitale-collegas"
+                href="/workflows"
                 className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
               >
                 Bekijk de digitale collega's

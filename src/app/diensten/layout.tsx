@@ -50,7 +50,7 @@ const servicesSchema = {
         description:
           "Digitale collega's die putten uit het Company Brain, taken overnemen en processen versnellen, geïntegreerd in bestaande workflows.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
-        url: "https://gonativ.nl/digitale-collegas",
+        url: "https://gonativ.nl/workflows",
       },
     },
   ],

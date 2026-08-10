@@ -233,7 +233,7 @@ export default function CompanyBrainPage() {
             Wat is een Company Brain?
           </Link>
           <Link
-            href="/digitale-collegas"
+            href="/workflows"
             className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
           >
             Digitale collega's

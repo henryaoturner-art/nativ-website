@@ -248,7 +248,7 @@ export default function HomePage() {
                 {c.ctaPrimary}
               </Link>
               <Link
-                href="/digitale-collegas"
+                href="/workflows"
                 className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
                 {c.ctaSecondary}
