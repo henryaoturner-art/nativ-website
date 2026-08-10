@@ -99,7 +99,7 @@ const translations = {
       "Geen minimale looptijd, één maand opzegtermijn",
     ],
     baseFairUse:
-      "Op wat je erin laadt zit een ruime grens. Kom je daaraan, dan zeggen we het en leggen we uit wat het dan kost.",
+      "Er zit een grens aan hoeveel je in je Company Brain kunt zetten. Ga je daaroverheen, dan kost het ons meer om te draaien en rekenen we dat door. Je hoort het van ons voordat het zover is.",
     baseCta: "Plan een gesprek",
 
     addonsLabel: "Wat je erbij kunt zetten",
@@ -167,7 +167,7 @@ const translations = {
       {
         question: "Betaal ik meer als we met meer mensen zijn?",
         answer:
-          "Nee. Het bedrag is voor elk bedrijf hetzelfde, of je nu met vijf of met driehonderd bent. Wat wel meetelt is hoeveel je erin laadt: daar zit een ruime grens op. Kom je daaraan, dan zeggen we het en leggen we uit wat het dan kost.",
+          "Nee. Het bedrag is voor elk bedrijf hetzelfde, of je nu met vijf of met driehonderd bent. Wat wel meetelt is hoeveel je erin zet. Daar zit een grens aan, want boven die grens kost het ons meer om te draaien en rekenen we dat door. Met driehonderd mensen bereik je die grens sneller dan met vijf, en je hoort het van ons voordat het zover is.",
       },
       {
         question: "Waarom kost de ene workflow meer dan de andere?",
@@ -206,7 +206,7 @@ const translations = {
       "No minimum term, one month's notice",
     ],
     baseFairUse:
-      "There is a generous limit on how much you load into it. If you approach it, we say so and explain what it costs from there.",
+      "There is a limit to how much you can put into your Company Brain. Go beyond it and it costs us more to run, and we pass that on. You hear from us before you get there.",
     baseCta: "Book a call",
 
     addonsLabel: "What you can add",
@@ -273,7 +273,7 @@ const translations = {
       {
         question: "Do I pay more if we have more people?",
         answer:
-          "No. The price is the same for every company, whether you are five or three hundred. What does count is how much you load into it: there is a generous limit on that. If you approach it, we say so and explain what it costs from there.",
+          "No. The price is the same for every company, whether you are five or three hundred. What does count is how much you put into it. There is a limit to that, because beyond it running the Brain costs us more and we pass that on. With three hundred people you reach that limit sooner than with five, and you hear from us before you get there.",
       },
       {
         question: "Why does one workflow cost more than another?",
