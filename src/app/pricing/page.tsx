@@ -6,10 +6,26 @@ import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
 import { webPage } from "@/lib/site-meta";
 
-// Answer-first pricing Q&A in FAQPage schema so AI answer-engines can cite our
-// pricing model (the PRICING fan-out: "wat kost een Company Brain", "extra kosten").
-// Canonical NL, mirrors translations.nl.faqItems below. Figures stay single-source
-// on this page; nothing is duplicated elsewhere.
+// ---------------------------------------------------------------------------
+// PRIJZEN — één plek. Wijzig hier, de pagina en het schema volgen.
+//
+// Founder-besluit 4 + 7 + 10 aug 2026: een maandbedrag voor de Company Brain
+// zonder setupfee (de oude EUR 12.495 eenmalig is vervallen), plus onderdelen
+// die je per maand aanzet. De ladder Quick Start / Professional / AI Native is
+// daarmee vervallen.
+// ---------------------------------------------------------------------------
+const PRIJS = {
+  brain: { nl: "€1.495", en: "€1,495" },
+  // Jorus 10 aug: "workflows tussen de 95 en 250, 245 moet dat dan worden".
+  // Bovengrens op 245 gehouden, binnen de afgesproken band.
+  workflowVan: { nl: "€95", en: "€95" },
+  workflowTot: { nl: "€245", en: "€245" },
+  // Uit de meeting van 4 aug; op 10 aug niet opnieuw genoemd.
+  crm: { nl: "€249", en: "€249" },
+  onderzoek: { nl: "€50", en: "€50" },
+  onderzoekGroot: { nl: "€100", en: "€100" },
+};
+
 const pricingFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -19,7 +35,23 @@ const pricingFaqSchema = {
       name: "Hoeveel kost een Company Brain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "nativ werkt met een eenmalige setup voor de Company Brain plus een vaste maandelijkse vergoeding, en een maandbedrag per workflow. Een Quick Start begint vanaf €2.495 setup en €495 per maand; het meest gekozen Professional-plan is €12.495 setup en €495 per maand plus €1.295 per maand per extra workflow. Tokenkosten van je eigen gebruik vallen daarbuiten.",
+        text: `De Company Brain kost ${PRIJS.brain.nl} per maand. Er is geen setupbedrag: je betaalt vanaf de maand dat je begint. Daarbovenop kies je zelf wat je aanzet: een workflow kost ${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl} per maand, het CRM ${PRIJS.crm.nl} per maand, en een onderzoek ${PRIJS.onderzoek.nl} per stuk. Tokenkosten van je eigen AI-gebruik vallen daarbuiten.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Zit er een setupbedrag of opstartfee aan vast?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nee. Er is geen eenmalig bedrag vooraf. Je begint met het maandbedrag voor de Company Brain en breidt uit wanneer je dat wilt. Alleen maatwerk-integraties met bestaande systemen worden apart geoffreerd.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Waarom kost de ene workflow meer dan de andere?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Omdat de ene zwaarder is dan de andere. De prijs hangt af van welke onderdelen erin zitten en welke externe diensten hij gebruikt. Bij het ontwerp van de workflow zie je vooraf welke dat zijn en wat hij per maand kost, zodat je niet achteraf wordt verrast.",
       },
     },
     {
@@ -27,23 +59,7 @@ const pricingFaqSchema = {
       name: "Zijn er extra kosten voor AI-gebruik?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de workflows.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Waarom een maandelijkse vergoeding en geen eenmalig bedrag?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Een workflow werkt elke dag voor je, beweegt mee met je bedrijf en wordt na verloop van tijd beter. Dat lijkt meer op werk dat doorloopt dan op software die je één keer koopt. Wat eenmalig werk is rekenen we eenmalig; wat doorlopend werk is, rekenen we doorlopend. Je kunt maandelijks opzeggen na een minimumtermijn van drie maanden.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Wat zit er niet in de prijs?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Custom integraties met legacy systemen kunnen extra kosten met zich meebrengen. We zijn daar altijd transparant over en bespreken het vooraf.",
+        text: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement. Het abonnement dekt het platform, de Company Brain en de workflows.",
       },
     },
   ],
@@ -52,72 +68,165 @@ const pricingFaqSchema = {
 const pricingWebPage = webPage(
   "/pricing",
   "Prijzen: Company Brain en workflows",
-  "Wat kost een Company Brain en een workflow bij nativ? Setup, maandbedrag per plan en wat er wel en niet in de prijs zit.",
+  `De Company Brain kost ${PRIJS.brain.nl} per maand, zonder setupbedrag. Workflows, CRM en onderzoeken zet je erbij wanneer je ze nodig hebt.`,
 );
 
 const translations = {
   nl: {
     heroTitle: "Eerlijke prijzen",
-    heroSub: "Van eerste scan tot volledig AI-systeem. Kies wat bij je past.",
-    setupLabel: "Setup (eenmalig)",
-    monthlyLabel: "Maandelijks",
-    idealLabel: "Ideaal voor:",
-    allPlans: "De AI Opportunity Scan is gratis en vrijblijvend, bij elk plan.",
-    tiers: [
+    heroSub:
+      "Eén maandbedrag voor de basis, en je breidt uit wanneer je er klaar voor bent. Geen setupbedrag, geen verplicht traject vooraf.",
+
+    baseLabel: "De basis",
+    baseName: "Company Brain",
+    basePrice: PRIJS.brain.nl,
+    basePer: "per maand",
+    baseSetup: "Geen setupbedrag",
+    baseBody:
+      "De kennislaag van je bedrijf, en een persoonlijke assistent voor elke medewerker. Alles wat je daarna aanzet, put hieruit.",
+    baseFeatures: [
+      "Company Brain: de kennis van je bedrijf, vastgelegd en doorzoekbaar",
+      "Een persoonlijke assistent voor iedereen, met bronvermelding bij elk antwoord",
+      "Koppelingen met je bestaande systemen",
+      "Onbeperkt gebruikers",
+      "Maandelijks opzegbaar na de eerste drie maanden",
+    ],
+    baseCta: "Plan een gesprek",
+
+    addonsLabel: "Wat je erbij kunt zetten",
+    addons: [
       {
-        name: "Quick Start", setup: "€2.495 - €4.495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP-koppelingen met bestaande systemen", "Digitale assistent die je documenten kent, maar je bedrijf nog niet", "Standaard integraties", "Exclusief tokenkosten"],
-        ideal: "Teams die snel willen starten", highlighted: false, cta: "Start je Scan →",
+        name: "Workflow",
+        price: `${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl}`,
+        per: "per maand, per workflow",
+        body: "Een workflow neemt één terugkerende klus over. Wat hij kost hangt af van de onderdelen en de externe diensten die hij gebruikt. Je ziet dat vooraf, bij het ontwerp.",
       },
       {
-        name: "Professional", setup: "€12.495", monthly: "€495/mo\nen\n€1.295/mo per extra workflow", badge: "Meest gekozen",
-        features: ["Alles van Quick Start", "Company Brain: de ongeschreven kennis van je bedrijf, vastgelegd", "Digitale assistent en tot vier extra workflows", "Maandelijks opzegbaar", "Exclusief tokenkosten"],
-        ideal: "Ideaal voor organisaties die AI bedrijfsbreed willen inzetten", highlighted: true, cta: "Plan een gesprek →",
+        name: "CRM",
+        price: PRIJS.crm.nl,
+        per: "per maand",
+        body: "Bedrijven en personen in één overzicht, dat zichzelf bijwerkt vanuit gesprekken en mail. Koppelen met een bestaand CRM wordt apart geoffreerd.",
       },
       {
-        name: "AI Native", setup: "Vanaf €49.950", monthly: "€4.995/mo",
-        features: ["Alles van Professional", "Volledige AI-transformatie", "Onbeperkt workflows", "Custom agents op maat", "Dedicated support & optimalisatie", "Exclusief tokenkosten"],
-        ideal: "Organisaties die volledig AI-native willen werken", highlighted: false, cta: "Neem contact op →",
+        name: "Onderzoek",
+        price: PRIJS.onderzoek.nl,
+        per: "per onderzoek",
+        body: `Een vraag uitzetten bij je eigen mensen of je klanten, en er een bruikbaar antwoord uit krijgen. Boven de honderd respondenten wordt het ${PRIJS.onderzoekGroot.nl}.`,
       },
     ],
-    faqTitle: "Veelgestelde vragen over pricing",
+
+    notesTitle: "Wat er buiten valt",
+    notes: [
+      "Tokenkosten van je eigen AI-gebruik. Die rekenen we door tegen kostprijs, zonder opslag.",
+      "Maatwerk-integraties met bestaande systemen. Die offreren we per geval, en altijd vooraf.",
+    ],
+    scanLine: "De AI Opportunity Scan is gratis en vrijblijvend.",
+
+    faqTitle: "Veelgestelde vragen over prijzen",
     faqItems: [
-      { question: "Wat als ik halverwege wil stoppen?", answer: "Geen lock-in. Je kunt maandelijks opzeggen." },
-      { question: "Zijn er extra kosten voor AI-gebruik?", answer: "Ja. De tokenkosten voor het AI-gebruik zijn voor jouw rekening en vallen buiten het abonnement; daarom staat bij elk plan 'Exclusief tokenkosten'. Het abonnement dekt het platform en de workflows." },
-      { question: "Kan ik upgraden?", answer: "Ja, op elk moment. Je bestaande kennisbank groeit gewoon mee." },
-      { question: "Wat zit er niet in de prijs?", answer: "Custom integraties met legacy systemen kunnen extra kosten met zich meebrengen. We zijn daar altijd transparant over." },
+      {
+        question: "Zit er een setupbedrag aan vast?",
+        answer:
+          "Nee. Er is geen eenmalig bedrag vooraf. Je begint met het maandbedrag voor de Company Brain en breidt uit wanneer je dat wilt.",
+      },
+      {
+        question: "Wat als ik halverwege wil stoppen?",
+        answer:
+          "Geen lock-in. Na de eerste drie maanden kun je maandelijks opzeggen.",
+      },
+      {
+        question: "Waarom kost de ene workflow meer dan de andere?",
+        answer:
+          "Omdat de ene zwaarder is dan de andere. De prijs hangt af van welke onderdelen erin zitten en welke externe diensten hij gebruikt. Bij het ontwerp zie je vooraf welke dat zijn en wat hij per maand kost.",
+      },
+      {
+        question: "Zijn er extra kosten voor AI-gebruik?",
+        answer:
+          "Ja. De tokenkosten voor je eigen gebruik vallen buiten het abonnement en rekenen we door tegen kostprijs. Het abonnement dekt het platform, de Company Brain en de workflows.",
+      },
+      {
+        question: "Kan ik later uitbreiden?",
+        answer:
+          "Ja, op elk moment. Je Company Brain groeit gewoon mee, en alles wat je erbij zet put uit dezelfde kennis.",
+      },
     ],
   },
   en: {
     heroTitle: "Honest pricing",
-    heroSub: "From first scan to full AI system. Choose what fits.",
-    setupLabel: "Setup (one-time)",
-    monthlyLabel: "Monthly",
-    idealLabel: "Ideal for:",
-    allPlans: "The AI Opportunity Scan is free and without obligation, on every plan.",
-    tiers: [
+    heroSub:
+      "One monthly fee for the base, and you expand when you are ready. No setup fee, no mandatory project up front.",
+
+    baseLabel: "The base",
+    baseName: "Company Brain",
+    basePrice: PRIJS.brain.en,
+    basePer: "per month",
+    baseSetup: "No setup fee",
+    baseBody:
+      "Your company's knowledge layer, plus a personal assistant for every employee. Everything you switch on later draws on this.",
+    baseFeatures: [
+      "Company Brain: your company's knowledge, captured and searchable",
+      "A personal assistant for everyone, with a source on every answer",
+      "Connections to your existing systems",
+      "Unlimited users",
+      "Cancel monthly after the first three months",
+    ],
+    baseCta: "Book a call",
+
+    addonsLabel: "What you can add",
+    addons: [
       {
-        name: "Quick Start", setup: "€2,495 - €4,495", monthly: "€495/mo",
-        features: ["AI Opportunity Scan", "MCP connections to existing systems", "Digital assistant that knows your documents, but not yet your business", "Standard integrations", "Excluding token costs"],
-        ideal: "Teams that want to move fast", highlighted: false, cta: "Start your Scan →",
+        name: "Workflow",
+        price: `${PRIJS.workflowVan.en} to ${PRIJS.workflowTot.en}`,
+        per: "per month, per workflow",
+        body: "A workflow takes over one recurring job. What it costs depends on the parts it uses and the external services it calls. You see that up front, at design time.",
       },
       {
-        name: "Professional", setup: "€12,495", monthly: "€495/mo\nand\n€1,295/mo per extra workflow", badge: "Most popular",
-        features: ["Everything in Quick Start", "Company Brain: your company's unwritten knowledge, captured", "Digital assistant and up to four extra workflows", "Cancel monthly", "Excluding token costs"],
-        ideal: "Growing organisations ready to deploy AI", highlighted: true, cta: "Book a call →",
+        name: "CRM",
+        price: PRIJS.crm.en,
+        per: "per month",
+        body: "Companies and people in one overview that keeps itself up to date from conversations and email. Connecting an existing CRM is quoted separately.",
       },
       {
-        name: "AI Native", setup: "From €49,950", monthly: "€4,995/mo",
-        features: ["Everything in Professional", "Full AI transformation", "Unlimited workflows", "Custom agents built to spec", "Dedicated support & optimisation", "Excluding token costs"],
-        ideal: "Organisations going fully AI-native", highlighted: false, cta: "Get in touch →",
+        name: "Research",
+        price: PRIJS.onderzoek.en,
+        per: "per study",
+        body: `Put a question to your own people or your customers and get a usable answer back. Above a hundred respondents it becomes ${PRIJS.onderzoekGroot.en}.`,
       },
     ],
+
+    notesTitle: "What falls outside",
+    notes: [
+      "Token costs for your own AI usage. We pass those on at cost, with no markup.",
+      "Custom integrations with existing systems. Quoted per case, always up front.",
+    ],
+    scanLine: "The AI Opportunity Scan is free and without obligation.",
+
     faqTitle: "Frequently asked questions about pricing",
     faqItems: [
-      { question: "What if I want to stop halfway?", answer: "No lock-in. You can cancel monthly." },
-      { question: "Are there extra costs for AI usage?", answer: "Yes. The token costs for the AI usage are for your account and fall outside the subscription; that's why every plan notes 'Excluding token costs'. The subscription covers the platform and the workflows." },
-      { question: "Can I upgrade?", answer: "Yes, at any time. Your existing knowledge base simply grows with you." },
-      { question: "What\u2019s not included?", answer: "Custom integrations with legacy systems may involve additional costs. We\u2019re always transparent about that." },
+      {
+        question: "Is there a setup fee?",
+        answer:
+          "No. There is no one-off amount up front. You start with the monthly fee for the Company Brain and expand when you want to.",
+      },
+      {
+        question: "What if I want to stop halfway?",
+        answer: "No lock-in. After the first three months you can cancel monthly.",
+      },
+      {
+        question: "Why does one workflow cost more than another?",
+        answer:
+          "Because some are heavier than others. The price depends on the parts it uses and the external services it calls. At design time you see up front which those are and what it costs per month.",
+      },
+      {
+        question: "Are there extra costs for AI usage?",
+        answer:
+          "Yes. Token costs for your own usage fall outside the subscription and are passed on at cost. The subscription covers the platform, the Company Brain and the workflows.",
+      },
+      {
+        question: "Can I expand later?",
+        answer:
+          "Yes, at any time. Your Company Brain simply grows with you, and everything you add draws on the same knowledge.",
+      },
     ],
   },
 };
@@ -139,76 +248,123 @@ export default function PricingPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+              {c.heroTitle}
+            </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">{c.heroSub}</p>
+            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+              {c.heroSub}
+            </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* Pricing Tiers */}
-      <section className="px-6 pb-20 md:pb-28">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {c.tiers.map((tier, i) => (
-            <FadeIn key={tier.name} delay={i * 150}>
-              <div className={`rounded-xl p-8 h-full flex flex-col ${
-                tier.highlighted
-                  ? "bg-surface ring-2 ring-sage relative"
-                  : "bg-surface border border-sage-light"
-              }`}>
-                {tier.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-sage text-white text-xs px-4 py-1 rounded-full">
-                    {tier.badge}
-                  </span>
-                )}
-                <h3 className="font-serif text-xl">{tier.name}</h3>
-                <div className="mt-4">
-                  <p className="text-sm text-grey/50 uppercase tracking-wide">{c.setupLabel}</p>
-                  <p className="text-2xl font-serif text-sage">{tier.setup}</p>
+      {/* The base */}
+      <section className="px-6 pb-4">
+        <div className="max-w-[820px] mx-auto">
+          <FadeIn>
+            <p className="text-sage text-sm font-medium tracking-wide uppercase text-center">
+              {c.baseLabel}
+            </p>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="mt-4 bg-surface rounded-xl p-8 md:p-10 ring-2 ring-sage">
+              <div className="md:flex md:items-start md:justify-between md:gap-10">
+                <div className="md:flex-1">
+                  <h2 className="font-serif text-2xl text-grey">{c.baseName}</h2>
+                  <p className="mt-3 text-base font-light text-grey/80 leading-relaxed">
+                    {c.baseBody}
+                  </p>
                 </div>
-                <div className="mt-3">
-                  <p className="text-sm text-grey/50 uppercase tracking-wide">{c.monthlyLabel}</p>
-                  {tier.monthly.includes("\n") ? (
-                    <div className="text-xl font-serif text-grey">
-                      {tier.monthly.split("\n").map((line, i) => (
-                        <p key={i} className={line === "en" || line === "and" ? "text-sm text-grey/50 my-1" : ""}>{line}</p>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-xl font-serif text-grey">{tier.monthly}</p>
-                  )}
+                <div className="mt-6 md:mt-0 md:text-right shrink-0">
+                  <p className="text-4xl font-serif text-sage">{c.basePrice}</p>
+                  <p className="text-sm text-grey/50">{c.basePer}</p>
+                  <p className="mt-2 text-sm text-sage font-medium">
+                    {c.baseSetup}
+                  </p>
                 </div>
-                <ul className="mt-6 space-y-2.5 flex-1">
-                  {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-grey/70 font-light">
-                      <span className="text-sage mt-0.5 shrink-0">✓</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-6 text-sm text-grey/50 italic">{c.idealLabel} {tier.ideal}</p>
-                <Link href="/contact" className={`mt-6 block text-center px-6 py-3 rounded-lg transition-colors ${
-                  tier.highlighted
-                    ? "bg-sage text-white hover:bg-sage-dark"
-                    : "border border-sage text-sage hover:bg-sage hover:text-white"
-                }`}>
-                  {tier.cta}
-                </Link>
               </div>
-            </FadeIn>
-          ))}
+              <ul className="mt-8 space-y-2.5">
+                {c.baseFeatures.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2 text-sm text-grey/70 font-light"
+                  >
+                    <span className="text-sage mt-0.5 shrink-0">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/contact"
+                className="mt-8 block text-center bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors"
+              >
+                {c.baseCta} →
+              </Link>
+            </div>
+          </FadeIn>
         </div>
-        <FadeIn delay={500}>
-          <p className="text-center mt-8 text-sage text-sm font-medium">{c.allPlans}</p>
-        </FadeIn>
+      </section>
+
+      {/* Add-ons */}
+      <section className="py-12 md:py-16 px-6">
+        <div className="max-w-[1000px] mx-auto">
+          <FadeIn>
+            <p className="text-sage text-sm font-medium tracking-wide uppercase text-center">
+              {c.addonsLabel}
+            </p>
+          </FadeIn>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {c.addons.map((a, i) => (
+              <FadeIn key={a.name} delay={150 + i * 120}>
+                <div className="h-full bg-surface rounded-xl p-7 border border-sage-light flex flex-col">
+                  <h3 className="font-serif text-xl text-grey">{a.name}</h3>
+                  <p className="mt-4 text-2xl font-serif text-sage">{a.price}</p>
+                  <p className="text-sm text-grey/50">{a.per}</p>
+                  <p className="mt-4 flex-1 text-sm text-grey/70 font-light leading-relaxed">
+                    {a.body}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn delay={520}>
+            <p className="text-center mt-8 text-sage text-sm font-medium">
+              {c.scanLine}
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* What falls outside */}
+      <section className="py-12 md:py-16 px-6 bg-white">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              {c.notesTitle}
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <ul className="mt-8 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+              {c.notes.map((n) => (
+                <li key={n} className="flex items-start gap-3">
+                  <span className="text-sage mt-1">·</span>
+                  <span>{n}</span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
       </section>
 
       {/* FAQ */}
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">{c.faqTitle}</h2>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">
+              {c.faqTitle}
+            </h2>
           </FadeIn>
           <FAQ items={c.faqItems} />
         </div>
