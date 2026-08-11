@@ -46,7 +46,7 @@ const staticCopy = {
     kennisSystemen: "Systemen en plekken die steeds terugkomen",
     kennisHoofden: "Wat alleen in iemands hoofd zit",
     waarBeginnen: "Waar we zouden beginnen",
-    uitzoeken: "Wat we voor je kunnen uitzoeken",
+    uitzoeken: "Wat je verder zou kunnen uitzoeken",
     groeien: "Waar je in kunt groeien",
     gegevens: "Hoe we met jullie gegevens omgaan",
     gegevensPunten: [
@@ -56,14 +56,12 @@ const staticCopy = {
     ],
     praten: "Verder praten",
     pratenBody:
-      "Wil je weten hoe dit er bij jullie uit zou zien? Laten we het erover hebben. Je kunt op elk moment stoppen.",
+      "Wil je weten wat er nodig is om de eerste workflow uit dit rapport te laten draaien? Daar praten we graag over. Je zit nergens aan vast.",
     pratenCta: "Plan een gesprek",
     volgendeStap: "De volgende stap",
     volgendeStapTitel: "De eerste stap: de scan met je mensen",
     volgendeStapBody:
       "Je hebt zelf al in kaart gebracht waar het werk zit. De volgende stap is dat je collega's hetzelfde doen voor hun eigen afdeling. Daarmee heb je het complete beeld, en beginnen we niet opnieuw.",
-    volgendeStapActie: "Wil je dat opzetten? Mail",
-    volgendeStapActieSlot: ", dan zetten we het klaar.",
   },
   en: {
     reportLabel: "AI scan",
@@ -87,7 +85,7 @@ const staticCopy = {
     kennisSystemen: "Systems and places that keep coming back",
     kennisHoofden: "What only lives in someone's head",
     waarBeginnen: "Where we would start",
-    uitzoeken: "What we can look into for you",
+    uitzoeken: "What you could look into next",
     groeien: "Where you can grow",
     gegevens: "How we handle your data",
     gegevensPunten: [
@@ -97,14 +95,12 @@ const staticCopy = {
     ],
     praten: "Talking further",
     pratenBody:
-      "Want to know what this would look like for your company? Let's talk about it. You can stop at any moment.",
+      "Want to know what it takes to get the first workflow from this report running? We are happy to talk it through. You are not tied to anything.",
     pratenCta: "Book a call",
     volgendeStap: "The next step",
     volgendeStapTitel: "The first step: the scan with your people",
     volgendeStapBody:
       "You have already mapped out where the work is. The next step is for your colleagues to do the same for their own department. That gives you the complete picture, and we don't start over.",
-    volgendeStapActie: "Want to set that up? Email",
-    volgendeStapActieSlot: ", and we will get it ready.",
   },
 };
 
@@ -288,13 +284,6 @@ export default async function ScanReportPage({
             <h3 className="font-serif text-xl text-grey">{c.volgendeStapTitel}</h3>
             <p className="mt-3 text-grey/80 font-light leading-relaxed">
               {c.volgendeStapBody}
-            </p>
-            <p className="mt-4 text-grey/80 font-light leading-relaxed">
-              {c.volgendeStapActie}{" "}
-              <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
-                info@gonativ.nl
-              </a>
-              {c.volgendeStapActieSlot}
             </p>
           </div>
         </ReportSection>
