@@ -86,7 +86,7 @@ const translations = {
   en: {
     heroTitle: "Where can AI take work off your hands?",
     heroSub:
-      "Run through the scan and see which work in your company lends itself to it. You decide how far you go.",
+      "Run through the scan and see which work in your company is a good fit. You decide how far you go.",
 
     quickTitle: "On your own",
     quickTime: "± 20 minutes",

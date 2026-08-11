@@ -49,7 +49,7 @@ const translations = {
   en: {
     heroTitle: "Reliable AI that understands how you work.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in mailboxes, in conversations and in separate tools nobody shares.",
-    heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is secured and always available to everyone. And you have the ideal foundation for your digital assistant and for the AI workflows that take the most off your plate.",
+    heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the ideal foundation for your digital assistant and for the AI workflows that take the most off your plate.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
