@@ -33,8 +33,9 @@ const sections: Section[] = [
         <li>
           <span className="text-grey">Scangegevens</span>: als je de scan invult: je
           bedrijfsnaam, je naam, je e-mailadres en je antwoorden over het werk in je bedrijf,
-          plus het rapport dat daaruit volgt. Er worden geen bedrijfsbestanden of vertrouwelijke
-          gegevens gevraagd of opgeslagen.
+          plus het rapport dat daaruit volgt. Nodig je collega&apos;s uit voor de scan, dan
+          verwerken we ook hun naam, e-mailadres en antwoorden. Er worden geen
+          bedrijfsbestanden of vertrouwelijke gegevens gevraagd of opgeslagen.
         </li>
         <li>
           <span className="text-grey">Websitegebruik</span>: geanonimiseerde, cookieloze

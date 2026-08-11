@@ -14,6 +14,7 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import {
@@ -57,6 +58,17 @@ const translations = {
     micListening: "Aan het luisteren...",
     answered: "beantwoord",
     missingField: "Deze vraag hebben we nog nodig om je rapport te maken.",
+    respondentTitle: "Het werk in {department}",
+    respondentIntro:
+      "Je vult dit in voor {company}, alleen over je eigen werk. Je antwoorden worden bewaard terwijl je bezig bent.",
+    respondentComplete: "Klaar, antwoorden insturen",
+    respondentMissingField: "Deze vraag hebben we nog nodig voordat je kunt insturen.",
+    respondentDoneTitle: "Bedankt, je antwoorden zijn binnen",
+    respondentDoneBody:
+      "Je deel van de scan is klaar. Je antwoorden gaan mee in het rapport voor {company}. Je kunt dit venster sluiten.",
+    teamOwnerComplete: "Klaar, verder naar je team",
+    teamOwnerBanner: "Dit is een teamscan.",
+    teamOwnerBannerLink: "Naar je teamoverzicht",
   },
   en: {
     block1: "Your company",
@@ -81,6 +93,17 @@ const translations = {
     micListening: "Listening...",
     answered: "answered",
     missingField: "We still need this one to create your report.",
+    respondentTitle: "The work in {department}",
+    respondentIntro:
+      "You are filling this in for {company}, about your own work only. Your answers are saved as you go.",
+    respondentComplete: "Done, submit answers",
+    respondentMissingField: "We still need this one before you can submit.",
+    respondentDoneTitle: "Thanks, your answers are in",
+    respondentDoneBody:
+      "Your part of the scan is complete. Your answers go into the report for {company}. You can close this window.",
+    teamOwnerComplete: "Done, continue to your team",
+    teamOwnerBanner: "This is a team scan.",
+    teamOwnerBannerLink: "To your team overview",
   },
 };
 
@@ -90,23 +113,44 @@ interface WizardProps {
   token: string;
   companyName: string;
   initialAnswers: Record<string, string>;
+  /** `respondent` = een uitgenodigde collega: alleen het werk-blok, afronden
+   * stuurt de eigen antwoorden in en toont een bedankt-scherm.
+   * `teamOwner` = de eigenaar van een teamscan: beide blokken, afronden sluit
+   * het eigen deel af en gaat door naar het teamoverzicht (het rapport komt
+   * pas via dat overzicht). */
+  variant?: "owner" | "teamOwner" | "respondent";
+  departmentName?: string;
 }
 
-export default function ScanWizard({ token, initialAnswers }: WizardProps) {
+export default function ScanWizard({
+  token,
+  companyName,
+  initialAnswers,
+  variant = "owner",
+  departmentName = "",
+}: WizardProps) {
   const { t, language } = useLanguage();
   const c = t(translations);
   const router = useRouter();
+  const isRespondent = variant === "respondent";
+  const isTeamOwner = variant === "teamOwner";
 
   const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
-  const [block, setBlock] = useState<1 | 2>(1);
+  const [block, setBlock] = useState<1 | 2>(isRespondent ? 2 : 1);
   const [saveState, setSaveState] = useState<SaveState>("idle");
   const [completing, setCompleting] = useState(false);
   const [completeError, setCompleteError] = useState("");
   const [missing, setMissing] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const answerMap: AnswerMap = useMemo(() => new Map(Object.entries(answers)), [answers]);
-  const options = useMemo(() => ({ companySolo: companyIsSolo(answerMap) }), [answerMap]);
+  // Een uitgenodigde collega is per definitie geen solo-bedrijf, dus het
+  // teamtotaal-pad geldt (zelfde keuze als de afrond-controle op de server).
+  const options = useMemo(
+    () => ({ companySolo: isRespondent ? false : companyIsSolo(answerMap) }),
+    [answerMap, isRespondent],
+  );
 
   const questions = block === 1 ? COMPANY_QUESTIONS : DEPARTMENT_QUESTIONS;
   const progress1 = blockProgress(COMPANY_QUESTIONS, answerMap, options);
@@ -143,21 +187,40 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
   }, []);
 
   async function handleComplete() {
-    const open = [
-      ...missingRequiredIds(COMPANY_QUESTIONS, answerMap, options),
-      ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options),
-    ];
+    const open = isRespondent
+      ? missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options)
+      : [
+          ...missingRequiredIds(COMPANY_QUESTIONS, answerMap, options),
+          ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options),
+        ];
     if (open.length > 0) {
       setMissing(open);
       const first = document.getElementById(`vraag-${open[0]}`);
       if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
-      else if (COMPANY_QUESTIONS.some((q) => q.id === open[0])) setBlock(1);
+      else if (!isRespondent && COMPANY_QUESTIONS.some((q) => q.id === open[0])) setBlock(1);
       return;
     }
     setMissing([]);
     setCompleting(true);
     setCompleteError("");
     try {
+      if (isRespondent || isTeamOwner) {
+        const res = await fetch("/api/scan/respond", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        if (!res.ok) throw new Error("respond failed");
+        if (isTeamOwner) {
+          // Eigen deel klaar: door naar het teamoverzicht, waar de eigenaar
+          // uitnodigt en het rapport maakt.
+          router.push(`/scan/${token}/team`);
+          return;
+        }
+        setSubmitted(true);
+        window.scrollTo({ top: 0 });
+        return;
+      }
       const res = await fetch("/api/scan/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -189,14 +252,42 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
 
   const progress = block === 1 ? progress1 : progress2;
 
+  if (submitted) {
+    return (
+      <section className="py-16 px-6 pb-24">
+        <div className="max-w-[640px] mx-auto text-center">
+          <FadeIn>
+            <h1 className="font-serif text-3xl md:text-4xl text-grey">
+              {c.respondentDoneTitle}
+            </h1>
+            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+              {c.respondentDoneBody.replace("{company}", companyName)}
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-10 md:py-14 px-6 pb-20 md:pb-28">
       <div className="max-w-[720px] mx-auto">
         <FadeIn>
-          <p className="text-sm text-grey/50">{c.stepOf.replace("{n}", String(block))}</p>
+          {!isRespondent && (
+            <p className="text-sm text-grey/50">{c.stepOf.replace("{n}", String(block))}</p>
+          )}
           <h1 className="mt-1 font-serif text-3xl md:text-4xl text-grey">
-            {block === 1 ? c.block1 : c.block2}
+            {isRespondent
+              ? c.respondentTitle.replace("{department}", departmentName)
+              : block === 1
+                ? c.block1
+                : c.block2}
           </h1>
+          {isRespondent && (
+            <p className="mt-3 text-grey/60 font-light leading-relaxed">
+              {c.respondentIntro.replace("{company}", companyName)}
+            </p>
+          )}
           <div className="mt-4 flex items-center gap-3">
             <div className="flex-1 h-1.5 rounded-full bg-sage-light overflow-hidden">
               <div
@@ -220,6 +311,14 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
               {copied ? c.copied : c.copyLink}
             </button>
           </p>
+          {isTeamOwner && (
+            <p className="mt-2 text-xs text-grey/40">
+              {c.teamOwnerBanner}{" "}
+              <Link href={`/scan/${token}/team`} className="text-sage hover:underline">
+                {c.teamOwnerBannerLink} →
+              </Link>
+            </p>
+          )}
         </FadeIn>
 
         <div className="mt-8 space-y-6">
@@ -243,7 +342,7 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
         </div>
 
         <div className="mt-10 flex items-center justify-between gap-4">
-          {block === 2 ? (
+          {block === 2 && !isRespondent ? (
             <button
               type="button"
               onClick={() => switchBlock(1)}
@@ -269,7 +368,11 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
               disabled={completing}
               className="bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {c.complete}
+              {isRespondent
+                ? c.respondentComplete
+                : isTeamOwner
+                  ? c.teamOwnerComplete
+                  : c.complete}
             </button>
           )}
         </div>
@@ -279,7 +382,7 @@ export default function ScanWizard({ token, initialAnswers }: WizardProps) {
             {c.missingIntro} {missing.length}
           </p>
         )}
-        {completing && (
+        {completing && !isRespondent && !isTeamOwner && (
           <p className="mt-4 text-sm text-grey/60 text-right">{c.completing}</p>
         )}
         {completeError && <p className="mt-4 text-error text-sm text-right">{completeError}</p>}

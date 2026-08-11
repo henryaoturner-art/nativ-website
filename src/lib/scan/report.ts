@@ -30,11 +30,15 @@ export interface ReportWorkflowItem {
   alsErIetsMisgaat: string;
   /** Optioneel: rapporten van vóór versie 2 hebben dit veld niet. */
   waarDeKennisZit?: string;
+  /** Alleen bij teamrapporten: uit welke afdeling dit werk komt. */
+  afdeling?: string;
 }
 
 export interface ReportPayload {
   version: 1 | 2;
   language: "nl" | "en";
+  /** Optioneel: rapporten van vóór de teamflow zijn allemaal solo. */
+  scanVorm?: "solo" | "team";
   gehoord: string;
   bekeken: string;
   ranglijst: {
@@ -42,6 +46,8 @@ export interface ReportPayload {
     sterkeKandidaten: ReportWorkflowItem[];
     laterInteressant: string[];
   };
+  /** Alleen bij teamrapporten: sectie 4, de kern van de meerwaarde. */
+  watJeMensenZagen?: string;
   /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
   kennisbeeld?: {
     systemen: string[];
@@ -53,52 +59,118 @@ export interface ReportPayload {
   waarJeInKuntGroeien: string;
 }
 
+/** Gestructureerde invoer voor een teamrapport: antwoorden per afdeling en
+ * per invuller, zodat niemand elkaars antwoorden overschrijft. */
+export interface TeamReportInput {
+  departments: {
+    name: string;
+    respondents: { name: string; completed: boolean; answers: AnswerMap }[];
+  }[];
+  invitedCount: number;
+  completedCount: number;
+}
+
 export function reportGenerationAvailable(): boolean {
   return Boolean(process.env.ANTHROPIC_API_KEY);
 }
 
-const REPORT_SCHEMA = {
-  type: "object",
-  properties: {
-    gehoord: { type: "string" },
-    bekeken: { type: "string" },
-    ranglijst: {
-      type: "object",
-      properties: {
-        hierZouIkBeginnen: { type: "array", items: workflowItemSchema() },
-        sterkeKandidaten: { type: "array", items: workflowItemSchema() },
-        laterInteressant: { type: "array", items: { type: "string" } },
-      },
-      required: ["hierZouIkBeginnen", "sterkeKandidaten", "laterInteressant"],
-      additionalProperties: false,
-    },
-    kennisbeeld: {
-      type: "object",
-      properties: {
-        systemen: { type: "array", items: { type: "string" } },
-        alleenInHoofden: { type: "array", items: { type: "string" } },
-        observatie: { type: "string" },
-      },
-      required: ["systemen", "alleenInHoofden", "observatie"],
-      additionalProperties: false,
-    },
-    waarWeZoudenBeginnen: { type: "string" },
-    uitzoeksuggesties: { type: "array", items: { type: "string" } },
-    waarJeInKuntGroeien: { type: "string" },
-  },
-  required: [
-    "gehoord",
-    "bekeken",
-    "ranglijst",
-    "kennisbeeld",
-    "waarWeZoudenBeginnen",
-    "uitzoeksuggesties",
-    "waarJeInKuntGroeien",
-  ],
-  additionalProperties: false,
-} as const;
+/** Bouwt de generator-invoer uit een scan-bundle. Eén plek, zodat de
+ * afrondroute en de rapportpagina (lazy pad) exact hetzelfde doen: de
+ * eigenaar (eerste respondent) draagt blok 1 + zijn eigen werkblok; bij een
+ * teamscan komen de overige invullers per afdeling apart mee. */
+export function buildReportInput(bundle: {
+  scan: { company_name: string; contact_name: string; mode: "quick" | "team" };
+  departments: { id: string; name: string; sort_order: number }[];
+  respondents: {
+    id: string;
+    department_id: string | null;
+    name: string;
+    status: "uitgenodigd" | "bezig" | "klaar";
+  }[];
+  answers: { question_id: string; value: string | null; respondent_id: string }[];
+}): { ownerAnswers: AnswerMap; team?: TeamReportInput } {
+  const owner = bundle.respondents[0];
+  const answersFor = (respondentId: string): AnswerMap =>
+    new Map(
+      bundle.answers
+        .filter((row) => row.respondent_id === respondentId)
+        .map((row) => [row.question_id, row.value ?? ""]),
+    );
+  const ownerAnswers = owner ? answersFor(owner.id) : new Map<string, string>();
 
-function workflowItemSchema() {
+  const invited = bundle.respondents.filter((r) => r.id !== owner?.id);
+  if (bundle.scan.mode !== "team" || invited.length === 0) return { ownerAnswers };
+
+  const departments = [...bundle.departments]
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((department) => ({
+      name: department.name,
+      respondents: invited
+        .filter((r) => r.department_id === department.id)
+        .map((r) => ({
+          name: r.name,
+          completed: r.status === "klaar",
+          answers: answersFor(r.id),
+        })),
+    }))
+    .filter((department) => department.respondents.length > 0);
+
+  return {
+    ownerAnswers,
+    team: {
+      departments,
+      invitedCount: invited.length,
+      completedCount: invited.filter((r) => r.status === "klaar").length,
+    },
+  };
+}
+
+function reportSchema(team: boolean) {
+  return {
+    type: "object",
+    properties: {
+      gehoord: { type: "string" },
+      bekeken: { type: "string" },
+      ranglijst: {
+        type: "object",
+        properties: {
+          hierZouIkBeginnen: { type: "array", items: workflowItemSchema(team) },
+          sterkeKandidaten: { type: "array", items: workflowItemSchema(team) },
+          laterInteressant: { type: "array", items: { type: "string" } },
+        },
+        required: ["hierZouIkBeginnen", "sterkeKandidaten", "laterInteressant"],
+        additionalProperties: false,
+      },
+      ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
+      kennisbeeld: {
+        type: "object",
+        properties: {
+          systemen: { type: "array", items: { type: "string" } },
+          alleenInHoofden: { type: "array", items: { type: "string" } },
+          observatie: { type: "string" },
+        },
+        required: ["systemen", "alleenInHoofden", "observatie"],
+        additionalProperties: false,
+      },
+      waarWeZoudenBeginnen: { type: "string" },
+      uitzoeksuggesties: { type: "array", items: { type: "string" } },
+      waarJeInKuntGroeien: { type: "string" },
+    },
+    required: [
+      "gehoord",
+      "bekeken",
+      "ranglijst",
+      ...(team ? ["watJeMensenZagen"] : []),
+      "kennisbeeld",
+      "waarWeZoudenBeginnen",
+      "uitzoeksuggesties",
+      "waarJeInKuntGroeien",
+    ],
+    additionalProperties: false,
+  };
+}
+
+function workflowItemSchema(team: boolean) {
   return {
     type: "object",
     properties: {
@@ -110,6 +182,7 @@ function workflowItemSchema() {
       waaromDitZichLeent: { type: "string" },
       alsErIetsMisgaat: { type: "string" },
       waarDeKennisZit: { type: "string" },
+      ...(team ? { afdeling: { type: "string" } } : {}),
     },
     required: [
       "naam",
@@ -120,6 +193,7 @@ function workflowItemSchema() {
       "waaromDitZichLeent",
       "alsErIetsMisgaat",
       "waarDeKennisZit",
+      ...(team ? ["afdeling"] : []),
     ],
     additionalProperties: false,
   };
@@ -147,6 +221,14 @@ function answersBlock(
   return lines.join("\n\n");
 }
 
+const TEAM_PROMPT_EXTRA = `
+
+Dit is een TEAMSCAN: meerdere invullers, elk over hun eigen afdeling. De antwoorden staan per afdeling en per invuller gegroepeerd; behandel elke afdeling als een eigen beeld en gooi antwoorden van verschillende invullers nooit op één hoop. Aanvullende regels:
+- bekeken: benoem per afdeling wie meedeed (voornamen volstaan) en wees eerlijk over wie nog niet heeft ingevuld; die afdelingen ontbreken in het beeld en dat zeg je gewoon.
+- Per workflow-item vul je ook afdeling in: de naam van de afdeling waar dit werk vandaan komt, letterlijk zoals de eigenaar hem noemde. De ranglijst blijft één totaallijst over de afdelingen heen.
+- watJeMensenZagen: de kern van de meerwaarde van een teamscan. Eén of twee alinea's over wat de invullers zagen dat de eigenaar zelf niet noemde: werk dat in meerdere afdelingen terugkomt zonder dat iemand dat doorhad, overdrachten waar afdelingen op elkaar wachten, en kennis die de eigenaar bij systemen dacht maar volgens de invullers in hoofden zit (of andersom). Alleen uit de antwoorden, niets verzinnen; is er weinig verschil, zeg dat dan eerlijk.
+- gehoord blijft over het bedrijf als geheel, vanuit de antwoorden van de eigenaar (de eerste invuller).`;
+
 const SYSTEM_PROMPT = `Je schrijft het rapport van de AI-scan van nativ, op basis van de antwoorden van één invuller (de quick scan, solo). Het rapport doet drie dingen, in deze volgorde: laten zien dat we hún bedrijf hebben gehoord, laten zien welk werk zich leent om door AI te laten doen en in welke volgorde, en één klein startpunt aanwijzen.
 
 Rangschik op vijf factoren: (1) volume en herhaling (dept-wf-frequency plus aantallen in het procesverhaal, overdrachten uit co-handoffs, vinkjes uit dept-time-sinks), (2) tijd (dept-wf-hours of dept-wf-hours-own, gewogen met dept-wf-confidence), (3) veilig om te beginnen (uit het procesverhaal en dept-wf-stall: gaat het resultaat naar buiten, of blijft het binnen en is het terug te draaien), (4) past bij hun doel (co-goal, met co-ai-focus als tweede as en dept-first-hire als wens-signaal), (5) grip op de kennis (dept-wf-knowledge en co-knowledge-home). De eerste drie bepalen de volgorde, de laatste twee schuiven binnen die volgorde.
@@ -168,23 +250,44 @@ export async function generateReportPayload(input: {
   contactName: string;
   answers: AnswerMap;
   language: "nl" | "en";
+  /** Aanwezig = teamrapport: antwoorden per afdeling en per invuller. */
+  team?: TeamReportInput;
 }): Promise<ReportPayload> {
   if (!reportGenerationAvailable()) {
     throw new Error("ANTHROPIC_API_KEY is niet gezet");
   }
   const client = new Anthropic();
+  const isTeam = Boolean(input.team && input.team.departments.length > 0);
 
-  const userContent =
-    `Bedrijf: ${input.companyName}\nInvuller: ${input.contactName}\n\n` +
-    `## Blok 1 · Jullie bedrijf\n\n${answersBlock(COMPANY_QUESTIONS, input.answers, input.language)}\n\n` +
-    `## Blok 2 · Het werk\n\n${answersBlock(DEPARTMENT_QUESTIONS, input.answers, input.language)}`;
+  let userContent =
+    `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
+    `## Blok 1 · Jullie bedrijf (ingevuld door de eigenaar)\n\n` +
+    `${answersBlock(COMPANY_QUESTIONS, input.answers, input.language)}\n\n` +
+    `## Blok 2 · Het werk volgens de eigenaar\n\n` +
+    `${answersBlock(DEPARTMENT_QUESTIONS, input.answers, input.language)}`;
+
+  if (isTeam && input.team) {
+    userContent += `\n\n## De afdelingen (${input.team.completedCount} van ${input.team.invitedCount} uitgenodigde collega's klaar)`;
+    for (const department of input.team.departments) {
+      userContent += `\n\n### Afdeling: ${department.name}`;
+      for (const respondent of department.respondents) {
+        if (!respondent.completed) {
+          userContent += `\n\n#### Invuller: ${respondent.name} — nog niet ingevuld`;
+          continue;
+        }
+        userContent +=
+          `\n\n#### Invuller: ${respondent.name}\n\n` +
+          answersBlock(DEPARTMENT_QUESTIONS, respondent.answers, input.language);
+      }
+    }
+  }
 
   const stream = client.messages.stream({
     model: "claude-opus-5",
     max_tokens: 16000,
-    system: SYSTEM_PROMPT,
+    system: isTeam ? SYSTEM_PROMPT + TEAM_PROMPT_EXTRA : SYSTEM_PROMPT,
     output_config: {
-      format: { type: "json_schema", schema: REPORT_SCHEMA },
+      format: { type: "json_schema", schema: reportSchema(isTeam) },
     },
     messages: [{ role: "user", content: userContent }],
   });
@@ -200,6 +303,11 @@ export async function generateReportPayload(input: {
     throw new Error(`Geen tekst in modelrespons (stop_reason: ${response.stop_reason})`);
   }
 
-  const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language">;
-  return { version: 2, language: input.language, ...parsed };
+  const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
+  return {
+    version: 2,
+    language: input.language,
+    scanVorm: isTeam ? "team" : "solo",
+    ...parsed,
+  };
 }

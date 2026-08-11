@@ -4,12 +4,12 @@ import { notFound, redirect } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { getReportPayload, getScanBundle, saveReportPayload } from "@/lib/scan/db";
 import {
+  buildReportInput,
   generateReportPayload,
   reportGenerationAvailable,
   type ReportPayload,
   type ReportWorkflowItem,
 } from "@/lib/scan/report";
-import type { AnswerMap } from "@/lib/scan/visibility";
 
 // Rapport wordt bij het eerste bezoek gegenereerd als dat bij het afronden
 // nog niet kon (bijvoorbeeld zonder API-sleutel); dat kan minuten duren.
@@ -45,6 +45,7 @@ const staticCopy = {
     kennisbeeld: "Waar die kennis nu zit",
     kennisSystemen: "Systemen en plekken die steeds terugkomen",
     kennisHoofden: "Wat alleen in iemands hoofd zit",
+    mensenZagen: "Wat je mensen zagen en jij niet",
     waarBeginnen: "Waar we zouden beginnen",
     uitzoeken: "Wat je verder zou kunnen uitzoeken",
     groeien: "Waar je in kunt groeien",
@@ -62,6 +63,7 @@ const staticCopy = {
     volgendeStapTitel: "De eerste stap: de scan met je mensen",
     volgendeStapBody:
       "Je hebt zelf al in kaart gebracht waar het werk zit. De volgende stap is dat je collega's hetzelfde doen voor hun eigen afdeling. Daarmee heb je het complete beeld, en beginnen we niet opnieuw.",
+    volgendeStapCta: "Nodig je team uit",
   },
   en: {
     reportLabel: "AI scan",
@@ -84,6 +86,7 @@ const staticCopy = {
     kennisbeeld: "Where that knowledge sits today",
     kennisSystemen: "Systems and places that keep coming back",
     kennisHoofden: "What only lives in someone's head",
+    mensenZagen: "What your people saw that you did not",
     waarBeginnen: "Where we would start",
     uitzoeken: "What you could look into next",
     groeien: "Where you can grow",
@@ -101,6 +104,7 @@ const staticCopy = {
     volgendeStapTitel: "The first step: the scan with your people",
     volgendeStapBody:
       "You have already mapped out where the work is. The next step is for your colleagues to do the same for their own department. That gives you the complete picture, and we don't start over.",
+    volgendeStapCta: "Invite your team",
   },
 };
 
@@ -112,23 +116,25 @@ export default async function ScanReportPage({
   const { token } = await params;
   const bundle = await getScanBundle(token);
   if (!bundle) notFound();
-  const { scan, answers } = bundle;
-  if (scan.status !== "afgerond") redirect(`/scan/${token}`);
+  const { scan } = bundle;
 
   let payload = (await getReportPayload(scan.id)) as ReportPayload | null;
+  // Een heropende scan (team uitgenodigd na het solo-rapport) houdt zijn
+  // bestaande rapport zichtbaar; alleen zonder rapport gaat een open scan
+  // terug naar de vragen.
+  if (scan.status !== "afgerond" && !payload) redirect(`/scan/${token}`);
 
   // Zelfherstellend: was er bij het afronden nog geen sleutel, dan wordt het
   // rapport bij het eerste bezoek alsnog gemaakt en bewaard.
   if (!payload && reportGenerationAvailable()) {
     try {
-      const answerMap: AnswerMap = new Map(
-        answers.map((row) => [row.question_id, row.value ?? ""]),
-      );
+      const reportInput = buildReportInput(bundle);
       payload = await generateReportPayload({
         companyName: scan.company_name,
         contactName: scan.contact_name,
-        answers: answerMap,
+        answers: reportInput.ownerAnswers,
         language: "nl",
+        team: reportInput.team,
       });
       await saveReportPayload(scan.id, payload);
     } catch (err) {
@@ -205,6 +211,12 @@ export default async function ScanReportPage({
           )}
         </ReportSection>
 
+        {payload.watJeMensenZagen && (
+          <ReportSection title={c.mensenZagen}>
+            <Prose text={payload.watJeMensenZagen} />
+          </ReportSection>
+        )}
+
         {payload.kennisbeeld && (
           <ReportSection title={c.kennisbeeld}>
             <Prose text={payload.kennisbeeld.observatie} />
@@ -279,14 +291,25 @@ export default async function ScanReportPage({
           </Link>
         </ReportSection>
 
-        <ReportSection title={c.volgendeStap}>
-          <div className="bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
-            <h3 className="font-serif text-xl text-grey">{c.volgendeStapTitel}</h3>
-            <p className="mt-3 text-grey/80 font-light leading-relaxed">
-              {c.volgendeStapBody}
-            </p>
-          </div>
-        </ReportSection>
+        {/* Sectie 10: alleen bij een solo-rapport (rapportstructuur-doc); bij
+            een teamrapport vervalt hij. Self-service: de knop opent het eigen
+            teamoverzicht, waar de eigenaar zelf collega's uitnodigt. */}
+        {payload.scanVorm !== "team" && (
+          <ReportSection title={c.volgendeStap}>
+            <div className="bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
+              <h3 className="font-serif text-xl text-grey">{c.volgendeStapTitel}</h3>
+              <p className="mt-3 text-grey/80 font-light leading-relaxed">
+                {c.volgendeStapBody}
+              </p>
+              <Link
+                href={`/scan/${token}/team`}
+                className="mt-5 inline-block bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors"
+              >
+                {c.volgendeStapCta}
+              </Link>
+            </div>
+          </ReportSection>
+        )}
       </div>
     </section>
   );
@@ -341,7 +364,14 @@ function WorkflowCard({
         primary ? "bg-sage-light border-sage/40" : "bg-surface border-sage-light"
       }`}
     >
-      <h4 className="font-serif text-lg text-grey">{item.naam}</h4>
+      <div className="flex items-baseline justify-between gap-3">
+        <h4 className="font-serif text-lg text-grey">{item.naam}</h4>
+        {item.afdeling && (
+          <span className="shrink-0 text-xs text-sage bg-cream/60 border border-sage-light rounded-full px-2.5 py-0.5">
+            {item.afdeling}
+          </span>
+        )}
+      </div>
       <dl className="mt-4 space-y-2.5">
         {rows.map(([label, value]) => (
           <div key={label}>

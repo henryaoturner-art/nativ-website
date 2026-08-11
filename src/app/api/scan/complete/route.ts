@@ -13,6 +13,7 @@ import {
   type AnswerMap,
 } from "@/lib/scan/visibility";
 import {
+  buildReportInput,
   generateReportPayload,
   reportGenerationAvailable,
   type ReportPayload,
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
     if (!bundle) {
       return NextResponse.json({ error: "Scan niet gevonden" }, { status: 404 });
     }
-    const { scan, respondents, answers } = bundle;
+    const { scan, respondents } = bundle;
     if (scan.status !== "open") {
       // Al afgerond: geen fout, gewoon opnieuw naar het rapport.
       return NextResponse.json({ ok: true, reportUrl: `/scan/${scan.token}/rapport` });
@@ -64,10 +65,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Scan heeft geen respondent" }, { status: 500 });
     }
 
-    // Afrond-controle op de server, met dezelfde evaluator als de wizard.
-    const answerMap: AnswerMap = new Map(
-      answers.map((row) => [row.question_id, row.value ?? ""]),
-    );
+    // Afrond-controle op de server, met dezelfde evaluator als de wizard —
+    // over de EIGEN antwoorden van de eigenaar. Bij een teamscan tellen de
+    // antwoorden van collega's hier niet mee: de eigenaar mag afronden ook
+    // als nog niet iedereen klaar is (het rapport zegt eerlijk wie meedeed).
+    const reportInput = buildReportInput(bundle);
+    const answerMap: AnswerMap = reportInput.ownerAnswers;
     const options = { companySolo: companyIsSolo(answerMap) };
     const missing = [
       ...missingRequiredIds(COMPANY_QUESTIONS, answerMap, options),
@@ -93,6 +96,7 @@ export async function POST(req: NextRequest) {
           contactName: scan.contact_name,
           answers: answerMap,
           language: lang,
+          team: reportInput.team,
         });
         await saveReportPayload(scan.id, payload);
       } catch (err) {
@@ -122,7 +126,11 @@ export async function POST(req: NextRequest) {
             `<li><strong>Bedrijf:</strong> ${esc(scan.company_name)}</li>` +
             `<li><strong>Contactpersoon:</strong> ${esc(scan.contact_name)}</li>` +
             `<li><strong>E-mail:</strong> ${esc(scan.contact_email)}</li>` +
-            `<li><strong>Vorm:</strong> solo (quick scan)</li>` +
+            `<li><strong>Vorm:</strong> ${
+              reportInput.team
+                ? `team (${reportInput.team.departments.length} afdeling(en), ${reportInput.team.completedCount} van ${reportInput.team.invitedCount} collega's klaar)`
+                : "solo (quick scan)"
+            }</li>` +
             `</ul>` +
             (topLines
               ? `<p><strong>Top drie uit het rapport:</strong></p><ul>${topLines}</ul>`

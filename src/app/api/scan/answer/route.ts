@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { questionById, type ScanQuestion } from "@/lib/scan/bank";
-import { getScanAccess, upsertAnswer } from "@/lib/scan/db";
+import { COMPANY_QUESTIONS, questionById, type ScanQuestion } from "@/lib/scan/bank";
+import { getScanAccess, markRespondentBusy, upsertAnswer } from "@/lib/scan/db";
 
 const MAX_TEXT = 20_000;
 
@@ -69,6 +69,11 @@ export async function PUT(req: NextRequest) {
     if (access.scan.status !== "open") {
       return NextResponse.json({ error: "Deze scan is al afgerond" }, { status: 409 });
     }
+    // Uitgenodigde collega's beantwoorden alleen de afdelingsvragen; de
+    // bedrijfsvragen zijn van de eigenaar.
+    if (!access.isOwner && COMPANY_QUESTIONS.some((q) => q.id === question.id)) {
+      return NextResponse.json({ error: "Deze vraag hoort niet bij jouw deel" }, { status: 403 });
+    }
 
     const value = normalizeValue(question, body.value);
     if (value === null) {
@@ -82,6 +87,8 @@ export async function PUT(req: NextRequest) {
       questionId: question.id,
       value,
     });
+    // Eerste antwoord van een uitgenodigde → 'bezig' op het beheerscherm.
+    if (!access.isOwner) await markRespondentBusy(access.respondent.id);
 
     return NextResponse.json({ ok: true });
   } catch (err) {

@@ -67,6 +67,9 @@ export async function createQuickScan(input: {
   contactEmail: string;
   bankVersion: string;
   departmentName: string;
+  /** `team` = de invuller koos "met je team": hij vult eerst zelf in en komt
+   * daarna op het beheerscherm in plaats van op het rapport. */
+  mode?: "quick" | "team";
 }): Promise<{ scanToken: string }> {
   const db = sql();
   const scanId = randomUUID();
@@ -78,8 +81,16 @@ export async function createQuickScan(input: {
   await db.transaction([
     db.query(
       `INSERT INTO scan (id, token, mode, company_name, contact_name, contact_email, bank_version, status)
-       VALUES ($1, $2, 'quick', $3, $4, $5, $6, 'open')`,
-      [scanId, scanToken, input.companyName, input.contactName, input.contactEmail, input.bankVersion],
+       VALUES ($1, $2, $7, $3, $4, $5, $6, 'open')`,
+      [
+        scanId,
+        scanToken,
+        input.companyName,
+        input.contactName,
+        input.contactEmail,
+        input.bankVersion,
+        input.mode ?? "quick",
+      ],
     ),
     db.query(
       `INSERT INTO scan_department (id, scan_id, name, sort_order) VALUES ($1, $2, $3, 0)`,
@@ -116,29 +127,109 @@ export async function getScanBundle(token: string): Promise<ScanBundle | null> {
   };
 }
 
-/** Lichte resolver voor de autosave: scan + eerste respondent/afdeling,
- * zonder de antwoorden mee te trekken. */
-export async function getScanAccess(token: string): Promise<{
+export interface ScanAccess {
   scan: ScanRow;
   respondent: RespondentRow;
   department: DepartmentRow;
-} | null> {
+  /** true = het scan-token van de eigenaar, false = de persoonlijke link van
+   * een uitgenodigde collega. Bepaalt wie mag afronden en wie het rapport ziet. */
+  isOwner: boolean;
+}
+
+/** Lichte resolver voor de autosave. Accepteert twee soorten token: het
+ * scan-token van de eigenaar (→ de eerste respondent, dat is hijzelf) of de
+ * persoonlijke link van een uitgenodigde collega (→ die respondent en zijn
+ * eigen afdeling). Eén resolver, zodat de antwoord-route niet hoeft te weten
+ * wie er invult. */
+export async function getScanAccess(token: string): Promise<ScanAccess | null> {
   const db = sql();
   const scans = (await db.query(`SELECT * FROM scan WHERE token = $1`, [token])) as ScanRow[];
   const scan = scans[0];
-  if (!scan) return null;
-  const [respondentRows, departmentRows] = await Promise.all([
-    db.query(`SELECT * FROM scan_respondent WHERE scan_id = $1 ORDER BY invited_at LIMIT 1`, [
-      scan.id,
-    ]),
-    db.query(`SELECT * FROM scan_department WHERE scan_id = $1 ORDER BY sort_order LIMIT 1`, [
-      scan.id,
-    ]),
+
+  if (scan) {
+    const [respondentRows, departmentRows] = await Promise.all([
+      db.query(`SELECT * FROM scan_respondent WHERE scan_id = $1 ORDER BY invited_at LIMIT 1`, [
+        scan.id,
+      ]),
+      db.query(`SELECT * FROM scan_department WHERE scan_id = $1 ORDER BY sort_order LIMIT 1`, [
+        scan.id,
+      ]),
+    ]);
+    const respondent = (respondentRows as RespondentRow[])[0];
+    const department = (departmentRows as DepartmentRow[])[0];
+    if (!respondent || !department) return null;
+    return { scan, respondent, department, isOwner: true };
+  }
+
+  const respondentRows = (await db.query(`SELECT * FROM scan_respondent WHERE token = $1`, [
+    token,
+  ])) as RespondentRow[];
+  const respondent = respondentRows[0];
+  if (!respondent || !respondent.department_id) return null;
+  const [ownerScans, departmentRows] = await Promise.all([
+    db.query(`SELECT * FROM scan WHERE id = $1`, [respondent.scan_id]),
+    db.query(`SELECT * FROM scan_department WHERE id = $1`, [respondent.department_id]),
   ]);
-  const respondent = (respondentRows as RespondentRow[])[0];
+  const ownerScan = (ownerScans as ScanRow[])[0];
   const department = (departmentRows as DepartmentRow[])[0];
-  if (!respondent || !department) return null;
-  return { scan, respondent, department };
+  if (!ownerScan || !department) return null;
+  return { scan: ownerScan, respondent, department, isOwner: false };
+}
+
+/** Een afdeling met de uitgenodigde collega's erin. De scan gaat hiermee van
+ * `quick` naar `team`: geen nieuwe scan, alleen rijen erbij (datamodel-doc). */
+export async function addDepartmentWithRespondents(input: {
+  scanId: string;
+  departmentName: string;
+  sortOrder: number;
+  people: { name: string; email: string }[];
+}): Promise<{ departmentId: string; invited: { name: string; email: string; token: string }[] }> {
+  const db = sql();
+  const departmentId = randomUUID();
+  const invited = input.people.map((person) => ({ ...person, token: newToken() }));
+
+  await db.transaction([
+    // Uitnodigen na een afgerond solo-rapport heropent de scan; het bestaande
+    // rapport blijft staan tot de eigenaar opnieuw afrondt.
+    db.query(`UPDATE scan SET mode = 'team', status = 'open', completed_at = NULL WHERE id = $1`, [
+      input.scanId,
+    ]),
+    db.query(`INSERT INTO scan_department (id, scan_id, name, sort_order) VALUES ($1, $2, $3, $4)`, [
+      departmentId,
+      input.scanId,
+      input.departmentName,
+      input.sortOrder,
+    ]),
+    ...invited.map((person) =>
+      db.query(
+        `INSERT INTO scan_respondent (id, scan_id, department_id, name, email, token, status)
+         VALUES ($1, $2, $3, $4, $5, $6, 'uitgenodigd')`,
+        [randomUUID(), input.scanId, departmentId, person.name, person.email, person.token],
+      ),
+    ),
+  ]);
+
+  return { departmentId, invited };
+}
+
+/** Een uitgenodigde collega rondt zijn eigen deel af. Raakt de scan zelf niet:
+ * alleen de eigenaar bepaalt wanneer het rapport gemaakt wordt. */
+export async function completeRespondent(respondentId: string): Promise<void> {
+  const db = sql();
+  await db.query(
+    `UPDATE scan_respondent SET status = 'klaar', completed_at = now() WHERE id = $1`,
+    [respondentId],
+  );
+}
+
+/** Eerste opgeslagen antwoord zet een uitgenodigde op 'bezig', zodat de
+ * eigenaar op zijn beheerscherm ziet dat iemand begonnen is. */
+export async function markRespondentBusy(respondentId: string): Promise<void> {
+  const db = sql();
+  await db.query(
+    `UPDATE scan_respondent SET status = 'bezig' WHERE id = $1 AND status = 'uitgenodigd'`,
+    [respondentId],
+  );
 }
 
 export async function upsertAnswer(input: {

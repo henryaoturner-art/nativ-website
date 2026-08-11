@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
       contactName?: string;
       contactEmail?: string;
       lang?: string;
+      mode?: string;
     };
 
     const companyName = body.companyName?.trim() ?? "";
@@ -35,15 +36,17 @@ export async function POST(req: NextRequest) {
     const departmentName =
       body.lang === "en" ? COMPANY_WIDE_DEPARTMENT.en : COMPANY_WIDE_DEPARTMENT.nl;
 
+    const mode: "quick" | "team" = body.mode === "team" ? "team" : "quick";
     const { scanToken } = await createQuickScan({
       companyName,
       contactName,
       contactEmail,
       bankVersion: SCAN_BANK_VERSION,
       departmentName,
+      mode,
     });
 
-    console.log("SCAN_CREATED:", JSON.stringify({ companyName, contactEmail }));
+    console.log("SCAN_CREATED:", JSON.stringify({ companyName, contactEmail, mode }));
     return NextResponse.json({ token: scanToken });
   } catch (err) {
     console.error("SCAN_CREATE_ERROR:", err);

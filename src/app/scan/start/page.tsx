@@ -50,12 +50,16 @@ export default function ScanStartPage() {
     setLoading(true);
     setError("");
 
+    // ?team=1 (kaart B op /scan): zelfde formulier, maar de scan start als
+    // teamscan — na de eigen vragen volgt het teamoverzicht, niet het rapport.
+    const isTeam = new URLSearchParams(window.location.search).has("team");
     const form = e.currentTarget;
     const data = {
       companyName: (form.elements.namedItem("company") as HTMLInputElement).value,
       contactName: (form.elements.namedItem("name") as HTMLInputElement).value,
       contactEmail: (form.elements.namedItem("email") as HTMLInputElement).value,
       lang: language,
+      mode: isTeam ? "team" : "quick",
     };
 
     try {

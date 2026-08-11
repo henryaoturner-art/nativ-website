@@ -5,11 +5,10 @@ import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
 
-// The quick-scan flow lives at /scan/start (this commit). The team flow does
-// not exist yet; its card keeps routing to /contact until it lands — flip
-// TEAM_SCAN_HREF to "/scan/team" in the same commit that delivers it.
+// Beide smaken starten op hetzelfde formulier; ?team=1 maakt er een teamscan
+// van (eigen vragen eerst, daarna het teamoverzicht met uitnodigingen).
 const QUICK_SCAN_HREF = "/scan/start";
-const TEAM_SCAN_HREF = "/contact";
+const TEAM_SCAN_HREF = "/scan/start?team=1";
 
 const translations = {
   nl: {

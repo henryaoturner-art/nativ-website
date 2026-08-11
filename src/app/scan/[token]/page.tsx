@@ -21,9 +21,14 @@ export default async function ScanTokenPage({
   if (!bundle) notFound();
   if (bundle.scan.status === "afgerond") redirect(`/scan/${token}/rapport`);
 
+  // Alleen de eigen antwoorden van de eigenaar (eerste respondent): bij een
+  // teamscan horen de antwoorden van collega's niet in dit formulier.
+  const owner = bundle.respondents[0];
   const initialAnswers: Record<string, string> = {};
   for (const row of bundle.answers) {
-    if (row.value != null) initialAnswers[row.question_id] = row.value;
+    if (row.respondent_id === owner?.id && row.value != null) {
+      initialAnswers[row.question_id] = row.value;
+    }
   }
 
   return (
@@ -31,6 +36,7 @@ export default async function ScanTokenPage({
       token={token}
       companyName={bundle.scan.company_name}
       initialAnswers={initialAnswers}
+      variant={bundle.scan.mode === "team" ? "teamOwner" : "owner"}
     />
   );
 }
