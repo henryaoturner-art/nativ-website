@@ -9,7 +9,7 @@ const translations = {
   nl: {
     heroTitle: "Betrouwbare AI die begrijpt hoe jij werkt.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in hoofden, in mailboxen, in losse tools die niemand deelt. Is de juiste persoon er even niet, dan sta je stil.",
-    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en brengt hem samen in één Company Brain. Daar draaien je digitale assistent en je workflows op: voor sales, marketing, finance en HR.",
+    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en brengt hem samen in één Company Brain. Dat is het fundament voor je digitale assistent en voor de AI-workflows die jou het meest ontzorgen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
     ctaWhitepaper: "Whitepaper downloaden",
@@ -49,7 +49,7 @@ const translations = {
   en: {
     heroTitle: "Reliable AI that understands how you work.",
     heroSub1: "Your company’s knowledge is scattered: in people’s heads, in mailboxes, in separate tools nobody shares. When the right person is out, you are stuck.",
-    heroSub2: "nativ takes that knowledge out of your people and your systems and brings it together in one Company Brain. That is what your digital assistant and your workflows run on: for sales, marketing, finance and HR.",
+    heroSub2: "nativ takes that knowledge out of your people and your systems and brings it together in one Company Brain. That is the foundation for your digital assistant and for the AI workflows that take the most off your plate.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
@@ -129,15 +129,25 @@ const softwareSchema = {
   operatingSystem: "Web",
   description:
     "Eén centrale AI-kennisbank voor je bedrijf, met workflows voor marketing, sales, finance en hr plus een persoonlijke AI-assistent voor elke medewerker.",
-  // AggregateOffer, not Offer: a bare Offer needs a price, and the Company Brain
-  // is sold in three tiers. lowPrice is the Quick Start setup fee listed on /pricing.
+  // Eén vast maandbedrag voor iedereen (besluit O4), dus een gewone Offer met een
+  // maandelijkse UnitPriceSpecification. De oude AggregateOffer noemde nog een
+  // Quick Start-instapbedrag; instapkosten bestaan niet meer (besluit O11).
   offers: {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     priceCurrency: "EUR",
-    lowPrice: "2495",
-    offerCount: 3,
+    price: "1495",
     availability: "https://schema.org/InStock",
     url: "https://gonativ.nl/pricing",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      priceCurrency: "EUR",
+      price: "1495",
+      referenceQuantity: {
+        "@type": "QuantitativeValue",
+        value: 1,
+        unitCode: "MON",
+      },
+    },
   },
   provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
 };
@@ -191,7 +201,7 @@ const faqSchema = {
       name: "Hoeveel kost een Company Brain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "De investering hangt af van de omvang en het aantal workflows. We beginnen klein en omkeerbaar. Vraag een vrijblijvend gesprek aan voor een prijs die past bij jullie situatie.",
+        text: "De Company Brain kost €1.495 per maand, voor elk bedrijf hetzelfde bedrag. Er zijn geen instapkosten en geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost €75 tot €245 per maand en een studie €50. Alle prijzen staan op gonativ.nl/pricing.",
       },
     },
   ],
