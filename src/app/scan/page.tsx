@@ -5,11 +5,10 @@ import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
 
-// The scan flow itself does not exist yet. Until it does, both cards route to
-// /contact so this page can ship without producing live 404s. Flip these two
-// constants to "/scan/start" and "/scan/team" in the same commit that lands the
-// flow — nothing else on this page has to change.
-const QUICK_SCAN_HREF = "/contact";
+// The quick-scan flow lives at /scan/start (this commit). The team flow does
+// not exist yet; its card keeps routing to /contact until it lands — flip
+// TEAM_SCAN_HREF to "/scan/team" in the same commit that delivers it.
+const QUICK_SCAN_HREF = "/scan/start";
 const TEAM_SCAN_HREF = "/contact";
 
 const translations = {
