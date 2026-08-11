@@ -94,7 +94,7 @@ const translations = {
     baseFeatures: [
       "De kennis van je bedrijf, vastgelegd en doorzoekbaar",
       "Een persoonlijke assistent voor iedereen, met bronvermelding bij elk antwoord",
-      "Klanten en contacten in één overzicht, dat zichzelf bijwerkt",
+      "Een eigen CRM: klanten en contacten in één overzicht, dat zichzelf bijwerkt",
       "Onbeperkt gebruikers",
       "Geen minimale looptijd, één maand opzegtermijn",
     ],
@@ -201,7 +201,7 @@ const translations = {
     baseFeatures: [
       "Your company's knowledge, captured and searchable",
       "A personal assistant for everyone, with a source on every answer",
-      "Customers and contacts in one overview that keeps itself up to date",
+      "A CRM of your own: customers and contacts in one overview that keeps itself up to date",
       "Unlimited users",
       "No minimum term, one month's notice",
     ],

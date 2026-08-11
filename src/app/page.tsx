@@ -7,15 +7,15 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Is de juiste persoon er even niet, dan sta je stil.",
-    heroSub1: "De kennis van je bedrijf zit verspreid. In hoofden, in mailboxen, in losse tools die niemand deelt.",
-    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en zet hem op één plek: een Company Brain. Daar draaien je assistent en je workflows op.",
+    heroTitle: "Betrouwbare AI die begrijpt hoe jij werkt.",
+    heroSub1: "De kennis van je bedrijf zit verspreid: in hoofden, in mailboxen, in losse tools die niemand deelt. Is de juiste persoon er even niet, dan sta je stil.",
+    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en brengt hem samen in één Company Brain. Daar draaien je digitale assistent en je workflows op: voor sales, marketing, finance en HR.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
     ctaWhitepaper: "Whitepaper downloaden",
     heroSeoLine:
       "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
-    problemTitle: "Wat er verandert als het wél op één plek staat",
+    problemTitle: "Wat er verandert als je kennis op één plek staat",
     problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
     problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
     problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
@@ -25,16 +25,16 @@ const translations = {
       {
         num: "1", title: "Scan",
         desc: "We brengen in kaart waar AI de meeste impact heeft, en wat het oplevert.",
-        detail: "In 1 week weet je precies waar de kansen liggen.",
+        detail: "Je weet daarna precies waar de kansen liggen.",
       },
       {
         num: "2", title: "Build",
-        desc: "We bouwen je AI Operating System, een levende kennisbank die AI de context geeft van jouw bedrijf.",
-        detail: "Merkidentiteit, processen, marktdata: gestructureerd en altijd actueel.",
+        desc: "Samen bouwen we je Company Brain, waarin de kennis uit je mensen en je systemen samenkomt.",
+        detail: "Merkidentiteit, processen, marktdata en een eigen CRM: geordend, met een eigenaar per onderdeel.",
       },
       {
         num: "3", title: "Deploy",
-        desc: "We zetten workflows in die putten uit jouw kennisbank en echt werk leveren.",
+        desc: "We zetten workflows in die gevoed worden vanuit jouw Company Brain en echt werk leveren.",
         detail: "Geen speelgoed. Geen demo's. Resultaat.",
       },
     ],
@@ -47,9 +47,9 @@ const translations = {
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "When the right person is out, you are stuck.",
-    heroSub1: "Your company’s knowledge is scattered. In people’s heads, in mailboxes, in separate tools nobody shares.",
-    heroSub2: "nativ takes that knowledge out of your people and your systems and puts it in one place: a Company Brain. That is what your assistant and your workflows run on.",
+    heroTitle: "Reliable AI that understands how you work.",
+    heroSub1: "Your company’s knowledge is scattered: in people’s heads, in mailboxes, in separate tools nobody shares. When the right person is out, you are stuck.",
+    heroSub2: "nativ takes that knowledge out of your people and your systems and brings it together in one Company Brain. That is what your digital assistant and your workflows run on: for sales, marketing, finance and HR.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
@@ -63,17 +63,17 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We map where AI has the highest impact, and what it costs to do nothing.",
-        detail: "In 1 week you know exactly where the opportunities are.",
+        desc: "We map where AI has the highest impact, and what it delivers.",
+        detail: "You come out knowing exactly where the opportunities are.",
       },
       {
         num: "2", title: "Build",
-        desc: "We build your AI Operating System, a living knowledge base that gives AI the context of your business.",
-        detail: "Brand identity, processes, market data: structured and always current.",
+        desc: "Together we build your Company Brain, where the knowledge from your people and your systems comes together.",
+        detail: "Brand identity, processes, market data and a CRM of your own: ordered, with an owner for each part.",
       },
       {
         num: "3", title: "Deploy",
-        desc: "We deploy workflows that draw on your knowledge base and actually get work done.",
+        desc: "We deploy workflows that are fed from your Company Brain and deliver real work.",
         detail: "No toys. No demos. Results.",
       },
     ],
@@ -229,7 +229,7 @@ export default function HomePage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-6 md:mt-8 text-lg md:text-xl font-light text-grey/70 max-w-2xl mx-auto leading-relaxed">
-              {c.heroSub1}
+              {c.heroSub1}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
             </p>
