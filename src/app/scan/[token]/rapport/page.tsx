@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 // instapteksten-2026-08-07.md §4) — niet door het model geschreven.
 const staticCopy = {
   nl: {
-    reportLabel: "AI Opportunity Scan",
+    reportLabel: "AI-scan",
     pendingTitle: "Je rapport wordt gemaakt",
     pendingBody:
       "Je antwoorden zijn binnen en veilig opgeslagen. Het rapport staat hier zodra het klaar is; deze pagina is en blijft jouw eigen link. Kom gerust later terug.",
@@ -60,7 +60,7 @@ const staticCopy = {
       "Je hebt zelf al in kaart gebracht waar het werk zit. De volgende stap is dat je collega's hetzelfde doen voor hun eigen afdeling. Daarmee heb je het complete beeld, en beginnen we niet opnieuw.",
   },
   en: {
-    reportLabel: "AI Opportunity Scan",
+    reportLabel: "AI scan",
     pendingTitle: "Your report is being created",
     pendingBody:
       "Your answers are in and safely stored. The report will appear here as soon as it is ready; this page is and remains your personal link. Feel free to come back later.",

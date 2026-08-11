@@ -4,7 +4,7 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/scan",
   "Gratis AI-scan voor het mkb — zie waar AI werk uit handen neemt | nativ",
-  "De gratis AI Opportunity Scan voor het mkb. In ongeveer 20 minuten zie je welk werk in jouw bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert. Of doe hem compleet met je team, afdeling voor afdeling. Geen kosten, geen verplichting.",
+  "De gratis AI-scan voor het mkb. In ongeveer 20 minuten zie je welk werk in jouw bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert. Of doe hem compleet met je team, afdeling voor afdeling. Geen kosten, geen verplichting.",
 );
 
 // Answers are copied verbatim from the Dutch FAQ rendered in page.tsx. Google
@@ -71,7 +71,7 @@ const faqSchema = {
 // that contradicts the page is worse than no structured data.
 const scanWebPage = webPage(
   "/scan",
-  "AI Opportunity Scan",
+  "Gratis AI-scan",
   "Gratis. Zie in ongeveer 20 minuten welk werk in jouw bedrijf zich leent voor AI, of doe de scan compleet met je team.",
 );
 

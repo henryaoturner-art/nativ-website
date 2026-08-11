@@ -13,7 +13,7 @@ const translations = {
       {
         step: "Stap 1", title: "Scan",
         lead: "We scannen waar AI de meeste waarde creëert in jouw organisatie.",
-        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze gratis AI Opportunity Scan brengt in kaart welk werk zich leent voor AI. Geen vage beloftes: concreet werk, op volgorde van wat het meeste oplevert.",
+        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze gratis AI-scan brengt in kaart welk werk zich leent voor AI. Geen vage beloftes: concreet werk, op volgorde van wat het meeste oplevert.",
         features: ["In je eentje in ongeveer 20 minuten", "Of compleet met je team, afdeling voor afdeling", "Een deelbaar rapport met één klein startpunt"],
         meta: "Gratis | ± 20 minuten in je eentje | Geen verplichting",
         whatLabel: "Wat je krijgt:",
@@ -52,7 +52,7 @@ const translations = {
       {
         step: "Step 1", title: "Scan",
         lead: "We identify where AI creates the most value in your organisation.",
-        body: "You know AI matters. But where do you start? Our free AI Opportunity Scan maps out which work lends itself to AI. No vague promises: concrete work, ordered by what delivers most.",
+        body: "You know AI matters. But where do you start? Our free AI scan maps out which work lends itself to AI. No vague promises: concrete work, ordered by what delivers most.",
         features: ["On your own in about 20 minutes", "Or complete with your team, department by department", "A shareable report with one small starting point"],
         meta: "Free | ± 20 minutes on your own | No obligation",
         whatLabel: "What you get:",

@@ -24,7 +24,7 @@ const translations = {
     flexTitle: "Volledige flexibiliteit",
     flexP1: "Kies zelf je goede doelen: elk geregistreerd goed doel is mogelijk. Lokaal of internationaal, groot of klein.",
     flexP2: "Pas je donatiebedrag aan per diagnostiek. Meer budget? Hogere donatie. Krap budget? Zelfs €0,01 maakt verschil als honderden mensen deelnemen.",
-    flexP3: "Het donatiemechanisme is ingebouwd in elke diagnostiek die via ons platform loopt, van AI Opportunity Scans tot lopende kennisvergaringsworkflows.",
+    flexP3: "Het donatiemechanisme is ingebouwd in elke diagnostiek die via ons platform loopt, van AI-scans tot lopende kennisvergaringsworkflows.",
     beyondTitle: "Daarnaast investeren we in",
     beyondItems: [
       { title: "AI-educatie", desc: "Gratis AI-scans en workshops voor non-profits en sociale ondernemingen." },
@@ -54,7 +54,7 @@ const translations = {
     flexTitle: "Full flexibility",
     flexP1: "Choose your own charities: any registered charity is possible. Local or international, big or small.",
     flexP2: "Adjust your donation amount per diagnostic. Bigger budget? Higher donation. Tight budget? Even €0.01 makes a difference when hundreds of people participate.",
-    flexP3: "The donation mechanism is built into every diagnostic that runs through our platform, from AI Opportunity Scans to ongoing knowledge gathering workflows.",
+    flexP3: "The donation mechanism is built into every diagnostic that runs through our platform, from AI scans to ongoing knowledge gathering workflows.",
     beyondTitle: "We also invest in",
     beyondItems: [
       { title: "AI education", desc: "Free AI scans and workshops for non-profits and social enterprises." },

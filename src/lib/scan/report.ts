@@ -126,7 +126,7 @@ function answersBlock(
   return lines.join("\n\n");
 }
 
-const SYSTEM_PROMPT = `Je schrijft het rapport van de AI Opportunity Scan van nativ, op basis van de antwoorden van één invuller (de quick scan, solo). Het rapport doet drie dingen, in deze volgorde: laten zien dat we hún bedrijf hebben gehoord, laten zien welk werk zich leent om door AI te laten doen en in welke volgorde, en één klein startpunt aanwijzen.
+const SYSTEM_PROMPT = `Je schrijft het rapport van de AI-scan van nativ, op basis van de antwoorden van één invuller (de quick scan, solo). Het rapport doet drie dingen, in deze volgorde: laten zien dat we hún bedrijf hebben gehoord, laten zien welk werk zich leent om door AI te laten doen en in welke volgorde, en één klein startpunt aanwijzen.
 
 Rangschik op vijf factoren: (1) volume en herhaling (dept-wf-frequency plus aantallen in het procesverhaal, overdrachten uit co-handoffs, vinkjes uit dept-time-sinks), (2) tijd (dept-wf-hours of dept-wf-hours-own, gewogen met dept-wf-confidence), (3) veilig om te beginnen (uit het procesverhaal en dept-wf-stall: gaat het resultaat naar buiten, of blijft het binnen en is het terug te draaien), (4) past bij hun doel (co-goal, met co-ai-focus als tweede as en dept-first-hire als wens-signaal), (5) grip op de kennis (dept-wf-knowledge en co-knowledge-home). De eerste drie bepalen de volgorde, de laatste twee schuiven binnen die volgorde.
 

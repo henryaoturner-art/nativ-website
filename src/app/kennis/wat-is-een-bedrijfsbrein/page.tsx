@@ -270,7 +270,7 @@ export default function PillarBedrijfsbreinPage() {
               Hoe je begint
             </h2>
             <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
-              De eerste stap is de gratis AI Opportunity Scan. In ongeveer twintig
+              De eerste stap is de gratis AI-scan. In ongeveer twintig
               minuten breng je in kaart waar in jouw bedrijf veel tijd en herhaling
               in zit. Je krijgt een concreet overzicht, op volgorde van wat het
               meeste oplevert, voordat je iets vastlegt.
@@ -279,7 +279,7 @@ export default function PillarBedrijfsbreinPage() {
               href="/scan"
               className="mt-7 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
             >
-              Plan een AI Opportunity Scan →
+              Doe de gratis AI-scan →
             </Link>
           </FadeIn>
         </div>

@@ -242,7 +242,7 @@ export default function CompanyBrainPage() {
             href="/scan"
             className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
           >
-            AI Opportunity Scan
+            Gratis AI-scan
           </Link>
           <Link
             href="/ai-act"

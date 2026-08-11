@@ -4,7 +4,7 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/diensten",
   "Diensten | nativ",
-  "Van gratis AI Opportunity Scan tot werkende workflows. Bekijk hoe nativ het mkb helpt met AI.",
+  "Van gratis AI-scan tot werkende workflows. Bekijk hoe nativ het mkb helpt met AI.",
 );
 
 // No FAQPage here: this page renders no FAQ, and Google only honours FAQPage
@@ -24,7 +24,7 @@ const servicesSchema = {
         "@type": "Service",
         name: "Scan",
         description:
-          "De gratis AI Opportunity Scan brengt in kaart welk werk in je bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert.",
+          "De gratis AI-scan brengt in kaart welk werk in je bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
         url: "https://gonativ.nl/scan",
       },
@@ -59,7 +59,7 @@ const servicesSchema = {
 const dienstenWebPage = webPage(
   "/diensten",
   "Diensten: van inzicht naar impact",
-  "Van gratis AI Opportunity Scan tot werkende workflows. Drie stappen: Scan, Build, Deploy.",
+  "Van gratis AI-scan tot werkende workflows. Drie stappen: Scan, Build, Deploy.",
 );
 
 const dienstenJsonLd = [dienstenWebPage, servicesSchema];

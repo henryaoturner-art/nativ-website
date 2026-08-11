@@ -9,7 +9,7 @@ const footerTranslations = {
     tagline: "company brain | digital colleagues",
     servicesTitle: "Diensten",
     services: [
-      { href: "/scan", label: "AI Opportunity Scan" },
+      { href: "/scan", label: "Gratis AI-scan" },
       { href: "/diensten", label: "AI Kennisbank" },
       { href: "/workflows", label: "Workflows" },
       { href: "/impact", label: "Impact" },
@@ -25,7 +25,7 @@ const footerTranslations = {
     tagline: "company brain | digital colleagues",
     servicesTitle: "Services",
     services: [
-      { href: "/scan", label: "AI Opportunity Scan" },
+      { href: "/scan", label: "Free AI scan" },
       { href: "/diensten", label: "AI Knowledge Base" },
       { href: "/workflows", label: "Workflows" },
       { href: "/impact", label: "Impact" },

@@ -150,7 +150,7 @@ const translations = {
     exitBody:
       "Dan krijg je beide databases mee: de gestructureerde data en de doorzoekbare opslag. Geen gedoe, geen onderhandeling. Wat we er eerlijk bij zeggen: vanaf dat moment wordt er niets meer onderhouden.",
 
-    scanLine: "De AI Opportunity Scan is gratis en vrijblijvend.",
+    scanLine: "De AI-scan is gratis en vrijblijvend.",
 
     faqTitle: "Veelgestelde vragen over prijzen",
     faqItems: [
@@ -257,7 +257,7 @@ const translations = {
     exitBody:
       "You take both databases with you: the structured data and the searchable store. No hassle, no negotiation. What we say honestly alongside that: from that moment on, nothing is maintained any more.",
 
-    scanLine: "The AI Opportunity Scan is free and without obligation.",
+    scanLine: "The AI scan is free and without obligation.",
 
     faqTitle: "Frequently asked questions about pricing",
     faqItems: [
