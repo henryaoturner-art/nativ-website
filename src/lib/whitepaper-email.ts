@@ -27,7 +27,7 @@ const translations = {
   },
   nl: {
     lang: 'nl',
-    greeting: 'Hoi',
+    greeting: 'Beste',
     here: ', hier is je whitepaper',
     thanks: 'Bedankt voor je interesse in nativ. In de bijlage vind je ons whitepaper:',
     quote: '"Company brain: Kennis uit de hoofden van medewerkers: minimum viable context (MVC™). De theorie en praktijk."',

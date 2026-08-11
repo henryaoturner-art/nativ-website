@@ -14,7 +14,7 @@ const articles: Article[] = [
     intro:
       "In deze algemene voorwaarden en de daarop gebaseerde overeenkomst worden de volgende met een hoofdletter geschreven termen als volgt gedefinieerd (in enkel- en meervoud):",
     clauses: [
-      { num: "1.1", text: "Nativ: Nativ B.V., statutair gevestigd te Hilversum." },
+      { num: "1.1", text: "Nativ: Nativ B.V., statutair gevestigd te Haarlem, ingeschreven bij de Kamer van Koophandel onder nummer 42125853." },
       { num: "1.2", text: "Klant: de rechtspersoon of onderneming die met Nativ een Overeenkomst aangaat of aan wie Nativ een aanbieding doet. Deze voorwaarden zijn uitsluitend bestemd voor gebruik in een B2B-context; Nativ contracteert niet met consumenten." },
       { num: "1.3", text: "Overeenkomst: de tussen Nativ en Klant gesloten overeenkomst tot levering van de Dienst, inclusief het aanbod/de opdrachtbevestiging, deze algemene voorwaarden en alle bijlagen." },
       { num: "1.4", text: "Dienst (ook: SaaS-dienst): de door Nativ via internet als clouddienst beschikbaar gestelde functionaliteit, waaronder het Platform en de daarop draaiende workflows, zoals nader omschreven in de Overeenkomst. Waar in eerdere versies van deze voorwaarden, in een Overeenkomst of in overige documentatie wordt gesproken van \u2018digitale collega('s)\u2019, wordt daarmee hetzelfde bedoeld." },

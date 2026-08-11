@@ -9,7 +9,7 @@ const translations = {
   nl: {
     heroTitle: "Start de scan",
     heroSub:
-      "Drie gegevens, dan kun je aan de slag. Je krijgt een eigen link waarmee je altijd kunt terugkeren naar je scan en je rapport.",
+      "Drie gegevens en je kunt beginnen. Je krijgt een eigen link, zodat je het komende jaar terug kunt naar je scan en je rapport.",
     companyLabel: "Bedrijfsnaam",
     nameLabel: "Je naam",
     emailLabel: "Je e-mailadres",
@@ -18,13 +18,13 @@ const translations = {
     submitting: "Even geduld...",
     errorMsg: "Er ging iets mis. Probeer het opnieuw of mail info@gonativ.nl.",
     privacy:
-      "We vragen naar het werk zelf, niet naar bedrijfsbestanden of vertrouwelijke gegevens. Hoe we met je gegevens omgaan lees je in de",
+      "We vragen naar het werk zelf, niet naar bedrijfsbestanden of vertrouwelijke gegevens. Die blijven waar ze horen. Hoe we met je gegevens omgaan lees je in de",
     privacyLink: "privacyverklaring",
   },
   en: {
     heroTitle: "Start the scan",
     heroSub:
-      "Three details, then you can get going. You get your own link that always takes you back to your scan and your report.",
+      "Three details and you can begin. You get your own link, so you can return to your scan and your report for the next year.",
     companyLabel: "Company name",
     nameLabel: "Your name",
     emailLabel: "Your email address",
@@ -33,7 +33,7 @@ const translations = {
     submitting: "One moment...",
     errorMsg: "Something went wrong. Please try again or email info@gonativ.nl.",
     privacy:
-      "We ask about the work itself, not for company files or confidential data. How we handle your details is in our",
+      "We ask about the work itself, not for company files or confidential data. Those stay where they belong. How we handle your details is in our",
     privacyLink: "privacy statement",
   },
 };

@@ -28,7 +28,7 @@ const staticCopy = {
     reportLabel: "AI-scan",
     pendingTitle: "Je rapport wordt gemaakt",
     pendingBody:
-      "Je antwoorden zijn binnen en veilig opgeslagen. Het rapport staat hier zodra het klaar is; deze pagina is en blijft jouw eigen link. Kom gerust later terug.",
+      "Je antwoorden zijn binnen en veilig opgeslagen. Het rapport verschijnt hier zodra het klaar is. Deze pagina blijft jouw eigen link, dus kom gerust later terug.",
     gehoord: "Wat we van je gehoord hebben",
     bekeken: "Wat we hebben bekeken",
     ranglijst: "De ranglijst",
@@ -41,6 +41,10 @@ const staticCopy = {
     blijftLiggen: "Waar het blijft liggen",
     leentZich: "Waarom dit zich leent",
     misgaat: "Als er iets misgaat",
+    kennisZit: "Waar de kennis zit",
+    kennisbeeld: "Waar die kennis nu zit",
+    kennisSystemen: "Systemen en plekken die steeds terugkomen",
+    kennisHoofden: "Wat alleen in iemands hoofd zit",
     waarBeginnen: "Waar we zouden beginnen",
     uitzoeken: "Wat we voor je kunnen uitzoeken",
     groeien: "Waar je in kunt groeien",
@@ -58,12 +62,14 @@ const staticCopy = {
     volgendeStapTitel: "De eerste stap: de scan met je mensen",
     volgendeStapBody:
       "Je hebt zelf al in kaart gebracht waar het werk zit. De volgende stap is dat je collega's hetzelfde doen voor hun eigen afdeling. Daarmee heb je het complete beeld, en beginnen we niet opnieuw.",
+    volgendeStapActie: "Wil je dat opzetten? Mail",
+    volgendeStapActieSlot: ", dan zetten we het klaar.",
   },
   en: {
     reportLabel: "AI scan",
     pendingTitle: "Your report is being created",
     pendingBody:
-      "Your answers are in and safely stored. The report will appear here as soon as it is ready; this page is and remains your personal link. Feel free to come back later.",
+      "Your answers are in and safely stored. The report will appear here as soon as it is ready. This page remains your personal link, so feel free to come back later.",
     gehoord: "What we heard from you",
     bekeken: "What we looked at",
     ranglijst: "The ranking",
@@ -76,6 +82,10 @@ const staticCopy = {
     blijftLiggen: "Where it gets stuck",
     leentZich: "Why this lends itself",
     misgaat: "If something goes wrong",
+    kennisZit: "Where the knowledge sits",
+    kennisbeeld: "Where that knowledge sits today",
+    kennisSystemen: "Systems and places that keep coming back",
+    kennisHoofden: "What only lives in someone's head",
     waarBeginnen: "Where we would start",
     uitzoeken: "What we can look into for you",
     groeien: "Where you can grow",
@@ -93,6 +103,8 @@ const staticCopy = {
     volgendeStapTitel: "The first step: the scan with your people",
     volgendeStapBody:
       "You have already mapped out where the work is. The next step is for your colleagues to do the same for their own department. That gives you the complete picture, and we don't start over.",
+    volgendeStapActie: "Want to set that up? Email",
+    volgendeStapActieSlot: ", and we will get it ready.",
   },
 };
 
@@ -197,6 +209,40 @@ export default async function ScanReportPage({
           )}
         </ReportSection>
 
+        {payload.kennisbeeld && (
+          <ReportSection title={c.kennisbeeld}>
+            <Prose text={payload.kennisbeeld.observatie} />
+            {payload.kennisbeeld.systemen.length > 0 && (
+              <>
+                <h3 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                  {c.kennisSystemen}
+                </h3>
+                <ul className="mt-2 space-y-1.5">
+                  {payload.kennisbeeld.systemen.map((line) => (
+                    <li key={line} className="text-grey/80 font-light leading-relaxed">
+                      · {line}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {payload.kennisbeeld.alleenInHoofden.length > 0 && (
+              <>
+                <h3 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                  {c.kennisHoofden}
+                </h3>
+                <ul className="mt-2 space-y-1.5">
+                  {payload.kennisbeeld.alleenInHoofden.map((line) => (
+                    <li key={line} className="text-grey/80 font-light leading-relaxed">
+                      · {line}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </ReportSection>
+        )}
+
         <ReportSection title={c.waarBeginnen}>
           <Prose text={payload.waarWeZoudenBeginnen} />
         </ReportSection>
@@ -243,6 +289,13 @@ export default async function ScanReportPage({
             <p className="mt-3 text-grey/80 font-light leading-relaxed">
               {c.volgendeStapBody}
             </p>
+            <p className="mt-4 text-grey/80 font-light leading-relaxed">
+              {c.volgendeStapActie}{" "}
+              <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+                info@gonativ.nl
+              </a>
+              {c.volgendeStapActieSlot}
+            </p>
           </div>
         </ReportSection>
       </div>
@@ -287,6 +340,9 @@ function WorkflowCard({
     [c.hoeVaak, item.hoeVaak],
     [c.watHetKost, item.watHetKost],
     [c.blijftLiggen, item.waarHetBlijftLiggen],
+    ...(item.waarDeKennisZit
+      ? ([[c.kennisZit, item.waarDeKennisZit]] as Array<[string, string]>)
+      : []),
     [c.leentZich, item.waaromDitZichLeent],
     [c.misgaat, item.alsErIetsMisgaat],
   ];

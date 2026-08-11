@@ -17,6 +17,7 @@ import {
   reportGenerationAvailable,
   type ReportPayload,
 } from "@/lib/scan/report";
+import { scanEmailHtml, scanEmailSubject } from "@/lib/scan-email";
 
 // Rapportgeneratie kan minuten duren; zonder dit kapt Vercel de functie af.
 export const maxDuration = 300;
@@ -24,6 +25,9 @@ export const maxDuration = 300;
 const BASE_URL = "https://gonativ.nl";
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 const NOTIFY_EMAIL = process.env.LEAD_NOTIFY_EMAIL || "jorus@gonativ.nl";
+// Antwoorden van de invuller moeten bij een mens landen, niet bij het
+// afzenderadres van Resend.
+const REPLY_TO_EMAIL = process.env.SCAN_REPLY_TO_EMAIL || "jorus@gonativ.nl";
 
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -130,24 +134,21 @@ export async function POST(req: NextRequest) {
       }
 
       // Mail naar de invuller met de eigen rapportlink — de reden om terug
-      // te komen (datamodel-doc).
+      // te komen (datamodel-doc). De tekst volgt de staat: staat het rapport er
+      // nog niet, dan belooft de mail er ook geen.
       try {
-        const isEn = lang === "en";
+        const ready = Boolean(payload);
         await resend.emails.send({
-          from: `Nativ <${FROM_EMAIL}>`,
+          from: `nativ <${FROM_EMAIL}>`,
           to: [scan.contact_email],
-          subject: isEn ? "Your scan report" : "Je scanrapport staat klaar",
-          html: isEn
-            ? `<p>Hi ${esc(scan.contact_name)},</p>` +
-              `<p>Thanks for completing the scan. Your report is ready:</p>` +
-              `<p><a href="${reportUrl}">${reportUrl}</a></p>` +
-              `<p>This link is yours. Use it to revisit your report whenever you want.</p>` +
-              `<p>Best,<br/>Nativ</p>`
-            : `<p>Hi ${esc(scan.contact_name)},</p>` +
-              `<p>Bedankt voor het invullen van de scan. Je rapport staat klaar:</p>` +
-              `<p><a href="${reportUrl}">${reportUrl}</a></p>` +
-              `<p>Deze link is van jou. Je kunt er altijd mee terug naar je rapport.</p>` +
-              `<p>Vriendelijke groet,<br/>Nativ</p>`,
+          replyTo: REPLY_TO_EMAIL,
+          subject: scanEmailSubject(ready, lang),
+          html: scanEmailHtml({
+            name: scan.contact_name,
+            reportUrl,
+            ready,
+            language: lang,
+          }),
         });
       } catch (err) {
         console.error("SCAN_CONFIRM_ERROR:", err);

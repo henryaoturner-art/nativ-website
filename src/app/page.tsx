@@ -98,17 +98,14 @@ const orgSchema = {
     "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
   email: "info@gonativ.nl",
   foundingDate: "2025-03-10",
-  vatID: "NL005222736B97",
   identifier: {
     "@type": "PropertyValue",
     propertyID: "KvK",
-    value: "96646756",
+    value: "42125853",
   },
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Beethovenlaan 37",
-    postalCode: "1217 CH",
-    addressLocality: "Hilversum",
+    addressLocality: "Haarlem",
     addressCountry: "NL",
   },
   sameAs: [

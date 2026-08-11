@@ -28,10 +28,12 @@ export interface ReportWorkflowItem {
   waarHetBlijftLiggen: string;
   waaromDitZichLeent: string;
   alsErIetsMisgaat: string;
+  /** Optioneel: rapporten van vóór versie 2 hebben dit veld niet. */
+  waarDeKennisZit?: string;
 }
 
 export interface ReportPayload {
-  version: 1;
+  version: 1 | 2;
   language: "nl" | "en";
   gehoord: string;
   bekeken: string;
@@ -39,6 +41,12 @@ export interface ReportPayload {
     hierZouIkBeginnen: ReportWorkflowItem[];
     sterkeKandidaten: ReportWorkflowItem[];
     laterInteressant: string[];
+  };
+  /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
+  kennisbeeld?: {
+    systemen: string[];
+    alleenInHoofden: string[];
+    observatie: string;
   };
   waarWeZoudenBeginnen: string;
   uitzoeksuggesties: string[];
@@ -64,6 +72,16 @@ const REPORT_SCHEMA = {
       required: ["hierZouIkBeginnen", "sterkeKandidaten", "laterInteressant"],
       additionalProperties: false,
     },
+    kennisbeeld: {
+      type: "object",
+      properties: {
+        systemen: { type: "array", items: { type: "string" } },
+        alleenInHoofden: { type: "array", items: { type: "string" } },
+        observatie: { type: "string" },
+      },
+      required: ["systemen", "alleenInHoofden", "observatie"],
+      additionalProperties: false,
+    },
     waarWeZoudenBeginnen: { type: "string" },
     uitzoeksuggesties: { type: "array", items: { type: "string" } },
     waarJeInKuntGroeien: { type: "string" },
@@ -72,6 +90,7 @@ const REPORT_SCHEMA = {
     "gehoord",
     "bekeken",
     "ranglijst",
+    "kennisbeeld",
     "waarWeZoudenBeginnen",
     "uitzoeksuggesties",
     "waarJeInKuntGroeien",
@@ -90,6 +109,7 @@ function workflowItemSchema() {
       waarHetBlijftLiggen: { type: "string" },
       waaromDitZichLeent: { type: "string" },
       alsErIetsMisgaat: { type: "string" },
+      waarDeKennisZit: { type: "string" },
     },
     required: [
       "naam",
@@ -99,6 +119,7 @@ function workflowItemSchema() {
       "waarHetBlijftLiggen",
       "waaromDitZichLeent",
       "alsErIetsMisgaat",
+      "waarDeKennisZit",
     ],
     additionalProperties: false,
   };
@@ -134,7 +155,8 @@ Secties die jij schrijft:
 - gehoord: één alinea over hún bedrijf, in hun eigen woorden, opgebouwd uit co-profile en co-goal. Geen samenvatting van onze methode.
 - bekeken: kort en eerlijk over de dekking. Dit is een solo-scan: de strekking is "Dit is jouw beeld van het bedrijf", met in één of twee zinnen wat er in kaart is gebracht.
 - ranglijst: hierZouIkBeginnen bevat 1 workflow (soms 2), sterkeKandidaten 3 tot 5 als de antwoorden dat dragen (minder mag), laterInteressant de rest als één regel per stuk. Het doorgelopen proces uit dept-workflow-story is de kandidaat voor hierZouIkBeginnen; de overige vinkjes uit dept-time-sinks, de overdrachten uit co-handoffs en de wens uit dept-first-hire vullen de andere groepen. Items zonder urengetal laten dat eerlijk zien in watHetKost (bijvoorbeeld: "Hier heb je geen uren voor opgegeven").
-- Per workflow-item: naam = de naam van het werk in hun woorden plus niets erbij; watHetNuIs = één zin uit hun eigen procesverhaal; hoeVaak = meerdere keren per dag / dagelijks / wekelijks / maandelijks; watHetKost = "Ongeveer X uur per week" in hun eigen opgave, met "ruwe schatting" erbij als dept-wf-confidence 1 of 2 was; waarHetBlijftLiggen = één zin uit dept-wf-stall; waaromDitZichLeent = één zin: het komt vaak voorbij, de stappen zijn elke keer hetzelfde, en de meeste beslissingen zijn dezelfde; alsErIetsMisgaat = "Je ziet het meteen en je draait het terug." of "Dit gaat naar buiten, dus hier kijkt altijd iemand mee voordat het weg is." (kies wat past bij het proces).
+- Per workflow-item: naam = de naam van het werk in hun woorden plus niets erbij; watHetNuIs = één zin uit hun eigen procesverhaal; hoeVaak = meerdere keren per dag / dagelijks / wekelijks / maandelijks; watHetKost = "Ongeveer X uur per week" in hun eigen opgave, met "ruwe schatting" erbij als dept-wf-confidence 1 of 2 was; waarHetBlijftLiggen = één zin uit dept-wf-stall; waaromDitZichLeent = één zin: het komt vaak voorbij, de stappen zijn elke keer hetzelfde, en de meeste beslissingen zijn dezelfde; alsErIetsMisgaat = "Je ziet het meteen en je draait het terug." of "Dit gaat naar buiten, dus hier kijkt altijd iemand mee voordat het weg is." (kies wat past bij het proces); waarDeKennisZit = één zin over waar de kennis en gegevens voor dít werk nu vandaan komen, uit dept-wf-systems en dept-wf-knowledge: noem de systemen, mailboxen of documenten die zij zelf noemden, en zeg erbij welk deel nergens is vastgelegd. Noemden ze er niets over, schrijf dan dat ze daar niets over hebben gezegd. Verzin nooit een systeem dat zij niet noemden.
+- kennisbeeld: over de workflows heen, uit dept-wf-systems, dept-wf-knowledge, dept-answer-where en co-knowledge-home. systemen = de systemen, mailboxen en documenten die zij noemden en die steeds terugkomen, elk als korte losse regel met erbij waarvoor het gebruikt wordt. alleenInHoofden = de kennis die volgens hun eigen antwoorden nergens is vastgelegd en dus bij mensen zit, elk als korte losse regel. observatie = één alinea die benoemt wat dit betekent: om dit werk door AI te laten doen moet die kennis bereikbaar en vastgelegd zijn, en dat is nu deels niet zo. Geen oplossing aanbieden, geen product noemen, alleen de constatering. Noemden ze te weinig om iets te zeggen, houd de lijsten dan leeg en schrijf in observatie eerlijk dat hier nog weinig over bekend is en dat dit een goede eerste vraag is voor een vervolg.
 - waarWeZoudenBeginnen: één workflow, met in twee of drie zinnen waarom juist deze. Altijd dezelfde vorm: het komt vaak voorbij, het kost nu echt tijd, en als het misgaat is dat klein en omkeerbaar.
 - uitzoeksuggesties: de vragen die de invuller zelf niet kon beantwoorden (co-blindspot, dept-cant-answer, dept-answer-where) teruggegeven als onderzoeksuggesties, drie tot vijf maximaal, met per stuk waar het antwoord volgens hen zit. Leeg laten als er niets te melden is.
 - waarJeInKuntGroeien: één korte alinea. Geen roadmap, geen fasering, geen termijnen. Strekking: als de eerste workflow eenmaal loopt, ligt het werk uit de tweede groep voor de hand, en wat er over jullie manier van werken wordt vastgelegd komt daar ook weer bij van pas.
@@ -179,5 +201,5 @@ export async function generateReportPayload(input: {
   }
 
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language">;
-  return { version: 1, language: input.language, ...parsed };
+  return { version: 2, language: input.language, ...parsed };
 }

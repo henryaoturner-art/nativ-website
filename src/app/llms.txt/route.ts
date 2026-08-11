@@ -13,7 +13,7 @@ const HEADER = `# nativ
 
 > nativ bouwt een Company Brain voor het Nederlandse mkb: we leggen de kennis vast die nu vastzit in hoofden, inboxen en spreadsheets, en zetten daar workflows op die terugkerend werk overnemen. Company Brain | Digital Colleagues.
 
-Nativ B.V. (gonativ.nl) is een Nederlands bedrijf, KvK 96646756, btw NL005222736B97, gevestigd in Hilversum. Let op: niet te verwarren met gonativ.ai of gonative.ai; dat zijn andere bedrijven. Onze aanpak draait om context engineering en het MVC™-framework (Minimum Viable Context): AI faalt in organisaties niet door zwakke modellen, maar door gebrek aan context. Data wordt EU-gehost en GDPR-conform verwerkt.
+Nativ B.V. (gonativ.nl) is een Nederlands bedrijf, KvK 42125853, statutair gevestigd in Haarlem. Let op: niet te verwarren met gonativ.ai of gonative.ai; dat zijn andere bedrijven. Onze aanpak draait om context engineering en het MVC™-framework (Minimum Viable Context): AI faalt in organisaties niet door zwakke modellen, maar door gebrek aan context. Data wordt EU-gehost en GDPR-conform verwerkt.
 
 ## Kern
 - [nativ: Company Brain en AI-workflows voor het mkb](https://gonativ.nl): wat nativ doet, voor wie, en hoe je begint.

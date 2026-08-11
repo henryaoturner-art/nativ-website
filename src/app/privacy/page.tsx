@@ -12,7 +12,7 @@ const sections: Section[] = [
     title: "Wie zijn wij",
     body: (
       <>
-        Nativ B.V., gevestigd te Hilversum, is de verwerkingsverantwoordelijke voor de
+        Nativ B.V., statutair gevestigd te Haarlem (KvK 42125853), is de verwerkingsverantwoordelijke voor de
         verwerking van persoonsgegevens via deze website. Je bereikt ons via{" "}
         <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
           info@gonativ.nl
