@@ -30,7 +30,7 @@ const translations = {
       {
         num: "2", title: "Build",
         desc: "Samen bouwen we je Company Brain, waarin de kennis uit je mensen en je systemen samenkomt.",
-        detail: "Merkidentiteit, processen, marktdata en een eigen CRM: geordend, met een eigenaar per onderdeel.",
+        detail: "Merkidentiteit, processen, marktdata, gespreksverslagen en een eigen CRM: geordend, met een eigenaar per onderdeel.",
       },
       {
         num: "3", title: "Deploy",
@@ -69,7 +69,7 @@ const translations = {
       {
         num: "2", title: "Build",
         desc: "Together we build your Company Brain, where the knowledge from your people and your systems comes together.",
-        detail: "Brand identity, processes, market data and a CRM of your own: ordered, with an owner for each part.",
+        detail: "Brand identity, processes, market data, meeting notes and a CRM of your own: ordered, with an owner for each part.",
       },
       {
         num: "3", title: "Deploy",
