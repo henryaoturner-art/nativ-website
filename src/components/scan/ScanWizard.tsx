@@ -56,6 +56,7 @@ const translations = {
     micStop: "Stop met opnemen",
     micListening: "Aan het luisteren...",
     answered: "beantwoord",
+    missingField: "Deze vraag hebben we nog nodig om je rapport te maken.",
   },
   en: {
     block1: "Your company",
@@ -79,6 +80,7 @@ const translations = {
     micStop: "Stop recording",
     micListening: "Listening...",
     answered: "answered",
+    missingField: "We still need this one to create your report.",
   },
 };
 
@@ -346,6 +348,9 @@ function QuestionCard({
           <span className="ml-2 text-xs text-grey/40">({labels.optional})</span>
         )}
       </p>
+      {highlight && (
+        <p className="mt-2 text-sm text-error">{labels.missingField}</p>
+      )}
       {help && (
         <p className="mt-2 text-sm text-grey/55 font-light leading-relaxed">{help}</p>
       )}
