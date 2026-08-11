@@ -7,19 +7,19 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "De belangrijkste kennis van je bedrijf staat nergens vastgelegd.",
-    heroSub1: "Ze zit in de hoofden van je medewerkers, en loopt de deur uit zodra iemand vertrekt.",
-    heroSub2: "nativ legt die kennis vast in een Company Brain, geeft alle medewerkers een digitale assistent en zet daar workflows op die terugkerend werk overnemen.",
+    heroTitle: "Is de juiste persoon er even niet, dan sta je stil.",
+    heroSub1: "De kennis van je bedrijf zit verspreid. In hoofden, in mailboxen, in losse tools die niemand deelt.",
+    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en zet hem op één plek: een Company Brain. Daar draaien je assistent en je workflows op.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
     ctaWhitepaper: "Whitepaper downloaden",
     heroSeoLine:
       "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
-    problemTitle: "Wat er verandert als die kennis wél vastligt",
+    problemTitle: "Wat er verandert als het wél op één plek staat",
     problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
     problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
     problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
-    problemP3: "Dat is wat een Company Brain doet: het maakt de kennis van je team herbruikbaar, voor je mensen en voor AI.",
+    problemP3: "Dat is wat een Company Brain doet: het brengt samen wat je mensen weten en wat je systemen weten. Je ziet wat erin staat, elk stuk kennis heeft een eigenaar, en je ziet altijd waar een antwoord vandaan komt.",
     howTitle: "Hoe we werken",
     steps: [
       {
@@ -47,18 +47,18 @@ const translations = {
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "Your company’s most important knowledge isn’t written down anywhere.",
-    heroSub1: "It lives in your people’s heads, and walks out the door when someone leaves.",
-    heroSub2: "nativ captures that knowledge in one Company Brain, gives every employee a digital assistant, and puts workflows on top that take over recurring work.",
+    heroTitle: "When the right person is out, you are stuck.",
+    heroSub1: "Your company’s knowledge is scattered. In people’s heads, in mailboxes, in separate tools nobody shares.",
+    heroSub2: "nativ takes that knowledge out of your people and your systems and puts it in one place: a Company Brain. That is what your assistant and your workflows run on.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
     heroSeoLine: "A Company Brain with AI workflows for Dutch SMEs.",
-    problemTitle: "What changes once that knowledge is written down",
+    problemTitle: "What changes once it is all in one place",
     problemP1: "You can put workflows to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
     problemP2a: "A new colleague is up to speed in days, not months.",
     problemP2b: "And when someone leaves, what they knew stays behind.",
-    problemP3: "That is what a Company Brain does: it makes your team\u2019s knowledge reusable, for your people and for AI.",
+    problemP3: "That is what a Company Brain does: it brings together what your people know and what your systems know. You can see what is in it, every piece of knowledge has an owner, and you can always see where an answer came from.",
     howTitle: "How we work",
     steps: [
       {
