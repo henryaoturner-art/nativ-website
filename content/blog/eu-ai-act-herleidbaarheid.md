@@ -65,4 +65,4 @@ Wat een Company Brain wél doet, is de herleidbaarheids- en transparantielaag le
 
 De deadline van augustus is minder een eindstreep dan een goed moment om de vraag te stellen: als iemand vraagt hoe onze AI aan een antwoord komt, kunnen we dat dan laten zien? Voor veel bedrijven is het antwoord vandaag nee, en dat is precies het werk dat de komende maanden gedaan mag worden.
 
-We schreven een aparte pagina over [de EU AI Act en herleidbare AI](/ai-act), met de artikelen in gewone taal en hoe een Company Brain daarop aansluit. Wil je weten hoe herleidbaar jullie AI nu is? Begin met de [AI Opportunity Scan](/scan), of [plan een gesprek](/contact). We laten zien hoe de herkomst van elk antwoord aantoonbaar wordt.
+We schreven een aparte pagina over [de EU AI Act en herleidbare AI](/ai-act), met de artikelen in gewone taal en hoe een Company Brain daarop aansluit. Wil je weten hoe herleidbaar jullie AI nu is? Begin met de [gratis AI-scan](/scan), of [plan een gesprek](/contact). We laten zien hoe de herkomst van elk antwoord aantoonbaar wordt.

@@ -34,6 +34,6 @@ Als je een AI-partij overweegt voor je bedrijf, koop je eigenlijk vertrouwen. Ve
 
 Wij hebben onze aanpak daarom niet in een demo verstopt, maar voorgelegd aan iemand die het onafhankelijk kan beoordelen. Dat gaf ons op onderdelen gelijk, en corrigeerde ons op andere. En dat is wat je wilt zien bij een leverancier: niet dat ze alles al perfect hebben, maar dat ze hun eigen werk durven laten toetsen en er eerlijk over zijn.
 
-Wil je weten hoe een Company Brain er voor jouw bedrijf uitziet? [Plan een gesprek](/contact) of begin met de [AI Opportunity Scan](/scan). Ik vertel je graag wat we van TNO leerden, en wat dat betekent voor de manier waarop wij bouwen.
+Wil je weten hoe een Company Brain er voor jouw bedrijf uitziet? Begin met de [gratis AI-scan](/scan). Die loop je zelf door, en je ziet meteen welk werk zich bij jullie leent voor AI. Liever eerst praten? [Plan een gesprek](/contact). Ik vertel je graag wat we van TNO leerden, en wat dat betekent voor de manier waarop wij bouwen.
 
 Jorus Everaerd
