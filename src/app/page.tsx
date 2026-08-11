@@ -8,8 +8,8 @@ import { webPage } from "@/lib/site-meta";
 const translations = {
   nl: {
     heroTitle: "Betrouwbare AI die begrijpt hoe jij werkt.",
-    heroSub1: "De kennis van je bedrijf zit verspreid: in hoofden, in mailboxen, in losse tools die niemand deelt. Is de juiste persoon er even niet, dan sta je stil.",
-    heroSub2: "nativ haalt die kennis uit je mensen en je systemen en brengt hem samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en heb je een fundament voor je digitale assistent en voor de AI-workflows die jou het meest ontzorgen.",
+    heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in mailboxen, in gesprekken en in losse tools die niemand deelt.",
+    heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het ideale fundament voor je digitale assistent en voor de AI-workflows die jou het meest ontzorgen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
     ctaWhitepaper: "Whitepaper downloaden",
@@ -48,8 +48,8 @@ const translations = {
   },
   en: {
     heroTitle: "Reliable AI that understands how you work.",
-    heroSub1: "Your company’s knowledge is scattered: in people’s heads, in mailboxes, in separate tools nobody shares. When the right person is out, you are stuck.",
-    heroSub2: "nativ takes that knowledge out of your people and your systems and brings it together in one Company Brain. That way your company knowledge is secured, and you have a foundation for your digital assistant and for the AI workflows that take the most off your plate.",
+    heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in mailboxes, in conversations and in separate tools nobody shares.",
+    heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is secured and always available to everyone. And you have the ideal foundation for your digital assistant and for the AI workflows that take the most off your plate.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
