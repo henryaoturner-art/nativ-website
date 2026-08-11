@@ -6,14 +6,14 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = pageMeta(
   "/company-brain",
   "Company Brain: één AI-kennisbank voor je bedrijf | nativ",
-  "Eén centrale kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke digitale collega. Voor het mkb.",
+  "Eén centrale kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke workflow. Voor het mkb.",
 );
 
 const faqItems = [
   {
     question: "Wat is een Company Brain?",
     answer:
-      "Een Company Brain is één centrale kennislaag voor je bedrijf: alles wat je bedrijf weet, uit de hoofden van je mensen, je systemen en documenten, op één plek en klaar voor AI. Het is de basis waarop een persoonlijke assistent en digitale collega's draaien.",
+      "Een Company Brain is één centrale kennislaag voor je bedrijf: alles wat je bedrijf weet, uit de hoofden van je mensen, je systemen en documenten, op één plek en klaar voor AI. Het is de basis waarop een persoonlijke assistent en je workflows draaien.",
   },
   {
     question: "Waarom heb je een Company Brain nodig voor AI?",
@@ -33,7 +33,7 @@ const faqItems = [
   {
     question: "Waarom niet gewoon losse AI-tools gebruiken?",
     answer:
-      "Losse tools lossen elk een stukje op, maar delen geen kennis en bouwen niets op. Een Company Brain legt de kennis één keer vast en laat elke digitale collega eruit werken. Je bouwt aan één laag die met je bedrijf meegroeit, in plaats van losse abonnementen die niets van elkaar weten.",
+      "Losse tools lossen elk een stukje op, maar delen geen kennis en bouwen niets op. Een Company Brain legt de kennis één keer vast en laat elke workflow eruit putten. Je bouwt aan één laag die met je bedrijf meegroeit, in plaats van losse abonnementen die niets van elkaar weten.",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function CompanyBrainPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            webPage("/company-brain", "Company Brain: één AI-kennisbank voor je bedrijf", "Eén centrale AI-kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke digitale collega, voor het mkb."),
+            webPage("/company-brain", "Company Brain: één AI-kennisbank voor je bedrijf", "Eén centrale AI-kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke workflow, voor het mkb."),
             faqSchema,
           ]),
         }}
@@ -73,7 +73,7 @@ export default function CompanyBrainPage() {
               Een Company Brain is de centrale kennislaag van je bedrijf: één
               plek waar samenkomt wat je bedrijf weet, klaar voor AI om mee te
               werken. Geen losse tool, maar de basis waarop een persoonlijke
-              assistent en digitale collega's draaien. Het lost op waar
+              assistent en je workflows draaien. Het lost op waar
               bedrijfs-AI echt op vastloopt: niet een te dom model, maar te
               weinig context.
             </p>
@@ -165,11 +165,11 @@ export default function CompanyBrainPage() {
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
                   <strong className="font-medium text-grey">
-                    Digitale collega's per functie.
+                    Workflows per afdeling.
                   </strong>{" "}
-                  Boven op de Brain schakel je collega's in voor marketing,
-                  sales, finance of hr. Ze werken in jullie eigen toon, want ze
-                  putten uit dezelfde Brain.
+                  Boven op de Brain zet je workflows in voor marketing, sales,
+                  finance of hr. Ze werken in jullie eigen toon, want ze putten
+                  uit dezelfde Brain.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -233,10 +233,10 @@ export default function CompanyBrainPage() {
             Wat is een Company Brain?
           </Link>
           <Link
-            href="/digitale-collegas"
+            href="/workflows"
             className="text-sage hover:text-sage-dark underline underline-offset-4 decoration-sage/40 hover:decoration-sage transition-colors"
           >
-            Digitale collega's
+            Workflows
           </Link>
           <Link
             href="/scan"

@@ -4,7 +4,7 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/diensten",
   "Diensten | nativ",
-  "Van AI Opportunity Scan tot een werkende digitale collega. Bekijk hoe nativ het mkb helpt met AI.",
+  "Van gratis AI Opportunity Scan tot werkende workflows. Bekijk hoe nativ het mkb helpt met AI.",
 );
 
 // No FAQPage here: this page renders no FAQ, and Google only honours FAQPage
@@ -14,7 +14,7 @@ const servicesSchema = {
   "@type": "ItemList",
   name: "Diensten van nativ",
   description:
-    "Drie stappen van eerste scan tot werkende digitale collega's: Scan, Build en Deploy.",
+    "Drie stappen van gratis scan tot werkende workflows: Scan, Build en Deploy.",
   itemListOrder: "https://schema.org/ItemListOrderAscending",
   itemListElement: [
     {
@@ -24,7 +24,7 @@ const servicesSchema = {
         "@type": "Service",
         name: "Scan",
         description:
-          "De AI Opportunity Scan brengt in één week in kaart waar de grootste kansen liggen, geprioriteerd op impact en haalbaarheid.",
+          "De gratis AI Opportunity Scan brengt in kaart welk werk in je bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
         url: "https://gonativ.nl/scan",
       },
@@ -48,9 +48,9 @@ const servicesSchema = {
         "@type": "Service",
         name: "Deploy",
         description:
-          "Digitale collega's die putten uit het Company Brain, taken overnemen en processen versnellen, geïntegreerd in bestaande workflows.",
+          "Workflows die putten uit het Company Brain, terugkerend werk overnemen en processen versnellen, geïntegreerd met je bestaande systemen.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
-        url: "https://gonativ.nl/digitale-collegas",
+        url: "https://gonativ.nl/workflows",
       },
     },
   ],
@@ -59,7 +59,7 @@ const servicesSchema = {
 const dienstenWebPage = webPage(
   "/diensten",
   "Diensten: van inzicht naar impact",
-  "Van AI Opportunity Scan tot een werkende digitale collega. Drie stappen: Scan, Build, Deploy.",
+  "Van gratis AI Opportunity Scan tot werkende workflows. Drie stappen: Scan, Build, Deploy.",
 );
 
 const dienstenJsonLd = [dienstenWebPage, servicesSchema];

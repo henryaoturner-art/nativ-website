@@ -7,8 +7,8 @@ const tableTranslations = {
   nl: {
     oldHeader: "Traditioneel adviesbureau",
     rows: [
-      { label: "Kosten", old: "€30.000 tot €80.000", nativ: "Vanaf €2.495" },
-      { label: "Doorlooptijd", old: "4 tot 8 weken", nativ: "1 week" },
+      { label: "Kosten", old: "€30.000 tot €80.000", nativ: "Gratis scan, daarna een vast maandbedrag" },
+      { label: "Doorlooptijd", old: "4 tot 8 weken", nativ: "Scan in ongeveer 20 minuten" },
       { label: "Resultaat", old: "PDF die op de plank belandt", nativ: "Levende kennisbank" },
       { label: "Updates", old: "Eenmalige snapshot", nativ: "Continu bijgewerkt" },
       { label: "Kennis", old: "Zit in hoofden van consultants", nativ: "Levend systeem dat groeit met je organisatie" },
@@ -17,8 +17,8 @@ const tableTranslations = {
   en: {
     oldHeader: "Traditional consultancy",
     rows: [
-      { label: "Cost", old: "€30,000 to €80,000", nativ: "From €2,495" },
-      { label: "Timeline", old: "4 to 8 weeks", nativ: "1 week" },
+      { label: "Cost", old: "€30,000 to €80,000", nativ: "Free scan, then a fixed monthly fee" },
+      { label: "Timeline", old: "4 to 8 weeks", nativ: "Scan in about 20 minutes" },
       { label: "Result", old: "PDF that gathers dust", nativ: "Living knowledge base" },
       { label: "Updates", old: "One-time snapshot", nativ: "Continuously updated" },
       { label: "Knowledge", old: "Lives in consultants' heads", nativ: "Living system that grows with your organisation" },

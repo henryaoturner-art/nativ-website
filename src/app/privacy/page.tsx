@@ -2,7 +2,7 @@
 
 import FadeIn from "@/components/FadeIn";
 
-const VERSIE = "Versie 0.1 · 6 juli 2026";
+const VERSIE = "Versie 0.2 · 11 augustus 2026";
 
 type Section = { n: number; title: string; body: React.ReactNode };
 
@@ -29,6 +29,12 @@ const sections: Section[] = [
         <li>
           <span className="text-grey">Contactgegevens</span>: als je ons mailt of via de
           contactpagina contact opneemt: je naam, e-mailadres en de inhoud van je bericht.
+        </li>
+        <li>
+          <span className="text-grey">Scangegevens</span>: als je de scan invult: je
+          bedrijfsnaam, je naam, je e-mailadres en je antwoorden over het werk in je bedrijf,
+          plus het rapport dat daaruit volgt. Er worden geen bedrijfsbestanden of vertrouwelijke
+          gegevens gevraagd of opgeslagen.
         </li>
         <li>
           <span className="text-grey">Websitegebruik</span>: geanonimiseerde, cookieloze
@@ -73,8 +79,12 @@ const sections: Section[] = [
     body: (
       <>
         We bewaren contactgegevens zolang dat nodig is om je vraag af te handelen en daarna een
-        redelijke termijn. Bezoekstatistieken worden geaggregeerd bewaard. Serverlogs worden
-        kort bewaard.
+        redelijke termijn. Scangegevens en het bijbehorende rapport bewaren we maximaal twaalf
+        maanden na afronding; op verzoek verwijderen we ze eerder, mail daarvoor{" "}
+        <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+          info@gonativ.nl
+        </a>
+        . Bezoekstatistieken worden geaggregeerd bewaard. Serverlogs worden kort bewaard.
       </>
     ),
   },

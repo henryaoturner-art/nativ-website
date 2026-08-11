@@ -6,12 +6,12 @@ import { useLanguage } from "@/lib/language-context";
 
 const footerTranslations = {
   nl: {
-    tagline: "company brain | digitalcolleagues",
+    tagline: "company brain | digital colleagues",
     servicesTitle: "Diensten",
     services: [
       { href: "/scan", label: "AI Opportunity Scan" },
       { href: "/diensten", label: "AI Kennisbank" },
-      { href: "/diensten", label: "Digitale Collega\u2019s" },
+      { href: "/workflows", label: "Workflows" },
       { href: "/impact", label: "Impact" },
       { href: "/ai-act", label: "EU AI Act" },
       { href: "/security", label: "Security & Privacy" },
@@ -22,12 +22,12 @@ const footerTranslations = {
     terms: "Voorwaarden",
   },
   en: {
-    tagline: "company brain | digitalcolleagues",
+    tagline: "company brain | digital colleagues",
     servicesTitle: "Services",
     services: [
       { href: "/scan", label: "AI Opportunity Scan" },
       { href: "/diensten", label: "AI Knowledge Base" },
-      { href: "/diensten", label: "Digital Colleagues" },
+      { href: "/workflows", label: "Workflows" },
       { href: "/impact", label: "Impact" },
       { href: "/ai-act", label: "EU AI Act" },
       { href: "/security", label: "Security & Privacy" },

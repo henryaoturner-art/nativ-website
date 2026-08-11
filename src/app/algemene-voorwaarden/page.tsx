@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 type Clause = { num: string; text: string };
 type Article = { n: number; title: string; intro?: string; clauses: Clause[] };
 
-const VERSIE = "Versie 0.3 · 6 juli 2026";
+const VERSIE = "Versie 0.4 · 10 augustus 2026";
 
 const articles: Article[] = [
   {
@@ -17,7 +17,7 @@ const articles: Article[] = [
       { num: "1.1", text: "Nativ: Nativ B.V., statutair gevestigd te Hilversum." },
       { num: "1.2", text: "Klant: de rechtspersoon of onderneming die met Nativ een Overeenkomst aangaat of aan wie Nativ een aanbieding doet. Deze voorwaarden zijn uitsluitend bestemd voor gebruik in een B2B-context; Nativ contracteert niet met consumenten." },
       { num: "1.3", text: "Overeenkomst: de tussen Nativ en Klant gesloten overeenkomst tot levering van de Dienst, inclusief het aanbod/de opdrachtbevestiging, deze algemene voorwaarden en alle bijlagen." },
-      { num: "1.4", text: "Dienst (ook: SaaS-dienst): de door Nativ via internet als clouddienst beschikbaar gestelde functionaliteit, waaronder het Platform en de daarop draaiende digitale collega('s), zoals nader omschreven in de Overeenkomst." },
+      { num: "1.4", text: "Dienst (ook: SaaS-dienst): de door Nativ via internet als clouddienst beschikbaar gestelde functionaliteit, waaronder het Platform en de daarop draaiende workflows, zoals nader omschreven in de Overeenkomst. Waar in eerdere versies van deze voorwaarden, in een Overeenkomst of in overige documentatie wordt gesproken van \u2018digitale collega('s)\u2019, wordt daarmee hetzelfde bedoeld." },
       { num: "1.5", text: "Platform: de programmatuur, gebruikersinterface, onderliggende modellen, algoritmen, prompts, system-instructies, prompt-templates en configuratie, de MVC-methodiek en de semantische zoek-/vectorlaag, waarmee de Dienst wordt geleverd." },
       { num: "1.6", text: "Gebruiker: een door Klant geautoriseerde natuurlijke persoon (medewerker of ingehuurde kracht) die namens Klant van de Dienst gebruikmaakt." },
       { num: "1.7", text: "Company Brain: de in de database (PostgreSQL) van Klant vastgelegde kennis en brongegevens van Klant, zoals nader geregeld in artikel 9." },
@@ -99,8 +99,8 @@ const articles: Article[] = [
     n: 8,
     title: "Looptijd, verlenging & opzegging",
     clauses: [
-      { num: "8.1", text: "De Overeenkomst gaat in op de overeengekomen ingangsdatum en wordt aangegaan voor een initiële termijn van 3 maanden, tenzij in de Overeenkomst anders is bepaald." },
-      { num: "8.2", text: "Na afloop van de initiële termijn loopt de Overeenkomst voor onbepaalde tijd door en is deze door elke partij maandelijks opzegbaar met inachtneming van een opzegtermijn van 1 maand. Opzegging geschiedt schriftelijk en kan plaatsvinden tegen het einde van de initiële termijn en daarna tegen het einde van elke kalendermaand. Gedurende de initiële termijn is tussentijdse opzegging niet mogelijk, onverminderd artikel 8.3." },
+      { num: "8.1", text: "De Overeenkomst gaat in op de overeengekomen ingangsdatum en wordt aangegaan voor onbepaalde tijd. Er geldt geen minimale looptijd, tenzij in de Overeenkomst uitdrukkelijk anders is bepaald." },
+      { num: "8.2", text: "De Overeenkomst is door elke partij maandelijks opzegbaar met inachtneming van een opzegtermijn van 1 maand. Opzegging geschiedt schriftelijk en kan plaatsvinden tegen het einde van elke kalendermaand." },
       { num: "8.3", text: "Elke partij mag de Overeenkomst met onmiddellijke ingang schriftelijk (geheel of gedeeltelijk) ontbinden indien: (a) de andere partij toerekenbaar tekortschiet in een wezenlijke verplichting en dit tekortschieten, voor zover nakoming niet blijvend onmogelijk is, niet binnen dertig (30) dagen na schriftelijke ingebrekestelling herstelt; of (b) de andere partij in staat van faillissement wordt verklaard, surseance van betaling aanvraagt of verkrijgt, of zijn onderneming staakt." },
       { num: "8.4", text: "Nativ mag de Overeenkomst voorts opschorten of ontbinden bij een ernstige of herhaalde overtreding van artikel 5 of artikel 9." },
       { num: "8.5", text: "Bij het einde van de Overeenkomst, ongeacht de oorzaak, geldt met betrekking tot de Company Brain en de data-export het bepaalde in artikel 9.3. Na afloop van de daar genoemde exporttermijn is Nativ gerechtigd de Klantgegevens te verwijderen, behoudens een op Nativ rustende wettelijke bewaarplicht en het bepaalde in de Verwerkersovereenkomst." },
@@ -283,7 +283,7 @@ export default function VoorwaardenPage() {
                 <div>
                   <h3 className="font-normal text-grey">A.2 Onderwerp, aard, doel en duur</h3>
                   <p className="mt-2 text-grey/70 font-light leading-relaxed">
-                    Het hosten en leveren van de dienst (Company Brain en digitale collega&rsquo;s):
+                    Het hosten en leveren van de dienst (Company Brain en de daarop draaiende workflows):
                     het opslaan, structureren, doorzoekbaar maken van en het genereren van uitkomsten
                     op basis van de klantgegevens, ten behoeve van de bedrijfsvoering van de klant.
                     De verwerking duurt zolang de overeenkomst loopt, vermeerderd met de exporttermijn

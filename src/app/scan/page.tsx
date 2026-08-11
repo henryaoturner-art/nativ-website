@@ -5,109 +5,165 @@ import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
 
+// The quick-scan flow lives at /scan/start (this commit). The team flow does
+// not exist yet; its card keeps routing to /contact until it lands — flip
+// TEAM_SCAN_HREF to "/scan/team" in the same commit that delivers it.
+const QUICK_SCAN_HREF = "/scan/start";
+const TEAM_SCAN_HREF = "/contact";
+
 const translations = {
   nl: {
-    heroTitle: "AI Opportunity Scan",
-    heroSub: "In één week weten waar AI het meeste oplevert in jouw organisatie.",
-    heroSub2: "De AI-scan die concreet en toepasbaar is. Geen vaag advies.",
-    heroCta: "Plan je Scan →",
-    heroPrice: "Vanaf €2.495 · No cure, no pay",
-    auditStripTitle: "Nog niet toe aan de betaalde Scan?",
-    auditStripText: "Doe eerst de gratis 10-minuten bedrijfskennis-audit. Zie waar de kennis van je bedrijf zit en wat je riskeert.",
-    auditStripCta: "Doe de gratis audit →",
-    whatTitle: "Wat je krijgt",
-    whatItems: [
-      "Een complete analyse van AI-kansen in jouw organisatie",
-      "Prioritering op basis van impact én haalbaarheid",
-      "Concrete eerste stappen: geen PowerPoint, maar een plan",
-      "Persoonlijke toelichting van ons team",
+    heroTitle: "Waar kan AI jullie werk uit handen nemen?",
+    heroSub:
+      "Loop de scan door en zie welk werk in jouw bedrijf zich daarvoor leent. Je kiest zelf hoe ver je gaat.",
+
+    quickTitle: "In je eentje",
+    quickTime: "± 20 minuten",
+    quickBody:
+      "Jij kent je bedrijf. Loop de scan zelf door en breng in kaart waar veel tijd en herhaling in zit. Je krijgt meteen een rapport met het werk waar AI voor jou het meeste oplevert.",
+    quickCta: "Start de scan",
+
+    teamTitle: "Met je team",
+    teamTime: "± 1 uur per persoon",
+    teamBody:
+      "Nodig je mensen uit, per afdeling. Zij zien het terugkerende werk dat jij niet ziet. Je krijgt het beeld van het hele bedrijf, afdeling voor afdeling.",
+    teamCta: "Nodig je team uit",
+
+    cardsFooter:
+      "Allebei gratis. Allebei eindigen ze op een rapport dat je kunt delen. Begin gerust in je eentje. Je kunt je team er later altijd bij halen.",
+
+    reportTitle: "Wat je krijgt",
+    reportItems: [
+      "Het werk waar veel tijd en herhaling in zit, op volgorde van wat het meeste oplevert",
+      "Per onderdeel hoe vaak het gebeurt, wat het nu kost en waarom het zich leent voor AI",
+      "Eén concreet startpunt: het werk waar je het snelst resultaat ziet",
+      "Een rapport dat je kunt delen met wie je wilt",
     ],
-    timeLabel: "Doorlooptijd:",
-    timeValue: "1 week",
-    formatLabel: "Format:",
-    formatValue: "Interactief rapport + persoonlijke sessie",
-    howTitle: "Zo werkt het",
-    timeline: [
-      { days: "Dag 1 tot 2", title: "Intake", desc: "We leren je organisatie kennen. Korte gesprekken, toegang tot bestaande documentatie." },
-      { days: "Dag 3 tot 5", title: "Analyse", desc: "Onze AI analyseert jouw processen, data en kennisstromen. Wij interpreteren de resultaten." },
-      { days: "Dag 5 tot 7", title: "Oplevering", desc: "Je ontvangt een helder rapport met geprioriteerde AI-kansen en een concreet actieplan." },
+
+    teamHowTitle: "Zo werkt de scan met je team",
+    teamHowBody: [
+      "Je maakt zelf je afdelingen aan, precies zoals jullie het bedrijf hebben ingedeeld. Per afdeling nodig je de mensen uit die het werk het beste kennen.",
+      "Iedereen krijgt dezelfde vragen, over zijn eigen werk. Dat kost ongeveer een uur. Ze hoeven niets voor te bereiden en niets te uploaden.",
+      "Jij ziet het rapport groeien, afdeling voor afdeling. Je bepaalt zelf wie je uitnodigt en wanneer je afrondt.",
     ],
-    investTitle: "Investering",
-    card1Title: "AI Opportunity Scan: standaard",
-    card1Price: "€2.495",
-    card1Desc1: "Gestandaardiseerde analyse",
-    card1Desc2: "Ideaal als startpunt",
-    card1Cta: "Start je Scan →",
-    card2Title: "AI Opportunity Scan: op maat",
-    card2Price: "Vanaf €2.495",
-    card2Desc1: "Volledig op maat",
-    card2Desc2: "Voor specifieke vraagstukken",
-    card2Cta: "Plan een intake →",
-    noCure: "Beide opties: No cure, no pay. Niet tevreden? Je betaalt niets.",
+
+    dataTitle: "Wat we wel en niet vragen",
+    dataBody:
+      "We vragen naar het werk zelf: wat het is, hoe vaak het gebeurt en hoeveel tijd het kost. Er gaan geen bedrijfsbestanden of vertrouwelijke gegevens in. Die blijven waar ze horen.",
+
     faqTitle: "Veelgestelde vragen",
-    faqItems: [
-      { question: "Wat is een AI-scan (innovatiescan)?", answer: "Een AI-scan, ook wel innovatiescan of AI Opportunity Scan, brengt in één week in kaart waar AI in jouw organisatie het meeste oplevert. Je krijgt een overzicht geprioriteerd op impact en haalbaarheid, plus een concreet actieplan. Geen pilot, geen verplichting." },
-      { question: "Wat heb ik nodig om te starten?", answer: "Niets bijzonders. Toegang tot relevante documentatie en 30 minuten van je tijd voor een intake." },
-      { question: "Hoe zit het met mijn data?", answer: "Alle data blijft binnen de EU. Wij zijn volledig GDPR-compliant. Na afloop kun je kiezen of we data bewaren of verwijderen." },
-      { question: "Wat als het niets oplevert?", answer: "Dan betaal je niets. No cure, no pay. Simpel." },
-      { question: "Kan ik daarna verder met nativ?", answer: "Ja. De Scan is stap 1 van ons drielaags model. Na de Scan kun je doorpakken met een AI-kennisbank en digitale collega's." },
+    faq: [
+      {
+        q: "Wat kost de scan?",
+        a: "Niets. Allebei de varianten zijn gratis, en er zit geen verplichting aan vast.",
+      },
+      {
+        q: "Hoe lang duurt het?",
+        a: "In je eentje ongeveer 20 minuten. Met je team ongeveer een uur per persoon, en dat kan iedereen op zijn eigen moment doen.",
+      },
+      {
+        q: "Moet ik iets voorbereiden of aanleveren?",
+        a: "Nee. Je hoeft niets te uploaden en geen documenten te verzamelen. We vragen alleen naar het werk zelf: wat het is, hoe vaak het gebeurt en hoeveel tijd het kost.",
+      },
+      {
+        q: "Wat gebeurt er met mijn antwoorden?",
+        a: "Je antwoorden en je rapport zijn van jou, en je kunt het rapport delen met wie je wilt. Bedrijfsbestanden en vertrouwelijke gegevens vragen we niet op, die blijven bij de bron.",
+      },
+      {
+        q: "Kan ik eerst alleen beginnen en later mijn team erbij halen?",
+        a: "Ja, en dat is ook de gewone volgorde. Je begint in je eentje, en als je meer wilt weten nodig je daarna je collega's uit per afdeling. Je rapport groeit dan mee.",
+      },
+      {
+        q: "Wat gebeurt er na de scan?",
+        a: "Je krijgt je rapport, en als je wilt praten we erover door: wat het bij jullie zou betekenen en waar je zou beginnen. Je zit nergens aan vast.",
+      },
     ],
+
+    closingTitle: "Liever eerst even praten?",
+    closingBody:
+      "Kan ook. Stel je vraag, dan kijken we samen of de scan iets voor jullie is.",
+    closingCta: "Neem contact op",
   },
   en: {
-    heroTitle: "AI Opportunity Scan",
-    heroSub: "Know exactly where AI delivers the most value in your organisation. In one week.",
-    heroSub2: "The AI scan that's concrete and actionable. No vague advice.",
-    heroCta: "Book your Scan →",
-    heroPrice: "From €2,495 · No cure, no pay",
-    auditStripTitle: "Not ready for the paid Scan yet?",
-    auditStripText: "Start with the free 10-minute company-knowledge audit. See where your company's knowledge sits and what you're risking.",
-    auditStripCta: "Take the free audit →",
-    whatTitle: "What you get",
-    whatItems: [
-      "A complete analysis of AI opportunities in your organisation",
-      "Prioritisation based on impact and feasibility",
-      "Concrete next steps: no PowerPoint, but a plan",
-      "Personal walkthrough from our team",
+    heroTitle: "Where can AI take work off your hands?",
+    heroSub:
+      "Run through the scan and see which work in your company lends itself to it. You decide how far you go.",
+
+    quickTitle: "On your own",
+    quickTime: "± 20 minutes",
+    quickBody:
+      "You know your company. Run through the scan yourself and map where time and repetition pile up. You get a report right away, showing the work where AI delivers most for you.",
+    quickCta: "Start the scan",
+
+    teamTitle: "With your team",
+    teamTime: "± 1 hour per person",
+    teamBody:
+      "Invite your people, per department. They see the recurring work you don't. You get the picture of the whole company, department by department.",
+    teamCta: "Invite your team",
+
+    cardsFooter:
+      "Both are free. Both end in a report you can share. Feel free to start on your own. You can always bring your team in later.",
+
+    reportTitle: "What you get",
+    reportItems: [
+      "The work with the most time and repetition in it, ordered by what delivers most",
+      "Per item: how often it happens, what it costs today and why it lends itself to AI",
+      "One concrete starting point: the work where you see results fastest",
+      "A report you can share with whoever you like",
     ],
-    timeLabel: "Timeline:",
-    timeValue: "1 week",
-    formatLabel: "Format:",
-    formatValue: "Interactive report + personal session",
-    howTitle: "How it works",
-    timeline: [
-      { days: "Day 1 to 2", title: "Intake", desc: "We get to know your organisation. Short conversations, access to existing documentation." },
-      { days: "Day 3 to 5", title: "Analysis", desc: "Our AI analyses your processes, data and knowledge flows. We interpret the results." },
-      { days: "Day 5 to 7", title: "Delivery", desc: "You receive a clear report with prioritised AI opportunities and a concrete action plan." },
+
+    teamHowTitle: "How the scan with your team works",
+    teamHowBody: [
+      "You set up your own departments, exactly the way your company is organised. Per department you invite the people who know the work best.",
+      "Everyone gets the same questions, about their own work. That takes about an hour. They don't have to prepare anything or upload anything.",
+      "You watch the report grow, department by department. You decide who you invite and when you wrap up.",
     ],
-    investTitle: "Investment",
-    card1Title: "AI Opportunity Scan: standard",
-    card1Price: "€2,495",
-    card1Desc1: "Standardised analysis",
-    card1Desc2: "Perfect starting point",
-    card1Cta: "Start your Scan →",
-    card2Title: "AI Opportunity Scan: custom",
-    card2Price: "From €2,495",
-    card2Desc1: "Fully customised",
-    card2Desc2: "For complex organisations",
-    card2Cta: "Book an intake →",
-    noCure: "Both options: No cure, no pay. Not satisfied? You pay nothing.",
+
+    dataTitle: "What we do and don't ask for",
+    dataBody:
+      "We ask about the work itself: what it is, how often it happens and how much time it takes. No company files or confidential data go in. Those stay where they belong.",
+
     faqTitle: "Frequently asked questions",
-    faqItems: [
-      { question: "What is an AI scan (innovation scan)?", answer: "An AI scan, also called an innovation scan or AI Opportunity Scan, maps in one week where AI delivers the most value in your organisation. You get an overview prioritised by impact and feasibility, plus a concrete action plan. No pilot, no obligation." },
-      { question: "What do I need to get started?", answer: "Nothing special. Access to relevant documentation and 30 minutes of your time for an intake." },
-      { question: "What about my data?", answer: "All data stays within the EU. We are fully GDPR-compliant. Afterwards you choose whether we keep or delete your data." },
-      { question: "What if it doesn\u2019t deliver?", answer: "Then you pay nothing. No cure, no pay. Simple." },
-      { question: "Can I continue with nativ after?", answer: "Yes. The Scan is step 1 of our three-layer model. After the Scan you can move forward with an AI knowledge base and digital colleagues." },
+    faq: [
+      {
+        q: "What does the scan cost?",
+        a: "Nothing. Both versions are free, and there are no strings attached.",
+      },
+      {
+        q: "How long does it take?",
+        a: "On your own, about 20 minutes. With your team, about an hour per person, and everyone can do it whenever it suits them.",
+      },
+      {
+        q: "Do I need to prepare or supply anything?",
+        a: "No. You don't have to upload anything or gather documents. We only ask about the work itself: what it is, how often it happens and how much time it takes.",
+      },
+      {
+        q: "What happens to my answers?",
+        a: "Your answers and your report are yours, and you can share the report with whoever you like. We don't ask for company files or confidential data, those stay at the source.",
+      },
+      {
+        q: "Can I start alone and bring my team in later?",
+        a: "Yes, and that is the normal order. You start on your own, and if you want to know more you invite your colleagues per department afterwards. Your report grows along with it.",
+      },
+      {
+        q: "What happens after the scan?",
+        a: "You get your report, and if you want we talk it through: what it would mean at your company and where you would start. You are not committed to anything.",
+      },
     ],
+
+    closingTitle: "Rather talk first?",
+    closingBody:
+      "That works too. Ask your question and we'll look together at whether the scan is right for you.",
+    closingCta: "Get in touch",
   },
 };
 
 export default function ScanPage() {
-  const { t } = useLanguage();
-  const c = t(translations);
+  const { language } = useLanguage();
+  const c = translations[language];
 
   return (
-    <>
+    <div className="bg-surface">
       {/* Hero */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
@@ -119,145 +175,144 @@ export default function ScanPage() {
           <FadeIn delay={200}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
               {c.heroSub}
-              <br />
-              {c.heroSub2}
             </p>
           </FadeIn>
-          <FadeIn delay={400}>
-            <div className="mt-10">
-              <Link href="/contact" className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block">
-                {c.heroCta}
-              </Link>
-              <p className="mt-3 text-sm text-grey/50">{c.heroPrice}</p>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
-      {/* Free audit — the on-ramp to the paid Scan */}
-      <section className="px-6 pb-2">
-        <div className="max-w-[800px] mx-auto">
-          <FadeIn>
-            <div className="bg-white rounded-xl p-6 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-              <div className="flex-1">
-                <h2 className="font-serif text-xl text-grey">{c.auditStripTitle}</h2>
-                <p className="mt-2 text-sm text-grey/70 font-light leading-relaxed">{c.auditStripText}</p>
+      {/* The two options */}
+      <section className="px-6 pb-4">
+        <div className="max-w-[900px] mx-auto">
+          <div className="grid gap-6 md:grid-cols-2">
+            <FadeIn delay={150}>
+              <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
+                <h2 className="font-serif text-2xl text-grey">{c.quickTitle}</h2>
+                <p className="mt-1 text-sm text-grey/50">{c.quickTime}</p>
+                <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
+                  {c.quickBody}
+                </p>
+                <Link
+                  href={QUICK_SCAN_HREF}
+                  className="mt-7 bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors text-center font-medium"
+                >
+                  {c.quickCta} →
+                </Link>
               </div>
-              <Link
-                href="/bedrijfskennis-audit"
-                className="shrink-0 border border-sage text-sage px-6 py-3 rounded-lg hover:bg-sage hover:text-white transition-colors text-center text-sm font-medium"
-              >
-                {c.auditStripCta}
-              </Link>
-            </div>
+            </FadeIn>
+
+            <FadeIn delay={300}>
+              <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage-light shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
+                <h2 className="font-serif text-2xl text-grey">{c.teamTitle}</h2>
+                <p className="mt-1 text-sm text-grey/50">{c.teamTime}</p>
+                <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
+                  {c.teamBody}
+                </p>
+                <Link
+                  href={TEAM_SCAN_HREF}
+                  className="mt-7 border border-sage text-sage px-6 py-3 rounded-lg hover:bg-sage hover:text-white transition-colors text-center font-medium"
+                >
+                  {c.teamCta} →
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={450}>
+            <p className="mt-6 text-center text-sm text-grey/60 font-light leading-relaxed max-w-[640px] mx-auto">
+              {c.cardsFooter}
+            </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* What You Get */}
+      {/* What you get */}
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.whatTitle}</h2>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              {c.reportTitle}
+            </h2>
           </FadeIn>
           <FadeIn delay={150}>
             <ul className="mt-8 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
-              {c.whatItems.map((item, i) => (
+              {c.reportItems.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="text-sage mt-1">·</span>
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           </FadeIn>
-          <FadeIn delay={300}>
-            <div className="mt-10 flex flex-wrap gap-6 text-sm">
-              <div className="bg-surface rounded-xl px-5 py-3 border border-sage-light">
-                <span className="text-grey/50">{c.timeLabel}</span>{" "}
-                <span className="font-medium">{c.timeValue}</span>
-              </div>
-              <div className="bg-surface rounded-xl px-5 py-3 border border-sage-light">
-                <span className="text-grey/50">{c.formatLabel}</span>{" "}
-                <span className="font-medium">{c.formatValue}</span>
-              </div>
+        </div>
+      </section>
+
+      {/* How the team scan works */}
+      <section className="py-12 md:py-16 px-6 bg-white">
+        <div className="max-w-[680px] mx-auto">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              {c.teamHowTitle}
+            </h2>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+              {c.teamHowBody.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* Data reassurance */}
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.howTitle}</h2>
-          </FadeIn>
-          <div className="mt-12 space-y-0">
-            {c.timeline.map((step, i) => (
-              <FadeIn key={step.days} delay={i * 150}>
-                <div className="flex gap-6 pb-10 relative">
-                  {i < 2 && (
-                    <div className="absolute left-[11px] top-8 bottom-0 w-px bg-sage/20" aria-hidden="true" />
-                  )}
-                  <div className="shrink-0 w-6 h-6 rounded-full bg-sage/20 flex items-center justify-center mt-1" aria-hidden="true">
-                    <div className="w-2.5 h-2.5 rounded-full bg-sage" />
-                  </div>
-                  <div>
-                    <span className="text-sage text-sm font-medium">{step.days}</span>
-                    <h3 className="font-serif text-xl mt-1">{step.title}</h3>
-                    <p className="mt-2 text-grey/70 font-light leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Cards */}
-      <section className="py-12 md:py-16 px-6">
-        <div className="max-w-[800px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center">{c.investTitle}</h2>
-          </FadeIn>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FadeIn delay={100}>
-              <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
-                <h3 className="font-serif text-xl">{c.card1Title}</h3>
-                <p className="text-3xl font-serif text-sage mt-3">{c.card1Price}</p>
-                <p className="mt-4 text-grey/70 font-light">{c.card1Desc1}</p>
-                <p className="text-grey/70 font-light">{c.card1Desc2}</p>
-                <Link href="/contact" className="mt-6 block text-center bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors">
-                  {c.card1Cta}
-                </Link>
-              </div>
-            </FadeIn>
-            <FadeIn delay={250}>
-              <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
-                <h3 className="font-serif text-xl">{c.card2Title}</h3>
-                <p className="text-3xl font-serif text-sage mt-3">{c.card2Price}</p>
-                <p className="mt-4 text-grey/70 font-light">{c.card2Desc1}</p>
-                <p className="text-grey/70 font-light">{c.card2Desc2}</p>
-                <Link href="/contact" className="mt-6 block text-center border border-sage text-sage px-6 py-3 rounded-lg hover:bg-sage hover:text-white transition-colors">
-                  {c.card2Cta}
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-          <FadeIn delay={400}>
-            <p className="text-center mt-8 text-sage text-sm font-medium">{c.noCure}</p>
+            <div className="bg-white rounded-xl p-6 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+              <h2 className="font-serif text-xl text-grey">{c.dataTitle}</h2>
+              <p className="mt-3 text-base text-grey/70 font-light leading-relaxed">
+                {c.dataBody}
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">{c.faqTitle}</h2>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              {c.faqTitle}
+            </h2>
           </FadeIn>
-          <FAQ items={c.faqItems} />
+          <FadeIn delay={150}>
+            <div className="mt-8">
+              <FAQ items={c.faq.map((f) => ({ question: f.q, answer: f.a }))} />
+            </div>
+          </FadeIn>
         </div>
       </section>
-    </>
+
+      {/* Closing */}
+      <section className="py-12 md:py-16 px-6">
+        <div className="max-w-[680px] mx-auto text-center">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+              {c.closingTitle}
+            </h2>
+            <p className="mt-4 text-lg font-light text-grey/70 leading-relaxed">
+              {c.closingBody}
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors inline-block"
+            >
+              {c.closingCta} →
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+    </div>
   );
 }

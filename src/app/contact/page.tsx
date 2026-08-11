@@ -95,7 +95,7 @@ export default function ContactPage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
-              {c.heroSub}
+              {c.heroSub}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
             </p>

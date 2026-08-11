@@ -4,14 +4,14 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/over-ons",
   "Over ons | nativ",
-  "Wie we zijn en waarom we nativ bouwen. Een Company Brain en digitale collega's voor het Nederlandse mkb.",
+  "Wie we zijn en waarom we nativ bouwen. Een Company Brain en AI-workflows voor het Nederlandse mkb.",
 );
 
 const overOnsJsonLd = [
   webPage(
     "/over-ons",
     "Over nativ",
-    "Wie we zijn en waarom we nativ bouwen. Een Company Brain en digitale collega's voor het Nederlandse mkb.",
+    "Wie we zijn en waarom we nativ bouwen. Een Company Brain en AI-workflows voor het Nederlandse mkb.",
   ),
 ];
 

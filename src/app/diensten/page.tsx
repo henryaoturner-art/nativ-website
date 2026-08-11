@@ -7,15 +7,15 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   nl: {
     heroTitle: "Van inzicht naar impact",
-    heroSub1: "Drie stappen. Van eerste scan tot werkende digitale collega\u2019s.",
+    heroSub1: "Drie stappen. Van gratis scan tot werkende workflows.",
     heroSub2: "Elk op je eigen tempo.",
     layers: [
       {
         step: "Stap 1", title: "Scan",
         lead: "We scannen waar AI de meeste waarde creëert in jouw organisatie.",
-        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze AI Opportunity Scan brengt in één week in kaart waar de grootste kansen liggen. Geen vage beloftes: concrete, geprioriteerde mogelijkheden.",
-        features: ["AI-kansenanalyse op maat", "Prioritering op impact en haalbaarheid", "Concreet actieplan"],
-        meta: "Doorlooptijd: 1 week | Vanaf €2.495 | No cure, no pay",
+        body: "Je weet dat AI belangrijk is. Maar waar begin je? Onze gratis AI Opportunity Scan brengt in kaart welk werk zich leent voor AI. Geen vage beloftes: concreet werk, op volgorde van wat het meeste oplevert.",
+        features: ["In je eentje in ongeveer 20 minuten", "Of compleet met je team, afdeling voor afdeling", "Een deelbaar rapport met één klein startpunt"],
+        meta: "Gratis | ± 20 minuten in je eentje | Geen verplichting",
         whatLabel: "Wat je krijgt:",
         cta: "Start met een Scan →", ctaLink: "/scan", primary: true,
       },
@@ -30,9 +30,9 @@ const translations = {
       },
       {
         step: "Stap 3", title: "Deploy",
-        lead: "We zetten digitale collega's in die echt werk leveren.",
-        body: "Geen chatbot die \"ik weet het niet\" zegt. Digitale collega's die putten uit de collectieve intelligentie van jouw bedrijf. Die taken overnemen, vragen beantwoorden en processen versnellen, met de volledige context van jouw AI Operating System.",
-        features: ["Digitale collega's op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie in bestaande workflows", "Meetbare resultaten"],
+        lead: "We zetten workflows in die echt werk leveren.",
+        body: "Geen chatbot die \"ik weet het niet\" zegt. Workflows die putten uit de kennis van jouw bedrijf. Ze nemen terugkerend werk over, beantwoorden vragen en versnellen processen, met de volledige context uit je Company Brain.",
+        features: ["Workflows op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie met je bestaande systemen", "Meetbare resultaten"],
         meta: "Doorlooptijd: doorlopend | Op maat",
         whatLabel: "Wat je krijgt:",
         cta: "Plan een gesprek →", ctaLink: "/contact", primary: false,
@@ -46,15 +46,15 @@ const translations = {
   },
   en: {
     heroTitle: "From insight to impact",
-    heroSub1: "Three steps. From first scan to working digital colleagues.",
+    heroSub1: "Three steps. From free scan to working workflows.",
     heroSub2: "Each at your own pace.",
     layers: [
       {
         step: "Step 1", title: "Scan",
         lead: "We identify where AI creates the most value in your organisation.",
-        body: "You know AI matters. But where do you start? Our AI Opportunity Scan maps out the biggest opportunities in one week. No vague promises: concrete, prioritised possibilities.",
-        features: ["Custom AI opportunity analysis", "Prioritisation by impact and feasibility", "Concrete action plan"],
-        meta: "Timeline: 1 week | From €2,495 | No cure, no pay",
+        body: "You know AI matters. But where do you start? Our free AI Opportunity Scan maps out which work lends itself to AI. No vague promises: concrete work, ordered by what delivers most.",
+        features: ["On your own in about 20 minutes", "Or complete with your team, department by department", "A shareable report with one small starting point"],
+        meta: "Free | ± 20 minutes on your own | No obligation",
         whatLabel: "What you get:",
         cta: "Start with a Scan →", ctaLink: "/scan", primary: true,
       },
@@ -69,9 +69,9 @@ const translations = {
       },
       {
         step: "Step 3", title: "Deploy",
-        lead: "We deploy digital colleagues that actually get work done.",
-        body: "No chatbot that says \"I don\u2019t know\". Digital colleagues that draw from the collective intelligence of your company. That take over tasks, answer questions and accelerate processes, with context.",
-        features: ["Custom digital colleagues, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration into existing workflows", "Measurable results"],
+        lead: "We deploy workflows that actually get work done.",
+        body: "No chatbot that says \"I don\u2019t know\". Workflows that draw on the knowledge of your company. They take over recurring work, answer questions and accelerate processes, with the full context from your Company Brain.",
+        features: ["Custom workflows, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration with your existing systems", "Measurable results"],
         meta: "Timeline: ongoing | Custom",
         whatLabel: "What you get:",
         cta: "Book a call →", ctaLink: "/contact", primary: false,

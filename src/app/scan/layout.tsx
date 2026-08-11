@@ -3,8 +3,8 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 
 export const metadata: Metadata = pageMeta(
   "/scan",
-  "AI-scan & innovatiescan voor het mkb — in 1 week | nativ",
-  "De AI-scan (innovatiescan) voor het mkb: ontdek in één week waar AI het meeste oplevert, geprioriteerd op impact en haalbaarheid, met een concreet actieplan. Geen pilot, geen verplichting. No cure, no pay.",
+  "Gratis AI-scan voor het mkb — zie waar AI werk uit handen neemt | nativ",
+  "De gratis AI Opportunity Scan voor het mkb. In ongeveer 20 minuten zie je welk werk in jouw bedrijf zich leent voor AI, op volgorde van wat het meeste oplevert. Of doe hem compleet met je team, afdeling voor afdeling. Geen kosten, geen verplichting.",
 );
 
 // Answers are copied verbatim from the Dutch FAQ rendered in page.tsx. Google
@@ -16,74 +16,66 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Wat is een AI-scan (innovatiescan)?",
+      name: "Wat kost de scan?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Een AI-scan, ook wel innovatiescan of AI Opportunity Scan, brengt in één week in kaart waar AI in jouw organisatie het meeste oplevert. Je krijgt een overzicht geprioriteerd op impact en haalbaarheid, plus een concreet actieplan. Geen pilot, geen verplichting.",
+        text: "Niets. Allebei de varianten zijn gratis, en er zit geen verplichting aan vast.",
       },
     },
     {
       "@type": "Question",
-      name: "Wat heb ik nodig om te starten?",
+      name: "Hoe lang duurt het?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Niets bijzonders. Toegang tot relevante documentatie en 30 minuten van je tijd voor een intake.",
+        text: "In je eentje ongeveer 20 minuten. Met je team ongeveer een uur per persoon, en dat kan iedereen op zijn eigen moment doen.",
       },
     },
     {
       "@type": "Question",
-      name: "Hoe zit het met mijn data?",
+      name: "Moet ik iets voorbereiden of aanleveren?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Alle data blijft binnen de EU. Wij zijn volledig GDPR-compliant. Na afloop kun je kiezen of we data bewaren of verwijderen.",
+        text: "Nee. Je hoeft niets te uploaden en geen documenten te verzamelen. We vragen alleen naar het werk zelf: wat het is, hoe vaak het gebeurt en hoeveel tijd het kost.",
       },
     },
     {
       "@type": "Question",
-      name: "Wat als het niets oplevert?",
+      name: "Wat gebeurt er met mijn antwoorden?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Dan betaal je niets. No cure, no pay. Simpel.",
+        text: "Je antwoorden en je rapport zijn van jou, en je kunt het rapport delen met wie je wilt. Bedrijfsbestanden en vertrouwelijke gegevens vragen we niet op, die blijven bij de bron.",
       },
     },
     {
       "@type": "Question",
-      name: "Kan ik daarna verder met nativ?",
+      name: "Kan ik eerst alleen beginnen en later mijn team erbij halen?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja. De Scan is stap 1 van ons drielaags model. Na de Scan kun je doorpakken met een AI-kennisbank en digitale collega's.",
+        text: "Ja, en dat is ook de gewone volgorde. Je begint in je eentje, en als je meer wilt weten nodig je daarna je collega's uit per afdeling. Je rapport groeit dan mee.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wat gebeurt er na de scan?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Je krijgt je rapport, en als je wilt praten we erover door: wat het bij jullie zou betekenen en waar je zou beginnen. Je zit nergens aan vast.",
       },
     },
   ],
 };
 
-// price is the standaard-variant, which is a fixed €2.495. The op-maat variant
-// starts there, so 2495 is the floor either way.
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "AI Opportunity Scan",
-  serviceType: "AI-kansenanalyse voor het mkb",
-  description:
-    "Een analyse van één week die in kaart brengt waar AI in jouw organisatie de meeste waarde oplevert, geprioriteerd op impact en haalbaarheid, met een concreet actieplan.",
-  provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
-  areaServed: { "@type": "Country", name: "Nederland" },
-  offers: {
-    "@type": "Offer",
-    price: "2495",
-    priceCurrency: "EUR",
-    availability: "https://schema.org/InStock",
-    url: "https://gonativ.nl/scan",
-  },
-};
-
+// The scan is free in the new proposition (week-kickoff 10 Aug 2026), so the
+// Service/Offer block that carried the old €2.495 price is deliberately gone.
+// Do not reintroduce a price here without a founder decision — structured data
+// that contradicts the page is worse than no structured data.
 const scanWebPage = webPage(
   "/scan",
   "AI Opportunity Scan",
-  "In één week weten waar AI het meeste oplevert in jouw organisatie. Concreet, toepasbaar, no cure no pay.",
+  "Gratis. Zie in ongeveer 20 minuten welk werk in jouw bedrijf zich leent voor AI, of doe de scan compleet met je team.",
 );
 
-const scanJsonLd = [scanWebPage, faqSchema, serviceSchema];
+const scanJsonLd = [scanWebPage, faqSchema];
 
 export default function ScanLayout({
   children,
