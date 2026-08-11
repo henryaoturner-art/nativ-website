@@ -53,3 +53,6 @@ CREATE TABLE IF NOT EXISTS scan_report (
 CREATE INDEX IF NOT EXISTS scan_answer_scan_idx ON scan_answer (scan_id);
 CREATE INDEX IF NOT EXISTS scan_respondent_scan_idx ON scan_respondent (scan_id);
 CREATE INDEX IF NOT EXISTS scan_department_scan_idx ON scan_department (scan_id);
+
+-- 48-uursherinnering (KAN-377 punt 4): maximaal één herinnering per scan.
+ALTER TABLE scan ADD COLUMN IF NOT EXISTS reminder_sent_at timestamptz;
