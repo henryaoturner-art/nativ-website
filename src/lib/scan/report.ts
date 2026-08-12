@@ -245,12 +245,57 @@ Secties die jij schrijft:
 
 Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de volgorde zelf is het oordeel). Geen besparingsbelofte en geen bedrag: rapporteer wat het werk nu kost, in hun eigen opgave. Geen prijzen. Geen termijnen en geen belofte over wanneer iets werkt. Het woord "digitale collega" komt nergens voor; het rapport levert workflows op. Wat de invuller al met AI geprobeerd heeft (co-ai-history) raad je niet opnieuw aan. Schrijf in gewone taal, korte zinnen, geen jargon, geen buzzwoorden, geen gedachtestreepjes. Schrijf in de taal van de antwoorden.`;
 
+/** Tijdelijke API-fouten waar opnieuw proberen zin heeft: het model zit vol
+ * (overloaded, zoals bij Ziemi op 12 aug — drie keer op rij), we zitten aan
+ * de rate-limit, of de server had een storing. Fouten in ónze invoer of een
+ * weigering zijn dat niet: die gaan er direct uit.
+ * Let op: bij streaming komt de fout als event binnen zonder HTTP-status,
+ * dus we kijken ook naar het fouttype in de melding zelf. */
+function isTransientApiError(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const e = err as { status?: number; type?: string; message?: string };
+  if (typeof e.status === "number" && (e.status === 429 || e.status >= 500)) return true;
+  const text = `${e.type ?? ""} ${e.message ?? ""}`;
+  return ["overloaded_error", "rate_limit_error", "api_error"].some((t) => text.includes(t));
+}
+
+/** Drie pogingen totaal; mislukte pogingen falen binnen seconden, dus dit
+ * past ruim binnen de maxDuration van 300s van de aanroepende routes. */
+const RETRY_DELAYS_MS = [10_000, 30_000];
+
 export async function generateReportPayload(input: {
   companyName: string;
   contactName: string;
   answers: AnswerMap;
   language: "nl" | "en";
   /** Aanwezig = teamrapport: antwoorden per afdeling en per invuller. */
+  team?: TeamReportInput;
+}): Promise<ReportPayload> {
+  // Herkansing bij drukte: de "je krijgt een mail zodra het klaarstaat"-
+  // belofte staat of valt hiermee. Eén poging opgeven omdat het model even
+  // vol zat (zoals bij Ziemi, 12 aug) laat het rapport hangen tot iemand
+  // toevallig de rapportpagina opent.
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    if (attempt > 0) {
+      console.warn(`SCAN_REPORT_RETRY: poging ${attempt + 1} na tijdelijke API-fout`);
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt - 1]));
+    }
+    try {
+      return await generateReportPayloadOnce(input);
+    } catch (err) {
+      lastError = err;
+      if (!isTransientApiError(err)) throw err;
+    }
+  }
+  throw lastError;
+}
+
+async function generateReportPayloadOnce(input: {
+  companyName: string;
+  contactName: string;
+  answers: AnswerMap;
+  language: "nl" | "en";
   team?: TeamReportInput;
 }): Promise<ReportPayload> {
   if (!reportGenerationAvailable()) {
