@@ -33,8 +33,16 @@ interface StaleScan {
 export async function GET(req: NextRequest) {
   // Vercel-cron stuurt Authorization: Bearer <CRON_SECRET>. Zonder geldig
   // secret doet deze route niets — hij verstuurt mail, dus niet vrij aanroepbaar.
-  const secret = process.env.CRON_SECRET;
-  if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
+  // Trimmen aan beide kanten: een waarde die met een regeleinde in Vercel is
+  // geplakt, komt getrimd terug in de header (headers kunnen geen witruimte
+  // aan het eind bevatten). Zonder trim faalt elke cron-run met 401, wat op
+  // 12 aug ook precies gebeurde.
+  const secret = process.env.CRON_SECRET?.trim();
+  const provided = req.headers
+    .get("authorization")
+    ?.replace(/^Bearer\s+/i, "")
+    .trim();
+  if (!secret || provided !== secret) {
     // `configured` zegt alleen ÓF er een geheim staat, nooit welk. Zonder dit
     // is "geheim ontbreekt" niet te onderscheiden van "geheim komt niet
     // overeen", en dat verschil bepaalt of de cron zichzelf kan aanmelden.
