@@ -271,12 +271,18 @@ export async function getReportPayload(scanId: string): Promise<unknown | null> 
   return rows[0]?.payload ?? null;
 }
 
-/** Bewaren, niet elke keer opnieuw genereren (datamodel-doc). */
-export async function saveReportPayload(scanId: string, payload: unknown): Promise<void> {
+/** Bewaren, niet elke keer opnieuw genereren (datamodel-doc).
+ * Geeft terug of dit de EERSTE keer was dat er een rapport werd bewaard.
+ * Daarop hangt de "je rapport staat klaar"-mail: die gaat één keer weg, ook
+ * als twee bezoeken tegelijk het rapport genereren (xmax = 0 betekent: echt
+ * ingevoegd, geen update van een bestaande rij). */
+export async function saveReportPayload(scanId: string, payload: unknown): Promise<boolean> {
   const db = sql();
-  await db.query(
+  const rows = (await db.query(
     `INSERT INTO scan_report (scan_id, payload) VALUES ($1, $2)
-     ON CONFLICT (scan_id) DO UPDATE SET payload = EXCLUDED.payload, generated_at = now()`,
+     ON CONFLICT (scan_id) DO UPDATE SET payload = EXCLUDED.payload, generated_at = now()
+     RETURNING (xmax = 0) AS inserted`,
     [scanId, JSON.stringify(payload)],
-  );
+  )) as { inserted: boolean }[];
+  return rows[0]?.inserted ?? false;
 }

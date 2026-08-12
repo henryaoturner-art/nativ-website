@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { getReportPayload, getScanBundle, saveReportPayload } from "@/lib/scan/db";
+import { sendReportReadyEmail } from "@/lib/scan-email";
 import {
   buildReportInput,
   generateReportPayload,
@@ -124,8 +125,9 @@ export default async function ScanReportPage({
   // terug naar de vragen.
   if (scan.status !== "afgerond" && !payload) redirect(`/scan/${token}`);
 
-  // Zelfherstellend: was er bij het afronden nog geen sleutel, dan wordt het
-  // rapport bij het eerste bezoek alsnog gemaakt en bewaard.
+  // Zelfherstellend: kon het rapport bij het afronden niet gemaakt worden
+  // (geen sleutel, of de API zat vol), dan wordt het bij het eerste bezoek
+  // alsnog gemaakt en bewaard.
   if (!payload && reportGenerationAvailable()) {
     try {
       const reportInput = buildReportInput(bundle);
@@ -136,7 +138,14 @@ export default async function ScanReportPage({
         language: "nl",
         team: reportInput.team,
       });
-      await saveReportPayload(scan.id, payload);
+      const firstSave = await saveReportPayload(scan.id, payload);
+      // De invuller kreeg bij het afronden "je rapport wordt gemaakt" — dit
+      // is het moment waarop het er echt staat, dus dit is het moment voor
+      // de "je rapport staat klaar"-mail. Alleen bij de eerste keer bewaren,
+      // zodat de mail nooit dubbel gaat.
+      if (firstSave) {
+        await sendReportReadyEmail(scan, payload.language);
+      }
     } catch (err) {
       console.error("SCAN_REPORT_LAZY_ERROR:", err);
     }

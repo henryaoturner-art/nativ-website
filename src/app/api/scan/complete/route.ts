@@ -145,16 +145,16 @@ export async function POST(req: NextRequest) {
       // te komen (datamodel-doc). De tekst volgt de staat: staat het rapport er
       // nog niet, dan belooft de mail er ook geen.
       try {
-        const ready = Boolean(payload);
+        const state = payload ? "ready" : "pending";
         await resend.emails.send({
           from: `nativ <${FROM_EMAIL}>`,
           to: [scan.contact_email],
           replyTo: REPLY_TO_EMAIL,
-          subject: scanEmailSubject(ready, lang),
+          subject: scanEmailSubject(state, lang),
           html: scanEmailHtml({
             name: scan.contact_name,
             reportUrl,
-            ready,
+            state,
             language: lang,
           }),
         });
