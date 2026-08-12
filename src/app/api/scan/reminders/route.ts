@@ -35,7 +35,13 @@ export async function GET(req: NextRequest) {
   // secret doet deze route niets — hij verstuurt mail, dus niet vrij aanroepbaar.
   const secret = process.env.CRON_SECRET;
   if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
-    return NextResponse.json({ error: "Niet toegestaan" }, { status: 401 });
+    // `configured` zegt alleen ÓF er een geheim staat, nooit welk. Zonder dit
+    // is "geheim ontbreekt" niet te onderscheiden van "geheim komt niet
+    // overeen", en dat verschil bepaalt of de cron zichzelf kan aanmelden.
+    return NextResponse.json(
+      { error: "Niet toegestaan", configured: Boolean(secret) },
+      { status: 401 },
+    );
   }
   if (!process.env.DATABASE_URL) {
     return NextResponse.json({ error: "DATABASE_URL ontbreekt" }, { status: 500 });
