@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await completeScan(scan.id, respondent.id);
+    await completeScan(scan.id, respondent.id, lang);
 
     // Rapport genereren als er een sleutel is; anders volgt het via de
     // rapportpagina zodra de sleutel er is. Fail-soft: een mislukte

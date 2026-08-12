@@ -26,6 +26,8 @@ export interface ScanRow {
   contact_email: string;
   bank_version: string;
   status: "open" | "afgerond";
+  /** Taal van de invuller — stuurt de taal van laat-gegenereerde rapporten. */
+  language: "nl" | "en";
   created_at: string;
   completed_at: string | null;
 }
@@ -70,6 +72,7 @@ export async function createQuickScan(input: {
   /** `team` = de invuller koos "met je team": hij vult eerst zelf in en komt
    * daarna op het beheerscherm in plaats van op het rapport. */
   mode?: "quick" | "team";
+  language?: "nl" | "en";
 }): Promise<{ scanToken: string }> {
   const db = sql();
   const scanId = randomUUID();
@@ -80,8 +83,8 @@ export async function createQuickScan(input: {
 
   await db.transaction([
     db.query(
-      `INSERT INTO scan (id, token, mode, company_name, contact_name, contact_email, bank_version, status)
-       VALUES ($1, $2, $7, $3, $4, $5, $6, 'open')`,
+      `INSERT INTO scan (id, token, mode, company_name, contact_name, contact_email, bank_version, status, language)
+       VALUES ($1, $2, $7, $3, $4, $5, $6, 'open', $8)`,
       [
         scanId,
         scanToken,
@@ -90,6 +93,7 @@ export async function createQuickScan(input: {
         input.contactEmail,
         input.bankVersion,
         input.mode ?? "quick",
+        input.language ?? "nl",
       ],
     ),
     db.query(
@@ -249,12 +253,20 @@ export async function upsertAnswer(input: {
   );
 }
 
-export async function completeScan(scanId: string, respondentId: string): Promise<void> {
+export async function completeScan(
+  scanId: string,
+  respondentId: string,
+  language: "nl" | "en",
+): Promise<void> {
   const db = sql();
+  // De taal wordt hier vastgezet: de wizard geeft bij het afronden de
+  // actuele taalkeuze mee, en die is leidend voor laat-gegenereerde
+  // rapporten (invuller kan tussen aanmaken en afronden gewisseld zijn).
   await db.transaction([
     db.query(
-      `UPDATE scan SET status = 'afgerond', completed_at = now() WHERE id = $1 AND status = 'open'`,
-      [scanId],
+      `UPDATE scan SET status = 'afgerond', completed_at = now(), language = $2
+       WHERE id = $1 AND status = 'open'`,
+      [scanId, language],
     ),
     db.query(
       `UPDATE scan_respondent SET status = 'klaar', completed_at = now() WHERE id = $1`,

@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
       bankVersion: SCAN_BANK_VERSION,
       departmentName,
       mode,
+      language: body.lang === "en" ? "en" : "nl",
     });
 
     console.log("SCAN_CREATED:", JSON.stringify({ companyName, contactEmail, mode }));

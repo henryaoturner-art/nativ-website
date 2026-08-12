@@ -135,7 +135,7 @@ export default async function ScanReportPage({
         companyName: scan.company_name,
         contactName: scan.contact_name,
         answers: reportInput.ownerAnswers,
-        language: "nl",
+        language: scan.language,
         team: reportInput.team,
       });
       const firstSave = await saveReportPayload(scan.id, payload);

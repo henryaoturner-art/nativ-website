@@ -172,7 +172,7 @@ export async function GET(req: NextRequest) {
             companyName: bundle.scan.company_name,
             contactName: bundle.scan.contact_name,
             answers: reportInput.ownerAnswers,
-            language: "nl",
+            language: bundle.scan.language,
             team: reportInput.team,
           });
           const firstSave = await saveReportPayload(bundle.scan.id, payload);

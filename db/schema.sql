@@ -56,3 +56,10 @@ CREATE INDEX IF NOT EXISTS scan_department_scan_idx ON scan_department (scan_id)
 
 -- 48-uursherinnering (KAN-377 punt 4): maximaal één herinnering per scan.
 ALTER TABLE scan ADD COLUMN IF NOT EXISTS reminder_sent_at timestamptz;
+
+-- Taal van de invuller (wizard-keuze), zodat een rapport dat pas later wordt
+-- gegenereerd (rapportpagina of cron-vangnet) en de bijbehorende mail in de
+-- juiste taal komen. Voorheen was dat late pad hard Nederlands.
+-- Let op: migrate.mjs splitst dit bestand op puntkomma en kent geen
+-- quoting, dus houd commentaarregels vrij van puntkomma en apostrof.
+ALTER TABLE scan ADD COLUMN IF NOT EXISTS language text NOT NULL DEFAULT 'nl';
