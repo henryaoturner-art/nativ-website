@@ -29,7 +29,7 @@ const staticCopy = {
     reportLabel: "AI-scan",
     pendingTitle: "Je rapport wordt gemaakt",
     pendingBody:
-      "Je antwoorden zijn binnen en veilig opgeslagen. Het rapport verschijnt hier zodra het klaar is. Deze pagina blijft jouw eigen link, dus kom gerust later terug.",
+      "Bedankt dat je hebt deelgenomen aan de scan. Je antwoorden zijn binnen en veilig opgeslagen. We maken nu je rapport en je krijgt een mail zodra het klaarstaat. Deze pagina blijft jouw eigen link, daarmee kom je terug bij je rapport.",
     gehoord: "Wat we van je gehoord hebben",
     bekeken: "Wat we hebben bekeken",
     ranglijst: "De ranglijst",
@@ -70,7 +70,7 @@ const staticCopy = {
     reportLabel: "AI scan",
     pendingTitle: "Your report is being created",
     pendingBody:
-      "Your answers are in and safely stored. The report will appear here as soon as it is ready. This page remains your personal link, so feel free to come back later.",
+      "Thanks for taking the scan. Your answers are in and safely stored. We are creating your report now and you will get an email as soon as it is ready. This page remains your own link, it takes you back to your report.",
     gehoord: "What we heard from you",
     bekeken: "What we looked at",
     ranglijst: "The ranking",

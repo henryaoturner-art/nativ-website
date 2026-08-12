@@ -26,7 +26,7 @@ const translations = {
     greeting: "Beste",
     introReady: "Bedankt voor het invullen van de scan. Je rapport staat klaar:",
     introPending:
-      "Bedankt voor het invullen van de scan. Je rapport wordt gemaakt en verschijnt op je eigen link:",
+      "Bedankt dat je hebt deelgenomen aan de scan. We maken nu je rapport en je krijgt een mail zodra het klaarstaat. Dit is je eigen link, daarmee kom je terug bij je rapport:",
     introReadyLater: "Je rapport is klaar. Je vindt het op je eigen link:",
     cta: "Bekijk je rapport →",
     ownership:
@@ -42,7 +42,7 @@ const translations = {
     greeting: "Hi",
     introReady: "Thanks for completing the scan. Your report is ready:",
     introPending:
-      "Thanks for completing the scan. Your report is being created and will appear on your own link:",
+      "Thanks for taking the scan. We are creating your report now and you will get an email as soon as it is ready. This is your own link, it takes you back to your report:",
     introReadyLater: "Your report is ready. You will find it on your own link:",
     cta: "View your report →",
     ownership:
