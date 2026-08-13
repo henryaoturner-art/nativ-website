@@ -8,7 +8,7 @@ import { webPage } from "@/lib/site-meta";
 const translations = {
   nl: {
     heroTitle: "Betrouwbare AI die begrijpt hoe jij werkt.",
-    heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in mailboxen, in gesprekken en in losse tools die niemand deelt.",
+    heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het ideale fundament voor je digitale assistent en voor de AI-workflows die jou het meest ontzorgen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
@@ -48,7 +48,7 @@ const translations = {
   },
   en: {
     heroTitle: "Reliable AI that understands how you work.",
-    heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in mailboxes, in conversations and in separate tools nobody shares.",
+    heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the ideal foundation for your digital assistant and for the AI workflows that take the most off your plate.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
