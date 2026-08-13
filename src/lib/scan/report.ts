@@ -46,6 +46,14 @@ export interface ReportLimit {
   capaciteit: string;
 }
 
+/** Hun eigen beeld van slagen, letterlijk uit co-success. Verschijnt als
+ * citaat boven "waar je in kunt groeien"; verdwijnt als de guard het niet
+ * letterlijk in hun antwoorden terugvindt. */
+export interface ReportOwnPicture {
+  citaat: string;
+  vraagId: string;
+}
+
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
@@ -79,6 +87,8 @@ export interface ReportPayload {
   waarWeZoudenBeginnen: string;
   uitzoeksuggesties: string[];
   waarJeInKuntGroeien: string;
+  /** Alleen als zij co-success invulden én het citaat verifieerbaar is. */
+  jouwEigenBeeld?: ReportOwnPicture;
 }
 
 /** Gestructureerde invoer voor een teamrapport: antwoorden per afdeling en
@@ -179,7 +189,19 @@ function addedValueSchema() {
   };
 }
 
-function reportSchema(team: boolean, addedValue: boolean) {
+function ownPictureSchema() {
+  return {
+    type: "object",
+    properties: {
+      citaat: { type: "string" },
+      vraagId: { type: "string" },
+    },
+    required: ["citaat", "vraagId"],
+    additionalProperties: false,
+  };
+}
+
+function reportSchema(team: boolean, addedValue: boolean, ownPicture: boolean) {
   return {
     type: "object",
     properties: {
@@ -210,6 +232,7 @@ function reportSchema(team: boolean, addedValue: boolean) {
       waarWeZoudenBeginnen: { type: "string" },
       uitzoeksuggesties: { type: "array", items: { type: "string" } },
       waarJeInKuntGroeien: { type: "string" },
+      ...(ownPicture ? { jouwEigenBeeld: ownPictureSchema() } : {}),
     },
     required: [
       "gehoord",
@@ -221,6 +244,7 @@ function reportSchema(team: boolean, addedValue: boolean) {
       "waarWeZoudenBeginnen",
       "uitzoeksuggesties",
       "waarJeInKuntGroeien",
+      ...(ownPicture ? ["jouwEigenBeeld"] : []),
     ],
     additionalProperties: false,
   };
@@ -284,6 +308,25 @@ function answersBlock(
 // al met AI werkt. Wie dat niet doet heeft geen huidige aanpak om iets aan
 // toe te voegen, en dan is de sectie een pitch zonder aanleiding.
 // ---------------------------------------------------------------------------
+
+const SUCCESS_ID = "co-success";
+/** Te dun om iemand zijn eigen beeld mee terug te geven. */
+const SUCCESS_MIN_CHARS = 25;
+
+/** Vulden zij hun eigen beeld van slagen in? Zo niet, dan vragen we het
+ * citaat niet, want een beeld verzinnen dat zij niet gaven is precies wat we
+ * hier NIET willen. */
+export function ownPictureApplies(answers: AnswerMap): boolean {
+  return (answers.get(SUCCESS_ID) ?? "").trim().length >= SUCCESS_MIN_CHARS;
+}
+
+const OWN_PICTURE_PROMPT_EXTRA = `
+
+Deze invuller heeft zelf beschreven waaraan hij over zes maanden wil zien dat AI hem echt helpt (co-success). Dat antwoord geef je hem terug; tot nu toe verdween het.
+- jouwEigenBeeld.citaat: het fragment uit hun antwoord waarop je de alinea baseert, LETTERLIJK overgenomen, tien tot dertig woorden, niets gecorrigeerd of herschreven. Dit wordt de lezer NIET getoond; het is de verankering waarmee wij controleren dat het beeld uit hun eigen antwoord komt en niet verzonnen is. Het wordt woord voor woord tegen hun antwoord gehouden, dus kopieer exact. vraagId is co-success.
+- waarJeInKuntGroeien opent daarna vanuit dat beeld, in leesbare taal. Veel antwoorden zijn ingesproken en bevatten verhaspelingen; die schrijf je niet over. Geef hun beeld terug zoals zij het bedoelden, herkenbaar in hun eigen bewoordingen, zonder de verspreking mee te nemen en zonder er iets aan toe te voegen dat zij niet zeiden.
+- waarJeInKuntGroeien verbindt dat beeld vervolgens met de workflows uit de ranglijst: wat zij beschrijven vraagt dat de kennis eronder ergens staat, en dat is precies wat er gebeurt zodra het eerste werk loopt. Daarna de bestaande strekking: het werk uit de tweede groep ligt dan voor de hand, en wat er over hun manier van werken wordt vastgelegd komt daar opnieuw bij van pas.
+- Neem hun termijn NIET over als onze toezegging. Zij zeggen "over zes maanden", dat is hun wens en niet onze planning; het rapport belooft nooit wanneer iets werkt. Schrijf ook niet dat het er komt, alleen hoe het zich verhoudt tot wat er in dit rapport staat.`;
 
 const AI_TODAY_ID = "co-ai-today";
 const AI_HISTORY_ID = "co-ai-history";
@@ -466,6 +509,28 @@ export function guardAddedValue(
   return { ...section, grenzen };
 }
 
+/**
+ * Het citaat moet letterlijk in hun antwoorden staan, anders verdwijnt het
+ * blok. Alleen het citaat: de alinea eronder blijft, want die draagt ook
+ * zonder citaat betekenis.
+ */
+export function guardOwnPicture(
+  picture: ReportOwnPicture | undefined,
+  answers: AnswerMap,
+): ReportOwnPicture | undefined {
+  if (!picture) return undefined;
+  const quote = normalizeForMatch(picture.citaat ?? "");
+  if (quote.length < MIN_QUOTE_CHARS) {
+    console.warn("SCAN_OWN_PICTURE_DROPPED: citaat te kort");
+    return undefined;
+  }
+  if (!answersHaystack(answers).includes(quote)) {
+    console.warn("SCAN_OWN_PICTURE_DROPPED: citaat niet letterlijk in de antwoorden");
+    return undefined;
+  }
+  return picture;
+}
+
 /** Tijdelijke API-fouten waar opnieuw proberen zin heeft: het model zit vol
  * (overloaded, zoals bij Ziemi op 12 aug — drie keer op rij), we zitten aan
  * de rate-limit, of de server had een storing. Fouten in ónze invoer of een
@@ -527,6 +592,7 @@ async function generateReportPayloadOnce(input: {
   // Sectie F wordt niet eens gevraagd als de poort dicht is: geen schemaveld,
   // geen prompttekst, dus ook geen model dat er alsnog iets van maakt.
   const wantsAddedValue = addedValueApplies(input.answers);
+  const wantsOwnPicture = ownPictureApplies(input.answers);
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -554,6 +620,7 @@ async function generateReportPayloadOnce(input: {
   const system =
     SYSTEM_PROMPT +
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
+    (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsAddedValue
       ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
       : "");
@@ -563,7 +630,10 @@ async function generateReportPayloadOnce(input: {
     max_tokens: 16000,
     system,
     output_config: {
-      format: { type: "json_schema", schema: reportSchema(isTeam, wantsAddedValue) },
+      format: {
+        type: "json_schema",
+        schema: reportSchema(isTeam, wantsAddedValue, wantsOwnPicture),
+      },
     },
     messages: [{ role: "user", content: userContent }],
   });
@@ -581,11 +651,13 @@ async function generateReportPayloadOnce(input: {
 
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
   const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
+  const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   return {
     version: 2,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
     watDitToevoegt,
+    jouwEigenBeeld,
   };
 }

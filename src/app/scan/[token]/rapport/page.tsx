@@ -310,6 +310,14 @@ export default async function ScanReportPage({
         )}
 
         <ReportSection title={c.groeien}>
+          {/* jouwEigenBeeld staat WEL in de payload maar wordt bewust niet
+              getoond: het is de verankering waarop de alinea hieronder is
+              gebaseerd, geen citaat voor de lezer. De scan moedigt inspreken
+              aan, dus letterlijke antwoorden bevatten geregeld verhaspelingen
+              ("allemaal een iPod hebben die als klankbord kan vergeeren"), en
+              die terugspiegelen leest als slordigheid. De alinea geeft hun
+              beeld in leesbare taal terug; het opgeslagen citaat laat ons
+              controleren dat het niet verzonnen is. */}
           <Prose text={payload.waarJeInKuntGroeien} />
         </ReportSection>
 
