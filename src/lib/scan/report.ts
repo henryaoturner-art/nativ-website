@@ -18,6 +18,7 @@ import {
   DEPARTMENT_QUESTIONS,
   type ScanQuestion,
 } from "./bank";
+import { CAPABILITY_IDS, capabilitiesPromptBlock } from "./capabilities";
 import { helpFor, storedLabels, type AnswerMap } from "./visibility";
 
 export interface ReportWorkflowItem {
@@ -34,6 +35,25 @@ export interface ReportWorkflowItem {
   afdeling?: string;
 }
 
+/** Eén grens van hun huidige aanpak, met beide bronnen eraan vast: hun eigen
+ * woorden (letterlijk, controleerbaar) en de capaciteit die het adresseert
+ * (een id uit de kaart). Een grens zonder kloppende bronnen overleeft de
+ * guard niet. */
+export interface ReportLimit {
+  grens: string;
+  citaat: string;
+  vraagId: string;
+  capaciteit: string;
+}
+
+/** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
+export interface ReportAddedValue {
+  watErNuGoedGaat: string;
+  grenzen: ReportLimit[];
+  watErvoorInDePlaatsKomt: string;
+  watErvoorNodigIs: string;
+}
+
 export interface ReportPayload {
   version: 1 | 2;
   language: "nl" | "en";
@@ -48,6 +68,8 @@ export interface ReportPayload {
   };
   /** Alleen bij teamrapporten: sectie 4, de kern van de meerwaarde. */
   watJeMensenZagen?: string;
+  /** Sectie F — alleen als zij zelf al met AI werken; anders afwezig. */
+  watDitToevoegt?: ReportAddedValue;
   /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
   kennisbeeld?: {
     systemen: string[];
@@ -125,7 +147,39 @@ export function buildReportInput(bundle: {
   };
 }
 
-function reportSchema(team: boolean) {
+function addedValueSchema() {
+  return {
+    type: "object",
+    properties: {
+      watErNuGoedGaat: { type: "string" },
+      grenzen: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            grens: { type: "string" },
+            citaat: { type: "string" },
+            vraagId: { type: "string" },
+            capaciteit: { type: "string" },
+          },
+          required: ["grens", "citaat", "vraagId", "capaciteit"],
+          additionalProperties: false,
+        },
+      },
+      watErvoorInDePlaatsKomt: { type: "string" },
+      watErvoorNodigIs: { type: "string" },
+    },
+    required: [
+      "watErNuGoedGaat",
+      "grenzen",
+      "watErvoorInDePlaatsKomt",
+      "watErvoorNodigIs",
+    ],
+    additionalProperties: false,
+  };
+}
+
+function reportSchema(team: boolean, addedValue: boolean) {
   return {
     type: "object",
     properties: {
@@ -142,6 +196,7 @@ function reportSchema(team: boolean) {
         additionalProperties: false,
       },
       ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
+      ...(addedValue ? { watDitToevoegt: addedValueSchema() } : {}),
       kennisbeeld: {
         type: "object",
         properties: {
@@ -161,6 +216,7 @@ function reportSchema(team: boolean) {
       "bekeken",
       "ranglijst",
       ...(team ? ["watJeMensenZagen"] : []),
+      ...(addedValue ? ["watDitToevoegt"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
       "uitzoeksuggesties",
@@ -221,6 +277,51 @@ function answersBlock(
   return lines.join("\n\n");
 }
 
+// ---------------------------------------------------------------------------
+// Sectie F — "Wat dit toevoegt aan wat je nu al doet"
+//
+// De poort is deterministisch: de sectie bestaat alleen voor iemand die zelf
+// al met AI werkt. Wie dat niet doet heeft geen huidige aanpak om iets aan
+// toe te voegen, en dan is de sectie een pitch zonder aanleiding.
+// ---------------------------------------------------------------------------
+
+const AI_TODAY_ID = "co-ai-today";
+const AI_HISTORY_ID = "co-ai-history";
+/** Het exclusieve "bijna niemand gebruikt het"-label (beide talen). */
+const AI_TODAY_NONE_LABELS = new Set([
+  "Bijna niemand gebruikt het",
+  "Almost nobody uses it",
+]);
+/** Zonder co-ai-today (scans van vóór bankversie v5) valt de poort terug op
+ * het verhaal bij co-ai-history; te kort = geen huidige aanpak om over te
+ * praten. */
+const AI_HISTORY_MIN_CHARS = 80;
+
+export function addedValueApplies(answers: AnswerMap): boolean {
+  const today = answers.get(AI_TODAY_ID);
+  if (today != null && today.trim() !== "" && today.trim() !== "[]") {
+    const labels = storedLabels(
+      { type: "multi-choice" } as ScanQuestion,
+      today,
+    );
+    return labels.some((label) => !AI_TODAY_NONE_LABELS.has(label));
+  }
+  return (answers.get(AI_HISTORY_ID) ?? "").trim().length >= AI_HISTORY_MIN_CHARS;
+}
+
+const ADDED_VALUE_PROMPT_EXTRA = `
+
+Deze invuller werkt zelf al met AI. Daarom schrijf je ook watDitToevoegt: wat dit toevoegt aan wat hij vandaag al doet. Zonder deze sectie leest het rapport voor hem als iets wat hij al heeft, en dat is de belangrijkste reden dat zo iemand afhaakt.
+
+Drie blokken, in deze volgorde, en de volgorde is het halve werk:
+- watErNuGoedGaat: één alinea over wat er nu al goed werkt, in hun eigen woorden en zonder ondermijning. Iemand die zijn eigen AI voedt met eigen bestanden heeft iets echts opgebouwd; erken dat voluit. Wie hier begint met wat er mis is, is de lezer kwijt.
+- grenzen: twee tot vier grenzen van die huidige aanpak. Elke grens is een EIGENSCHAP van de opzet, nooit een verwijt en nooit een uitspraak over het taalmodel. Kies alleen grenzen die volgen uit hun eigen antwoorden. De vier die meestal spelen: de context is van één persoon en vertrekt met diegene; niemand kan zien wat erin zit of wat nog klopt, want er is geen eigenaar, herkomst of datum; iedereen bouwt zijn eigen versie van de waarheid; het kan praten maar niet uitvoeren (rekenen, bronnen ophalen, stappen ketenen, op een moment draaien, pauzeren voor goedkeuring). Zeggen zij zelf dat ze prompts of context al delen, dan laat je de derde weg.
+- Per grens: grens = één of twee zinnen in gewone taal. citaat = de woorden uit hun eigen antwoord waar deze grens uit volgt, LETTERLIJK overgenomen, minimaal vijftien tekens, zonder iets te corrigeren of mooier te maken. vraagId = de vraag waar dat citaat uit komt. capaciteit = het id uit de capaciteitenkaart dat deze grens adresseert.
+- watErvoorInDePlaatsKomt: één alinea. Geen andere chat en geen overstap: iedereen blijft werken in de tool die hij al gebruikt. Wat verandert is waar de context vandaan komt, en dat er bovenop diezelfde kennis werk kan draaien dat een gesprek niet doet.
+- watErvoorNodigIs: één of twee zinnen, eerlijk. Iemand moet bepalen wat er gedeeld hoort en wie wat mag zien, en dat is werk.
+
+Harde regels voor juist deze sectie, want dit is de plek waar het rapport het snelst een folder wordt: nooit een uitspraak over het taalmodel, wij zijn niet slimmer dan wat zij gebruiken en dat is het punt niet. Nooit "dat kan jouw tool niet" als kale bewering, alleen eigenschappen die uit hun eigen antwoord volgen. Geen merknamen van andere aanbieders. Geen prijs, geen migratieverhaal, geen belofte dat het beter wordt, geen woorden als beter, sneller, slimmer of krachtiger. Getallen alleen als zij die zelf noemden.`;
+
 const TEAM_PROMPT_EXTRA = `
 
 Dit is een TEAMSCAN: meerdere invullers, elk over hun eigen afdeling. De antwoorden staan per afdeling en per invuller gegroepeerd; behandel elke afdeling als een eigen beeld en gooi antwoorden van verschillende invullers nooit op één hoop. Aanvullende regels:
@@ -244,6 +345,126 @@ Secties die jij schrijft:
 - waarJeInKuntGroeien: één korte alinea. Geen roadmap, geen fasering, geen termijnen. Strekking: als de eerste workflow eenmaal loopt, ligt het werk uit de tweede groep voor de hand, en wat er over jullie manier van werken wordt vastgelegd komt daar ook weer bij van pas.
 
 Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de volgorde zelf is het oordeel). Geen besparingsbelofte en geen bedrag: rapporteer wat het werk nu kost, in hun eigen opgave. Geen prijzen. Geen termijnen en geen belofte over wanneer iets werkt. Het woord "digitale collega" komt nergens voor; het rapport levert workflows op. Wat de invuller al met AI geprobeerd heeft (co-ai-history) raad je niet opnieuw aan. Schrijf in gewone taal, korte zinnen, geen jargon, geen buzzwoorden, geen gedachtestreepjes. Schrijf in de taal van de antwoorden.`;
+
+// ---------------------------------------------------------------------------
+// De guard op sectie F. De prompt vraagt om herkomst; deze code controleert
+// hem. Zelfde patroon als de membership guards in de engine (app/api/brain.py):
+// wat niet in de meegestuurde lijst staat, wordt niet vertrouwd maar
+// weggegooid. Een instructie is geen garantie, een check wel.
+// ---------------------------------------------------------------------------
+
+/** Woorden die in sectie F nooit voorkomen: vergelijkingen met hun tool of
+ * ons model, beloftes, prijzen en merknamen van andere aanbieders. */
+const FORBIDDEN_IN_ADDED_VALUE = [
+  "beter",
+  "sneller",
+  "slimmer",
+  "krachtiger",
+  "superieur",
+  "geavanceerder",
+  "bespaar",
+  "besparing",
+  "garandeer",
+  "gratis",
+  "goedkoper",
+  "procent",
+  "%",
+  "chatgpt",
+  "openai",
+  "copilot",
+  "gemini",
+  "claude",
+  "notebooklm",
+];
+
+const MIN_QUOTE_CHARS = 15;
+
+function normalizeForMatch(text: string): string {
+  return text.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+/** Alle antwoorden als één doorzoekbare tekst — de bron waartegen elk citaat
+ * en elk getal wordt gehouden. */
+function answersHaystack(answers: AnswerMap): string {
+  return normalizeForMatch([...answers.values()].join(" \n "));
+}
+
+function tripsForbidden(text: string): string | null {
+  const lower = text.toLowerCase();
+  return FORBIDDEN_IN_ADDED_VALUE.find((word) => lower.includes(word)) ?? null;
+}
+
+/** Elk getal in de tekst moet ook in hun eigen antwoorden staan. */
+function inventsNumber(text: string, haystack: string): string | null {
+  for (const match of text.matchAll(/\d+/g)) {
+    if (!haystack.includes(match[0])) return match[0];
+  }
+  return null;
+}
+
+/**
+ * Houdt sectie F tegen het licht en geeft terug wat overleeft.
+ * Een grens overleeft alleen met een bestaand capaciteit-id, een citaat dat
+ * letterlijk in hun antwoorden voorkomt, en zonder verboden woorden of
+ * verzonnen getallen. Blijft er geen enkele grens over, dan verdwijnt de hele
+ * sectie: leeg is beter dan vaag.
+ */
+export function guardAddedValue(
+  section: ReportAddedValue | undefined,
+  answers: AnswerMap,
+): ReportAddedValue | undefined {
+  if (!section) return undefined;
+  const haystack = answersHaystack(answers);
+
+  const drop = (reason: string) => {
+    console.warn(`SCAN_ADDED_VALUE_DROPPED: ${reason}`);
+    return undefined;
+  };
+
+  for (const [field, text] of [
+    ["watErNuGoedGaat", section.watErNuGoedGaat],
+    ["watErvoorInDePlaatsKomt", section.watErvoorInDePlaatsKomt],
+    ["watErvoorNodigIs", section.watErvoorNodigIs],
+  ] as const) {
+    if (!text || !text.trim()) return drop(`${field} is leeg`);
+    const word = tripsForbidden(text);
+    if (word) return drop(`${field} bevat verboden woord "${word}"`);
+    const number = inventsNumber(text, haystack);
+    if (number) return drop(`${field} noemt getal ${number} dat zij niet gaven`);
+  }
+
+  const grenzen = section.grenzen.filter((limit) => {
+    const quote = normalizeForMatch(limit.citaat ?? "");
+    if (quote.length < MIN_QUOTE_CHARS) {
+      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: citaat te kort`);
+      return false;
+    }
+    if (!haystack.includes(quote)) {
+      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: citaat niet in antwoorden`);
+      return false;
+    }
+    if (!CAPABILITY_IDS.has(limit.capaciteit)) {
+      console.warn(
+        `SCAN_ADDED_VALUE_LIMIT_DROPPED: onbekende capaciteit "${limit.capaciteit}"`,
+      );
+      return false;
+    }
+    const word = tripsForbidden(limit.grens);
+    if (word) {
+      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: verboden woord "${word}"`);
+      return false;
+    }
+    const number = inventsNumber(limit.grens, haystack);
+    if (number) {
+      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: verzonnen getal ${number}`);
+      return false;
+    }
+    return true;
+  });
+
+  if (grenzen.length === 0) return drop("geen enkele grens overleefde de guard");
+  return { ...section, grenzen };
+}
 
 /** Tijdelijke API-fouten waar opnieuw proberen zin heeft: het model zit vol
  * (overloaded, zoals bij Ziemi op 12 aug — drie keer op rij), we zitten aan
@@ -303,6 +524,9 @@ async function generateReportPayloadOnce(input: {
   }
   const client = new Anthropic();
   const isTeam = Boolean(input.team && input.team.departments.length > 0);
+  // Sectie F wordt niet eens gevraagd als de poort dicht is: geen schemaveld,
+  // geen prompttekst, dus ook geen model dat er alsnog iets van maakt.
+  const wantsAddedValue = addedValueApplies(input.answers);
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -327,12 +551,19 @@ async function generateReportPayloadOnce(input: {
     }
   }
 
+  const system =
+    SYSTEM_PROMPT +
+    (isTeam ? TEAM_PROMPT_EXTRA : "") +
+    (wantsAddedValue
+      ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
+      : "");
+
   const stream = client.messages.stream({
     model: "claude-opus-5",
     max_tokens: 16000,
-    system: isTeam ? SYSTEM_PROMPT + TEAM_PROMPT_EXTRA : SYSTEM_PROMPT,
+    system,
     output_config: {
-      format: { type: "json_schema", schema: reportSchema(isTeam) },
+      format: { type: "json_schema", schema: reportSchema(isTeam, wantsAddedValue) },
     },
     messages: [{ role: "user", content: userContent }],
   });
@@ -349,10 +580,12 @@ async function generateReportPayloadOnce(input: {
   }
 
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
+  const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
   return {
     version: 2,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
+    watDitToevoegt,
   };
 }

@@ -47,6 +47,8 @@ const staticCopy = {
     kennisSystemen: "Systemen en plekken die steeds terugkomen",
     kennisHoofden: "Wat alleen in iemands hoofd zit",
     mensenZagen: "Wat je mensen zagen en jij niet",
+    toevoegt: "Wat dit toevoegt aan wat je nu al doet",
+    toevoegtNodig: "Wat daarvoor nodig is",
     waarBeginnen: "Waar we zouden beginnen",
     uitzoeken: "Wat je verder zou kunnen uitzoeken",
     groeien: "Waar je in kunt groeien",
@@ -88,6 +90,8 @@ const staticCopy = {
     kennisSystemen: "Systems and places that keep coming back",
     kennisHoofden: "What only lives in someone's head",
     mensenZagen: "What your people saw that you did not",
+    toevoegt: "What this adds to what you already do",
+    toevoegtNodig: "What that takes",
     waarBeginnen: "Where we would start",
     uitzoeken: "What you could look into next",
     groeien: "Where you can grow",
@@ -223,6 +227,35 @@ export default async function ScanReportPage({
         {payload.watJeMensenZagen && (
           <ReportSection title={c.mensenZagen}>
             <Prose text={payload.watJeMensenZagen} />
+          </ReportSection>
+        )}
+
+        {/* Sectie F: alleen aanwezig als de invuller zelf al met AI werkt én
+            de guard in report.ts de claims heeft laten staan. */}
+        {payload.watDitToevoegt && (
+          <ReportSection title={c.toevoegt}>
+            <Prose text={payload.watDitToevoegt.watErNuGoedGaat} />
+            <ul className="mt-5 space-y-3">
+              {payload.watDitToevoegt.grenzen.map((limit) => (
+                <li
+                  key={limit.grens}
+                  className="text-grey/85 font-light leading-relaxed"
+                >
+                  · {limit.grens}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5">
+              <Prose text={payload.watDitToevoegt.watErvoorInDePlaatsKomt} />
+            </div>
+            <div className="mt-6 bg-surface rounded-xl p-5 md:p-6 border border-sage-light">
+              <h3 className="text-xs uppercase tracking-wide text-grey/45">
+                {c.toevoegtNodig}
+              </h3>
+              <div className="mt-2">
+                <Prose text={payload.watDitToevoegt.watErvoorNodigIs} />
+              </div>
+            </div>
           </ReportSection>
         )}
 
