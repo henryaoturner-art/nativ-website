@@ -1,12 +1,18 @@
 /**
- * De quick scan-vragenbank (v4) — GEGENEREERDE DATA, niet met de hand wijzigen.
+ * De quick scan-vragenbank — bank.json is de bron sinds de scan hier woont.
  *
- * Bron: insightflow-platform, branch feat/quickscan-v4-bank-nth241,
- * `scanBankFor(SCAN_BANK_VERSION, "quick")` gedumpt naar bank.json op
- * 2026-08-11. De teksten daarin zijn de op 7 aug vastgestelde quick
- * scan-teksten (gtm/scan/quickscan-vragen-2026-08-07.md) en zijn in NTH-241
- * adversarieel geverifieerd. Tekstwijzigingen horen in de platform-bank
- * thuis en komen hier via een nieuwe dump terecht.
+ * Herkomst: v4 (2026-08-11) was een dump uit insightflow-platform, branch
+ * feat/quickscan-v4-bank-nth241, `scanBankFor(SCAN_BANK_VERSION, "quick")`.
+ * De teksten daarin zijn de op 7 aug vastgestelde quick scan-teksten
+ * (gtm/scan/quickscan-vragen-2026-08-07.md), in NTH-241 adversarieel
+ * geverifieerd.
+ *
+ * v5 (2026-08-13) is HIER geschreven, niet gedumpt: de scan is op 10 aug naar
+ * de website verhuisd en verdwijnt uit het platform, dus terugschrijven naar
+ * de platform-bank zou een surface onderhouden die wordt opgeheven. Gevolg:
+ * de platform-bank loopt vanaf v5 achter en is niet langer de bron.
+ * Toegevoegd in v5 (gtm/scan/voorstel-rapport-verbeelding-2026-08-13.md):
+ * co-knowledge-carrier, co-ai-today en co-meetings.
  *
  * Huisregels (overgenomen van het platform):
  *  - ids zijn STABIEL — antwoorden worden ertegen opgeslagen en

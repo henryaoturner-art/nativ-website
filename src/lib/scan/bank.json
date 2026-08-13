@@ -1,5 +1,5 @@
 {
-  "bankVersion": "2026-08-07-v4",
+  "bankVersion": "2026-08-13-v5",
   "companyQuestions": [
     {
       "id": "co-profile",
@@ -80,6 +80,20 @@
       "optional": false
     },
     {
+      "id": "co-knowledge-carrier",
+      "type": "text",
+      "text": {
+        "nl": "Is er iemand bij jullie wiens manier van werken je zou willen vastleggen voordat hij een keer weggaat? Wie is dat, en wat weet diegene dat de rest niet weet?",
+        "en": "Is there someone at your company whose way of working you would want captured before they ever leave? Who is that, and what do they know that the rest don't?"
+      },
+      "help": {
+        "nl": "Denk aan degene die iedereen belt als iets niet lukt, of die al jaren aanvoelt wat een klant nodig heeft. Een naam plus een paar woorden over wat diegene weet is genoeg. Springt er niemand uit, dan is dat ook een prima antwoord.",
+        "en": "Think of the person everyone calls when something goes wrong, or who has sensed what a client needs for years. A name plus a few words about what they know is enough. If nobody stands out, that is a perfectly good answer too."
+      },
+      "options": null,
+      "optional": false
+    },
+    {
       "id": "co-goal",
       "type": "text",
       "text": {
@@ -106,6 +120,58 @@
       },
       "options": null,
       "optional": false
+    },
+    {
+      "id": "co-ai-today",
+      "type": "multi-choice",
+      "text": {
+        "nl": "Hoe gaan jullie vandaag met AI om?",
+        "en": "How is AI used at your company today?"
+      },
+      "help": {
+        "nl": "Kies wat het dichtst in de buurt komt, meerdere mag. Dit gaat niet over goed of fout, alleen over hoe het nu loopt. Of iedereen zijn eigen tool voedt met eigen bestanden, of dat jullie dat samen doen, maakt voor de rest van dit rapport nogal wat uit.",
+        "en": "Pick whatever comes closest, more than one is fine. This is not about right or wrong, only about how things run today. Whether everyone feeds their own tool with their own files, or you do that together, makes quite a difference for the rest of this report."
+      },
+      "options": [
+        {
+          "nl": "Bijna niemand gebruikt het",
+          "en": "Almost nobody uses it",
+          "token": "none",
+          "exclusive": true
+        },
+        {
+          "nl": "Een paar mensen gebruiken het voor zichzelf",
+          "en": "A few people use it for themselves",
+          "token": "few-personal"
+        },
+        {
+          "nl": "Bijna iedereen gebruikt het, ieder in zijn eigen tool",
+          "en": "Almost everyone uses it, each in their own tool",
+          "token": "everyone-own-tool"
+        },
+        {
+          "nl": "Ieder voedt zijn eigen tool met eigen bestanden en context",
+          "en": "Each person feeds their own tool with their own files and context",
+          "token": "own-context"
+        },
+        {
+          "nl": "We delen prompts, context of bestanden met elkaar",
+          "en": "We share prompts, context or files with each other",
+          "token": "shared"
+        },
+        {
+          "nl": "Het zit ergens vast in ons werkproces ingebouwd",
+          "en": "It is built into our work process somewhere",
+          "token": "embedded"
+        },
+        {
+          "nl": "Er zijn afspraken over wat wel en niet mag",
+          "en": "There are agreements about what is and isn't allowed",
+          "token": "policy"
+        }
+      ],
+      "optional": false,
+      "maxSelect": 3
     },
     {
       "id": "co-ai-focus",
@@ -173,6 +239,20 @@
           }
         }
       ],
+      "options": null,
+      "optional": false
+    },
+    {
+      "id": "co-meetings",
+      "type": "text",
+      "text": {
+        "nl": "Welke overleggen of klantgesprekken komen bij jullie elke week of maand terug? En maakt iemand daar aantekeningen van?",
+        "en": "Which meetings or client conversations come back every week or month at your company? And does anyone take notes?"
+      },
+      "help": {
+        "nl": "Noem er een paar, met wie er meestal bij zit. Denk aan het weekstart-overleg, de maandelijkse cijferbespreking of het eerste gesprek met een nieuwe klant. Zeg er ook bij of iemand notuleert, met een tool of gewoon in een document. Ons advies: spreek het in via de microfoonknop, praten gaat sneller dan typen.",
+        "en": "Name a few, with who usually joins. Think of the Monday kick-off, the monthly numbers review, or the first call with a new client. Also say whether anyone takes notes, with a tool or simply in a document. Our advice: dictate it using the microphone button, talking is faster than typing."
+      },
       "options": null,
       "optional": false
     },
