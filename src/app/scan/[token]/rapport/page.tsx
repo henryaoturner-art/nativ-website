@@ -51,6 +51,14 @@ const staticCopy = {
     toevoegtNodig: "Wat daarvoor nodig is",
     waarBeginnen: "Waar we zouden beginnen",
     uitzoeken: "Wat je verder zou kunnen uitzoeken",
+    openVragen: "Vragen die je bedrijf straks zelf beantwoordt",
+    openVragenIntro:
+      "Dit zijn de vragen die je zelf aangaf vandaag niet met zekerheid te kunnen beantwoorden. Ze staan hier niet als huiswerk, maar met wat ervoor nodig is om ze wel te kunnen stellen.",
+    openVraagStatus: {
+      "kan-nu": "Kan nu",
+      "kan-zodra-vastgelegd": "Kan zodra die kennis is vastgelegd",
+      maatwerk: "Vraagt maatwerk",
+    },
     groeien: "Waar je in kunt groeien",
     gegevens: "Hoe we met jullie gegevens omgaan",
     gegevensPunten: [
@@ -94,6 +102,14 @@ const staticCopy = {
     toevoegtNodig: "What that takes",
     waarBeginnen: "Where we would start",
     uitzoeken: "What you could look into next",
+    openVragen: "Questions your company will answer itself",
+    openVragenIntro:
+      "These are the questions you told us you cannot answer with certainty today. They are not here as homework, but with what it takes to be able to ask them.",
+    openVraagStatus: {
+      "kan-nu": "Possible now",
+      "kan-zodra-vastgelegd": "Possible once that knowledge is captured",
+      maatwerk: "Needs custom work",
+    },
     groeien: "Where you can grow",
     gegevens: "How we handle your data",
     gegevensPunten: [
@@ -297,16 +313,41 @@ export default async function ScanReportPage({
           <Prose text={payload.waarWeZoudenBeginnen} />
         </ReportSection>
 
-        {payload.uitzoeksuggesties.length > 0 && (
-          <ReportSection title={c.uitzoeken}>
-            <ul className="space-y-2">
-              {payload.uitzoeksuggesties.map((line) => (
-                <li key={line} className="text-grey/80 font-light leading-relaxed">
-                  · {line}
-                </li>
+        {/* Nieuwe vorm: hun eigen onbeantwoorde vragen, met wat er nodig is om
+            ze te kunnen stellen. Rapporten van vóór 13 aug hebben alleen de
+            oude huiswerklijst en renderen die ongewijzigd. */}
+        {payload.openVragen && payload.openVragen.length > 0 ? (
+          <ReportSection title={c.openVragen}>
+            <Prose text={c.openVragenIntro} />
+            <div className="mt-4 space-y-4">
+              {payload.openVragen.map((item) => (
+                <div
+                  key={item.vraag}
+                  className="rounded-xl p-6 bg-surface border border-sage-light"
+                >
+                  <h4 className="font-serif text-lg text-grey">{item.vraag}</h4>
+                  <p className="mt-3 text-grey/80 font-light leading-relaxed">
+                    {item.watErvoorNodigIs}
+                  </p>
+                  <span className="mt-4 inline-block text-xs tracking-wide text-sage border border-sage-light bg-cream/60 rounded-full px-3 py-1">
+                    {c.openVraagStatus[item.status]}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
           </ReportSection>
+        ) : (
+          payload.uitzoeksuggesties.length > 0 && (
+            <ReportSection title={c.uitzoeken}>
+              <ul className="space-y-2">
+                {payload.uitzoeksuggesties.map((line) => (
+                  <li key={line} className="text-grey/80 font-light leading-relaxed">
+                    · {line}
+                  </li>
+                ))}
+              </ul>
+            </ReportSection>
+          )
         )}
 
         <ReportSection title={c.groeien}>

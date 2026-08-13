@@ -19,7 +19,12 @@ import {
   type ScanQuestion,
 } from "./bank";
 import { CAPABILITY_IDS, capabilitiesPromptBlock } from "./capabilities";
-import { helpFor, storedLabels, type AnswerMap } from "./visibility";
+import {
+  hasAnswerValue,
+  helpFor,
+  storedLabels,
+  type AnswerMap,
+} from "./visibility";
 
 export interface ReportWorkflowItem {
   naam: string;
@@ -54,6 +59,17 @@ export interface ReportOwnPicture {
   vraagId: string;
 }
 
+/** Eén openstaande vraag van henzelf, met wat er nodig is om hem te kunnen
+ * stellen. Vervangt de oude huiswerklijst (uitzoeksuggesties). */
+export interface ReportOpenQuestion {
+  vraag: string;
+  citaat: string;
+  vraagId: string;
+  capaciteit: string;
+  watErvoorNodigIs: string;
+  status: "kan-nu" | "kan-zodra-vastgelegd" | "maatwerk";
+}
+
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
@@ -85,7 +101,13 @@ export interface ReportPayload {
     observatie: string;
   };
   waarWeZoudenBeginnen: string;
+  /** Oude vorm (rapporten van vóór 13 aug): een lijst huiswerkregels.
+   * Blijft in het type zodat opgeslagen rapporten blijven renderen. */
   uitzoeksuggesties: string[];
+  /** Nieuwe vorm: dezelfde vragen, maar met wat er nodig is om ze te kunnen
+   * stellen. Afwezig als zij geen openstaande vragen gaven of als de guard
+   * alles heeft laten vallen. */
+  openVragen?: ReportOpenQuestion[];
   waarJeInKuntGroeien: string;
   /** Alleen als zij co-success invulden én het citaat verifieerbaar is. */
   jouwEigenBeeld?: ReportOwnPicture;
@@ -189,6 +211,35 @@ function addedValueSchema() {
   };
 }
 
+function openQuestionsSchema() {
+  return {
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        vraag: { type: "string" },
+        citaat: { type: "string" },
+        vraagId: { type: "string" },
+        capaciteit: { type: "string" },
+        watErvoorNodigIs: { type: "string" },
+        status: {
+          type: "string",
+          enum: ["kan-nu", "kan-zodra-vastgelegd", "maatwerk"],
+        },
+      },
+      required: [
+        "vraag",
+        "citaat",
+        "vraagId",
+        "capaciteit",
+        "watErvoorNodigIs",
+        "status",
+      ],
+      additionalProperties: false,
+    },
+  };
+}
+
 function ownPictureSchema() {
   return {
     type: "object",
@@ -201,7 +252,12 @@ function ownPictureSchema() {
   };
 }
 
-function reportSchema(team: boolean, addedValue: boolean, ownPicture: boolean) {
+function reportSchema(
+  team: boolean,
+  addedValue: boolean,
+  ownPicture: boolean,
+  openQuestions: boolean,
+) {
   return {
     type: "object",
     properties: {
@@ -230,7 +286,9 @@ function reportSchema(team: boolean, addedValue: boolean, ownPicture: boolean) {
         additionalProperties: false,
       },
       waarWeZoudenBeginnen: { type: "string" },
-      uitzoeksuggesties: { type: "array", items: { type: "string" } },
+      ...(openQuestions
+        ? { openVragen: openQuestionsSchema() }
+        : { uitzoeksuggesties: { type: "array", items: { type: "string" } } }),
       waarJeInKuntGroeien: { type: "string" },
       ...(ownPicture ? { jouwEigenBeeld: ownPictureSchema() } : {}),
     },
@@ -242,7 +300,7 @@ function reportSchema(team: boolean, addedValue: boolean, ownPicture: boolean) {
       ...(addedValue ? ["watDitToevoegt"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
-      "uitzoeksuggesties",
+      openQuestions ? "openVragen" : "uitzoeksuggesties",
       "waarJeInKuntGroeien",
       ...(ownPicture ? ["jouwEigenBeeld"] : []),
     ],
@@ -308,6 +366,32 @@ function answersBlock(
 // al met AI werkt. Wie dat niet doet heeft geen huidige aanpak om iets aan
 // toe te voegen, en dan is de sectie een pitch zonder aanleiding.
 // ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Sectie 6, omgedraaid — van "dit kun je zelf uitzoeken" naar "dit beantwoordt
+// je bedrijf straks zelf". Zelfde bron, andere richting: het waren hun eigen
+// onbeantwoorde vragen, teruggegeven als huiswerk. Nu staat erbij wat er nodig
+// is om ze te kunnen stellen, en wat daarvan vandaag ontbreekt.
+// ---------------------------------------------------------------------------
+
+const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
+
+export function openQuestionsApply(answers: AnswerMap): boolean {
+  return OPEN_QUESTION_IDS.some((id) => hasAnswerValue(answers.get(id)));
+}
+
+const OPEN_QUESTIONS_PROMPT_EXTRA = `
+
+In plaats van uitzoeksuggesties schrijf je openVragen: de vragen die deze invuller vandaag niet met zekerheid kan beantwoorden (co-blindspot, dept-cant-answer, dept-answer-where), maar dan omgedraaid. Niet als huiswerk teruggegeven, maar met wat er nodig is om zo'n vraag wél te kunnen stellen. Drie tot vijf stuks, de rest laat je weg.
+
+Per vraag:
+- vraag: hun vraag, in hun eigen woorden en als vraag geformuleerd. Kort.
+- citaat: het stuk uit hun antwoord waar deze vraag uit komt, LETTERLIJK overgenomen, minimaal vijftien tekens, niets gecorrigeerd. Dit wordt woord voor woord tegen hun antwoorden gehouden. Bij een aangevinkte optie neem je het aangevinkte label letterlijk over. vraagId is de vraag waar het citaat uit komt.
+- capaciteit: het id uit de capaciteitenkaart waarmee dit antwoord bereikbaar wordt.
+- watErvoorNodigIs: één of twee zinnen, eerlijk. Wat moet er vastliggen of gebeuren voordat deze vraag beantwoord kan worden, en wat daarvan er volgens hun eigen antwoorden vandaag nog niet is. Zit het antwoord buiten hun bedrijf, zeg dat. Zit het bij hun klanten, zeg dat.
+- status: kan-nu als het met bestaande bronnen kan zonder dat zij eerst iets moeten vastleggen; kan-zodra-vastgelegd als er eerst kennis van henzelf vastgelegd moet worden; maatwerk als het buiten de kaart valt.
+
+Harde regels: bied nooit aan dat wij het voor ze uitzoeken, en schrijf ook nooit dat wij iets voor ze klaarzetten of inrichten. Het gaat erom wat hun bedrijf straks zelf beantwoordt. Beloof geen antwoord, alleen de weg ernaartoe. Geen termijn, geen prijs, geen getal dat zij niet zelf noemden. Kun je bij een vraag niet eerlijk zeggen wat ervoor nodig is, laat die vraag dan weg.`;
 
 const SUCCESS_ID = "co-success";
 /** Te dun om iemand zijn eigen beeld mee terug te geven. */
@@ -509,6 +593,55 @@ export function guardAddedValue(
   return { ...section, grenzen };
 }
 
+const OPEN_QUESTION_STATUSES = new Set([
+  "kan-nu",
+  "kan-zodra-vastgelegd",
+  "maatwerk",
+]);
+
+/**
+ * Zelfde guard als bij sectie F, per vraag: een bestaand capaciteit-id, een
+ * citaat dat letterlijk in hun antwoorden staat, een geldige status, en geen
+ * verboden woorden of verzonnen getallen. Wat niet klopt valt weg; blijft er
+ * niets over, dan verdwijnt de sectie.
+ */
+export function guardOpenQuestions(
+  questions: ReportOpenQuestion[] | undefined,
+  answers: AnswerMap,
+): ReportOpenQuestion[] | undefined {
+  if (!questions || questions.length === 0) return undefined;
+  const haystack = answersHaystack(answers);
+
+  const kept = questions.filter((q) => {
+    const reject = (reason: string) => {
+      console.warn(`SCAN_OPEN_QUESTION_DROPPED: ${reason}`);
+      return false;
+    };
+    const quote = normalizeForMatch(q.citaat ?? "");
+    if (quote.length < MIN_QUOTE_CHARS) return reject("citaat te kort");
+    if (!haystack.includes(quote)) return reject("citaat niet in antwoorden");
+    if (!CAPABILITY_IDS.has(q.capaciteit)) {
+      return reject(`onbekende capaciteit "${q.capaciteit}"`);
+    }
+    if (!OPEN_QUESTION_STATUSES.has(q.status)) {
+      return reject(`onbekende status "${q.status}"`);
+    }
+    for (const text of [q.vraag, q.watErvoorNodigIs]) {
+      const word = tripsForbidden(text ?? "");
+      if (word) return reject(`verboden woord "${word}"`);
+      const number = inventsNumber(text ?? "", haystack);
+      if (number) return reject(`verzonnen getal ${number}`);
+    }
+    return true;
+  });
+
+  if (kept.length === 0) {
+    console.warn("SCAN_OPEN_QUESTIONS_DROPPED: geen enkele vraag overleefde de guard");
+    return undefined;
+  }
+  return kept;
+}
+
 /**
  * Het citaat moet letterlijk in hun antwoorden staan, anders verdwijnt het
  * blok. Alleen het citaat: de alinea eronder blijft, want die draagt ook
@@ -593,6 +726,7 @@ async function generateReportPayloadOnce(input: {
   // geen prompttekst, dus ook geen model dat er alsnog iets van maakt.
   const wantsAddedValue = addedValueApplies(input.answers);
   const wantsOwnPicture = ownPictureApplies(input.answers);
+  const wantsOpenQuestions = openQuestionsApply(input.answers);
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -621,6 +755,7 @@ async function generateReportPayloadOnce(input: {
     SYSTEM_PROMPT +
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
+    (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
     (wantsAddedValue
       ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
       : "");
@@ -632,7 +767,12 @@ async function generateReportPayloadOnce(input: {
     output_config: {
       format: {
         type: "json_schema",
-        schema: reportSchema(isTeam, wantsAddedValue, wantsOwnPicture),
+        schema: reportSchema(
+          isTeam,
+          wantsAddedValue,
+          wantsOwnPicture,
+          wantsOpenQuestions,
+        ),
       },
     },
     messages: [{ role: "user", content: userContent }],
@@ -652,6 +792,7 @@ async function generateReportPayloadOnce(input: {
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
   const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
+  const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   return {
     version: 2,
     language: input.language,
@@ -659,5 +800,9 @@ async function generateReportPayloadOnce(input: {
     ...parsed,
     watDitToevoegt,
     jouwEigenBeeld,
+    openVragen,
+    // De oude huiswerklijst wordt niet meer gevraagd zodra openVragen aan
+    // staat; oude opgeslagen rapporten houden hun eigen veld.
+    uitzoeksuggesties: parsed.uitzoeksuggesties ?? [],
   };
 }
