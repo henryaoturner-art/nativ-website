@@ -71,9 +71,15 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "eigen-ai-tool",
-    wat: "Je koppelt de vastgelegde bedrijfskennis aan de AI-tool die je al gebruikt, dus niemand hoeft over te stappen om er iets aan te hebben.",
+    wat: "Je koppelt de vastgelegde bedrijfskennis aan de AI-tool die je al gebruikt, dus wie daar wil blijven werken hoeft niet over te stappen.",
     voorwaarde: "De koppeling moet worden aangezet.",
     bewijs: "engine app/mcp/server.py (search, fetch, ask, add_fact, describe_brain, brain_health)",
+  },
+  {
+    id: "platform-werkomgeving",
+    wat: "Wie liever in één omgeving werkt, doet dat in het platform zelf: vragen stellen aan de vastgelegde bedrijfskennis, zien wat erin zit en wie wat mag zien, en de workflows die draaien op één plek. Het is dus een keuze per persoon, niet een verplichting in één richting.",
+    voorwaarde: "Onbeperkt gebruikers, dus er hoeft niemand buiten te blijven. De kennis moet er wel in staan.",
+    bewijs: "platform (authenticated)/chat, /assistants, /brain, /library, /workflows",
   },
   {
     id: "email-koppeling",
