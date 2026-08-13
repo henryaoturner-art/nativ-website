@@ -2,7 +2,7 @@
 
 import FadeIn from "@/components/FadeIn";
 
-const VERSIE = "Versie 0.2 · 11 augustus 2026";
+const VERSIE = "Versie 0.3 · 13 augustus 2026";
 
 type Section = { n: number; title: string; body: React.ReactNode };
 
@@ -157,6 +157,74 @@ const sections: Section[] = [
   },
   {
     n: 11,
+    title: "Social-media-koppelingen (LinkedIn en Instagram)",
+    body: (
+      <>
+        <p>
+          Klanten van ons platform InsightFlow kunnen hun eigen LinkedIn-bedrijfspagina en/of
+          Instagram-bedrijfsaccount aan het platform koppelen. Daarmee kan InsightFlow namens de
+          klant berichten publiceren op die accounts en de prestaties daarvan tonen. Hiervoor
+          gebruiken wij de offici&euml;le API&apos;s van LinkedIn (Microsoft) en Instagram (Meta).
+        </p>
+
+        <p className="mt-4 text-grey">Welke gegevens wij verwerken</p>
+        <ul className="mt-2 space-y-1.5 list-disc pl-5">
+          <li>
+            Toegangstokens waarmee de koppeling werkt. Deze slaan wij versleuteld op en delen wij
+            nooit met derden.
+          </li>
+          <li>
+            Accountgegevens van het gekoppelde bedrijfsaccount: de naam van de
+            LinkedIn-bedrijfspagina respectievelijk de Instagram-gebruikersnaam en het account-ID.
+          </li>
+          <li>
+            Berichtgegevens: de door de klant opgestelde berichten die wij namens de klant
+            publiceren, en de door het platform teruggegeven bericht-ID&apos;s en permalinks.
+          </li>
+          <li>
+            Geaggregeerde statistieken over de eigen berichten en pagina van de klant, zoals
+            aantallen weergaven, reacties, likes, shares en volgers. Dit zijn telwaarden zonder
+            persoonsgegevens van individuele gebruikers.
+          </li>
+        </ul>
+
+        <p className="mt-4 text-grey">Wat wij niet doen</p>
+        <ul className="mt-2 space-y-1.5 list-disc pl-5">
+          <li>
+            Wij verzamelen geen profielgegevens van individuele LinkedIn-leden of
+            Instagram-gebruikers en slaan die ook niet op. Voor zover de LinkedIn-API bij het
+            ophalen van statistieken incidenteel persoonsgegevens van leden meelevert, worden die
+            niet langer dan 24 uur bewaard en daarna verwijderd of ververst, conform de
+            API-voorwaarden van LinkedIn.
+          </li>
+          <li>Wij gebruiken deze gegevens niet voor advertentiedoeleinden en verkopen ze niet.</li>
+          <li>
+            Wij publiceren uitsluitend content die de klant zelf heeft opgesteld en goedgekeurd.
+          </li>
+        </ul>
+
+        <p className="mt-4">
+          <span className="text-grey">Rol en grondslag.</span> Voor deze verwerking treedt Nativ
+          B.V. op als verwerker in opdracht van de klant (de beheerder van het gekoppelde account).
+          De verwerking vindt plaats op grond van de overeenkomst met de klant.
+        </p>
+        <p className="mt-4">
+          <span className="text-grey">Bewaartermijnen.</span> Toegangstokens bewaren wij zolang de
+          koppeling actief is; bij het verbreken van de koppeling worden ze direct verwijderd.
+          Geaggregeerde statistieken bewaren wij als onderdeel van de rapportagehistorie van de
+          klant.
+        </p>
+        <p className="mt-4">
+          <span className="text-grey">Koppeling verbreken en gegevens verwijderen.</span> De klant
+          kan de koppeling op elk moment zelf verbreken in de instellingen van het platform;
+          daarmee vervalt onze toegang tot het account. Verzoeken tot verwijdering van gegevens
+          kunnen daarnaast worden gericht aan het in deze policy genoemde contactadres.
+        </p>
+      </>
+    ),
+  },
+  {
+    n: 12,
     title: "Wijzigingen",
     body: (
       <>
