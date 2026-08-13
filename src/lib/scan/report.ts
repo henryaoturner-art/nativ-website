@@ -70,6 +70,16 @@ export interface ReportOpenQuestion {
   status: "kan-nu" | "kan-zodra-vastgelegd" | "maatwerk";
 }
 
+/** Sectie A: hun eigen processtappen naast dezelfde keten, ingericht. */
+export interface ReportBeforeAfter {
+  workflow: string;
+  citaat: string;
+  vraagId: string;
+  nu: string[];
+  straks: { stap: string; capaciteit: string }[];
+  watErvoorNodigIs: string;
+}
+
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
@@ -94,6 +104,8 @@ export interface ReportPayload {
   watJeMensenZagen?: string;
   /** Sectie F — alleen als zij zelf al met AI werken; anders afwezig. */
   watDitToevoegt?: ReportAddedValue;
+  /** Sectie A — alleen als zij een procesverhaal gaven; anders afwezig. */
+  zoZietHetEruit?: ReportBeforeAfter;
   /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
   kennisbeeld?: {
     systemen: string[];
@@ -211,6 +223,33 @@ function addedValueSchema() {
   };
 }
 
+function beforeAfterSchema() {
+  return {
+    type: "object",
+    properties: {
+      workflow: { type: "string" },
+      citaat: { type: "string" },
+      vraagId: { type: "string" },
+      nu: { type: "array", items: { type: "string" } },
+      straks: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            stap: { type: "string" },
+            capaciteit: { type: "string" },
+          },
+          required: ["stap", "capaciteit"],
+          additionalProperties: false,
+        },
+      },
+      watErvoorNodigIs: { type: "string" },
+    },
+    required: ["workflow", "citaat", "vraagId", "nu", "straks", "watErvoorNodigIs"],
+    additionalProperties: false,
+  };
+}
+
 function openQuestionsSchema() {
   return {
     type: "array",
@@ -257,6 +296,7 @@ function reportSchema(
   addedValue: boolean,
   ownPicture: boolean,
   openQuestions: boolean,
+  beforeAfter: boolean,
 ) {
   return {
     type: "object",
@@ -275,6 +315,7 @@ function reportSchema(
       },
       ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
       ...(addedValue ? { watDitToevoegt: addedValueSchema() } : {}),
+      ...(beforeAfter ? { zoZietHetEruit: beforeAfterSchema() } : {}),
       kennisbeeld: {
         type: "object",
         properties: {
@@ -298,6 +339,7 @@ function reportSchema(
       "ranglijst",
       ...(team ? ["watJeMensenZagen"] : []),
       ...(addedValue ? ["watDitToevoegt"] : []),
+      ...(beforeAfter ? ["zoZietHetEruit"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
       openQuestions ? "openVragen" : "uitzoeksuggesties",
@@ -373,6 +415,31 @@ function answersBlock(
 // onbeantwoorde vragen, teruggegeven als huiswerk. Nu staat erbij wat er nodig
 // is om ze te kunnen stellen, en wat daarvan vandaag ontbreekt.
 // ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Sectie A — hun eigen processtappen naast dezelfde keten, ingericht. Dit is
+// het antwoord op "wat doet dit met hoe wij nu werken": geen belofte over de
+// uitkomst, maar de choreografie van het werk zelf.
+// ---------------------------------------------------------------------------
+
+const WORKFLOW_STORY_ID = "dept-workflow-story";
+/** Te weinig verhaal om stappen uit te halen. */
+const STORY_MIN_CHARS = 120;
+
+export function beforeAfterApplies(answers: AnswerMap): boolean {
+  return (answers.get(WORKFLOW_STORY_ID) ?? "").trim().length >= STORY_MIN_CHARS;
+}
+
+const BEFORE_AFTER_PROMPT_EXTRA = `
+
+Je schrijft ook zoZietHetEruit: hoe het werk uit hierZouIkBeginnen eruitziet als het is ingericht. Alleen die ene bovenste workflow, niet de andere.
+- workflow: de naam van dat werk, gelijk aan de naam in de ranglijst.
+- citaat: het stuk uit hun procesverhaal (dept-workflow-story) waar deze keten op stoelt, LETTERLIJK overgenomen, minimaal vijftien tekens. Wordt woord voor woord tegen hun antwoorden gehouden.
+- nu: hun eigen stappen, vier tot acht, in de volgorde waarin zij ze vertelden. Elke stap is één korte zin in hun eigen woorden. Voeg geen stap toe die zij niet noemden en maak het niet netter dan het is.
+- straks: dezelfde keten, ingericht, ongeveer evenveel stappen. Per stap: stap = één korte zin over hoe die stap er dan uitziet, en capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. Laat concreet zien wat er verandert: welke overdracht verdwijnt, welk werk al klaarstaat op het moment dat iemand begint, en welke stap blijft omdat daar het oordeel zit. Een stap waar een mens beslist BLIJFT staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
+- watErvoorNodigIs: één of twee zinnen. Wat moet er gebeuren of vastgelegd zijn voordat deze keten zo kan lopen, eerlijk, inclusief het deel dat nu alleen in iemands hoofd zit.
+
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel getal dat zij niet zelf noemden. Schrijf de inrichting, niet het resultaat: beschrijf hoe het werk er dan uitziet, niet hoeveel beter of makkelijker het wordt. Verzin geen systeem en geen stap die zij niet noemden.`;
 
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
@@ -593,6 +660,47 @@ export function guardAddedValue(
   return { ...section, grenzen };
 }
 
+/**
+ * Guard op sectie A. Alles of niets: een half voor-en-na is verwarrender dan
+ * geen voor-en-na, dus bij één fout valt de hele sectie weg.
+ */
+export function guardBeforeAfter(
+  section: ReportBeforeAfter | undefined,
+  answers: AnswerMap,
+): ReportBeforeAfter | undefined {
+  if (!section) return undefined;
+  const haystack = answersHaystack(answers);
+  const drop = (reason: string) => {
+    console.warn(`SCAN_BEFORE_AFTER_DROPPED: ${reason}`);
+    return undefined;
+  };
+
+  const quote = normalizeForMatch(section.citaat ?? "");
+  if (quote.length < MIN_QUOTE_CHARS) return drop("citaat te kort");
+  if (!haystack.includes(quote)) return drop("citaat niet in antwoorden");
+  if (!section.nu?.length || !section.straks?.length) return drop("lege kolom");
+
+  for (const step of section.straks) {
+    if (!CAPABILITY_IDS.has(step.capaciteit)) {
+      return drop(`onbekende capaciteit "${step.capaciteit}"`);
+    }
+  }
+
+  const prose = [
+    section.workflow,
+    section.watErvoorNodigIs,
+    ...section.nu,
+    ...section.straks.map((s) => s.stap),
+  ];
+  for (const text of prose) {
+    const word = tripsForbidden(text ?? "");
+    if (word) return drop(`verboden woord "${word}"`);
+    const number = inventsNumber(text ?? "", haystack);
+    if (number) return drop(`verzonnen getal ${number}`);
+  }
+  return section;
+}
+
 const OPEN_QUESTION_STATUSES = new Set([
   "kan-nu",
   "kan-zodra-vastgelegd",
@@ -727,6 +835,7 @@ async function generateReportPayloadOnce(input: {
   const wantsAddedValue = addedValueApplies(input.answers);
   const wantsOwnPicture = ownPictureApplies(input.answers);
   const wantsOpenQuestions = openQuestionsApply(input.answers);
+  const wantsBeforeAfter = beforeAfterApplies(input.answers);
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -756,6 +865,7 @@ async function generateReportPayloadOnce(input: {
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
+    (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
     (wantsAddedValue
       ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
       : "");
@@ -772,6 +882,7 @@ async function generateReportPayloadOnce(input: {
           wantsAddedValue,
           wantsOwnPicture,
           wantsOpenQuestions,
+          wantsBeforeAfter,
         ),
       },
     },
@@ -793,12 +904,14 @@ async function generateReportPayloadOnce(input: {
   const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
+  const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
   return {
     version: 2,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
     watDitToevoegt,
+    zoZietHetEruit,
     jouwEigenBeeld,
     openVragen,
     // De oude huiswerklijst wordt niet meer gevraagd zodra openVragen aan

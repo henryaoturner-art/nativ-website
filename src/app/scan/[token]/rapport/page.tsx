@@ -49,6 +49,11 @@ const staticCopy = {
     mensenZagen: "Wat je mensen zagen en jij niet",
     toevoegt: "Wat dit toevoegt aan wat je nu al doet",
     toevoegtNodig: "Wat daarvoor nodig is",
+    zoZietHetEruit: "Zo ziet dit werk eruit als het is ingericht",
+    zoZietHetEruitIntro:
+      "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Links jouw stappen zoals je ze zelf beschreef. Rechts dezelfde keten, ingericht.",
+    zoZietHetEruitNu: "Zoals je het zelf vertelde",
+    zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
     waarBeginnen: "Waar we zouden beginnen",
     uitzoeken: "Wat je verder zou kunnen uitzoeken",
     openVragen: "Vragen die je bedrijf straks zelf beantwoordt",
@@ -100,6 +105,11 @@ const staticCopy = {
     mensenZagen: "What your people saw that you did not",
     toevoegt: "What this adds to what you already do",
     toevoegtNodig: "What that takes",
+    zoZietHetEruit: "What this work looks like once it is set up",
+    zoZietHetEruitIntro:
+      "This is only about the work above, where we would start. On the left your own steps, as you described them. On the right the same chain, set up.",
+    zoZietHetEruitNu: "As you described it",
+    zoZietHetEruitStraks: "As it looks once this is set up",
     waarBeginnen: "Where we would start",
     uitzoeken: "What you could look into next",
     openVragen: "Questions your company will answer itself",
@@ -243,6 +253,52 @@ export default async function ScanReportPage({
         {payload.watJeMensenZagen && (
           <ReportSection title={c.mensenZagen}>
             <Prose text={payload.watJeMensenZagen} />
+          </ReportSection>
+        )}
+
+        {/* Sectie A: hun eigen processtappen naast dezelfde keten, ingericht.
+            Staat direct na de ranglijst, want hij gaat over de bovenste
+            workflow daaruit. */}
+        {payload.zoZietHetEruit && (
+          <ReportSection title={c.zoZietHetEruit}>
+            <Prose text={c.zoZietHetEruitIntro} />
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <div className="rounded-xl p-6 bg-surface border border-sage-light">
+                <h3 className="text-xs uppercase tracking-wide text-grey/45">
+                  {c.zoZietHetEruitNu}
+                </h3>
+                <ol className="mt-3 space-y-2 list-decimal pl-4">
+                  {payload.zoZietHetEruit.nu.map((stap) => (
+                    <li key={stap} className="text-grey/85 font-light leading-relaxed">
+                      {stap}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="rounded-xl p-6 bg-sage-light border border-sage/40">
+                <h3 className="text-xs uppercase tracking-wide text-grey/45">
+                  {c.zoZietHetEruitStraks}
+                </h3>
+                <ol className="mt-3 space-y-2 list-decimal pl-4">
+                  {payload.zoZietHetEruit.straks.map((item) => (
+                    <li
+                      key={item.stap}
+                      className="text-grey/85 font-light leading-relaxed"
+                    >
+                      {item.stap}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <div className="mt-5">
+              <h3 className="text-xs uppercase tracking-wide text-grey/45">
+                {c.toevoegtNodig}
+              </h3>
+              <div className="mt-2">
+                <Prose text={payload.zoZietHetEruit.watErvoorNodigIs} />
+              </div>
+            </div>
           </ReportSection>
         )}
 
