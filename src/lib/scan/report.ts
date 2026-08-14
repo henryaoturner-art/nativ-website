@@ -95,6 +95,9 @@ export interface ReportPayload {
   scanVorm?: "solo" | "team";
   gehoord: string;
   bekeken: string;
+  /** Kort-antwoordregel voor het blok bovenaan het rapport (rapporten van
+   * vóór het korte template hebben dit veld niet). */
+  watErVerandert?: string;
   ranglijst: {
     hierZouIkBeginnen: ReportWorkflowItem[];
     sterkeKandidaten: ReportWorkflowItem[];
@@ -303,6 +306,7 @@ function reportSchema(
     properties: {
       gehoord: { type: "string" },
       bekeken: { type: "string" },
+      watErVerandert: { type: "string" },
       ranglijst: {
         type: "object",
         properties: {
@@ -336,6 +340,7 @@ function reportSchema(
     required: [
       "gehoord",
       "bekeken",
+      "watErVerandert",
       "ranglijst",
       ...(team ? ["watJeMensenZagen"] : []),
       ...(addedValue ? ["watDitToevoegt"] : []),
@@ -529,16 +534,19 @@ const SYSTEM_PROMPT = `Je schrijft het rapport van de AI-scan van nativ, op basi
 Rangschik op vijf factoren: (1) volume en herhaling (dept-wf-frequency plus aantallen in het procesverhaal, overdrachten uit co-handoffs, terugkerende overleggen uit co-meetings, vinkjes uit dept-time-sinks), (2) tijd (dept-wf-hours of dept-wf-hours-own, gewogen met dept-wf-confidence), (3) veilig om te beginnen (uit het procesverhaal en dept-wf-stall: gaat het resultaat naar buiten, of blijft het binnen en is het terug te draaien), (4) past bij hun doel (co-goal, met co-ai-focus als tweede as en dept-first-hire als wens-signaal), (5) grip op de kennis (dept-wf-knowledge, co-knowledge-home en co-knowledge-carrier). De eerste drie bepalen de volgorde, de laatste twee schuiven binnen die volgorde.
 
 Secties die jij schrijft:
-- gehoord: één alinea over hún bedrijf, in hun eigen woorden, opgebouwd uit co-profile en co-goal. Geen samenvatting van onze methode. Sluit af met één feitelijke zin over hoe AI vandaag bij hen wordt gebruikt, uit co-ai-today en co-ai-history: beschrijvend, zonder oordeel, zonder aanbeveling. Is het antwoord "bijna niemand gebruikt het", schrijf dat dan net zo neutraal op.
-- bekeken: kort en eerlijk over de dekking. Dit is een solo-scan: de strekking is "Dit is jouw beeld van het bedrijf", met in één of twee zinnen wat er in kaart is gebracht.
+- gehoord: twee korte alinea's, samen hooguit 140 woorden. De eerste vat hún bedrijf samen uit co-profile en co-goal, en sluit af met één feitelijke zin over hoe AI vandaag bij hen wordt gebruikt (co-ai-today, co-ai-history): beschrijvend, zonder oordeel. Is het antwoord "bijna niemand gebruikt het", schrijf dat net zo neutraal op. Dit is een SAMENVATTING, geen weergave: loop hun antwoorden niet in volgorde af, en geef een meerkeuze-antwoord nooit terug als opsomming van de aangevinkte opties. De tweede alinea begint met "Wat opvalt:" en benoemt ÉÉN spanning die in hun eigen antwoorden zit, meestal tussen wat zij willen bereiken (co-goal, co-success) en waar hun kennis nu zit (co-knowledge-carrier, dept-wf-knowledge, co-knowledge-home). Die observatie moet volledig uit hun antwoorden volgen en mag niets toevoegen; dit is de zin waaraan zij merken dat we het begrepen hebben in plaats van alleen gelezen. Zie je geen eerlijke spanning, laat de tweede alinea dan weg.
+- bekeken: één zin over de dekking. Dit is een solo-scan, dus de strekking is: dit is jouw beeld, niet dat van je collega's. Niet opsommen wat er in kaart is gebracht; dat blijkt uit de rest van het rapport.
+- watErVerandert: één zin van hooguit 40 woorden voor het kort-antwoord bovenaan het rapport. Wat er concreet verandert aan de bovenste workflow als die is ingericht, in hun eigen termen, gevolgd door wie de regie houdt. Geen belofte over hoeveel beter of sneller het wordt, geen termijn, geen getal dat zij niet noemden.
 - ranglijst: hierZouIkBeginnen bevat 1 workflow (soms 2), sterkeKandidaten 3 tot 5 als de antwoorden dat dragen (minder mag), laterInteressant de rest als één regel per stuk. Het doorgelopen proces uit dept-workflow-story is de kandidaat voor hierZouIkBeginnen; de overige vinkjes uit dept-time-sinks, de overdrachten uit co-handoffs en de wens uit dept-first-hire vullen de andere groepen. Items zonder urengetal laten dat eerlijk zien in watHetKost (bijvoorbeeld: "Hier heb je geen uren voor opgegeven").
 - Per workflow-item: naam = de naam van het werk in hun woorden plus niets erbij; watHetNuIs = één zin uit hun eigen procesverhaal; hoeVaak = meerdere keren per dag / dagelijks / wekelijks / maandelijks; watHetKost = "Ongeveer X uur per week" in hun eigen opgave, met "ruwe schatting" erbij als dept-wf-confidence 1 of 2 was; waarHetBlijftLiggen = één zin uit dept-wf-stall; waaromDitZichLeent = één zin: het komt vaak voorbij, de stappen zijn elke keer hetzelfde, en de meeste beslissingen zijn dezelfde; alsErIetsMisgaat = "Je ziet het meteen en je draait het terug." of "Dit gaat naar buiten, dus hier kijkt altijd iemand mee voordat het weg is." (kies wat past bij het proces); waarDeKennisZit = één zin over waar de kennis en gegevens voor dít werk nu vandaan komen, uit dept-wf-systems en dept-wf-knowledge: noem de systemen, mailboxen of documenten die zij zelf noemden, en zeg erbij welk deel nergens is vastgelegd. Noemden ze er niets over, schrijf dan dat ze daar niets over hebben gezegd. Verzin nooit een systeem dat zij niet noemden.
-- kennisbeeld: over de workflows heen, uit dept-wf-systems, dept-wf-knowledge, dept-answer-where, co-knowledge-home, co-meetings en co-knowledge-carrier. systemen = de systemen, mailboxen en documenten die zij noemden en die steeds terugkomen, elk als korte losse regel met erbij waarvoor het gebruikt wordt; terugkerende overleggen uit co-meetings horen hier ook thuis als daar kennis ontstaat, met erbij of er iemand aantekeningen maakt. alleenInHoofden = de kennis die volgens hun eigen antwoorden nergens is vastgelegd en dus bij mensen zit, elk als korte losse regel; noemden zij bij co-knowledge-carrier een persoon, dan staat wat diegene weet hier als eigen regel, zonder de naam erbij. observatie = één alinea die benoemt wat dit betekent: om dit werk door AI te laten doen moet die kennis bereikbaar en vastgelegd zijn, en dat is nu deels niet zo. Geen oplossing aanbieden, geen product noemen, alleen de constatering. Noemden ze te weinig om iets te zeggen, houd de lijsten dan leeg en schrijf in observatie eerlijk dat hier nog weinig over bekend is en dat dit een goede eerste vraag is voor een vervolg.
-- waarWeZoudenBeginnen: één workflow, met in twee of drie zinnen waarom juist deze. Altijd dezelfde vorm: het komt vaak voorbij, het kost nu echt tijd, en als het misgaat is dat klein en omkeerbaar.
+- kennisbeeld: over de workflows heen, uit dept-wf-systems, dept-wf-knowledge, dept-answer-where, co-knowledge-home, co-meetings en co-knowledge-carrier. systemen = de systemen, mailboxen en documenten die zij noemden en die steeds terugkomen, elk als korte losse regel met erbij waarvoor het gebruikt wordt; terugkerende overleggen uit co-meetings horen hier ook thuis als daar kennis ontstaat, met erbij of er iemand aantekeningen maakt. alleenInHoofden = de kennis die volgens hun eigen antwoorden nergens is vastgelegd en dus bij mensen zit, elk als korte losse regel; noemden zij bij co-knowledge-carrier een persoon, dan staat wat diegene weet hier als eigen regel, zonder de naam erbij. observatie = hooguit twee zinnen die benoemen wat dit betekent: om dit werk door AI te laten doen moet die kennis bereikbaar en vastgelegd zijn, en dat is nu deels niet zo. Geen oplossing aanbieden, geen product noemen, alleen de constatering. Herhaal daarbij niet welke systemen zij gebruiken; die staan al per workflow in de ranglijst. Noemden ze te weinig om iets te zeggen, houd de lijsten dan leeg en schrijf in observatie eerlijk dat hier nog weinig over bekend is en dat dit een goede eerste vraag is voor een vervolg.
+- waarWeZoudenBeginnen: twee of drie zinnen waarom juist deze workflow het startpunt is. Dit staat in het rapport IN de bovenste ranglijstkaart, dus herhaal niet wat daar al staat: noem de naam van de workflow niet opnieuw, en noem de uren en de frequentie niet opnieuw. Schrijf alleen het argument: waarom dit veilig is om mee te beginnen (wat blijft binnen en is terug te draaien, en waar iemand toch al meekijkt voordat het naar buiten gaat).
 - uitzoeksuggesties: de vragen die de invuller zelf niet kon beantwoorden (co-blindspot, dept-cant-answer, dept-answer-where) teruggegeven als onderzoeksuggesties, drie tot vijf maximaal, met per stuk waar het antwoord volgens hen zit. Schrijf ze als vragen die zij zelf kunnen uitzoeken; bied nooit aan dat wij het voor ze doen. Leeg laten als er niets te melden is.
 - waarJeInKuntGroeien: één korte alinea. Geen roadmap, geen fasering, geen termijnen. Strekking: als de eerste workflow eenmaal loopt, ligt het werk uit de tweede groep voor de hand, en wat er over jullie manier van werken wordt vastgelegd komt daar ook weer bij van pas.
 
-Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de volgorde zelf is het oordeel). Geen besparingsbelofte en geen bedrag: rapporteer wat het werk nu kost, in hun eigen opgave. Geen prijzen. Geen termijnen en geen belofte over wanneer iets werkt. Het woord "digitale collega" komt nergens voor; het rapport levert workflows op. Wat de invuller al met AI geprobeerd heeft (co-ai-history) raad je niet opnieuw aan. Schrijf in gewone taal, korte zinnen, geen jargon, geen buzzwoorden, geen gedachtestreepjes. Schrijf in de taal van de antwoorden.`;
+Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de volgorde zelf is het oordeel). Geen besparingsbelofte en geen bedrag: rapporteer wat het werk nu kost, in hun eigen opgave. Geen prijzen. Geen termijnen en geen belofte over wanneer iets werkt. Het woord "digitale collega" komt nergens voor; het rapport levert workflows op. Wat de invuller al met AI geprobeerd heeft (co-ai-history) raad je niet opnieuw aan. Schrijf in gewone taal, korte zinnen, geen jargon, geen buzzwoorden, geen gedachtestreepjes. Schrijf in de taal van de antwoorden.
+
+Herhalingsregel (het rapport is kort, en dit is hoe het kort blijft): drie beloftes worden elk op precies ÉÉN plek uitgeschreven en verder nergens opnieuw uitgelegd. "Eigenaar, herkomst en datum" hoort bij de ketenvisual en heet daarbuiten alleen nog "vastgelegde kennis". "Een mens keurt goed voordat iets naar buiten gaat" wordt uitgeschreven waar het concreet is (in de ranglijstkaart en de straks-kolom) en daarbuiten hooguit benoemd, nooit opnieuw uitgelegd. "Wie mag wat zien" hoort bij het rechtenblok in watDitToevoegt. Elke sectie zegt iets nieuws; een sectie die alleen een eerdere sectie herformuleert, laat je weg.`;
 
 // ---------------------------------------------------------------------------
 // De guard op sectie F. De prompt vraagt om herkomst; deze code controleert
@@ -789,6 +797,26 @@ export function guardOpenQuestions(
  * blok. Alleen het citaat: de alinea eronder blijft, want die draagt ook
  * zonder citaat betekenis.
  */
+/** Guard op de kort-antwoordregel bovenaan het rapport: geen claims, geen
+ * verzonnen getallen. Valt hij weg, dan rendert het blok zonder deze regel. */
+export function guardWatErVerandert(
+  text: string | undefined,
+  answers: AnswerMap,
+): string | undefined {
+  if (!text || !text.trim()) return undefined;
+  const word = tripsForbidden(text);
+  if (word) {
+    console.warn(`SCAN_KORT_ANTWOORD_DROPPED: verboden woord "${word}"`);
+    return undefined;
+  }
+  const number = inventsNumber(text, answersHaystack(answers));
+  if (number) {
+    console.warn(`SCAN_KORT_ANTWOORD_DROPPED: verzonnen getal ${number}`);
+    return undefined;
+  }
+  return text;
+}
+
 export function guardOwnPicture(
   picture: ReportOwnPicture | undefined,
   answers: AnswerMap,
@@ -904,11 +932,21 @@ async function generateReportPayloadOnce(input: {
       ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
       : "");
 
-  const stream = client.messages.stream({
-    model: "claude-opus-5",
-    max_tokens: 16000,
+  // KAN-381 §8 (ruling Livius 14-08): het rapport draait op het hoogste model,
+  // expliciet NIET claude-opus-5. Fable denkt altijd — een thinking-parameter
+  // meesturen geeft een 400, dus die ontbreekt hier bewust. effort: high is de
+  // kwaliteitsknop; max_tokens dekt denken én tekst samen, dus ruim genomen.
+  // De server-side fallback vangt een weigering van de safety-classifier op
+  // door hetzelfde verzoek in dezelfde call op het aanbevolen terugvalmodel
+  // te draaien, zodat een rapport nooit leeg terugkomt.
+  const stream = client.beta.messages.stream({
+    model: "claude-fable-5",
+    max_tokens: 64000,
+    betas: ["server-side-fallback-2026-07-01"],
+    fallbacks: "default",
     system,
     output_config: {
+      effort: "high",
       format: {
         type: "json_schema",
         schema: reportSchema(
@@ -921,14 +959,23 @@ async function generateReportPayloadOnce(input: {
       },
     },
     messages: [{ role: "user", content: userContent }],
-  });
+  } as never);
   const response = await stream.finalMessage();
 
+  // Eén regel per rapport met het werkelijke verbruik, terug te lezen in de
+  // Vercel-logs (KAN-381 §8 vraagt het echte bedrag per rapport).
+  console.log(
+    `SCAN_REPORT_USAGE: model=${response.model} input=${response.usage.input_tokens} output=${response.usage.output_tokens}`,
+  );
+
   if (response.stop_reason === "refusal") {
+    // Ook het fallback-model weigerde; de retry-laag en het lazy pad vangen dit.
     throw new Error("Rapportgeneratie geweigerd door het model");
   }
-  const text = response.content.find(
-    (block): block is Anthropic.TextBlock => block.type === "text",
+  const text = (
+    response.content.find((block) => block.type === "text") as
+      | { text: string }
+      | undefined
   )?.text;
   if (!text) {
     throw new Error(`Geen tekst in modelrespons (stop_reason: ${response.stop_reason})`);
@@ -939,11 +986,13 @@ async function generateReportPayloadOnce(input: {
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
+  const watErVerandert = guardWatErVerandert(parsed.watErVerandert, input.answers);
   return {
     version: 2,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
+    watErVerandert,
     watDitToevoegt,
     zoZietHetEruit,
     jouwEigenBeeld,
