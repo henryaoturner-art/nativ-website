@@ -202,8 +202,8 @@ export default function CasesPage() {
                 AI-kennisbank
               </Link>{" "}
               bouwen en wat{" "}
-              <Link href="/digitale-collegas" className="text-sage hover:underline">
-                digitale collega&apos;s
+              <Link href="/workflows" className="text-sage hover:underline">
+                AI-workflows
               </Link>{" "}
               voor je team doen.
             </p>

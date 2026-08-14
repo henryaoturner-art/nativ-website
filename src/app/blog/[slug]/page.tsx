@@ -118,15 +118,15 @@ export default async function BlogPostPage({
             <div className="mt-16 pt-8 border-t border-sage-light text-center">
               <p className="text-grey/60 font-light">
                 Benieuwd hoe een{" "}
-                <Link href="/" className="text-sage hover:underline">
+                <Link href="/company-brain" className="text-sage hover:underline">
                   Company Brain
                 </Link>{" "}
                 de kennis van jouw bedrijf vastlegt?
               </p>
               <p className="mt-3 text-grey/60 font-light">
                 Lees ook wat onze{" "}
-                <Link href="/digitale-collegas" className="text-sage hover:underline">
-                  digitale collega&apos;s
+                <Link href="/workflows" className="text-sage hover:underline">
+                  AI-workflows
                 </Link>{" "}
                 doen, of hoe we jouw{" "}
                 <Link href="/diensten" className="text-sage hover:underline">
