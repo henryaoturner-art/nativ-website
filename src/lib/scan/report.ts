@@ -922,15 +922,20 @@ async function generateReportPayloadOnce(input: {
     }
   }
 
+  // De kaart gaat mee zodra ÉÉN sectie capaciteit-ids draagt: openVragen en
+  // zoZietHetEruit verwijzen er net zo goed naar als watDitToevoegt. Voorheen
+  // hing de kaart alleen aan sectie F, waardoor een invuller zonder AI-gebruik
+  // secties kon verliezen op onbekende ids.
+  const wantsCapabilities =
+    wantsAddedValue || wantsOpenQuestions || wantsBeforeAfter;
   const system =
     SYSTEM_PROMPT +
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
     (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
-    (wantsAddedValue
-      ? ADDED_VALUE_PROMPT_EXTRA + `\n\n${capabilitiesPromptBlock()}`
-      : "");
+    (wantsAddedValue ? ADDED_VALUE_PROMPT_EXTRA : "") +
+    (wantsCapabilities ? `\n\n${capabilitiesPromptBlock()}` : "");
 
   // KAN-381 §8 (ruling Livius 14-08): het rapport draait op het hoogste model,
   // expliciet NIET claude-opus-5. Fable denkt altijd — een thinking-parameter
