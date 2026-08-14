@@ -70,7 +70,10 @@ const translations = {
         meta: "Timeline: 2 to 6 weeks | Custom",
         whatLabel: "What you get:",
         cta: "Learn more →", ctaLink: "/contact", primary: false,
-        moreLink: { label: "More about the Company Brain", href: "/company-brain" },
+        // /company-brain has no language support (hardcoded Dutch, no useLanguage),
+        // so the English link stays on the bilingual homepage. The Dutch link above
+        // does point at /company-brain, where the internal-link value actually lands.
+        moreLink: { label: "More about the Company Brain", href: "/" },
       },
       {
         step: "Step 3", title: "Deploy",
@@ -148,7 +151,7 @@ export default function DienstenPage() {
             </FadeIn>
             <FadeIn delay={450}>
               <p className="mt-6 text-sm text-grey/50">{layer.meta}</p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <Link
                   href={layer.ctaLink}
                   className={`inline-block px-8 py-3.5 rounded-lg transition-colors ${
@@ -162,7 +165,7 @@ export default function DienstenPage() {
                 {layer.moreLink && (
                   <Link
                     href={layer.moreLink.href}
-                    className="ml-5 inline-block text-sage hover:underline"
+                    className="inline-block text-sage hover:underline"
                   >
                     {layer.moreLink.label} →
                   </Link>
