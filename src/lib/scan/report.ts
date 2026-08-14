@@ -547,9 +547,9 @@ Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de
 // weggegooid. Een instructie is geen garantie, een check wel.
 // ---------------------------------------------------------------------------
 
-/** Woorden die in sectie F nooit voorkomen: vergelijkingen met hun tool of
- * ons model, beloftes, prijzen en merknamen van andere aanbieders. */
-const FORBIDDEN_IN_ADDED_VALUE = [
+/** Vergelijkingen, beloftes en prijzen. Deze mogen nergens staan: niet in wat
+ * wij schrijven en niet in wat wij van hen overnemen. */
+const FORBIDDEN_CLAIMS = [
   "beter",
   "sneller",
   "slimmer",
@@ -562,7 +562,13 @@ const FORBIDDEN_IN_ADDED_VALUE = [
   "gratis",
   "goedkoper",
   "procent",
-  "%",
+];
+
+/** Merknamen van andere aanbieders. Alleen verboden in wat WIJ beweren; in de
+ * kolommen die hun eigen woorden teruggeven zijn het gewoon hun tools.
+ * (Zorggenoot, 14 aug: hun eigen processtap is "Google / chatgpt", waardoor
+ * sectie A en sectie F allebei stilletjes wegvielen.) */
+const FORBIDDEN_BRANDS = [
   "chatgpt",
   "openai",
   "copilot",
@@ -583,9 +589,32 @@ function answersHaystack(answers: AnswerMap): string {
   return normalizeForMatch([...answers.values()].join(" \n "));
 }
 
-function tripsForbidden(text: string): string | null {
+/** Match op woordbegin, niet op willekeurige substring. Zo vallen verbuigingen
+ * ("betere", "besparingen") nog steeds om, maar een onschuldig woord dat een
+ * verboden woord bevat ("verbeteren") niet. */
+function matchesAtWordStart(lower: string, word: string): boolean {
+  let from = 0;
+  for (;;) {
+    const at = lower.indexOf(word, from);
+    if (at === -1) return false;
+    const before = at === 0 ? "" : lower[at - 1];
+    if (!/[a-z0-9]/.test(before)) return true;
+    from = at + 1;
+  }
+}
+
+/**
+ * Wat er niet in mag. `allowBrands` staat aan voor de kolommen die letterlijk
+ * hun eigen woorden teruggeven; daar is een merknaam hun tool en geen claim
+ * van ons. Percentages blijven overal verboden.
+ */
+function tripsForbidden(text: string, allowBrands = false): string | null {
   const lower = text.toLowerCase();
-  return FORBIDDEN_IN_ADDED_VALUE.find((word) => lower.includes(word)) ?? null;
+  if (lower.includes("%")) return "%";
+  const list = allowBrands
+    ? FORBIDDEN_CLAIMS
+    : [...FORBIDDEN_CLAIMS, ...FORBIDDEN_BRANDS];
+  return list.find((word) => matchesAtWordStart(lower, word)) ?? null;
 }
 
 /** Elk getal in de tekst moet ook in hun eigen antwoorden staan. */
@@ -615,13 +644,15 @@ export function guardAddedValue(
     return undefined;
   };
 
-  for (const [field, text] of [
-    ["watErNuGoedGaat", section.watErNuGoedGaat],
-    ["watErvoorInDePlaatsKomt", section.watErvoorInDePlaatsKomt],
-    ["watErvoorNodigIs", section.watErvoorNodigIs],
+  // watErNuGoedGaat erkent wat zij zelf hebben opgebouwd, in hun woorden — daar
+  // is de naam van hun eigen tool geen claim van ons.
+  for (const [field, text, allowBrands] of [
+    ["watErNuGoedGaat", section.watErNuGoedGaat, true],
+    ["watErvoorInDePlaatsKomt", section.watErvoorInDePlaatsKomt, false],
+    ["watErvoorNodigIs", section.watErvoorNodigIs, false],
   ] as const) {
     if (!text || !text.trim()) return drop(`${field} is leeg`);
-    const word = tripsForbidden(text);
+    const word = tripsForbidden(text, allowBrands);
     if (word) return drop(`${field} bevat verboden woord "${word}"`);
     const number = inventsNumber(text, haystack);
     if (number) return drop(`${field} noemt getal ${number} dat zij niet gaven`);
@@ -686,14 +717,17 @@ export function guardBeforeAfter(
     }
   }
 
-  const prose = [
-    section.workflow,
-    section.watErvoorNodigIs,
-    ...section.nu,
-    ...section.straks.map((s) => s.stap),
+  // De nu-kolom is hun eigen verhaal, teruggegeven in hun eigen woorden; noemen
+  // zij daar hun eigen tool, dan hoort die naam er gewoon in te staan. Alles wat
+  // wij erover beweren (workflow, straks, watErvoorNodigIs) blijft streng.
+  const prose: [string | undefined, boolean][] = [
+    [section.workflow, false],
+    [section.watErvoorNodigIs, false],
+    ...section.nu.map((stap): [string, boolean] => [stap, true]),
+    ...section.straks.map((s): [string, boolean] => [s.stap, false]),
   ];
-  for (const text of prose) {
-    const word = tripsForbidden(text ?? "");
+  for (const [text, allowBrands] of prose) {
+    const word = tripsForbidden(text ?? "", allowBrands);
     if (word) return drop(`verboden woord "${word}"`);
     const number = inventsNumber(text ?? "", haystack);
     if (number) return drop(`verzonnen getal ${number}`);
