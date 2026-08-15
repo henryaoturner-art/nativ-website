@@ -78,6 +78,16 @@ export async function GET(req: NextRequest) {
 
     // Half afgemaakt = open, minstens één antwoord, en 48u geen activiteit.
     // Nooit eerder herinnerd. Ouder dan 30 dagen laten we met rust.
+    //
+    // De NOT EXISTS is de valse-start-guard. Wie halverwege opnieuw begint,
+    // laat een open scan met een paar antwoorden achter en rondt een TWEEDE
+    // scan wel af. Die eerste rij ziet er in isolatie uit als een warme lead,
+    // maar de invuller heeft zijn rapport allang. Zonder deze guard krijgt hij
+    // "je scan staat nog voor je klaar" nadat hij hem afmaakte — precies wat er
+    // op 15 aug bij Ziemi gebeurde (afgebroken om 13:05, nieuwe scan om 13:49
+    // afgerond, herinnering drie dagen later). Match op e-mail én bedrijfsnaam:
+    // dezelfde persoon kan een tweede poging met een ander adres starten, en
+    // een bedrijf dat zijn rapport binnen heeft, nudge je sowieso niet.
     const stale = (await db.query(
       `SELECT s.id, s.token, s.company_name, s.contact_name, s.contact_email,
               COUNT(a.id)::int AS answered,
@@ -87,6 +97,14 @@ export async function GET(req: NextRequest) {
        WHERE s.status = 'open'
          AND s.reminder_sent_at IS NULL
          AND s.created_at > now() - interval '30 days'
+         AND NOT EXISTS (
+           SELECT 1 FROM scan done
+           WHERE done.id <> s.id
+             AND done.status = 'afgerond'
+             AND done.created_at > now() - interval '30 days'
+             AND (lower(btrim(done.contact_email)) = lower(btrim(s.contact_email))
+                  OR lower(btrim(done.company_name)) = lower(btrim(s.company_name)))
+         )
        GROUP BY s.id
        HAVING GREATEST(MAX(a.updated_at), s.created_at) < now() - interval '48 hours'`,
       [],
