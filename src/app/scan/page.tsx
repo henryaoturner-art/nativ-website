@@ -12,9 +12,9 @@ const TEAM_SCAN_HREF = "/scan/start?team=1";
 
 const translations = {
   nl: {
-    heroTitle: "Waar kan AI jullie werk uit handen nemen?",
+    heroTitle: "De AI-scan: waar kan AI jullie werk uit handen nemen?",
     heroSub:
-      "Loop de scan door en zie welk werk in jouw bedrijf zich daarvoor leent. Je kiest zelf hoe ver je gaat.",
+      "Loop de AI-scan door en zie welk werk in jouw bedrijf zich daarvoor leent. Je kiest zelf hoe ver je gaat.",
 
     quickTitle: "In je eentje",
     quickTime: "± 20 minuten",
@@ -31,7 +31,7 @@ const translations = {
     cardsFooter:
       "Allebei gratis. Allebei eindigen ze op een rapport dat je kunt delen. Begin gerust in je eentje. Je kunt je team er later altijd bij halen.",
 
-    reportTitle: "Wat je krijgt",
+    reportTitle: "Wat de AI-scan je oplevert",
     reportItems: [
       "Het werk waar veel tijd en herhaling in zit, op volgorde van wat het meeste oplevert",
       "Per onderdeel hoe vaak het gebeurt, wat het nu kost en waarom het zich leent voor AI",
@@ -39,7 +39,7 @@ const translations = {
       "Een rapport dat je kunt delen met wie je wilt",
     ],
 
-    teamHowTitle: "Zo werkt de scan met je team",
+    teamHowTitle: "Zo werkt de AI-scan met je team",
     teamHowBody: [
       "Je maakt zelf je afdelingen aan, precies zoals jullie het bedrijf hebben ingedeeld. Per afdeling nodig je de mensen uit die het werk het beste kennen.",
       "Iedereen krijgt dezelfde vragen, over zijn eigen werk. Dat kost ongeveer een uur. Ze hoeven niets voor te bereiden en niets te uploaden.",
@@ -84,9 +84,9 @@ const translations = {
     closingCta: "Neem contact op",
   },
   en: {
-    heroTitle: "Where can AI take work off your hands?",
+    heroTitle: "The AI scan: where can AI take work off your hands?",
     heroSub:
-      "Run through the scan and see which work in your company is a good fit. You decide how far you go.",
+      "Run through the AI scan and see which work in your company is a good fit. You decide how far you go.",
 
     quickTitle: "On your own",
     quickTime: "± 20 minutes",
@@ -103,7 +103,7 @@ const translations = {
     cardsFooter:
       "Both are free. Both end in a report you can share. Feel free to start on your own. You can always bring your team in later.",
 
-    reportTitle: "What you get",
+    reportTitle: "What the AI scan gives you",
     reportItems: [
       "The work with the most time and repetition in it, ordered by what delivers most",
       "Per item: how often it happens, what it costs today and why it lends itself to AI",
@@ -111,7 +111,7 @@ const translations = {
       "A report you can share with whoever you like",
     ],
 
-    teamHowTitle: "How the scan with your team works",
+    teamHowTitle: "How the AI scan with your team works",
     teamHowBody: [
       "You set up your own departments, exactly the way your company is organised. Per department you invite the people who know the work best.",
       "Everyone gets the same questions, about their own work. That takes about an hour. They don't have to prepare anything or upload anything.",

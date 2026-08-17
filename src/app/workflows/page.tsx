@@ -7,11 +7,11 @@ import { useLanguage } from "@/lib/language-context";
 
 const translations = {
   nl: {
-    heroTitle: "Praktische hulp bij één klus tegelijk",
+    heroTitle: "AI-workflows: praktische hulp bij één klus tegelijk",
     heroSub:
-      "Een workflow neemt één terugkerende klus van je over, van begin tot eind. Hij werkt vanuit je Company Brain, dus hij kent jullie manier van werken. Je begint met één, en je breidt uit waar het werkt.",
+      "Een AI-workflow neemt één terugkerende klus van je over, van begin tot eind. Hij werkt vanuit je Company Brain, dus hij kent jullie manier van werken. Je begint met één, en je breidt uit waar het werkt.",
 
-    whatTitle: "Wat een workflow is",
+    whatTitle: "Wat een AI-workflow is",
     whatBody: [
       "Neem het maandrapport. Iemand haalt de cijfers uit het boekhoudpakket, zet ze in hetzelfde format als vorige maand, zoekt uit waarom die ene post afwijkt, en schrijft er een toelichting bij. Elke maand opnieuw, elke maand dezelfde stappen.",
       "Dat is een workflow: een klus met een vast begin, vaste stappen en een duidelijk eindresultaat. Precies het soort werk waar AI goed in is, en precies het soort werk waar bij jullie de meeste tijd in gaat zitten.",
@@ -78,18 +78,18 @@ const translations = {
       },
     ],
 
-    ctaTitle: "Begin bij de scan",
+    ctaTitle: "Begin bij de AI-scan",
     ctaBody:
       "Voordat je iets bouwt, wil je weten waar het loont. De scan laat zien welk werk in jouw bedrijf zich leent voor AI, op volgorde. Gratis, en je zit nergens aan vast.",
     ctaButton: "Doe de gratis scan",
     ctaSecondary: "Lees over de Company Brain",
   },
   en: {
-    heroTitle: "Practical help with one job at a time",
+    heroTitle: "AI workflows: practical help with one job at a time",
     heroSub:
-      "A workflow takes one recurring job off your hands, start to finish. It runs on your Company Brain, so it knows how you work. You start with one, and expand where it works.",
+      "An AI workflow takes one recurring job off your hands, start to finish. It runs on your Company Brain, so it knows how you work. You start with one, and expand where it works.",
 
-    whatTitle: "What a workflow is",
+    whatTitle: "What an AI workflow is",
     whatBody: [
       "Take the monthly report. Someone pulls the figures out of the accounting package, puts them in the same format as last month, works out why that one line is off, and writes a note to explain it. Every month again, every month the same steps.",
       "That is a workflow: a job with a fixed start, fixed steps and a clear end result. Exactly the kind of work AI is good at, and exactly the kind of work that eats most of your time.",
@@ -156,7 +156,7 @@ const translations = {
       },
     ],
 
-    ctaTitle: "Start with the scan",
+    ctaTitle: "Start with the AI scan",
     ctaBody:
       "Before you build anything, you want to know where it pays off. The scan shows which work in your company lends itself to AI, in order. Free, and you are not committed to anything.",
     ctaButton: "Take the free scan",

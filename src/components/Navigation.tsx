@@ -11,7 +11,7 @@ const navLinks = {
   nl: [
     { href: "/scan", label: "AI Scan" },
     { href: "/diensten", label: "Diensten" },
-    { href: "/workflows", label: "Workflows" },
+    { href: "/workflows", label: "AI Workflows" },
     { href: "/over-ons", label: "Over ons" },
     { href: "/cases", label: "Cases" },
     { href: "/ai-events", label: "AI Events" },
@@ -20,7 +20,7 @@ const navLinks = {
   en: [
     { href: "/scan", label: "AI Scan" },
     { href: "/diensten", label: "Services" },
-    { href: "/workflows", label: "Workflows" },
+    { href: "/workflows", label: "AI Workflows" },
     { href: "/over-ons", label: "About" },
     { href: "/cases", label: "Cases" },
     { href: "/ai-events", label: "AI Events" },

@@ -4,7 +4,7 @@ import { pageMeta, webPage } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/workflows",
   "AI-workflows voor het mkb — praktische hulp per klus | nativ",
-  "Een workflow neemt één terugkerende klus van je over, van begin tot eind, en werkt vanuit je Company Brain. Voorbeelden voor marketing, sales, finance en hr. Begin met de gratis scan om te zien welke bij jou passen.",
+  "Een AI-workflow neemt één terugkerende klus van je over, van begin tot eind, en werkt vanuit je Company Brain. Voorbeelden voor marketing, sales, finance en hr. Begin met de gratis scan om te zien welke bij jou passen.",
 );
 
 // Answers are copied verbatim from the Dutch FAQ rendered in page.tsx. Google
@@ -60,7 +60,7 @@ const faqSchema = {
 const workflowsWebPage = webPage(
   "/workflows",
   "AI-workflows",
-  "Een workflow neemt één terugkerende klus van je over, van begin tot eind, en werkt vanuit je Company Brain.",
+  "Een AI-workflow neemt één terugkerende klus van je over, van begin tot eind, en werkt vanuit je Company Brain.",
 );
 
 export default function WorkflowsLayout({
