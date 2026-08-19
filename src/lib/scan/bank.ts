@@ -14,6 +14,14 @@
  * Toegevoegd in v5 (gtm/scan/voorstel-rapport-verbeelding-2026-08-13.md):
  * co-knowledge-carrier, co-ai-today en co-meetings.
  *
+ * v6 (2026-08-19) voegt dept-role toe, als eerste vraag van het werk-blok.
+ * Die vraag hoorde er vanaf het begin in: het uren-drietal en vijf
+ * hulpteksten sleutelen erop, maar hij is bij de verhuizing naar de website
+ * nooit meegekomen. Gevolg tot v5: de askWhen kon nooit gelden, visibility.ts
+ * ving dat op met een noodroute die iedereen behalve een eenmanszaak naar het
+ * teamtotaal stuurde, en de medewerker-hulpteksten vuurden nooit. Een
+ * uitgenodigde collega kreeg zo een getal gevraagd dat hij niet kan kennen.
+ *
  * Huisregels (overgenomen van het platform):
  *  - ids zijn STABIEL — antwoorden worden ertegen opgeslagen en
  *    scan.bank_version pint het instrument; copy wijzigen mag alleen bij

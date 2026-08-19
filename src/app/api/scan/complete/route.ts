@@ -7,11 +7,7 @@ import {
   saveReportPayload,
 } from "@/lib/scan/db";
 import { COMPANY_QUESTIONS, DEPARTMENT_QUESTIONS } from "@/lib/scan/bank";
-import {
-  companyIsSolo,
-  missingRequiredIds,
-  type AnswerMap,
-} from "@/lib/scan/visibility";
+import { missingRequiredIds, type AnswerMap } from "@/lib/scan/visibility";
 import {
   buildReportInput,
   generateReportPayload,
@@ -71,10 +67,9 @@ export async function POST(req: NextRequest) {
     // als nog niet iedereen klaar is (het rapport zegt eerlijk wie meedeed).
     const reportInput = buildReportInput(bundle);
     const answerMap: AnswerMap = reportInput.ownerAnswers;
-    const options = { companySolo: companyIsSolo(answerMap) };
     const missing = [
-      ...missingRequiredIds(COMPANY_QUESTIONS, answerMap, options),
-      ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options),
+      ...missingRequiredIds(COMPANY_QUESTIONS, answerMap),
+      ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap),
     ];
     if (missing.length > 0) {
       return NextResponse.json(

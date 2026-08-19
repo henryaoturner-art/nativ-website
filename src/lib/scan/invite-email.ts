@@ -23,7 +23,7 @@ const translations = {
     intro: (inviter: string, company: string) =>
       `${inviter} doet voor ${company} een korte scan van het werk, en vraagt of jij meedoet voor je eigen afdeling.`,
     what: (department: string) =>
-      `Je krijgt vragen over het werk in ${department}: wat je doet, hoe vaak het voorkomt en waar het blijft liggen. Het duurt ongeveer een uur en je hoeft niets voor te bereiden of te uploaden.`,
+      `Je krijgt vragen over het werk in ${department}: wat je doet, hoe vaak het voorkomt en waar het blijft liggen. Het duurt ongeveer een kwartier en je hoeft niets voor te bereiden of te uploaden.`,
     cta: "Naar de vragen →",
     save: "Je antwoorden worden bewaard terwijl je bezig bent, dus je kunt tussendoor stoppen en later verder op dezelfde link.",
     data: (inviter: string) =>
@@ -38,7 +38,7 @@ const translations = {
     intro: (inviter: string, company: string) =>
       `${inviter} is running a short scan of the work at ${company}, and is asking you to take part for your own department.`,
     what: (department: string) =>
-      `You will get questions about the work in ${department}: what you do, how often it happens and where it gets stuck. It takes about an hour, and you do not need to prepare or upload anything.`,
+      `You will get questions about the work in ${department}: what you do, how often it happens and where it gets stuck. It takes about fifteen minutes, and you do not need to prepare or upload anything.`,
     cta: "To the questions →",
     save: "Your answers are saved as you go, so you can stop halfway and continue later on the same link.",
     data: (inviter: string) =>

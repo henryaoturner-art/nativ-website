@@ -18,22 +18,12 @@ import {
   type ScanQuestion,
 } from "./bank";
 
-export const COMPANY_SIZE_QUESTION_ID = "co-size";
-export const COMPANY_SOLO_TOKEN = "solo";
-
-// Quick-urenrouting (NTH-241): dept-role bestaat niet in de quick scan, dus
-// de askWhen op het uren-drietal kan nooit gelden. Het scanbrede
-// companySolo-signaal vervangt hem: solo → eigen uren + aantal mensen,
-// niet-solo → het teamtotaal. De askWhen blijft in de bank staan zodat deze
-// vragen als "gated" buiten de geadverteerde telling blijven.
-export const WF_HOURS_TEAM_ID = "dept-wf-hours";
-export const WF_HOURS_OWN_ID = "dept-wf-hours-own";
-export const WF_PEOPLE_ID = "dept-wf-people";
-const QUICK_HOURS_ROUTED_IDS = new Set([
-  WF_HOURS_TEAM_ID,
-  WF_HOURS_OWN_ID,
-  WF_PEOPLE_ID,
-]);
+// Urenrouting (bank v6): dept-role stelt de vraag die tot v5 ontbrak, dus de
+// askWhen op het uren-drietal doet zijn werk weer. Wie het werk zelf doet
+// geeft zijn EIGEN uren plus het aantal mensen; wie eroverheen staat geeft
+// het teamtotaal. De noodoplossing die hier stond leidde iedereen behalve een
+// eenmanszaak naar het teamtotaal, ook een uitgenodigde medewerker die dat
+// getal niet kan kennen.
 
 /** questionId → opgeslagen waarde, voor één respondent binnen één blok. */
 export type AnswerMap = ReadonlyMap<string, string>;
@@ -101,30 +91,11 @@ function blockById(question: ScanQuestion): ReadonlyMap<string, ScanQuestion> {
   return COMPANY_BY_ID.has(question.id) ? COMPANY_BY_ID : DEPARTMENT_BY_ID;
 }
 
-/** Scanbreed solo-signaal: het co-size-antwoord draagt het solo-token. */
-export function companyIsSolo(companyAnswers: AnswerMap): boolean {
-  const question = COMPANY_BY_ID.get(COMPANY_SIZE_QUESTION_ID);
-  const value = companyAnswers.get(COMPANY_SIZE_QUESTION_ID);
-  if (!question || !hasAnswerValue(value)) return false;
-  return chosenTokens(question, value as string).includes(COMPANY_SOLO_TOKEN);
-}
-
-export interface VisibilityOptions {
-  companySolo: boolean;
-}
-
-/** Zichtbaarheid binnen het eigen blok. De urenrouting gaat VÓÓR de
- * askWhen-evaluatie, exact zoals in het platform. */
+/** Zichtbaarheid binnen het eigen blok: puur de askWhen-poort. */
 export function isQuestionVisible(
   question: ScanQuestion,
   answers: AnswerMap,
-  options: VisibilityOptions,
 ): boolean {
-  if (QUICK_HOURS_ROUTED_IDS.has(question.id)) {
-    return question.id === WF_HOURS_TEAM_ID
-      ? !options.companySolo
-      : options.companySolo;
-  }
   const askWhen = question.askWhen;
   if (!askWhen) return true;
   const byId = blockById(question);
@@ -139,15 +110,14 @@ export function isQuestionVisible(
 }
 
 /** Verplicht = niet-optioneel én zichtbaar én (requiredWhen geldt of
- * ontbreekt). Het uren-drietal is bij zichtbaarheid altijd verplicht. */
+ * ontbreekt). Bij "ik werk er nauw mee samen" is het teamtotaal wel zichtbaar
+ * maar niet verplicht: die schatting mag hij overslaan. */
 export function isQuestionRequired(
   question: ScanQuestion,
   answers: AnswerMap,
-  options: VisibilityOptions,
 ): boolean {
   if (question.optional) return false;
-  if (!isQuestionVisible(question, answers, options)) return false;
-  if (QUICK_HOURS_ROUTED_IDS.has(question.id)) return true;
+  if (!isQuestionVisible(question, answers)) return false;
   if (question.requiredWhen) {
     return conditionHolds(blockById(question), question.requiredWhen, answers);
   }
@@ -173,10 +143,9 @@ export function helpFor(
 export function missingRequiredIds(
   questions: readonly ScanQuestion[],
   answers: AnswerMap,
-  options: VisibilityOptions,
 ): string[] {
   return questions
-    .filter((q) => isQuestionRequired(q, answers, options))
+    .filter((q) => isQuestionRequired(q, answers))
     .filter((q) => !hasAnswerValue(answers.get(q.id)))
     .map((q) => q.id);
 }
@@ -191,11 +160,10 @@ export interface BlockProgress {
 export function blockProgress(
   questions: readonly ScanQuestion[],
   answers: AnswerMap,
-  options: VisibilityOptions,
 ): BlockProgress {
   const slots = new Map<string, boolean>();
   for (const question of questions) {
-    if (!isQuestionRequired(question, answers, options)) continue;
+    if (!isQuestionRequired(question, answers)) continue;
     const slot = question.progressGroup ?? question.id;
     const answered = hasAnswerValue(answers.get(question.id));
     slots.set(slot, (slots.get(slot) ?? false) || answered);

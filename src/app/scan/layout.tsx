@@ -27,7 +27,7 @@ const faqSchema = {
       name: "Hoe lang duurt het?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "In je eentje ongeveer 20 minuten. Met je team ongeveer een uur per persoon, en dat kan iedereen op zijn eigen moment doen.",
+        text: "In je eentje ongeveer 20 minuten. Doe je hem met je team, dan ben jij ongeveer 20 minuten kwijt en je collega's een kwartier, ieder op zijn eigen moment.",
       },
     },
     {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COMPANY_QUESTIONS, DEPARTMENT_QUESTIONS } from "@/lib/scan/bank";
 import { completeRespondent, getScanAccess, getScanBundle } from "@/lib/scan/db";
-import { companyIsSolo, missingRequiredIds, type AnswerMap } from "@/lib/scan/visibility";
+import { missingRequiredIds, type AnswerMap } from "@/lib/scan/visibility";
 
 /** Rondt iemands EIGEN deel af zonder de scan af te ronden: een uitgenodigde
  * collega, of de eigenaar van een teamscan die eerst zijn eigen vragen doet.
@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Afrond-controle op de server, alleen over het eigen deel. De eigenaar
-    // beantwoordt ook de bedrijfsvragen; een collega is per definitie geen
-    // solo-bedrijf, dus daar geldt het teamtotaal-pad.
+    // beantwoordt ook de bedrijfsvragen; welke urenvraag iemand kreeg volgt
+    // uit zijn eigen dept-role-antwoord, dus dat hoeft hier niet meegegeven.
     const bundle = await getScanBundle(access.scan.token);
     if (!bundle) {
       return NextResponse.json({ error: "Scan niet gevonden" }, { status: 404 });
@@ -39,10 +39,10 @@ export async function POST(req: NextRequest) {
     );
     const missing = access.isOwner
       ? [
-          ...missingRequiredIds(COMPANY_QUESTIONS, own, { companySolo: companyIsSolo(own) }),
-          ...missingRequiredIds(DEPARTMENT_QUESTIONS, own, { companySolo: companyIsSolo(own) }),
+          ...missingRequiredIds(COMPANY_QUESTIONS, own),
+          ...missingRequiredIds(DEPARTMENT_QUESTIONS, own),
         ]
-      : missingRequiredIds(DEPARTMENT_QUESTIONS, own, { companySolo: false });
+      : missingRequiredIds(DEPARTMENT_QUESTIONS, own);
     if (missing.length > 0) {
       return NextResponse.json(
         { error: "Nog niet alle verplichte vragen zijn beantwoord", missing },

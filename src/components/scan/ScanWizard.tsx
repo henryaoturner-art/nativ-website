@@ -25,7 +25,6 @@ import {
 } from "@/lib/scan/bank";
 import {
   blockProgress,
-  companyIsSolo,
   helpFor,
   isQuestionRequired,
   isQuestionVisible,
@@ -145,16 +144,10 @@ export default function ScanWizard({
   const [submitted, setSubmitted] = useState(false);
 
   const answerMap: AnswerMap = useMemo(() => new Map(Object.entries(answers)), [answers]);
-  // Een uitgenodigde collega is per definitie geen solo-bedrijf, dus het
-  // teamtotaal-pad geldt (zelfde keuze als de afrond-controle op de server).
-  const options = useMemo(
-    () => ({ companySolo: isRespondent ? false : companyIsSolo(answerMap) }),
-    [answerMap, isRespondent],
-  );
 
   const questions = block === 1 ? COMPANY_QUESTIONS : DEPARTMENT_QUESTIONS;
-  const progress1 = blockProgress(COMPANY_QUESTIONS, answerMap, options);
-  const progress2 = blockProgress(DEPARTMENT_QUESTIONS, answerMap, options);
+  const progress1 = blockProgress(COMPANY_QUESTIONS, answerMap);
+  const progress2 = blockProgress(DEPARTMENT_QUESTIONS, answerMap);
 
   const persist = useCallback(
     async (questionId: string, value: string) => {
@@ -188,10 +181,10 @@ export default function ScanWizard({
 
   async function handleComplete() {
     const open = isRespondent
-      ? missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options)
+      ? missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap)
       : [
-          ...missingRequiredIds(COMPANY_QUESTIONS, answerMap, options),
-          ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap, options),
+          ...missingRequiredIds(COMPANY_QUESTIONS, answerMap),
+          ...missingRequiredIds(DEPARTMENT_QUESTIONS, answerMap),
         ];
     if (open.length > 0) {
       setMissing(open);
@@ -323,7 +316,7 @@ export default function ScanWizard({
 
         <div className="mt-8 space-y-6">
           {questions.map((question) => {
-            if (!isQuestionVisible(question, answerMap, options)) return null;
+            if (!isQuestionVisible(question, answerMap)) return null;
             return (
               <QuestionCard
                 key={question.id}
@@ -331,7 +324,7 @@ export default function ScanWizard({
                 answerMap={answerMap}
                 value={answers[question.id] ?? ""}
                 lang={language}
-                required={isQuestionRequired(question, answerMap, options)}
+                required={isQuestionRequired(question, answerMap)}
                 highlight={missing.includes(question.id)}
                 labels={c}
                 onCommit={(value) => setAndSave(question.id, value)}

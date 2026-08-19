@@ -1,5 +1,5 @@
 {
-  "bankVersion": "2026-08-13-v5",
+  "bankVersion": "2026-08-19-v6",
   "companyQuestions": [
     {
       "id": "co-profile",
@@ -69,7 +69,7 @@
       "id": "co-knowledge-home",
       "type": "text",
       "text": {
-        "nl": "Stel: morgen begint er een nieuwe collega. Hoe wordt diegene geonboard?",
+        "nl": "Stel: morgen begint er een nieuwe collega. Hoe wordt diegene ingewerkt?",
         "en": "Imagine a new colleague starts tomorrow. How do they get onboarded?"
       },
       "help": {
@@ -101,8 +101,8 @@
         "en": "What is the most important thing your company wants to achieve in the next twelve months?"
       },
       "help": {
-        "nl": "Groei, een nieuwe markt, rust in de tent — alles telt, als het maar echt is. Wat kost jullie nu het meest: tijd, fouten of gemiste kansen? Het doel dat je hier noemt, bepaalt welke aanbevelingen in je rapport vooraan komen.",
-        "en": "Growth, a new market, calmer operations — anything counts, as long as it's real. What costs you most right now: time, errors or missed opportunities? The goal you name here decides which recommendations lead your report."
+        "nl": "Groei, een nieuwe markt, rust in de tent, alles telt, als het maar echt is. Wat kost jullie nu het meest: tijd, fouten of gemiste kansen? Het doel dat je hier noemt, bepaalt welke aanbevelingen in je rapport vooraan komen.",
+        "en": "Growth, a new market, calmer operations, anything counts, as long as it's real. What costs you most right now: time, errors or missed opportunities? The goal you name here decides which recommendations lead your report."
       },
       "options": null,
       "optional": false
@@ -111,12 +111,12 @@
       "id": "co-ai-history",
       "type": "text",
       "text": {
-        "nl": "Wat hebben jullie al met AI gedaan of geprobeerd — en wat leerde dat jullie?",
-        "en": "What have you already done or tried with AI — and what did it teach you?"
+        "nl": "Wat hebben jullie al met AI gedaan of geprobeerd, en wat leerde dat jullie?",
+        "en": "What have you already done or tried with AI, and what did it teach you?"
       },
       "help": {
-        "nl": "Ook losse experimenten tellen: een collega die zelf ChatGPT gebruikt, een tool-abonnement dat in de la stierf, een offerte van een leverancier. Wat werkte, wat strandde — en waaróp strandde het: techniek, tijd, data, draagvlak of iets heel anders? En wie trok het? Nog niets gedaan? Zeg dat gewoon — dan is dit jullie eerlijke nulmeting.",
-        "en": "Loose experiments count too: a colleague quietly using ChatGPT, a tool subscription that died in a drawer, a vendor quote. What worked, what stalled — and what did it stall on: tech, time, data, buy-in or something else entirely? And who drove it? Done nothing yet? Just say so — that makes this your honest baseline."
+        "nl": "Ook losse experimenten tellen: een collega die zelf ChatGPT gebruikt, een tool-abonnement dat in de la stierf, een offerte van een leverancier. Wat werkte, wat strandde, en waaróp strandde het: techniek, tijd, data, draagvlak of iets heel anders? En wie trok het? Nog niets gedaan? Zeg dat gewoon, dan is dit jullie eerlijke nulmeting.",
+        "en": "Loose experiments count too: a colleague quietly using ChatGPT, a tool subscription that died in a drawer, a vendor quote. What worked, what stalled, and what did it stall on: tech, time, data, buy-in or something else entirely? And who drove it? Done nothing yet? Just say so, that makes this your honest baseline."
       },
       "options": null,
       "optional": false
@@ -177,12 +177,12 @@
       "id": "co-ai-focus",
       "type": "choice",
       "text": {
-        "nl": "Als AI jullie ergens als éérste iets moet opleveren — waar dan?",
-        "en": "If AI is to deliver for you anywhere first — where?"
+        "nl": "Als AI jullie ergens als éérste iets moet opleveren, waar dan?",
+        "en": "If AI is to deliver for you anywhere first, where?"
       },
       "help": {
-        "nl": "Twijfel je tussen twee? Kies waar de pijn nú het grootst is — de andere kansen komen in het rapport gewoon mee. Jouw keuze bepaalt welke aanbevelingen bovenaan komen.",
-        "en": "Torn between two? Pick where the pain is biggest right now — the other opportunities still make it into the report. Your choice decides which recommendations come first."
+        "nl": "Twijfel je tussen twee? Kies waar de pijn nú het grootst is, de andere kansen komen in het rapport gewoon mee. Jouw keuze bepaalt welke aanbevelingen bovenaan komen.",
+        "en": "Torn between two? Pick where the pain is biggest right now, the other opportunities still make it into the report. Your choice decides which recommendations come first."
       },
       "options": [
         {
@@ -210,8 +210,8 @@
           "en": "Retaining knowledge and making it findable"
         },
         {
-          "nl": "Weet ik nog niet — daarvoor doe ik juist deze scan",
-          "en": "Don't know yet — that's exactly why I'm running this scan"
+          "nl": "Weet ik nog niet, daarvoor doe ik juist deze scan",
+          "en": "Don't know yet, that's exactly why I'm running this scan"
         }
       ],
       "optional": false
@@ -224,8 +224,8 @@
         "en": "Where does work get stuck or information get lost between departments or colleagues? Describe those handovers: what goes from whom to whom, and what goes wrong there?"
       },
       "help": {
-        "nl": "Bijvoorbeeld: 'De winkel of de verkoop geeft bestellingen door zonder complete gegevens, dus wie ze uitvoert moet altijd nabellen.' Of: 'De partner verkoopt de opdracht, maar het projectteam moet zelf uitzoeken wat er is afgesproken.' Of: 'Hoofdkantoor stuurt een prijswijziging, maar elke vestiging verwerkt die op zijn eigen manier.' Denk ook aan: informatie die niet meekomt, werk dat wacht op akkoord, dubbel invoeren — of iets heel anders. Meerdere plekken? Noem ze gerust allemaal — de pijnlijkste eerst. Elke overdracht die je noemt wordt een eigen bevinding in je rapport. Knelt er nergens iets? Zeg dat gewoon. Ons advies: spreek je antwoord in via de microfoonknop, praten gaat sneller dan typen.",
-        "en": "For example: 'The shop or sales passes on orders with missing details, so whoever carries them out always has to call back.' Or: 'The partner sells the engagement, but the project team has to work out what was agreed.' Or: 'Head office sends a price change, but every location processes it its own way.' Also think of: information that doesn't travel along, work waiting for sign-off, double data entry — or something else entirely. More than one spot? List them all — the one that hurts most first. Every handover you name becomes its own finding in your report. Nothing really stuck anywhere? Just say so. Our advice: dictate your answer using the microphone button, talking is faster than typing."
+        "nl": "Bijvoorbeeld: 'De winkel of de verkoop geeft bestellingen door zonder complete gegevens, dus wie ze uitvoert moet altijd nabellen.' Of: 'De partner verkoopt de opdracht, maar het projectteam moet zelf uitzoeken wat er is afgesproken.' Of: 'Hoofdkantoor stuurt een prijswijziging, maar elke vestiging verwerkt die op zijn eigen manier.' Denk ook aan: informatie die niet meekomt, werk dat wacht op akkoord, dubbel invoeren, of iets heel anders. Meerdere plekken? Noem ze gerust allemaal, de pijnlijkste eerst. Elke overdracht die je noemt wordt een eigen bevinding in je rapport. Knelt er nergens iets? Zeg dat gewoon. Ons advies: spreek je antwoord in via de microfoonknop, praten gaat sneller dan typen.",
+        "en": "For example: 'The shop or sales passes on orders with missing details, so whoever carries them out always has to call back.' Or: 'The partner sells the engagement, but the project team has to work out what was agreed.' Or: 'Head office sends a price change, but every location processes it its own way.' Also think of: information that doesn't travel along, work waiting for sign-off, double data entry, or something else entirely. More than one spot? List them all, the one that hurts most first. Every handover you name becomes its own finding in your report. Nothing really stuck anywhere? Just say so. Our advice: dictate your answer using the microphone button, talking is faster than typing."
       },
       "helpWhen": [
         {
@@ -234,8 +234,8 @@
             "solo"
           ],
           "help": {
-            "nl": "Bijvoorbeeld: 'De winkel of de verkoop geeft bestellingen door zonder complete gegevens, dus wie ze uitvoert moet altijd nabellen.' Of: 'De partner verkoopt de opdracht, maar het projectteam moet zelf uitzoeken wat er is afgesproken.' Of: 'Hoofdkantoor stuurt een prijswijziging, maar elke vestiging verwerkt die op zijn eigen manier.' Denk ook aan: informatie die niet meekomt, werk dat wacht op akkoord, dubbel invoeren — of iets heel anders. Meerdere plekken? Noem ze gerust allemaal — de pijnlijkste eerst. Elke overdracht die je noemt wordt een eigen bevinding in je rapport. Knelt er nergens iets? Zeg dat gewoon. Ons advies: spreek je antwoord in via de microfoonknop, praten gaat sneller dan typen. Werk je alleen? Denk aan overdrachten met klanten, leveranciers of je boekhouder.",
-            "en": "For example: 'The shop or sales passes on orders with missing details, so whoever carries them out always has to call back.' Or: 'The partner sells the engagement, but the project team has to work out what was agreed.' Or: 'Head office sends a price change, but every location processes it its own way.' Also think of: information that doesn't travel along, work waiting for sign-off, double data entry — or something else entirely. More than one spot? List them all — the one that hurts most first. Every handover you name becomes its own finding in your report. Nothing really stuck anywhere? Just say so. Our advice: dictate your answer using the microphone button, talking is faster than typing. Working solo? Think of handovers with customers, suppliers or your bookkeeper."
+            "nl": "Bijvoorbeeld: 'De winkel of de verkoop geeft bestellingen door zonder complete gegevens, dus wie ze uitvoert moet altijd nabellen.' Of: 'De partner verkoopt de opdracht, maar het projectteam moet zelf uitzoeken wat er is afgesproken.' Of: 'Hoofdkantoor stuurt een prijswijziging, maar elke vestiging verwerkt die op zijn eigen manier.' Denk ook aan: informatie die niet meekomt, werk dat wacht op akkoord, dubbel invoeren, of iets heel anders. Meerdere plekken? Noem ze gerust allemaal, de pijnlijkste eerst. Elke overdracht die je noemt wordt een eigen bevinding in je rapport. Knelt er nergens iets? Zeg dat gewoon. Ons advies: spreek je antwoord in via de microfoonknop, praten gaat sneller dan typen. Werk je alleen? Denk aan overdrachten met klanten, leveranciers of je boekhouder.",
+            "en": "For example: 'The shop or sales passes on orders with missing details, so whoever carries them out always has to call back.' Or: 'The partner sells the engagement, but the project team has to work out what was agreed.' Or: 'Head office sends a price change, but every location processes it its own way.' Also think of: information that doesn't travel along, work waiting for sign-off, double data entry, or something else entirely. More than one spot? List them all, the one that hurts most first. Every handover you name becomes its own finding in your report. Nothing really stuck anywhere? Just say so. Our advice: dictate your answer using the microphone button, talking is faster than typing. Working solo? Think of handovers with customers, suppliers or your bookkeeper."
           }
         }
       ],
@@ -264,8 +264,8 @@
         "en": "Which of these questions can you not answer with confidence today?"
       },
       "help": {
-        "nl": "Bijna niemand kan alles beantwoorden — juist hier zit vaak de grootste winst: een onderzoek kan het voor je uitzoeken, of een workflow houdt het doorlopend voor je bij. Weet de eigenaar of een collega het antwoord wél? Dan hoeft-ie niet aangevinkt.",
-        "en": "Almost nobody can answer everything — this is often where the biggest wins hide: a study can find it out for you, or a workflow can keep track of it continuously. Does the owner or a colleague know the answer? Then no need to tick it."
+        "nl": "Bijna niemand kan alles beantwoorden, juist hier zit vaak de grootste winst: een onderzoek kan het voor je uitzoeken, of een workflow houdt het doorlopend voor je bij. Weet de eigenaar of een collega het antwoord wél? Dan hoeft-ie niet aangevinkt.",
+        "en": "Almost nobody can answer everything, this is often where the biggest wins hide: a study can find it out for you, or a workflow can keep track of it continuously. Does the owner or a colleague know the answer? Then no need to tick it."
       },
       "options": [
         {
@@ -320,8 +320,8 @@
         "en": "Imagine that six months from now you say: \"AI is genuinely helping us get our work done.\" How would you be able to tell?"
       },
       "help": {
-        "nl": "Denk aan iets wat je kunt zien of meten: 'offertes gaan binnen een dag de deur uit', 'niemand typt meer bonnen over', 'nieuwe mensen draaien in een week mee'. Geen meetlat in je hoofd? Sla gerust over — het rapport stelt er dan zelf één voor.",
-        "en": "Think of something you could see or measure: 'quotes go out within a day', 'nobody retypes receipts anymore', 'new people are up and running in a week'. No yardstick in mind? Feel free to skip — the report will propose one."
+        "nl": "Denk aan iets wat je kunt zien of meten: 'offertes gaan binnen een dag de deur uit', 'niemand typt meer bonnen over', 'nieuwe mensen draaien in een week mee'. Geen meetlat in je hoofd? Sla gerust over, het rapport stelt er dan zelf één voor.",
+        "en": "Think of something you could see or measure: 'quotes go out within a day', 'nobody retypes receipts anymore', 'new people are up and running in a week'. No yardstick in mind? Feel free to skip, the report will propose one."
       },
       "options": null,
       "optional": true
@@ -329,15 +329,64 @@
   ],
   "departmentQuestions": [
     {
+      "id": "dept-role",
+      "type": "choice",
+      "text": {
+        "nl": "Om te beginnen: wat is jouw rol in het werk dat je hierna beschrijft?",
+        "en": "To start: what is your role in the work you are about to describe?"
+      },
+      "help": {
+        "nl": "Doe je meerdere van deze dingen? Kies wat het grootste deel van je week vult. We gebruiken je antwoord om de juiste vervolgvragen te stellen, bijvoorbeeld of we naar jouw eigen uren vragen of naar die van het hele team.",
+        "en": "Doing several of these? Pick whichever fills most of your week. We use your answer to ask the right follow-up questions, for example whether we ask about your own hours or the whole team's."
+      },
+      "options": [
+        {
+          "nl": "Ik doe dit werk zelf",
+          "en": "I do this work myself",
+          "token": "worker"
+        },
+        {
+          "nl": "Ik geef leiding aan dit werk",
+          "en": "I lead this work",
+          "token": "lead"
+        },
+        {
+          "nl": "Ik werk er nauw mee samen",
+          "en": "I work closely with it",
+          "token": "adjacent"
+        },
+        {
+          "nl": "Ik vul dit in namens anderen",
+          "en": "I am filling this in on behalf of others",
+          "token": "proxy"
+        }
+      ],
+      "optional": false
+    },
+    {
+      "id": "dept-role-title",
+      "type": "text",
+      "text": {
+        "nl": "En wat is je functie?",
+        "en": "And what is your job title?"
+      },
+      "help": {
+        "nl": "Bijvoorbeeld officemanager, werkvoorbereider of eigenaar. Een paar woorden is genoeg.",
+        "en": "For example office manager, work planner or owner. A few words is plenty."
+      },
+      "options": null,
+      "optional": true
+    },
+    {
       "id": "dept-time-sinks",
       "type": "multi-choice",
       "text": {
-        "nl": "Waar gaat in jullie bedrijf tijd naartoe die je liever anders had besteed? Kies de grootste, maximaal 3.",
-        "en": "Where does your company's time go that you'd rather spend differently? Pick the biggest, 3 at most."
+        "nl": "Waar gaat veel tijd in zitten die je liever anders had besteed? Kies de grootste, maximaal 3.",
+        "en": "Where does a lot of time go that you would rather spend differently? Pick the biggest, 3 at most."
       },
       "help": {
-        "nl": "Elk team heeft dit soort werk — dit is geen examen. Doe je vooral fysiek werk (productie, magazijn, buitendienst)? Beantwoord 'm dan voor al het regel- en papierwerk eromheen: lijstjes, planningen, bonnen, rapportjes.",
-        "en": "Every team has work like this — this is not a test. Mostly hands-on work (production, warehouse, field)? Then answer for all the paperwork and coordination around it: lists, schedules, slips, reports."
+        "nl": "Elk team heeft dit soort werk, dit is geen examen. Doe je vooral fysiek werk (productie, magazijn, buitendienst)? Beantwoord 'm dan voor al het regel- en papierwerk eromheen: lijstjes, planningen, bonnen, rapportjes.",
+        "en": "Every team has work like this, this is not a test. Mostly hands-on work (production, warehouse, field)? Then answer for all the paperwork and coordination around it: lists, schedules, slips, reports."
       },
       "helpWhen": [
         {
@@ -346,8 +395,8 @@
             "worker"
           ],
           "help": {
-            "nl": "Elk team heeft dit soort werk — dit is geen examen. Denk aan wat jou in je eigen werkdag ophoudt: het systeem bijwerken na elke klus, zoeken naar de juiste versie, wachten op akkoord. Doe je vooral fysiek werk (productie, magazijn, buitendienst)? Beantwoord 'm dan voor al het regel- en papierwerk eromheen: lijstjes, planningen, bonnen, rapportjes.",
-            "en": "Every team has work like this — this is not a test. Think of what holds you up in your own working day: updating the system after every job, hunting for the right version, waiting for sign-off. Mostly hands-on work (production, warehouse, field)? Then answer for all the paperwork and coordination around it: lists, schedules, slips, reports."
+            "nl": "Elk team heeft dit soort werk, dit is geen examen. Denk aan wat jou in je eigen werkdag ophoudt: het systeem bijwerken na elke klus, zoeken naar de juiste versie, wachten op akkoord. Doe je vooral fysiek werk (productie, magazijn, buitendienst)? Beantwoord 'm dan voor al het regel- en papierwerk eromheen: lijstjes, planningen, bonnen, rapportjes.",
+            "en": "Every team has work like this, this is not a test. Think of what holds you up in your own working day: updating the system after every job, hunting for the right version, waiting for sign-off. Mostly hands-on work (production, warehouse, field)? Then answer for all the paperwork and coordination around it: lists, schedules, slips, reports."
           }
         }
       ],
@@ -429,8 +478,8 @@
       "id": "dept-time-sinks-other",
       "type": "text",
       "text": {
-        "nl": "Je vinkte 'Iets anders' aan — wat is het?",
-        "en": "You ticked 'Something else' — what is it?"
+        "nl": "Je vinkte 'Iets anders' aan, wat is het?",
+        "en": "You ticked 'Something else', what is it?"
       },
       "help": {
         "nl": "Eén zin is genoeg.",
@@ -449,12 +498,12 @@
       "id": "dept-workflow-story",
       "type": "text",
       "text": {
-        "nl": "Pak nu de grootste tijdvreter uit je vorige antwoord — of een ander proces dat steeds terugkomt. Loop het van begin tot eind door, alsof je het uitlegt aan een nieuwe collega: waarmee begint het, wie doet wat, en wanneer is het af?",
-        "en": "Now take the biggest time sink from your previous answer — or another process that keeps coming back. Walk through it from start to finish, as if explaining it to a new colleague: what kicks it off, who does what, and when is it done?"
+        "nl": "Pak nu de grootste tijdvreter uit je vorige antwoord, of een ander proces dat steeds terugkomt. Loop het van begin tot eind door, alsof je het uitlegt aan een nieuwe collega: waarmee begint het, wie doet wat, en wanneer is het af?",
+        "en": "Now take the biggest time sink from your previous answer, or another process that keeps coming back. Walk through it from start to finish, as if explaining it to a new colleague: what kicks it off, who does what, and when is it done?"
       },
       "help": {
-        "nl": "Dit is de belangrijkste vraag van de scan. Ons advies: spreek het gewoon in via de microfoonknop, twee minuten vertellen is genoeg. Vertel gerust hoe het de laatste keer ging: hoe concreter, hoe scherper je rapport. Gaat het om grote aantallen per dag, zoals klantvragen? Noem het aantal, en welk deel standaard is. Zit je zelf niet in dit werk? Beschrijf gewoon wat jij ervan ziet. En wachten er anderen op het resultaat — collega's, vestigingen, klanten? Zeg dat er even bij.",
-        "en": "This is the most important question in the scan. Our advice: just dictate it using the microphone button, two minutes of talking is plenty. Feel free to describe how it went the last time: the more concrete, the sharper your report. Big volumes per day, like customer questions? Name the number, and which share is standard. Not in this work yourself? Just describe what you see of it. And do others wait on the result — colleagues, locations, customers? Mention that too."
+        "nl": "Dit is de belangrijkste vraag van de scan. Ons advies: spreek het gewoon in via de microfoonknop, twee minuten vertellen is genoeg. Vertel gerust hoe het de laatste keer ging: hoe concreter, hoe scherper je rapport. Gaat het om grote aantallen per dag, zoals klantvragen? Noem het aantal, en welk deel standaard is. Zit je zelf niet in dit werk? Beschrijf gewoon wat jij ervan ziet. En wachten er anderen op het resultaat, zoals collega's, vestigingen of klanten? Zeg dat er even bij.",
+        "en": "This is the most important question in the scan. Our advice: just dictate it using the microphone button, two minutes of talking is plenty. Feel free to describe how it went the last time: the more concrete, the sharper your report. Big volumes per day, like customer questions? Name the number, and which share is standard. Not in this work yourself? Just describe what you see of it. And do others wait on the result, such as colleagues, locations or customers? Mention that too."
       },
       "helpWhen": [
         {
@@ -463,14 +512,14 @@
             "worker"
           ],
           "help": {
-            "nl": "Dit is de belangrijkste vraag van de scan. Beschrijf gewoon jóuw werkdag in dit werk: waar begint het voor jou, wat doe je dan, en waar lever je het af? Ons advies: spreek het in via de microfoonknop, twee minuten vertellen is genoeg. Vertel gerust hoe het de laatste keer ging: hoe concreter, hoe scherper je rapport. Gaat het om grote aantallen per dag, zoals klantvragen? Noem het aantal, en welk deel standaard is. En wachten er anderen op jouw resultaat — collega's, vestigingen, klanten? Zeg dat er even bij.",
-            "en": "This is the most important question in the scan. Just describe your own working day in this work: where does it start for you, what do you do then, and where do you hand it off? Our advice: dictate it using the microphone button, two minutes of talking is plenty. Feel free to describe how it went the last time: the more concrete, the sharper your report. Big volumes per day, like customer questions? Name the number, and which share is standard. And do others wait on your result — colleagues, locations, customers? Mention that too."
+            "nl": "Dit is de belangrijkste vraag van de scan. Beschrijf gewoon jóuw werkdag in dit werk: waar begint het voor jou, wat doe je dan, en waar lever je het af? Ons advies: spreek het in via de microfoonknop, twee minuten vertellen is genoeg. Vertel gerust hoe het de laatste keer ging: hoe concreter, hoe scherper je rapport. Gaat het om grote aantallen per dag, zoals klantvragen? Noem het aantal, en welk deel standaard is. En wachten er anderen op jouw resultaat, zoals collega's, vestigingen of klanten? Zeg dat er even bij.",
+            "en": "This is the most important question in the scan. Just describe your own working day in this work: where does it start for you, what do you do then, and where do you hand it off? Our advice: dictate it using the microphone button, two minutes of talking is plenty. Feel free to describe how it went the last time: the more concrete, the sharper your report. Big volumes per day, like customer questions? Name the number, and which share is standard. And do others wait on your result, such as colleagues, locations or customers? Mention that too."
           }
         }
       ],
       "moreTips": {
-        "nl": "Duurt jouw werk weken of maanden, zoals een project of ontwikkeltraject? Pak dan één stuk dat elke keer terugkomt — de tekeningen-release, de wijzigingsronde of de overdracht naar productie.",
-        "en": "Does the work run for weeks or months, like a project or development track? Then pick one piece that comes back every time — the drawing release, the change round or the handover to production."
+        "nl": "Duurt jouw werk weken of maanden, zoals een project of ontwikkeltraject? Pak dan één stuk dat elke keer terugkomt: de tekeningen-release, de wijzigingsronde of de overdracht naar productie.",
+        "en": "Does the work run for weeks or months, like a project or development track? Then pick one piece that comes back every time: the drawing release, the change round or the handover to production."
       },
       "options": null,
       "optional": false
@@ -483,8 +532,8 @@
         "en": "How often does this process come around?"
       },
       "help": {
-        "nl": "Geen vast ritme? Kies de frequentie die er gemiddeld het dichtst bij komt — 'Onregelmatig' alleen als het echt onvoorspelbaar is. Komt het werk als continue stroom binnen, zoals klantvragen? Kies 'Meerdere keren per dag'. Piekt het rond een vaste week of periode? Zeg dat even in je procesverhaal.",
-        "en": "No fixed rhythm? Pick the frequency that comes closest on average — 'Irregular' only when it is genuinely unpredictable. Does the work arrive as a continuous stream, like customer questions? Pick 'Several times a day'. Does it peak around a fixed week or period? Mention that in your process story."
+        "nl": "Geen vast ritme? Kies de frequentie die er gemiddeld het dichtst bij komt. Kies 'Onregelmatig' alleen als het echt onvoorspelbaar is. Komt het werk als continue stroom binnen, zoals klantvragen? Kies 'Meerdere keren per dag'. Piekt het rond een vaste week of periode? Zeg dat even in je procesverhaal.",
+        "en": "No fixed rhythm? Pick the frequency that comes closest on average. Pick 'Irregular' only when it is genuinely unpredictable. Does the work arrive as a continuous stream, like customer questions? Pick 'Several times a day'. Does it peak around a fixed week or period? Mention that in your process story."
       },
       "options": [
         {
@@ -512,8 +561,8 @@
           "en": "A few times a year"
         },
         {
-          "nl": "Onregelmatig — geen vast patroon",
-          "en": "Irregular — no fixed pattern"
+          "nl": "Onregelmatig, geen vast patroon",
+          "en": "Irregular, no fixed pattern"
         }
       ],
       "optional": false
@@ -522,12 +571,12 @@
       "id": "dept-wf-hours",
       "type": "number",
       "text": {
-        "nl": "Hoeveel uur per week kost dit proces jullie bedrijf in totaal, schat je?",
-        "en": "How many hours a week does this process cost your company in total, would you estimate?"
+        "nl": "Hoeveel uur per week kost dit proces bij elkaar, schat je?",
+        "en": "How many hours a week does this process take altogether, would you say?"
       },
       "help": {
-        "nl": "Tel iedereen bij elkaar op die eraan meewerkt. Een ruwe schatting is prima, de volgende vraag gaat over hoe zeker je bent. Komt het proces niet wekelijks voorbij? Reken grof om naar uren per week. Weet je alleen je eigen uren? Geef die, en zeg het er even bij in je procesverhaal.",
-        "en": "Add up everyone who works on it. A rough estimate is fine, the next question asks how confident you are. Process not weekly? Convert roughly to hours per week. Only know your own hours? Give those, and say so in your process story."
+        "nl": "Tel iedereen bij elkaar op die eraan meewerkt. Een ruwe schatting is prima, de volgende vraag gaat over hoe zeker je bent. Komt het proces niet wekelijks voorbij? Reken grof om naar uren per week.",
+        "en": "Add up everyone who works on it. A rough estimate is fine, the next question asks how confident you are. Process not weekly? Convert roughly to hours per week."
       },
       "moreTips": {
         "nl": "Staat dit team model voor meerdere vestigingen? Tel dan alleen je eigen vestiging. Draait ditzelfde proces ook op andere vestigingen of teams? Zeg dan in je procesverhaal even voor hoeveel. Gaat het om uren van mensen die anders declarabel of bij klanten waren geweest? Noem dat ook.",
@@ -560,8 +609,8 @@
         "en": "How many hours a week do you yourself spend on this, would you estimate?"
       },
       "help": {
-        "nl": "Alleen jouw eigen uren — de rest rekenen wij uit.",
-        "en": "Just your own hours — we work out the rest."
+        "nl": "Alleen jouw eigen uren, de rest rekenen wij uit.",
+        "en": "Just your own hours, we work out the rest."
       },
       "options": null,
       "optional": false,
@@ -574,11 +623,37 @@
       "progressGroup": "wf-hours"
     },
     {
+      "id": "dept-wf-confidence",
+      "type": "rating",
+      "text": {
+        "nl": "Hoe zeker ben je van die urenschatting?",
+        "en": "How sure are you of that hours estimate?"
+      },
+      "help": {
+        "nl": "1 = echt een gok, 5 = dit weten we vrij precies, bijvoorbeeld uit urenregistratie. Een gok is óók waardevolle informatie.",
+        "en": "1 = honestly a guess, 5 = we know quite precisely, for example from time tracking. A guess is valuable information too."
+      },
+      "helpWhen": [
+        {
+          "questionId": "dept-role",
+          "optionTokenIn": [
+            "worker"
+          ],
+          "help": {
+            "nl": "1 = echt een gok, 5 = dit weet ik vrij precies. Jij ziet dit werk van dichtbij, jouw inschatting is goud waard, ook als het een gok is.",
+            "en": "1 = honestly a guess, 5 = I know quite precisely. You see this work up close, your estimate is worth its weight in gold, even if it is a guess."
+          }
+        }
+      ],
+      "options": null,
+      "optional": false
+    },
+    {
       "id": "dept-wf-people",
       "type": "number",
       "text": {
-        "nl": "Hoeveel mensen doen dit werk in totaal, jezelf meegeteld?",
-        "en": "How many people do this work in total, yourself included?"
+        "nl": "Hoeveel mensen doen ditzelfde werk in totaal, jezelf meegeteld?",
+        "en": "How many people do this same work in total, including yourself?"
       },
       "help": {
         "nl": "Tel jezelf mee. Meer dan tien? Een schatting is prima.",
@@ -592,46 +667,6 @@
           "worker"
         ]
       }
-    },
-    {
-      "id": "dept-wf-systems",
-      "type": "text",
-      "text": {
-        "nl": "Welke systemen, mailboxen of documenten komen in dit proces voorbij? Noem ze in volgorde als dat lukt.",
-        "en": "Which systems, mailboxes or documents does this process pass through? In order, if you can."
-      },
-      "help": {
-        "nl": "Bijvoorbeeld: 'Order komt binnen per mail → overtypen in Exact → planning in Excel → bevestiging via WhatsApp.' Zelfde namen als eerder ingevuld? Prima — hier gaat het alleen om de volgorde binnen dit proces. Ook eigen lijstjes, een Excel op je bureaublad of een WhatsApp-groep tellen mee. Ons advies: spreek het in, dan loop je het gewoon hardop na.",
-        "en": "For example: 'Order arrives by email → retyped into Exact → scheduled in Excel → confirmed via WhatsApp.' Named these systems before? That's fine — here it's only about the order within this process. Your own lists, an Excel on your desktop or a WhatsApp group count too. Our advice: dictate it, then you simply walk through it out loud."
-      },
-      "options": null,
-      "optional": false
-    },
-    {
-      "id": "dept-wf-confidence",
-      "type": "rating",
-      "text": {
-        "nl": "Hoe zeker ben je van die schatting?",
-        "en": "How confident are you in that estimate?"
-      },
-      "help": {
-        "nl": "1 = echt een gok, 5 = dit weten we vrij precies, bijvoorbeeld uit urenregistratie. Een gok is óók waardevolle informatie.",
-        "en": "1 = honestly a guess, 5 = we know quite precisely, for example from time tracking. A guess is valuable information too."
-      },
-      "helpWhen": [
-        {
-          "questionId": "dept-role",
-          "optionTokenIn": [
-            "worker"
-          ],
-          "help": {
-            "nl": "1 = echt een gok, 5 = dit weet ik vrij precies. Jij ziet dit werk van dichtbij — jouw inschatting is goud waard, ook als het een gok is.",
-            "en": "1 = honestly a guess, 5 = I know quite precisely. You see this work up close — your estimate is worth its weight in gold, even if it is a guess."
-          }
-        }
-      ],
-      "options": null,
-      "optional": false
     },
     {
       "id": "dept-wf-stall",
@@ -648,15 +683,29 @@
       "optional": false
     },
     {
+      "id": "dept-wf-systems",
+      "type": "text",
+      "text": {
+        "nl": "Waar komt de informatie vandaan die je in dit proces nodig hebt? Noem de systemen, mailboxen of documenten, in volgorde als dat lukt.",
+        "en": "Where does the information you need in this process come from? Name the systems, mailboxes or documents, in order if you can."
+      },
+      "help": {
+        "nl": "Bijvoorbeeld: 'Order komt binnen per mail → overtypen in Exact → planning in Excel → bevestiging via WhatsApp.' Zelfde namen als eerder ingevuld? Prima, hier gaat het alleen om de volgorde binnen dit proces. Ook eigen lijstjes, een Excel op je bureaublad of een WhatsApp-groep tellen mee. Ons advies: spreek het in, dan loop je het gewoon hardop na.",
+        "en": "For example: 'Order arrives by email → retyped into Exact → scheduled in Excel → confirmed via WhatsApp.' Named these systems before? That's fine, here it's only about the order within this process. Your own lists, an Excel on your desktop or a WhatsApp group count too. Our advice: dictate it, then you simply walk through it out loud."
+      },
+      "options": null,
+      "optional": false
+    },
+    {
       "id": "dept-wf-knowledge",
       "type": "text",
       "text": {
-        "nl": "Welke kennis heb je nodig om dit proces goed te doen, en waar is die nu vastgelegd?",
-        "en": "What knowledge do you need to do this process well, and where is it written down today?"
+        "nl": "Welke kennis of ervaring die nergens is vastgelegd, heb je nodig om dit proces goed te doen?",
+        "en": "What knowledge or experience that is not recorded anywhere do you need to do this process well?"
       },
       "help": {
-        "nl": "Noem eerst wát je moet weten: prijzen, klantafspraken, hoe iets is afgesteld. En dan waar het is vastgelegd: in een systeem, in documenten, of eigenlijk nergens omdat het in iemands hoofd zit. 'Het zit vooral in het hoofd van Petra' is een heel bruikbaar antwoord. Net als: 'dat mag alleen de directie inzien', ook dát is goed om te weten. Al verteld in je verhaal? Herhaal het gerust in één zin.",
-        "en": "First say what you need to know: prices, customer agreements, how something is set up. Then where it is written down: in a system, in documents, or actually nowhere because it lives in someone's head. 'It mostly lives in Petra's head' is a genuinely useful answer. So is 'only management is allowed to see that', that is good to know too. Already covered this in your story? Repeat it in one line."
+        "nl": "Denk aan wat je in de loop van de jaren hebt geleerd: hoe een klant het graag heeft, welke uitzonderingen er zijn, waarom iets bij jullie zo is afgesproken. 'Het zit vooral in het hoofd van Petra' is een heel bruikbaar antwoord. Staat alles netjes in een systeem? Zeg dat dan gewoon. Al verteld in je verhaal? Herhaal het gerust in één zin.",
+        "en": "Think of what you have learned over the years: how a customer likes things done, which exceptions exist, why something is arranged the way it is here. 'It is mostly in Petra's head' is a very useful answer. Is everything neatly in a system? Then just say so. Already covered in your story? Feel free to repeat it in one sentence."
       },
       "options": null,
       "optional": false
@@ -691,8 +740,8 @@
       "id": "dept-answer-where",
       "type": "choice",
       "text": {
-        "nl": "Stel dat je het antwoord op die vraag wilt vinden — waar zit het dan?",
-        "en": "Suppose you wanted to find the answer to that question — where does it live?"
+        "nl": "Stel dat je het antwoord op die vraag wilt vinden, waar zou je gaan zoeken?",
+        "en": "Say you wanted to find the answer to that question, where would you start looking?"
       },
       "help": {
         "nl": "Twijfel? Kies waar je het antwoord het éérst zou gaan zoeken.",
@@ -734,8 +783,8 @@
         "en": "Finally: imagine one job gets done for you completely, starting tomorrow. Flawlessly, and it never sits waiting. Which job do you hand over first, and what would you want to see back on your desk?"
       },
       "help": {
-        "nl": "Er is geen fout antwoord, en denk niet aan wat technisch kan. Zeg wat jou de meeste lucht geeft — en hoe het resultaat eruitziet: een kant-en-klaar document, een seintje alleen als er iets mis is, een bijgewerkt overzicht, een voorbereiding voor je volgende gesprek. Wat dan ook. Het mag hetzelfde proces zijn als net — maar kijk ook gerust even breder dan waar je het net over had.",
-        "en": "There is no wrong answer, and don't worry about what is technically possible. Say what would give you the most breathing room — and what the result looks like: a ready-to-use document, a heads-up only when something is off, an up-to-date overview, prep for your next meeting. Anything goes. It can be the same process you just described — but feel free to look beyond it too."
+        "nl": "Er is geen fout antwoord, en denk niet aan wat technisch kan. Zeg wat jou de meeste lucht geeft, en hoe het resultaat eruitziet: een kant-en-klaar document, een seintje alleen als er iets mis is, een bijgewerkt overzicht, een voorbereiding voor je volgende gesprek. Wat dan ook. Het mag hetzelfde proces zijn als net, maar kijk ook gerust even breder dan waar je het net over had.",
+        "en": "There is no wrong answer, and don't worry about what is technically possible. Say what would give you the most breathing room, and what the result looks like: a ready-to-use document, a heads-up only when something is off, an up-to-date overview, prep for your next meeting. Anything goes. It can be the same process you just described, but feel free to look beyond it too."
       },
       "helpWhen": [
         {
@@ -744,8 +793,8 @@
             "worker"
           ],
           "help": {
-            "nl": "Stel: je krijgt er een workflow bij die één ding uit handen neemt — welk klusje geef je als eerste weg? Een lijstje bijhouden, iets nazoeken, iets voorbereiden: alles telt. Er is geen fout antwoord, en denk niet aan wat technisch kan — zeg wat jou de meeste lucht geeft.",
-            "en": "Imagine you get a workflow that takes one thing off your hands — which chore would you hand over first? Keeping a list up to date, looking something up, preparing something: it all counts. There is no wrong answer, and don't worry about what is technically possible — say what would give you the most breathing room."
+            "nl": "Stel: je krijgt er een workflow bij die één ding uit handen neemt. Welk klusje geef je als eerste weg? Een lijstje bijhouden, iets nazoeken, iets voorbereiden: alles telt. Er is geen fout antwoord, en denk niet aan wat technisch kan, zeg wat jou de meeste lucht geeft.",
+            "en": "Imagine you get a workflow that takes one thing off your hands. Which chore would you hand over first? Keeping a list up to date, looking something up, preparing something: it all counts. There is no wrong answer, and don't worry about what is technically possible, say what would give you the most breathing room."
           }
         }
       ],

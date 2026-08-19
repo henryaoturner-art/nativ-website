@@ -23,7 +23,7 @@ const translations = {
     quickCta: "Start de scan",
 
     teamTitle: "Met je team",
-    teamTime: "± 1 uur per persoon",
+    teamTime: "± 15 minuten per persoon",
     teamBody:
       "Nodig je mensen uit, per afdeling. Zij zien het terugkerende werk dat jij niet ziet. Je krijgt het beeld van het hele bedrijf, afdeling voor afdeling.",
     teamCta: "Nodig je team uit",
@@ -42,7 +42,7 @@ const translations = {
     teamHowTitle: "Zo werkt de AI-scan met je team",
     teamHowBody: [
       "Je maakt zelf je afdelingen aan, precies zoals jullie het bedrijf hebben ingedeeld. Per afdeling nodig je de mensen uit die het werk het beste kennen.",
-      "Iedereen krijgt dezelfde vragen, over zijn eigen werk. Dat kost ongeveer een uur. Ze hoeven niets voor te bereiden en niets te uploaden.",
+      "Iedereen krijgt dezelfde vragen, over zijn eigen werk. Dat kost ze ongeveer een kwartier. Ze hoeven niets voor te bereiden en niets te uploaden.",
       "Jij ziet het rapport groeien, afdeling voor afdeling. Je bepaalt zelf wie je uitnodigt en wanneer je afrondt.",
     ],
 
@@ -58,7 +58,7 @@ const translations = {
       },
       {
         q: "Hoe lang duurt het?",
-        a: "In je eentje ongeveer 20 minuten. Met je team ongeveer een uur per persoon, en dat kan iedereen op zijn eigen moment doen.",
+        a: "In je eentje ongeveer 20 minuten. Doe je hem met je team, dan ben jij ongeveer 20 minuten kwijt en je collega's een kwartier, ieder op zijn eigen moment.",
       },
       {
         q: "Moet ik iets voorbereiden of aanleveren?",
@@ -95,7 +95,7 @@ const translations = {
     quickCta: "Start the scan",
 
     teamTitle: "With your team",
-    teamTime: "± 1 hour per person",
+    teamTime: "± 15 minutes per person",
     teamBody:
       "Invite your people, per department. They see the recurring work you don't. You get the picture of the whole company, department by department.",
     teamCta: "Invite your team",
@@ -114,7 +114,7 @@ const translations = {
     teamHowTitle: "How the AI scan with your team works",
     teamHowBody: [
       "You set up your own departments, exactly the way your company is organised. Per department you invite the people who know the work best.",
-      "Everyone gets the same questions, about their own work. That takes about an hour. They don't have to prepare anything or upload anything.",
+      "Everyone gets the same questions, about their own work. That takes them about fifteen minutes. They don't have to prepare anything or upload anything.",
       "You watch the report grow, department by department. You decide who you invite and when you wrap up.",
     ],
 
@@ -130,7 +130,7 @@ const translations = {
       },
       {
         q: "How long does it take?",
-        a: "On your own, about 20 minutes. With your team, about an hour per person, and everyone can do it whenever it suits them.",
+        a: "On your own, about 20 minutes. With your team, about 20 minutes for you and fifteen for each colleague, everyone whenever it suits them.",
       },
       {
         q: "Do I need to prepare or supply anything?",
