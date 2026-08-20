@@ -105,6 +105,10 @@ const orgSchema = {
   },
   address: {
     "@type": "PostalAddress",
+    // KVK-registered address of Nativ B.V. (KVK 42125853), verified against
+    // VIES 2026-08-17. Beethovenlaan/Hilversum was the eenmanszaak — do not revert.
+    streetAddress: "Houtmarkt 19",
+    postalCode: "2011 AL",
     addressLocality: "Haarlem",
     addressCountry: "NL",
   },
@@ -115,6 +119,7 @@ const orgSchema = {
     "https://clutch.co/profile/nativ-0",
     "https://www.g2.com/products/nativ-company-brain",
     "https://feedbax.nl/bedrijf/nativ",
+    "https://techbehemoths.com/company/nativ",
   ],
 };
 
