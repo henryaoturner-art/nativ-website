@@ -55,6 +55,13 @@ const translations = {
     micStart: "Spreek je antwoord in",
     micStop: "Stop met opnemen",
     micListening: "Aan het luisteren...",
+    micErrorBlocked:
+      "Je browser blokkeert de microfoon. Geef toegang in je browserinstellingen, of typ je antwoord gewoon.",
+    micErrorService:
+      "Spraakherkenning staat uit in je browser. Gebruik je Safari? Zet dan dicteren aan in je systeeminstellingen. Typen kan ook gewoon.",
+    micErrorNoMic: "We vinden geen microfoon. Sluit er een aan, of typ je antwoord.",
+    micErrorNetwork: "Inspreken heeft internet nodig. Controleer je verbinding, of typ je antwoord.",
+    micErrorGeneric: "Inspreken lukt niet in deze browser. Typ je antwoord gewoon.",
     answered: "beantwoord",
     missingField: "Deze vraag hebben we nog nodig om je rapport te maken.",
     respondentTitle: "Het werk in {department}",
@@ -90,6 +97,13 @@ const translations = {
     micStart: "Dictate your answer",
     micStop: "Stop recording",
     micListening: "Listening...",
+    micErrorBlocked:
+      "Your browser is blocking the microphone. Allow access in your browser settings, or simply type your answer.",
+    micErrorService:
+      "Speech recognition is turned off in your browser. Using Safari? Enable dictation in your system settings. Typing works too.",
+    micErrorNoMic: "We could not find a microphone. Connect one, or type your answer.",
+    micErrorNetwork: "Dictation needs an internet connection. Check your connection, or type your answer.",
+    micErrorGeneric: "Dictation does not work in this browser. Simply type your answer.",
     answered: "answered",
     missingField: "We still need this one to create your report.",
     respondentTitle: "The work in {department}",
@@ -641,7 +655,11 @@ interface SpeechRecognitionLike {
   stop(): void;
   onresult: ((event: SpeechResultEventLike) => void) | null;
   onend: (() => void) | null;
-  onerror: (() => void) | null;
+  onerror: ((event: SpeechErrorEventLike) => void) | null;
+}
+
+interface SpeechErrorEventLike {
+  error?: string;
 }
 
 interface SpeechResultEventLike {
@@ -673,6 +691,7 @@ function TextField({
   onCommit: (value: string) => void;
 }) {
   const [listening, setListening] = useState(false);
+  const [micError, setMicError] = useState<string | null>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const valueRef = useRef(value);
   valueRef.current = value;
@@ -710,11 +729,20 @@ function TextField({
       recognitionRef.current = null;
       onCommit(valueRef.current);
     };
-    recognition.onerror = () => {
+    recognition.onerror = (event) => {
       setListening(false);
       recognitionRef.current = null;
+      const code = event?.error ?? "";
+      // "no-speech"/"aborted" zijn geen echte fouten (stilte of zelf gestopt)
+      if (code === "no-speech" || code === "aborted") return;
+      if (code === "not-allowed") setMicError(labels.micErrorBlocked);
+      else if (code === "service-not-allowed") setMicError(labels.micErrorService);
+      else if (code === "audio-capture") setMicError(labels.micErrorNoMic);
+      else if (code === "network") setMicError(labels.micErrorNetwork);
+      else setMicError(labels.micErrorGeneric);
     };
     recognitionRef.current = recognition;
+    setMicError(null);
     setListening(true);
     recognition.start();
   }
@@ -741,6 +769,11 @@ function TextField({
           <span aria-hidden>{listening ? "■" : "🎙"}</span>
           {listening ? labels.micListening : labels.micStart}
         </button>
+      )}
+      {micError && (
+        <p className="mt-2 text-sm text-error" role="status">
+          {micError}
+        </p>
       )}
     </div>
   );
