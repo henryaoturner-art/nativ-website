@@ -50,9 +50,7 @@ const staticCopy = {
     kennisZit: "Waar de kennis zit",
     waaromHier: "Waarom hier",
     mensenZagen: "Wat je mensen zagen en jij niet",
-    toevoegt: "Wat dit toevoegt aan wat je nu al doet",
     toevoegtNodig: "Wat daarvoor nodig is",
-    toevoegtMogelijk: "Wat mogelijk wordt door de toepassing van een Company Brain:",
     zoZietHetEruit: "Zo ziet dit werk eruit als je AI toevoegt",
     zoZietHetEruitIntro:
       "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Eerst de keten in één beeld, daarna jouw stappen ernaast.",
@@ -112,9 +110,7 @@ const staticCopy = {
     kennisZit: "Where the knowledge sits",
     waaromHier: "Why here",
     mensenZagen: "What your people saw that you did not",
-    toevoegt: "What this adds to what you already do",
     toevoegtNodig: "What that takes",
-    toevoegtMogelijk: "What becomes possible with a Company Brain:",
     zoZietHetEruit: "What this work looks like once you add AI",
     zoZietHetEruitIntro:
       "This is only about the work above, where we would start. First the chain in one picture, then your own steps next to it.",
@@ -378,44 +374,11 @@ export default async function ScanReportPage({
     });
   }
 
-  if (payload.watDitToevoegt) {
-    const av = payload.watDitToevoegt;
-    sections.push({
-      id: "toevoegt",
-      title: c.toevoegt,
-      body: (
-        <>
-          <Prose text={av.watErNuGoedGaat} />
-          <p className="mt-5 text-grey/85 font-light leading-relaxed">
-            {c.toevoegtMogelijk}
-          </p>
-          <ul className="mt-2 space-y-2">
-            {(av.toevoegingen ?? []).map((item) => (
-              <li key={item.toevoeging} className="text-grey/85 font-light leading-relaxed">
-                · {item.toevoeging}
-              </li>
-            ))}
-            {/* Opgeslagen rapporten van vóór 24-08 dragen nog grenzen. */}
-            {!av.toevoegingen &&
-              (av.grenzen ?? []).map((limit) => (
-                <li key={limit.grens} className="text-grey/85 font-light leading-relaxed">
-                  · {limit.grens}
-                </li>
-              ))}
-          </ul>
-          <div className="mt-5">
-            <Prose text={av.watErvoorInDePlaatsKomt} />
-          </div>
-          {/* Het rechtenblok (kop, vier chips, alinea) is er 24-08 uit: eerst
-              teruggebracht tot één zin, daarna helemaal, want die zin zei
-              hetzelfde als watErvoorNodigIs hieronder. */}
-          <div className="mt-4">
-            <Prose text={av.watErvoorNodigIs} />
-          </div>
-        </>
-      ),
-    });
-  }
+  // Sectie "Wat dit toevoegt aan wat je nu al doet" is er 24-08 uit gehaald
+  // (Jorus). Na het inkorten van de rest was het een samenvatting van het
+  // rapport met een productuitleg eraan vast: de punten stonden al in sectie 4
+  // en 6, en de slotalinea legde uit wat een Company Brain is. Opgeslagen
+  // rapporten dragen het veld nog; we tonen het niet meer.
 
   if (payload.kennisbeeld) {
     // Korte template: de systemenlijst vertelde de invuller de namen van zijn

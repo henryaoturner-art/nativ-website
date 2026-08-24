@@ -137,7 +137,10 @@ export interface ReportPayload {
   };
   /** Alleen bij teamrapporten: sectie 4, de kern van de meerwaarde. */
   watJeMensenZagen?: string;
-  /** Sectie F — alleen als zij zelf al met AI werken; anders afwezig. */
+  /** Vervallen 24-08 (Jorus): na het inkorten van de rest was deze sectie een
+   * samenvatting van het rapport met een productuitleg eraan vast, en had hij
+   * geen eigen taak meer. Blijft in het type zodat opgeslagen rapporten niet
+   * omvallen; wordt niet meer gegenereerd of getoond. */
   watDitToevoegt?: ReportAddedValue;
   /** Sectie A — alleen als zij een procesverhaal gaven; anders afwezig. */
   zoZietHetEruit?: ReportBeforeAfter;
@@ -227,38 +230,6 @@ export function buildReportInput(bundle: {
   };
 }
 
-function addedValueSchema() {
-  return {
-    type: "object",
-    properties: {
-      watErNuGoedGaat: { type: "string" },
-      toevoegingen: {
-        type: "array",
-        items: {
-          type: "object",
-          properties: {
-            toevoeging: { type: "string" },
-            citaat: { type: "string" },
-            vraagId: { type: "string" },
-            capaciteit: { type: "string" },
-          },
-          required: ["toevoeging", "citaat", "vraagId", "capaciteit"],
-          additionalProperties: false,
-        },
-      },
-      watErvoorInDePlaatsKomt: { type: "string" },
-      watErvoorNodigIs: { type: "string" },
-    },
-    required: [
-      "watErNuGoedGaat",
-      "toevoegingen",
-      "watErvoorInDePlaatsKomt",
-      "watErvoorNodigIs",
-    ],
-    additionalProperties: false,
-  };
-}
-
 function beforeAfterSchema() {
   return {
     type: "object",
@@ -324,7 +295,6 @@ function ownPictureSchema() {
 
 function reportSchema(
   team: boolean,
-  addedValue: boolean,
   ownPicture: boolean,
   beforeAfter: boolean,
 ) {
@@ -345,7 +315,6 @@ function reportSchema(
         additionalProperties: false,
       },
       ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
-      ...(addedValue ? { watDitToevoegt: addedValueSchema() } : {}),
       ...(beforeAfter ? { zoZietHetEruit: beforeAfterSchema() } : {}),
       kennisbeeld: {
         type: "object",
@@ -367,7 +336,6 @@ function reportSchema(
       "watErVerandert",
       "ranglijst",
       ...(team ? ["watJeMensenZagen"] : []),
-      ...(addedValue ? ["watDitToevoegt"] : []),
       ...(beforeAfter ? ["zoZietHetEruit"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
@@ -521,45 +489,6 @@ Deze invuller heeft zelf beschreven waaraan hij over zes maanden wil zien dat AI
 - waarJeInKuntGroeien verbindt dat beeld vervolgens met de workflows uit de ranglijst: wat zij beschrijven vraagt dat de kennis eronder in een Company Brain staat, en dat is precies wat er gebeurt zodra het eerste werk loopt. Daarna de bestaande strekking: het werk uit de tweede groep ligt dan voor de hand, en wat er over hun manier van werken wordt vastgelegd komt daar opnieuw bij van pas.
 - Neem hun termijn NIET over als onze toezegging. Zij zeggen "over zes maanden", dat is hun wens en niet onze planning; het rapport belooft nooit wanneer iets werkt. Schrijf ook niet dat het er komt, alleen hoe het zich verhoudt tot wat er in dit rapport staat.`;
 
-const AI_TODAY_ID = "co-ai-today";
-const AI_HISTORY_ID = "co-ai-history";
-/** Het exclusieve "bijna niemand gebruikt het"-label (beide talen). */
-const AI_TODAY_NONE_LABELS = new Set([
-  "Bijna niemand gebruikt het",
-  "Almost nobody uses it",
-]);
-/** Zonder co-ai-today (scans van vóór bankversie v5) valt de poort terug op
- * het verhaal bij co-ai-history; te kort = geen huidige aanpak om over te
- * praten. */
-const AI_HISTORY_MIN_CHARS = 80;
-
-export function addedValueApplies(answers: AnswerMap): boolean {
-  const today = answers.get(AI_TODAY_ID);
-  if (today != null && today.trim() !== "" && today.trim() !== "[]") {
-    const labels = storedLabels(
-      { type: "multi-choice" } as ScanQuestion,
-      today,
-    );
-    return labels.some((label) => !AI_TODAY_NONE_LABELS.has(label));
-  }
-  return (answers.get(AI_HISTORY_ID) ?? "").trim().length >= AI_HISTORY_MIN_CHARS;
-}
-
-const ADDED_VALUE_PROMPT_EXTRA = `
-
-Deze invuller werkt zelf al met AI. Daarom schrijf je ook watDitToevoegt: wat dit toevoegt aan wat hij vandaag al doet. Zonder deze sectie leest het rapport voor hem als iets wat hij al heeft, en dat is de belangrijkste reden dat zo iemand afhaakt.
-
-DEZE SECTIE IS KORT. Samen hooguit 90 woorden. De opsommingsregels worden in het rapport ingeleid met "Wat mogelijk wordt door de toepassing van een Company Brain:", dus die zin hoef jij nergens te schrijven en de regels erna hoeven ook niet uit te leggen dat het door de Company Brain komt. Hij was het langste stuk van het rapport en dat kwam doordat elk onderdeel een eigen alinea werd. Zeg elk ding één keer.
-
-Drie blokken, in deze volgorde, en de volgorde is het halve werk. Schrijf alles actief: deze sectie gaat over wat erbij komt, niet over wat er mankeert.
-- watErNuGoedGaat: ÉÉN zin van hooguit 25 woorden die erkent dat er al echt met AI gewerkt wordt, met de plekken die zij zelf noemden erin. Bijvoorbeeld: "Jullie werken al echt met AI, tot en met jullie interne omgeving." Punt, en dan hou je op. Geen tweede zin over hoeveel ze hebben opgebouwd, geen aanloop naar wat er mist.
-- toevoegingen: twee tot vier dingen die erbij komen. ACTIEF GESCHREVEN, want de kop belooft wat dit toevoegt: schrijf dus wat er straks gebeurt, niet wat er nu niet gebeurt. Nooit "je tool kan geen X" of "niemand kan zien wat erin zit"; wel "X gebeurt straks wel" en "iedereen ziet waar een antwoord vandaan komt". De lezer mag zelf de conclusie trekken dat dat er nu niet is; die hoef jij niet uit te spellen en het is ook geen verwijt.
-- Kies alleen toevoegingen die ergens op slaan gezien hun eigen antwoorden. De vier die meestal spelen, in actieve vorm: de kennis blijft van het bedrijf in plaats van bij één persoon, dus die blijft als iemand weggaat; bij elk antwoord staat waar het vandaan komt en wanneer het voor het laatst is nagekeken; iedereen werkt op dezelfde bron, dus jullie krijgen hetzelfde antwoord op dezelfde vraag; er kan werk draaien op die kennis, dus stappen worden echt uitgevoerd, op een vast moment, met een mens die goedkeurt. Werken zij al met gedeelde prompts en context, laat de derde dan weg.
-- Per toevoeging: toevoeging = ÉÉN korte regel van hooguit TWAALF woorden, in gewone taal, over hun werk en niet over een functie van ons. Dit zijn opsommingsregels, geen zinnen met een uitleg erachter. Zo kort als: "Jullie tools raken verbonden." of "Je mail en je HubSpot-taken worden voorbereid en opgevolgd." of "De kennis van de orderverwerking blijft van het bedrijf." Plak er geen dus-zin achter. citaat = de woorden uit hun eigen antwoord die deze toevoeging relevant maken, LETTERLIJK overgenomen, minimaal vijftien tekens, zonder iets te corrigeren of mooier te maken. vraagId = de vraag waar dat citaat uit komt. capaciteit = het id uit de capaciteitenkaart dat deze toevoeging draagt.
-- watErvoorInDePlaatsKomt: hooguit 45 woorden, en het gaat over HUN werk, niet over onze inrichting. Begin NOOIT met een ontkenning van een bezwaar dat de lezer niet heeft gemaakt, dus nooit met "niemand hoeft over te stappen" of iets van die strekking; zo'n zin plant het bezwaar juist en zegt de lezer niets. Schrijf wat er voor hén verandert: waar de AI zijn informatie vandaan haalt. Nu uit de bestanden en aanwijzingen die ieder er zelf in stopt, straks uit één plek die wordt bijgehouden en waar collega's ook bij kunnen, en waarop werk kan draaien in plaats van dat er alleen over gepraat wordt. Dat iemand in zijn eigen AI-tool kan blijven werken mag hooguit als bijzin aan het eind. Geen opsomming van wat er dan allemaal kan.
-- watErvoorNodigIs: ÉÉN zin van hooguit 25 woorden. Iemand moet bepalen wat er gedeeld hoort en wie wat mag zien, en dat is werk.
-
-Harde regels voor juist deze sectie, want dit is de plek waar het rapport het snelst een folder wordt: nooit een uitspraak over het taalmodel, wij zijn niet slimmer dan wat zij gebruiken en dat is het punt niet. Nooit "dat kan jouw tool niet" als kale bewering, alleen eigenschappen die uit hun eigen antwoord volgen. Geen merknamen van andere aanbieders. Geen prijs, geen migratieverhaal, geen belofte dat het beter wordt, geen woorden als beter, sneller, slimmer of krachtiger. Getallen alleen als zij die zelf noemden.`;
 
 const TEAM_PROMPT_EXTRA = `
 
@@ -691,67 +620,6 @@ function inventsNumber(text: string, haystack: string): string | null {
  * verzonnen getallen. Blijft er geen enkele grens over, dan verdwijnt de hele
  * sectie: leeg is beter dan vaag.
  */
-export function guardAddedValue(
-  section: ReportAddedValue | undefined,
-  answers: AnswerMap,
-): ReportAddedValue | undefined {
-  if (!section) return undefined;
-  const haystack = answersHaystack(answers);
-
-  const drop = (reason: string) => {
-    console.warn(`SCAN_ADDED_VALUE_DROPPED: ${reason}`);
-    return undefined;
-  };
-
-  // watErNuGoedGaat erkent wat zij zelf hebben opgebouwd, in hun woorden — daar
-  // is de naam van hun eigen tool geen claim van ons.
-  for (const [field, text, allowBrands] of [
-    ["watErNuGoedGaat", section.watErNuGoedGaat, true],
-    ["watErvoorInDePlaatsKomt", section.watErvoorInDePlaatsKomt, false],
-    ["watErvoorNodigIs", section.watErvoorNodigIs, false],
-  ] as const) {
-    if (!text || !text.trim()) return drop(`${field} is leeg`);
-    const word = tripsForbidden(text, allowBrands);
-    if (word) return drop(`${field} bevat verboden woord "${word}"`);
-    const number = inventsNumber(text, haystack);
-    if (number) return drop(`${field} noemt getal ${number} dat zij niet gaven`);
-  }
-
-  const toevoegingen = section.toevoegingen.filter((item) => {
-    const quote = normalizeForMatch(item.citaat ?? "");
-    if (quote.length < MIN_QUOTE_CHARS) {
-      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: citaat te kort`);
-      return false;
-    }
-    if (!haystack.includes(quote)) {
-      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: citaat niet in antwoorden`);
-      return false;
-    }
-    if (!CAPABILITY_IDS.has(item.capaciteit)) {
-      console.warn(
-        `SCAN_ADDED_VALUE_ITEM_DROPPED: onbekende capaciteit "${item.capaciteit}"`,
-      );
-      return false;
-    }
-    const word = tripsForbidden(item.toevoeging);
-    if (word) {
-      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: verboden woord "${word}"`);
-      return false;
-    }
-    const number = inventsNumber(item.toevoeging, haystack);
-    if (number) {
-      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: verzonnen getal ${number}`);
-      return false;
-    }
-    return true;
-  });
-
-  if (toevoegingen.length === 0) {
-    return drop("geen enkele toevoeging overleefde de guard");
-  }
-  return { ...section, toevoegingen };
-}
-
 /**
  * Guard op sectie A. Alles of niets: een half voor-en-na is verwarrender dan
  * geen voor-en-na, dus bij één fout valt de hele sectie weg.
@@ -1079,7 +947,6 @@ async function generateReportPayloadOnce(input: {
   const isTeam = Boolean(input.team && input.team.departments.length > 0);
   // Sectie F wordt niet eens gevraagd als de poort dicht is: geen schemaveld,
   // geen prompttekst, dus ook geen model dat er alsnog iets van maakt.
-  const wantsAddedValue = addedValueApplies(input.answers);
   const wantsOwnPicture = ownPictureApplies(input.answers);
   const wantsBeforeAfter = beforeAfterApplies(input.answers);
   // Sectie A-bis rijdt mee op sectie A: zonder procesverhaal is er geen keten
@@ -1113,13 +980,12 @@ async function generateReportPayloadOnce(input: {
   // zoZietHetEruit verwijzen er net zo goed naar als watDitToevoegt. Voorheen
   // hing de kaart alleen aan sectie F, waardoor een invuller zonder AI-gebruik
   // secties kon verliezen op onbekende ids.
-  const wantsCapabilities = wantsAddedValue || wantsBeforeAfter;
+  const wantsCapabilities = wantsBeforeAfter;
   const system =
     SYSTEM_PROMPT +
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
-    (wantsAddedValue ? ADDED_VALUE_PROMPT_EXTRA : "") +
     (wantsCapabilities ? `\n\n${capabilitiesPromptBlock()}` : "");
 
   // KAN-381 §8 (ruling Livius 14-08): het rapport draait op het hoogste model,
@@ -1153,12 +1019,7 @@ async function generateReportPayloadOnce(input: {
       effort: "high",
       format: {
         type: "json_schema",
-        schema: reportSchema(
-          isTeam,
-          wantsAddedValue,
-          wantsOwnPicture,
-          wantsBeforeAfter,
-        ),
+        schema: reportSchema(isTeam, wantsOwnPicture, wantsBeforeAfter),
       },
     },
     messages: [{ role: "user", content: userContent }],
@@ -1185,7 +1046,6 @@ async function generateReportPayloadOnce(input: {
   }
 
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
-  const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
   const vanafNul = guardFromScratch(
@@ -1200,7 +1060,6 @@ async function generateReportPayloadOnce(input: {
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
     watErVerandert,
-    watDitToevoegt,
     zoZietHetEruit,
     vanafNul,
     jouwEigenBeeld,
