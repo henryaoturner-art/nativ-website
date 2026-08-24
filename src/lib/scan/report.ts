@@ -18,7 +18,11 @@ import {
   DEPARTMENT_QUESTIONS,
   type ScanQuestion,
 } from "./bank";
-import { CAPABILITY_IDS, capabilitiesPromptBlock } from "./capabilities";
+import {
+  CAPABILITY_IDS,
+  VOORUITBLIK_CAPABILITY_IDS,
+  capabilitiesPromptBlock,
+} from "./capabilities";
 import {
   hasAnswerValue,
   helpFor,
@@ -840,7 +844,7 @@ export function guardFromScratch(
   if (!section.watErvoorNodigIs?.trim()) return drop("watErvoorNodigIs is leeg");
 
   for (const step of section.keten) {
-    if (!CAPABILITY_IDS.has(step.capaciteit)) {
+    if (!VOORUITBLIK_CAPABILITY_IDS.has(step.capaciteit)) {
       return drop(`onbekende capaciteit "${step.capaciteit}"`);
     }
     if (INNAME_CAPABILITIES.has(step.capaciteit)) {
@@ -1196,7 +1200,7 @@ async function generateReportPayloadOnce(input: {
         // weg op één vergelijkend woord, en dat is te duur om aan een
         // algemene toon-instructie over te laten (BS Toys, 24 aug: alles
         // viel om op het woord "beter").
-        `${FROM_SCRATCH_SYSTEM}\n\nDeze woorden mogen nergens in dit blok voorkomen, ook niet verbogen: ${FORBIDDEN_CLAIMS.join(", ")}. Ook geen procenttekens en geen merknamen van andere aanbieders. Schrijf niet dat iets beter of sneller wordt; beschrijf alleen hoe het werk dan loopt.\n\n${capabilitiesPromptBlock()}`,
+        `${FROM_SCRATCH_SYSTEM}\n\nDeze woorden mogen nergens in dit blok voorkomen, ook niet verbogen: ${FORBIDDEN_CLAIMS.join(", ")}. Ook geen procenttekens en geen merknamen van andere aanbieders. Schrijf niet dat iets beter of sneller wordt; beschrijf alleen hoe het werk dan loopt.\n\n${capabilitiesPromptBlock({ vooruitblik: true })}`,
         userContent,
       )
     : Promise.resolve(undefined);
