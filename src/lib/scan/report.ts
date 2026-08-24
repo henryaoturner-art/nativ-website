@@ -627,6 +627,11 @@ Herhalingsregel (het rapport is kort, en dit is hoe het kort blijft): drie belof
 /** Vergelijkingen, beloftes en prijzen. Deze mogen nergens staan: niet in wat
  * wij schrijven en niet in wat wij van hen overnemen. */
 const FORBIDDEN_CLAIMS = [
+  // Ruling Jorus 24-08: mag sowieso nergens staan. Stond tot dan alleen als
+  // instructie in de prompt, en de capaciteitenkaart voerde het woord zelf
+  // aan het model. Nu een harde controle in plaats van een verzoek.
+  "digitale collega",
+  "digitaal collega",
   "beter",
   "sneller",
   "slimmer",
