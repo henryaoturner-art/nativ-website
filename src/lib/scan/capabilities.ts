@@ -43,6 +43,9 @@ export interface ScanCapability {
   status: CapabilityStatus;
   /** Waar het zit — alleen voor ons, komt nooit in een rapport. */
   bewijs: string;
+  /** Alleen beschikbaar voor het kijkje vooruit (sectie A-bis), nooit voor de
+   * ranglijst of de ingerichte keten. Zie het blok "Voorschot" hieronder. */
+  vooruitblik?: true;
 }
 
 export const CAPABILITIES: readonly ScanCapability[] = [
@@ -184,6 +187,32 @@ export const CAPABILITIES: readonly ScanCapability[] = [
     status: "live",
     bewijs:
       "engine agents/ (YAML per workflow), app/agents/graph.py, executor.py (run_steps + verbruiksregistratie per stap)",
+  },
+  {
+    // ── VOORSCHOT ─────────────────────────────────────────────────────────
+    // Dit is NIET gebouwd. Ruling Jorus 24-08: toch op de kaart, zodat het
+    // rapport het juiste doorkijkje geeft. Wordt gebouwd onder NTH-287 (de
+    // webhook-kant) plus de vervolgstap voor termijnen die daar bewust
+    // buiten scope staat.
+    //
+    // Daarom `vooruitblik: true`: hij gaat ALLEEN mee in de aanroep van
+    // sectie A-bis ("en als je dit werk vanaf nul opnieuw zou opzetten"),
+    // nooit in de ranglijst of de ingerichte keten. Die scheiding is niet
+    // beleefdheid maar mechaniek: CAPABILITY_IDS bevat hem niet, dus de
+    // guards van de andere secties gooien hem eruit als het model hem daar
+    // alsnog gebruikt. Anders zou hij in de aanbevolen workflow belanden en
+    // dan is het geen doorkijkje meer maar een belofte waarop iemand tekent.
+    //
+    // Zodra NTH-287 landt: `vooruitblik` eraf, `bewijs` invullen, status naar
+    // live-onbewezen tot er een productierun is.
+    id: "gebeurtenis-trigger",
+    wat: "Werk begint op het moment dat er iets gebeurt in plaats van op een vast tijdstip: een bericht van een klant of leverancier komt binnen, een status verandert, of er komt juist géén reactie binnen de termijn die jij hebt bepaald. Wat op tijd loopt komt niet langs; alleen wat afwijkt komt bij een mens terecht.",
+    voorwaarde:
+      "De bron moet gekoppeld zijn of een seintje kunnen sturen, en iemand moet instellen welke gebeurtenis welk werk start en welke termijn te lang is.",
+    status: "live",
+    bewijs:
+      "VOORSCHOT — nog niet gebouwd, zie NTH-287. Alleen zichtbaar in sectie A-bis.",
+    vooruitblik: true,
   },
   {
     id: "ritme",
@@ -332,14 +361,29 @@ export const NIET_MOGELIJK: readonly string[] = [
 ];
 
 /** De ids die een rapport mag dragen: alles behalve niet-aan (ruling 14-08). */
+/** Wat de ranglijst, de ingerichte keten en de andere secties mogen dragen.
+ * Vooruitblik-capaciteiten zitten er bewust NIET in: de guards van die
+ * secties gooien ze eruit. */
 export const CAPABILITY_IDS: ReadonlySet<string> = new Set(
+  CAPABILITIES.filter((c) => c.status !== "niet-aan" && !c.vooruitblik).map(
+    (c) => c.id,
+  ),
+);
+
+/** Wat sectie A-bis mag dragen: alles hierboven plus de vooruitblik-kaarten. */
+export const VOORUITBLIK_CAPABILITY_IDS: ReadonlySet<string> = new Set(
   CAPABILITIES.filter((c) => c.status !== "niet-aan").map((c) => c.id),
 );
 
 /** De kaart als promptblok. Eén plek, zodat prompt en guard nooit uiteenlopen.
  * live én live-onbewezen praten mee; alleen niet-aan blijft buiten beeld. */
-export function capabilitiesPromptBlock(): string {
-  const kaart = CAPABILITIES.filter((c) => c.status !== "niet-aan")
+export function capabilitiesPromptBlock(
+  opts: { vooruitblik?: boolean } = {},
+): string {
+  const kaart = CAPABILITIES.filter(
+    (c) =>
+      c.status !== "niet-aan" && (opts.vooruitblik === true || !c.vooruitblik),
+  )
     .map((c) => `- ${c.id}: ${c.wat} VOORWAARDE: ${c.voorwaarde}`)
     .join("\n");
   const grenzen = NIET_MOGELIJK.map((r) => `- ${r}`).join("\n");
