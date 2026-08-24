@@ -43,6 +43,17 @@ export interface ReportWorkflowItem {
  * woorden (letterlijk, controleerbaar) en de capaciteit die het adresseert
  * (een id uit de kaart). Een grens zonder kloppende bronnen overleeft de
  * guard niet. */
+export interface ReportAddition {
+  /** Wat erbij komt, actief geschreven. Was `grens`: een eigenschap van hun
+   * huidige opzet, dus drie keer wat er níet gebeurt onder een kop die belooft
+   * wat er wél bij komt (Jorus 24-08). Zelfde verankering, andere richting. */
+  toevoeging: string;
+  citaat: string;
+  vraagId: string;
+  capaciteit: string;
+}
+
+/** Oude vorm, alleen nog om opgeslagen rapporten te kunnen tonen. */
 export interface ReportLimit {
   grens: string;
   citaat: string;
@@ -102,9 +113,11 @@ export interface ReportFromScratch {
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
-  grenzen: ReportLimit[];
+  toevoegingen: ReportAddition[];
   watErvoorInDePlaatsKomt: string;
   watErvoorNodigIs: string;
+  /** Oude vorm, alleen nog om opgeslagen rapporten te kunnen tonen. */
+  grenzen?: ReportLimit[];
 }
 
 export interface ReportPayload {
@@ -219,17 +232,17 @@ function addedValueSchema() {
     type: "object",
     properties: {
       watErNuGoedGaat: { type: "string" },
-      grenzen: {
+      toevoegingen: {
         type: "array",
         items: {
           type: "object",
           properties: {
-            grens: { type: "string" },
+            toevoeging: { type: "string" },
             citaat: { type: "string" },
             vraagId: { type: "string" },
             capaciteit: { type: "string" },
           },
-          required: ["grens", "citaat", "vraagId", "capaciteit"],
+          required: ["toevoeging", "citaat", "vraagId", "capaciteit"],
           additionalProperties: false,
         },
       },
@@ -238,7 +251,7 @@ function addedValueSchema() {
     },
     required: [
       "watErNuGoedGaat",
-      "grenzen",
+      "toevoegingen",
       "watErvoorInDePlaatsKomt",
       "watErvoorNodigIs",
     ],
@@ -538,10 +551,11 @@ Deze invuller werkt zelf al met AI. Daarom schrijf je ook watDitToevoegt: wat di
 
 DEZE SECTIE IS KORT. Samen hooguit 120 woorden. Hij was het langste stuk van het rapport en dat kwam doordat elk onderdeel een eigen alinea werd. Zeg elk ding één keer.
 
-Drie blokken, in deze volgorde, en de volgorde is het halve werk:
+Drie blokken, in deze volgorde, en de volgorde is het halve werk. Schrijf alles actief: deze sectie gaat over wat erbij komt, niet over wat er mankeert.
 - watErNuGoedGaat: hooguit 45 woorden over wat er nu al goed werkt, in hun eigen woorden en zonder ondermijning. Iemand die zijn eigen AI voedt met eigen bestanden heeft iets echts opgebouwd; erken dat voluit. Wie hier begint met wat er mis is, is de lezer kwijt.
-- grenzen: twee tot vier grenzen van die huidige aanpak. Elke grens is een EIGENSCHAP van de opzet, nooit een verwijt en nooit een uitspraak over het taalmodel. Kies alleen grenzen die volgen uit hun eigen antwoorden. De vier die meestal spelen: de context is van één persoon en vertrekt met diegene; niemand kan zien wat erin zit of wat nog klopt, want er is geen eigenaar, herkomst of datum; iedereen bouwt zijn eigen versie van de waarheid; het kan praten maar niet uitvoeren (rekenen, bronnen ophalen, stappen ketenen, op een moment draaien, pauzeren voor goedkeuring). Zeggen zij zelf dat ze prompts of context al delen, dan laat je de derde weg.
-- Per grens: grens = ÉÉN zin van hooguit 25 woorden, in gewone taal. citaat = de woorden uit hun eigen antwoord waar deze grens uit volgt, LETTERLIJK overgenomen, minimaal vijftien tekens, zonder iets te corrigeren of mooier te maken. vraagId = de vraag waar dat citaat uit komt. capaciteit = het id uit de capaciteitenkaart dat deze grens adresseert.
+- toevoegingen: twee tot vier dingen die erbij komen. ACTIEF GESCHREVEN, want de kop belooft wat dit toevoegt: schrijf dus wat er straks gebeurt, niet wat er nu niet gebeurt. Nooit "je tool kan geen X" of "niemand kan zien wat erin zit"; wel "X gebeurt straks wel" en "iedereen ziet waar een antwoord vandaan komt". De lezer mag zelf de conclusie trekken dat dat er nu niet is; die hoef jij niet uit te spellen en het is ook geen verwijt.
+- Kies alleen toevoegingen die ergens op slaan gezien hun eigen antwoorden. De vier die meestal spelen, in actieve vorm: de kennis blijft van het bedrijf in plaats van bij één persoon, dus die blijft als iemand weggaat; bij elk antwoord staat waar het vandaan komt en wanneer het voor het laatst is nagekeken; iedereen werkt op dezelfde bron, dus jullie krijgen hetzelfde antwoord op dezelfde vraag; er kan werk draaien op die kennis, dus stappen worden echt uitgevoerd, op een vast moment, met een mens die goedkeurt. Werken zij al met gedeelde prompts en context, laat de derde dan weg.
+- Per toevoeging: toevoeging = ÉÉN zin van hooguit 25 woorden, in gewone taal, en die zin gaat over hun werk en niet over een functie van ons. citaat = de woorden uit hun eigen antwoord die deze toevoeging relevant maken, LETTERLIJK overgenomen, minimaal vijftien tekens, zonder iets te corrigeren of mooier te maken. vraagId = de vraag waar dat citaat uit komt. capaciteit = het id uit de capaciteitenkaart dat deze toevoeging draagt.
 - watErvoorInDePlaatsKomt: hooguit 45 woorden, en het gaat over HUN werk, niet over onze inrichting. Begin NOOIT met een ontkenning van een bezwaar dat de lezer niet heeft gemaakt, dus nooit met "niemand hoeft over te stappen" of iets van die strekking; zo'n zin plant het bezwaar juist en zegt de lezer niets. Schrijf wat er voor hén verandert: waar de AI zijn informatie vandaan haalt. Nu uit de bestanden en aanwijzingen die ieder er zelf in stopt, straks uit één plek die wordt bijgehouden en waar collega's ook bij kunnen, en waarop werk kan draaien in plaats van dat er alleen over gepraat wordt. Dat iemand in zijn eigen AI-tool kan blijven werken mag hooguit als bijzin aan het eind. Geen opsomming van wat er dan allemaal kan.
 - watErvoorNodigIs: ÉÉN zin van hooguit 25 woorden. Iemand moet bepalen wat er gedeeld hoort en wie wat mag zien, en dat is werk.
 
@@ -703,37 +717,39 @@ export function guardAddedValue(
     if (number) return drop(`${field} noemt getal ${number} dat zij niet gaven`);
   }
 
-  const grenzen = section.grenzen.filter((limit) => {
-    const quote = normalizeForMatch(limit.citaat ?? "");
+  const toevoegingen = section.toevoegingen.filter((item) => {
+    const quote = normalizeForMatch(item.citaat ?? "");
     if (quote.length < MIN_QUOTE_CHARS) {
-      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: citaat te kort`);
+      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: citaat te kort`);
       return false;
     }
     if (!haystack.includes(quote)) {
-      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: citaat niet in antwoorden`);
+      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: citaat niet in antwoorden`);
       return false;
     }
-    if (!CAPABILITY_IDS.has(limit.capaciteit)) {
+    if (!CAPABILITY_IDS.has(item.capaciteit)) {
       console.warn(
-        `SCAN_ADDED_VALUE_LIMIT_DROPPED: onbekende capaciteit "${limit.capaciteit}"`,
+        `SCAN_ADDED_VALUE_ITEM_DROPPED: onbekende capaciteit "${item.capaciteit}"`,
       );
       return false;
     }
-    const word = tripsForbidden(limit.grens);
+    const word = tripsForbidden(item.toevoeging);
     if (word) {
-      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: verboden woord "${word}"`);
+      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: verboden woord "${word}"`);
       return false;
     }
-    const number = inventsNumber(limit.grens, haystack);
+    const number = inventsNumber(item.toevoeging, haystack);
     if (number) {
-      console.warn(`SCAN_ADDED_VALUE_LIMIT_DROPPED: verzonnen getal ${number}`);
+      console.warn(`SCAN_ADDED_VALUE_ITEM_DROPPED: verzonnen getal ${number}`);
       return false;
     }
     return true;
   });
 
-  if (grenzen.length === 0) return drop("geen enkele grens overleefde de guard");
-  return { ...section, grenzen };
+  if (toevoegingen.length === 0) {
+    return drop("geen enkele toevoeging overleefde de guard");
+  }
+  return { ...section, toevoegingen };
 }
 
 /**
@@ -742,7 +758,7 @@ export function guardAddedValue(
  */
 /**
  * Houdt sectie A-bis tegen het licht. Strenger dan de andere guards, en met
- * opzet alles-of-niets: waar bij `grenzen` losse items eruit filteren prima
+ * opzet alles-of-niets: waar bij `toevoegingen` losse items eruit filteren prima
  * werkt, is een keten met een gat erin onleesbaar. Beter geen kijkje vooruit
  * dan een halve.
  *
