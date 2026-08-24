@@ -1150,7 +1150,11 @@ async function generateReportPayloadOnce(input: {
   const fromScratchPromise = wantsFromScratch
     ? generateFromScratch(
         client,
-        `${FROM_SCRATCH_SYSTEM}\n\n${capabilitiesPromptBlock()}`,
+        // De verbodslijst gaat letterlijk mee. De guard gooit het hele blok
+        // weg op één vergelijkend woord, en dat is te duur om aan een
+        // algemene toon-instructie over te laten (BS Toys, 24 aug: alles
+        // viel om op het woord "beter").
+        `${FROM_SCRATCH_SYSTEM}\n\nDeze woorden mogen nergens in dit blok voorkomen, ook niet verbogen: ${FORBIDDEN_CLAIMS.join(", ")}. Ook geen procenttekens en geen merknamen van andere aanbieders. Schrijf niet dat iets beter of sneller wordt; beschrijf alleen hoe het werk dan loopt.\n\n${capabilitiesPromptBlock()}`,
         userContent,
       )
     : Promise.resolve(undefined);
