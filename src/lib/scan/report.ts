@@ -343,7 +343,6 @@ function reportSchema(
   ownPicture: boolean,
   openQuestions: boolean,
   beforeAfter: boolean,
-  fromScratch: boolean,
 ) {
   return {
     type: "object",
@@ -364,7 +363,6 @@ function reportSchema(
       ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
       ...(addedValue ? { watDitToevoegt: addedValueSchema() } : {}),
       ...(beforeAfter ? { zoZietHetEruit: beforeAfterSchema() } : {}),
-      ...(fromScratch ? { vanafNul: fromScratchSchema() } : {}),
       kennisbeeld: {
         type: "object",
         properties: {
@@ -390,7 +388,6 @@ function reportSchema(
       ...(team ? ["watJeMensenZagen"] : []),
       ...(addedValue ? ["watDitToevoegt"] : []),
       ...(beforeAfter ? ["zoZietHetEruit"] : []),
-      ...(fromScratch ? ["vanafNul"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
       openQuestions ? "openVragen" : "uitzoeksuggesties",
@@ -503,17 +500,15 @@ Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel 
 // zetten. Er is dus geen aparte poort.
 // ---------------------------------------------------------------------------
 
-const FROM_SCRATCH_PROMPT_EXTRA = `
+const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou opzetten. Dit is een kijkje vooruit, geen plan en geen oordeel over hoe zij het nu doen. Elders in het rapport staat diezelfde keten met gereedschap eronder en ongeveer evenveel stappen; dit blok mag juist een ANDERE keten zijn.
 
-Je schrijft ook vanafNul: hoe ditzelfde werk eruit zou zien als iemand het vandaag vanaf nul zou opzetten. Dit is een kijkje vooruit, geen plan en geen oordeel over hoe zij het nu doen. Waar straks dezelfde keten met ongeveer evenveel stappen is, mag dit een ANDERE keten zijn.
-
-- keten: de heringerichte stappen, MINDER dan er in nu staan. Als het er evenveel zijn heb je hetzelfde opgeschreven als straks en dan is dit blok waardeloos. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
+- keten: de heringerichte stappen, HOOGSTENS VIER en altijd minder dan het aantal stappen in hun eigen procesverhaal. Zijn het er evenveel als in hun huidige proces, dan heb je niets nieuws opgeschreven en is dit blok waardeloos. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
 - Denk bij het herinrichten aan twee dingen, en aan niet meer dan deze twee. Ten eerste: het meeste in een proces is geen werk maar vervoer, dus overtypen, doorsturen, ergens achteraan zitten en informatie bij elkaar zoeken zijn geen stap meer. Ten tweede: de mens maakt niet meer maar bepaalt de norm en beoordeelt de uitkomst. Verzin geen derde beweging.
-- watErVerdwijnt: twee tot vier regels, één per stap uit nu die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht en het is het belangrijkste van dit hele blok; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
+- watErVerdwijnt: twee tot vier regels, één per stap uit hun huidige proces die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht en het is het belangrijkste van dit hele blok; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
 - watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
 - watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan bij straks. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
 
-Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet.`;
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Het woord "digitale collega" komt nergens voor.`;
 
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
@@ -999,6 +994,62 @@ function isTransientApiError(err: unknown): boolean {
  * past ruim binnen de maxDuration van 300s van de aanroepende routes. */
 const RETRY_DELAYS_MS = [10_000, 30_000];
 
+/**
+ * Sectie A-bis draait in een EIGEN modelaanroep, niet mee in het hoofdschema.
+ * Reden is hard: het gecombineerde JSON-schema van het rapport zat al tegen de
+ * grammatica-limiet van de API aan, en met dit blok erbij weigerde elke
+ * generatie met "compiled grammar is too large". Losse call = klein schema,
+ * en meteen een tweede voordeel: als dit blok faalt valt niet het hele
+ * rapport om.
+ *
+ * Draait gelijktijdig met de hoofdaanroep, dus het kost geen wachttijd. De
+ * stappentelling tegen de nu-kolom gebeurt daarna alsnog in de guard.
+ */
+async function generateFromScratch(
+  client: Anthropic,
+  system: string,
+  userContent: string,
+): Promise<ReportFromScratch | undefined> {
+  try {
+    const stream = client.beta.messages.stream({
+      model: "claude-fable-5",
+      max_tokens: 16000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      system,
+      output_config: {
+        effort: "high",
+        format: { type: "json_schema", schema: fromScratchSchema() },
+      },
+      messages: [{ role: "user", content: userContent }],
+    } as never);
+    const response = await stream.finalMessage();
+    console.log(
+      `SCAN_FROM_SCRATCH_USAGE: model=${response.model} input=${response.usage.input_tokens} output=${response.usage.output_tokens}`,
+    );
+    if (response.stop_reason === "refusal") {
+      console.warn("SCAN_FROM_SCRATCH_FAILED: geweigerd door het model");
+      return undefined;
+    }
+    const text = (
+      response.content.find((block) => block.type === "text") as
+        | { text: string }
+        | undefined
+    )?.text;
+    if (!text) {
+      console.warn("SCAN_FROM_SCRATCH_FAILED: geen tekst in respons");
+      return undefined;
+    }
+    return JSON.parse(text) as ReportFromScratch;
+  } catch (err) {
+    // Fail-soft met opzet: het rapport is af zonder dit blok, en een kijkje
+    // vooruit is niet het waard om de rest van het rapport voor te laten
+    // hangen. De regel hieronder is het spoor in de Vercel-logs.
+    console.warn(`SCAN_FROM_SCRATCH_FAILED: ${err}`);
+    return undefined;
+  }
+}
+
 export async function generateReportPayload(input: {
   companyName: string;
   contactName: string;
@@ -1084,7 +1135,6 @@ async function generateReportPayloadOnce(input: {
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
     (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
-    (wantsFromScratch ? FROM_SCRATCH_PROMPT_EXTRA : "") +
     (wantsAddedValue ? ADDED_VALUE_PROMPT_EXTRA : "") +
     (wantsCapabilities ? `\n\n${capabilitiesPromptBlock()}` : "");
 
@@ -1095,6 +1145,16 @@ async function generateReportPayloadOnce(input: {
   // De server-side fallback vangt een weigering van de safety-classifier op
   // door hetzelfde verzoek in dezelfde call op het aanbevolen terugvalmodel
   // te draaien, zodat een rapport nooit leeg terugkomt.
+  // Start allebei tegelijk: het kijkje vooruit heeft alleen dezelfde
+  // antwoorden nodig, dus wachten op het hoofdrapport zou pure vertraging zijn.
+  const fromScratchPromise = wantsFromScratch
+    ? generateFromScratch(
+        client,
+        `${FROM_SCRATCH_SYSTEM}\n\n${capabilitiesPromptBlock()}`,
+        userContent,
+      )
+    : Promise.resolve(undefined);
+
   const stream = client.beta.messages.stream({
     model: "claude-fable-5",
     max_tokens: 64000,
@@ -1111,7 +1171,6 @@ async function generateReportPayloadOnce(input: {
           wantsOwnPicture,
           wantsOpenQuestions,
           wantsBeforeAfter,
-          wantsFromScratch,
         ),
       },
     },
@@ -1143,7 +1202,11 @@ async function generateReportPayloadOnce(input: {
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
-  const vanafNul = guardFromScratch(parsed.vanafNul, zoZietHetEruit, input.answers);
+  const vanafNul = guardFromScratch(
+    await fromScratchPromise,
+    zoZietHetEruit,
+    input.answers,
+  );
   const watErVerandert = guardWatErVerandert(parsed.watErVerandert, input.answers);
   return {
     version: 3,
