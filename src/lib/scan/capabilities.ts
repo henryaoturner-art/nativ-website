@@ -52,7 +52,7 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   // ── Groep 1 · Hoe kennis binnenkomt ────────────────────────────────────
   {
     id: "vergaderinname",
-    wat: "De gesprekken die er toch al zijn komen binnen via de gekoppelde notuleerdienst. Elk gesprek landt als doorzoekbare bron in de vastgelegde kennis én als regel op de tijdlijn van de mensen en bedrijven die erbij waren.",
+    wat: "De gesprekken die er toch al zijn komen binnen via de gekoppelde notuleerdienst. Elk gesprek landt als doorzoekbare bron in de Company Brain én als regel op de tijdlijn van de mensen en bedrijven die erbij waren.",
     voorwaarde:
       "Iemand notuleert met die dienst, de koppeling staat aan, en minstens één deelnemer staat in het klantenbestand.",
     status: "live",
@@ -112,19 +112,19 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "kanaaldata",
-    wat: "Het platform koppelt aan de kanalen waar het werk al gebeurt: zakelijke e-mail, sociale kanalen, het klantsysteem. Wat daar binnenkomt of gepubliceerd wordt, komt beschikbaar voor de workflows en de vastgelegde kennis. Koppelen gebeurt op de inlogpagina van de dienst zelf, dus wachtwoorden komen nooit bij het platform terecht.",
+    wat: "Het platform koppelt aan de kanalen waar het werk al gebeurt: zakelijke e-mail, sociale kanalen, het klantsysteem. Wat daar binnenkomt of gepubliceerd wordt, komt beschikbaar voor de workflows en de Company Brain. Koppelen gebeurt op de inlogpagina van de dienst zelf, dus wachtwoorden komen nooit bij het platform terecht.",
     voorwaarde:
       "Per kanaal een eigen account en een koppeling die de klant zelf aanzet; voor een persoonlijke mailbox geeft elke gebruiker apart toestemming.",
     status: "live",
     bewijs:
       "engine app/integrations/providers/ (gmail, outlook, linkedin, instagram, ayrshare, zoho_crm), registry.py. Een persoonlijke mailbox blijft alleen van de eigenaar.",
   },
-  // ── Groep 2 · Wat de kennis betrouwbaar maakt ─────────────────────────
+  // ── Groep 2 · Wat de Company Brain betrouwbaar maakt ─────────────────────────
   {
     id: "kennis-herkomst",
     wat: "Elk vastgelegd feit heeft een eigenaar, een herkomst en een datum waarop het voor het laatst is nagekeken. Antwoorden verwijzen naar de bron waar ze vandaan komen, en bij een feit dat een workflow heeft aangedragen staat erbij welke dat was. Een feit dat te lang niet is nagekeken wordt niet meer aan de AI gevoerd tot iemand het opnieuw bevestigt.",
     voorwaarde:
-      "De kennis moet erin staan en eigenaren moeten hun feiten periodiek nakijken.",
+      "De Company Brain moet gevuld zijn en eigenaren moeten hun feiten periodiek nakijken.",
     status: "live",
     bewijs:
       "engine app/search/retrievers/brain_facts.py (fresh-poort, herkomst-metadata), platform prisma/schema.prisma (owner, lastValidatedAt, sourceAgentId)",
@@ -140,7 +140,7 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "toegang-over-eigen-tool",
-    wat: "Wie in zijn eigen AI-tool wil blijven werken, koppelt die aan de vastgelegde bedrijfskennis en stelt zijn vragen daar. Daar gelden precies dezelfde toegangsregels als in het platform: wie een feit daar niet mag zien, krijgt het via de eigen tool ook niet te zien. Wie de vrager is komt uit de beveiligde koppeling zelf, niet uit wat de tool over zichzelf beweert.",
+    wat: "Wie in zijn eigen AI-tool wil blijven werken, koppelt die aan de Company Brain en stelt zijn vragen daar. Daar gelden precies dezelfde toegangsregels als in het platform: wie een feit daar niet mag zien, krijgt het via de eigen tool ook niet te zien. Wie de vrager is komt uit de beveiligde koppeling zelf, niet uit wat de tool over zichzelf beweert.",
     voorwaarde: "De koppeling moet worden aangezet, per persoon en intrekbaar.",
     status: "live",
     bewijs:
@@ -148,15 +148,15 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "een-gedeelde-waarheid",
-    wat: "De vastgelegde bedrijfskennis staat op één plek die over afdelingen heen wordt gebruikt, in plaats van losse verzamelingen per team of per persoon. Elk feit heeft een vaste plek en een eigenaar, er is één route waarlangs iets een feit kan worden, en alles wat een AI wil toevoegen passeert eerst een mens.",
-    voorwaarde: "Het bedrijf onderhoudt de kennis hier en wijst eigenaren aan.",
+    wat: "De Company Brain staat op één plek die over afdelingen heen wordt gebruikt, in plaats van losse verzamelingen per team of per persoon. Elk feit heeft een vaste plek en een eigenaar, er is één route waarlangs iets een feit kan worden, en alles wat een AI wil toevoegen passeert eerst een mens.",
+    voorwaarde: "Het bedrijf onderhoudt de Company Brain en wijst eigenaren aan.",
     status: "live",
     bewijs:
       "platform brain/actions.ts (commitCellValue, de ene schrijfpoort), prisma/schema.prisma (BrainDraftCell-wachtrij)",
   },
   {
     id: "kennis-groeit-mee",
-    wat: "De vastgelegde kennis wordt vanuit meerdere kanten gevuld: wat iemand zelf invoert, documenten, gesprekken, interviews, onderzoeksuitkomsten en goedgekeurde uitkomsten van workflows. Wat een AI aandraagt komt eerst in een wachtrij en wordt pas een feit als een mens het goedkeurt. Wat één keer is vastgelegd, draagt daarna elk volgend antwoord en elke volgende workflow.",
+    wat: "De Company Brain wordt vanuit meerdere kanten gevuld: wat iemand zelf invoert, documenten, gesprekken, interviews, onderzoeksuitkomsten en goedgekeurde uitkomsten van workflows. Wat een AI aandraagt komt eerst in een wachtrij en wordt pas een feit als een mens het goedkeurt. Wat één keer is vastgelegd, draagt daarna elk volgend antwoord en elke volgende workflow.",
     voorwaarde: "Er moet iemand zijn die de wachtrij met voorstellen beoordeelt.",
     status: "live",
     bewijs:
@@ -164,16 +164,16 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "menselijke-poort",
-    wat: "AI stelt voor, een mens beslist. Niets komt ongezien in de vastgelegde kennis of naar buiten.",
+    wat: "AI stelt voor, een mens beslist. Niets komt ongezien in de Company Brain of naar buiten.",
     voorwaarde: "Standaard zo, en dat blijft werk voor een mens.",
     status: "live",
     bewijs: "engine app/agents/approval.py + goedkeuringsroutes",
   },
   {
     id: "antwoorden-met-bron",
-    wat: "Er is een antwoordstand die alleen zegt wat in de vastgelegde bedrijfskennis staat. Elke bewering verwijst naar de bron waar die vandaan komt, en staat iets er niet in, dan zegt het systeem eerlijk wat er ontbreekt in plaats van het gat zelf op te vullen.",
+    wat: "Er is een antwoordstand die alleen zegt wat in de Company Brain staat. Elke bewering verwijst naar de bron waar die vandaan komt, en staat iets er niet in, dan zegt het systeem eerlijk wat er ontbreekt in plaats van het gat zelf op te vullen.",
     voorwaarde:
-      "De kennis moet gevuld zijn; over wat niet is vastgelegd kan deze stand niets zeggen.",
+      "De Company Brain moet gevuld zijn; over wat daar niet in staat kan deze stand niets zeggen.",
     status: "live",
     bewijs:
       "platform lib/chat-modes.ts, engine prompts/chat/system-strict.md, app/search/rag.py",
@@ -239,9 +239,9 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "workflow-samenstellen",
-    wat: "Je beschrijft in een vragenlijst welk werk je gedaan wilt hebben. De workflow wordt daarna samengesteld uit bestaande bouwstenen — dezelfde soorten stappen die alle andere workflows gebruiken — en vooraf wordt gecontroleerd of de vastgelegde kennis al genoeg bevat. Is dat niet zo, dan is het antwoord een eerlijke nee met een overzicht van wat er nog mist.",
+    wat: "Je beschrijft in een vragenlijst welk werk je gedaan wilt hebben. De workflow wordt daarna samengesteld uit bestaande bouwstenen — dezelfde soorten stappen die alle andere workflows gebruiken — en vooraf wordt gecontroleerd of de Company Brain al genoeg bevat. Is dat niet zo, dan is het antwoord een eerlijke nee met een overzicht van wat er nog mist.",
     voorwaarde:
-      "Een intake, en de vastgelegde kennis moet de benodigde gegevens bevatten.",
+      "Een intake, en de Company Brain moet de benodigde gegevens bevatten.",
     status: "live",
     bewijs:
       "platform api/agent-factory/intakes/*, lib/brain/colleague-readiness.ts. De definitieve bouw is mensenwerk; nooit 'druk op de knop' suggereren.",
@@ -281,9 +281,9 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   },
   {
     id: "platform-werkomgeving",
-    wat: "Wie liever in één omgeving werkt, doet dat in het platform zelf: vragen stellen aan de vastgelegde kennis, zien wat erin zit en wie wat mag zien, en de workflows op dezelfde plek. Het is een keuze per persoon, niet een verplichting in één richting.",
+    wat: "Wie liever in één omgeving werkt, doet dat in het platform zelf: vragen stellen aan de Company Brain, zien wat erin zit en wie wat mag zien, en de workflows op dezelfde plek. Het is een keuze per persoon, niet een verplichting in één richting.",
     voorwaarde:
-      "Onbeperkt gebruikers, dus er hoeft niemand buiten te blijven. De kennis moet er wel in staan.",
+      "Onbeperkt gebruikers, dus er hoeft niemand buiten te blijven. De Company Brain moet wel gevuld zijn.",
     status: "live",
     bewijs: "platform (authenticated)/chat, /brain, /library, /workflows",
   },
@@ -333,7 +333,7 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   // ── Aanvullend, buiten de telling van 30 ──────────────────────────────
   {
     id: "advertentiebeheer",
-    wat: "Google Ads Manager beheert campagnes en budgetten in het gekoppelde advertentiekanaal en leest de advertentieresultaten terug de vastgelegde kennis in. Elke wijziging gaat pas door na goedkeuring.",
+    wat: "Google Ads Manager beheert campagnes en budgetten in het gekoppelde advertentiekanaal en leest de advertentieresultaten terug de Company Brain in. Elke wijziging gaat pas door na goedkeuring.",
     voorwaarde:
       "Het advertentiekanaal moet gekoppeld zijn en een beheerder keurt elke wijziging goed.",
     status: "live-onbewezen",

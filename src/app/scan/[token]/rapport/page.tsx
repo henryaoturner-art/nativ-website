@@ -59,7 +59,7 @@ const staticCopy = {
     zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
     vanafNul: "En zo zou je dit werk opnieuw vanaf nul kunnen ontwerpen",
     ketenCaption:
-      "De keten waarop dit rapport is gebouwd. De kennis in het midden is de bron voor alles rechts ervan.",
+      "De keten waarop dit rapport is gebouwd. De Company Brain in het midden is de bron voor alles rechts ervan.",
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
     werkwijzeBody:
       "Vastleggen, inrichten, goedkeuren, beoordelen, groeien: die volgorde zit in het platform ingebouwd en geen stap is optioneel. Daarom verwijst elk antwoord naar zijn bron.",
@@ -79,14 +79,14 @@ const staticCopy = {
     volgendeStapCta: "Nodig je team uit",
     keten: {
       bron: ["Jullie bronnen", "eigen systemen", "via koppeling of export"],
-      kennis: ["Vastgelegde kennis", "eigenaar · herkomst · datum", "wie mag wat zien"],
+      kennis: ["Company Brain", "eigenaar · herkomst · datum", "wie mag wat zien"],
       workflow: ["De workflow", "vaste stappen", "op een vast moment"],
       poort: ["Menselijke poort", "iemand van jullie", "keurt goed"],
       resultaat: ["Resultaat", "overzicht · concept", "besluit"],
       stap1: "1 · VASTLEGGEN",
       stap2: "2 · INRICHTEN",
       stap3: "3 · GOEDKEUREN",
-      terug: "4 · beoordelen · 5 · groeien: wat wordt goedgekeurd, voedt de kennis",
+      terug: "4 · beoordelen · 5 · groeien: wat wordt goedgekeurd, voedt de Company Brain",
     },
   },
   en: {
@@ -120,7 +120,7 @@ const staticCopy = {
     zoZietHetEruitStraks: "As it looks once this is set up",
     vanafNul: "And this is how you could design this work from scratch",
     ketenCaption:
-      "The chain this report is built on. The knowledge in the middle is the source for everything to its right.",
+      "The chain this report is built on. The Company Brain in the middle is the source for everything to its right.",
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
     werkwijzeBody:
       "Capture, set up, approve, review, grow: that order is built into the platform and no step is optional. That is why every answer points to its source.",
@@ -141,14 +141,14 @@ const staticCopy = {
     volgendeStapCta: "Invite your team",
     keten: {
       bron: ["Your sources", "own systems", "via connection or export"],
-      kennis: ["Captured knowledge", "owner · origin · date", "who may see what"],
+      kennis: ["Company Brain", "owner · origin · date", "who may see what"],
       workflow: ["The workflow", "fixed steps", "at a fixed moment"],
       poort: ["Human gate", "someone on your side", "approves"],
       resultaat: ["Result", "overview · draft", "decision"],
       stap1: "1 · CAPTURE",
       stap2: "2 · SET UP",
       stap3: "3 · APPROVE",
-      terug: "4 · review · 5 · grow: what gets approved feeds the knowledge",
+      terug: "4 · review · 5 · grow: what gets approved feeds the Company Brain",
     },
   },
 };
@@ -607,7 +607,7 @@ function TopWorkflowCard({
   );
 }
 
-/** De ketenvisual: bronnen → vastgelegde kennis → workflow → menselijke poort
+/** De ketenvisual: bronnen → Company Brain → workflow → menselijke poort
  * → resultaat, met de vijf stappen van de werkwijze als labels. Dit is de ENE
  * plek waar eigenaar/herkomst/datum wordt uitgeschreven (herhalingsregel). */
 function KetenVisual({
