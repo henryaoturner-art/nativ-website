@@ -57,7 +57,7 @@ const staticCopy = {
       "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Eerst de keten in één beeld, daarna jouw stappen ernaast.",
     zoZietHetEruitNu: "Zoals je het zelf vertelde",
     zoZietHetEruitStraks: "Zoals het eruitziet als je AI toevoegt",
-    vanafNul: "En zo zou je dit werk opnieuw vanaf nul kunnen ontwerpen",
+    vanafNul: "En zo zou je dit werk vanaf nul kunnen ontwerpen, met AI in de kern",
     ketenCaption:
       "De keten waarop dit rapport is gebouwd. De Company Brain in het midden is de bron voor alles rechts ervan.",
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
@@ -118,7 +118,7 @@ const staticCopy = {
       "This is only about the work above, where we would start. First the chain in one picture, then your own steps next to it.",
     zoZietHetEruitNu: "As you described it",
     zoZietHetEruitStraks: "As it looks once you add AI",
-    vanafNul: "And this is how you could design this work from scratch",
+    vanafNul: "And this is how you could design this work from scratch, with AI at its core",
     ketenCaption:
       "The chain this report is built on. The Company Brain in the middle is the source for everything to its right.",
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
