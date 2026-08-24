@@ -58,8 +58,6 @@ const staticCopy = {
     zoZietHetEruitNu: "Zoals je het zelf vertelde",
     zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
     vanafNul: "En als je dit werk vanaf nul opnieuw zou ontwerpen",
-    vanafNulIntro:
-      "Hierboven staat hetzelfde werk, ingericht. Dit is iets anders: niet wat je maandag doet, maar hoe dit werk eruit zou zien als je het vandaag vanaf nul zou ontwerpen.",
     ketenCaption:
       "De keten waarop dit rapport is gebouwd. De kennis in het midden is de bron voor alles rechts ervan.",
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
@@ -123,8 +121,6 @@ const staticCopy = {
     zoZietHetEruitNu: "As you described it",
     zoZietHetEruitStraks: "As it looks once this is set up",
     vanafNul: "And if you designed this work from scratch",
-    vanafNulIntro:
-      "Above is the same work, set up properly. This is something else: not what you do on Monday, but what this work would look like if you designed it from scratch today.",
     ketenCaption:
       "The chain this report is built on. The knowledge in the middle is the source for everything to its right.",
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
@@ -347,9 +343,9 @@ export default async function ScanReportPage({
               <h3 className="font-serif text-lg font-normal text-grey">
                 {c.vanafNul}
               </h3>
-              <div className="mt-2">
-                <Prose text={c.vanafNulIntro} />
-              </div>
+              {/* Geen inleiding meer. Die herhaalde de kop in langere
+                  woorden en vroeg de lezer om terug te bladeren en te
+                  vergelijken (Jorus 24-08). De kop draagt het zelf. */}
               <ol className="mt-4 space-y-2 list-decimal pl-4">
                 {payload.vanafNul.keten.map((item) => (
                   <li
