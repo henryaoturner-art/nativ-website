@@ -385,11 +385,18 @@ export default async function ScanReportPage({
         <>
           <Prose text={av.watErNuGoedGaat} />
           <ul className="mt-5 space-y-3">
-            {av.grenzen.map((limit) => (
-              <li key={limit.grens} className="text-grey/85 font-light leading-relaxed">
-                · {limit.grens}
+            {(av.toevoegingen ?? []).map((item) => (
+              <li key={item.toevoeging} className="text-grey/85 font-light leading-relaxed">
+                · {item.toevoeging}
               </li>
             ))}
+            {/* Opgeslagen rapporten van vóór 24-08 dragen nog grenzen. */}
+            {!av.toevoegingen &&
+              (av.grenzen ?? []).map((limit) => (
+                <li key={limit.grens} className="text-grey/85 font-light leading-relaxed">
+                  · {limit.grens}
+                </li>
+              ))}
           </ul>
           <div className="mt-5">
             <Prose text={av.watErvoorInDePlaatsKomt} />
