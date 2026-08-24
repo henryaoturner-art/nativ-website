@@ -75,15 +75,6 @@ const staticCopy = {
     rechtenBody:
       "Die regel zit in het zoeken zelf, en geldt ook wanneer iemand de kennis vanuit zijn eigen AI-tool opvraagt.",
     nergensStaat: "Wat nergens staat",
-    uitzoeken: "Wat je verder zou kunnen uitzoeken",
-    openVragen: "Vragen die je bedrijf straks zelf beantwoordt",
-    openVragenIntro:
-      "Deze gaf je zelf aan vandaag niet met zekerheid te kunnen beantwoorden. Geen huiswerk, maar wat ervoor nodig is.",
-    openVraagStatus: {
-      "kan-nu": "Kan nu",
-      "kan-zodra-vastgelegd": "Kan zodra die kennis is vastgelegd",
-      maatwerk: "Vraagt maatwerk",
-    },
     groeien: "Waar je in kunt groeien",
     gegevens: "Jullie gegevens, en verder praten",
     gegevensPunten: [
@@ -157,14 +148,6 @@ const staticCopy = {
       "That rule lives inside the search itself, and also applies when someone queries the knowledge from their own AI tool.",
     nergensStaat: "What is written down nowhere",
     uitzoeken: "What you could look into next",
-    openVragen: "Questions your company will answer itself",
-    openVragenIntro:
-      "You told us yourself you cannot answer these with certainty today. Not homework, but what it takes.",
-    openVraagStatus: {
-      "kan-nu": "Possible now",
-      "kan-zodra-vastgelegd": "Possible once that knowledge is captured",
-      maatwerk: "Needs custom work",
-    },
     groeien: "Where you can grow",
     gegevens: "Your data, and talking further",
     gegevensPunten: [
@@ -488,47 +471,10 @@ export default async function ScanReportPage({
     });
   }
 
-  if (payload.openVragen && payload.openVragen.length > 0) {
-    sections.push({
-      id: "vragen",
-      title: c.openVragen,
-      body: (
-        <>
-          <Prose text={c.openVragenIntro} />
-          <div className="mt-4 space-y-4">
-            {payload.openVragen.map((item) => (
-              <div
-                key={item.vraag}
-                className="rounded-xl p-6 bg-surface border border-sage-light"
-              >
-                <h4 className="font-serif text-lg text-grey">{item.vraag}</h4>
-                <p className="mt-3 text-grey/80 font-light leading-relaxed">
-                  {item.watErvoorNodigIs}
-                </p>
-                <span className="mt-4 inline-block text-xs tracking-wide text-sage border border-sage-light bg-cream/60 rounded-full px-3 py-1">
-                  {c.openVraagStatus[item.status]}
-                </span>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-    });
-  } else if (payload.uitzoeksuggesties.length > 0) {
-    sections.push({
-      id: "vragen",
-      title: c.uitzoeken,
-      body: (
-        <ul className="space-y-2">
-          {payload.uitzoeksuggesties.map((line) => (
-            <li key={line} className="text-grey/80 font-light leading-relaxed">
-              · {line}
-            </li>
-          ))}
-        </ul>
-      ),
-    });
-  }
+  // Sectie "Vragen die je bedrijf straks zelf beantwoordt" is er 24-08 uit
+  // gehaald (Jorus): te lang, te veel voorbeelden, en het bracht vooral onze
+  // functionaliteit onder de aandacht in plaats van hun werk. Opgeslagen
+  // rapporten dragen de velden nog wel; die tonen we ook niet meer.
 
   sections.push({
     id: "groeien",

@@ -23,12 +23,7 @@ import {
   VOORUITBLIK_CAPABILITY_IDS,
   capabilitiesPromptBlock,
 } from "./capabilities";
-import {
-  hasAnswerValue,
-  helpFor,
-  storedLabels,
-  type AnswerMap,
-} from "./visibility";
+import { helpFor, storedLabels, type AnswerMap } from "./visibility";
 
 export interface ReportWorkflowItem {
   naam: string;
@@ -143,12 +138,10 @@ export interface ReportPayload {
     observatie: string;
   };
   waarWeZoudenBeginnen: string;
-  /** Oude vorm (rapporten van vóór 13 aug): een lijst huiswerkregels.
-   * Blijft in het type zodat opgeslagen rapporten blijven renderen. */
-  uitzoeksuggesties: string[];
-  /** Nieuwe vorm: dezelfde vragen, maar met wat er nodig is om ze te kunnen
-   * stellen. Afwezig als zij geen openstaande vragen gaven of als de guard
-   * alles heeft laten vallen. */
+  /** Vervallen 24-08 (Jorus): de sectie is uit het rapport gehaald, te lang
+   * en te onduidelijk. Beide velden blijven in het type zodat opgeslagen
+   * rapporten niet omvallen; ze worden niet meer gegenereerd of getoond. */
+  uitzoeksuggesties?: string[];
   openVragen?: ReportOpenQuestion[];
   waarJeInKuntGroeien: string;
   /** Alleen als zij co-success invulden én het citaat verifieerbaar is. */
@@ -304,35 +297,6 @@ function fromScratchSchema() {
   };
 }
 
-function openQuestionsSchema() {
-  return {
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        vraag: { type: "string" },
-        citaat: { type: "string" },
-        vraagId: { type: "string" },
-        capaciteit: { type: "string" },
-        watErvoorNodigIs: { type: "string" },
-        status: {
-          type: "string",
-          enum: ["kan-nu", "kan-zodra-vastgelegd", "maatwerk"],
-        },
-      },
-      required: [
-        "vraag",
-        "citaat",
-        "vraagId",
-        "capaciteit",
-        "watErvoorNodigIs",
-        "status",
-      ],
-      additionalProperties: false,
-    },
-  };
-}
-
 function ownPictureSchema() {
   return {
     type: "object",
@@ -349,7 +313,6 @@ function reportSchema(
   team: boolean,
   addedValue: boolean,
   ownPicture: boolean,
-  openQuestions: boolean,
   beforeAfter: boolean,
 ) {
   return {
@@ -382,9 +345,6 @@ function reportSchema(
         additionalProperties: false,
       },
       waarWeZoudenBeginnen: { type: "string" },
-      ...(openQuestions
-        ? { openVragen: openQuestionsSchema() }
-        : { uitzoeksuggesties: { type: "array", items: { type: "string" } } }),
       waarJeInKuntGroeien: { type: "string" },
       ...(ownPicture ? { jouwEigenBeeld: ownPictureSchema() } : {}),
     },
@@ -398,7 +358,6 @@ function reportSchema(
       ...(beforeAfter ? ["zoZietHetEruit"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
-      openQuestions ? "openVragen" : "uitzoeksuggesties",
       "waarJeInKuntGroeien",
       ...(ownPicture ? ["jouwEigenBeeld"] : []),
     ],
@@ -529,24 +488,6 @@ Drie velden, meer niet:
 
 Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij. Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
 
-const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
-
-export function openQuestionsApply(answers: AnswerMap): boolean {
-  return OPEN_QUESTION_IDS.some((id) => hasAnswerValue(answers.get(id)));
-}
-
-const OPEN_QUESTIONS_PROMPT_EXTRA = `
-
-In plaats van uitzoeksuggesties schrijf je openVragen: de vragen die deze invuller vandaag niet met zekerheid kan beantwoorden (co-blindspot, dept-cant-answer, dept-answer-where), maar dan omgedraaid. Niet als huiswerk teruggegeven, maar met wat er nodig is om zo'n vraag wél te kunnen stellen. Drie tot vijf stuks, de rest laat je weg.
-
-Per vraag:
-- vraag: hun vraag, in hun eigen woorden en als vraag geformuleerd. Kort.
-- citaat: het stuk uit hun antwoord waar deze vraag uit komt, LETTERLIJK overgenomen, minimaal vijftien tekens, niets gecorrigeerd. Dit wordt woord voor woord tegen hun antwoorden gehouden. Bij een aangevinkte optie neem je het aangevinkte label letterlijk over. vraagId is de vraag waar het citaat uit komt.
-- capaciteit: het id uit de capaciteitenkaart waarmee dit antwoord bereikbaar wordt.
-- watErvoorNodigIs: één of twee zinnen, eerlijk. Wat moet er vastliggen of gebeuren voordat deze vraag beantwoord kan worden, en wat daarvan er volgens hun eigen antwoorden vandaag nog niet is. Zit het antwoord buiten hun bedrijf, zeg dat. Zit het bij hun klanten, zeg dat.
-- status: kan-nu als het met bestaande bronnen kan zonder dat zij eerst iets moeten vastleggen; kan-zodra-vastgelegd als er eerst kennis van henzelf vastgelegd moet worden; maatwerk als het buiten de kaart valt.
-
-Harde regels: bied nooit aan dat wij het voor ze uitzoeken, en schrijf ook nooit dat wij iets voor ze klaarzetten of inrichten. Het gaat erom wat hun bedrijf straks zelf beantwoordt. Beloof geen antwoord, alleen de weg ernaartoe. Geen termijn, geen prijs, geen getal dat zij niet zelf noemden. Kun je bij een vraag niet eerlijk zeggen wat ervoor nodig is, laat die vraag dan weg.`;
 
 const SUCCESS_ID = "co-success";
 /** Te dun om iemand zijn eigen beeld mee terug te geven. */
@@ -629,7 +570,6 @@ Secties die jij schrijft:
 - Per workflow-item: naam = de naam van het werk in hun woorden plus niets erbij; watHetNuIs = één zin uit hun eigen procesverhaal; hoeVaak = meerdere keren per dag / dagelijks / wekelijks / maandelijks; watHetKost = "Ongeveer X uur per week" in hun eigen opgave, met "ruwe schatting" erbij als dept-wf-confidence 1 of 2 was; waarHetBlijftLiggen = één zin uit dept-wf-stall; waaromDitZichLeent = één zin: het komt vaak voorbij, de stappen zijn elke keer hetzelfde, en de meeste beslissingen zijn dezelfde; alsErIetsMisgaat = "Je ziet het meteen en je draait het terug." of "Dit gaat naar buiten, dus hier kijkt altijd iemand mee voordat het weg is." (kies wat past bij het proces); waarDeKennisZit = één zin over waar de kennis en gegevens voor dít werk nu vandaan komen, uit dept-wf-systems en dept-wf-knowledge: noem de systemen, mailboxen of documenten die zij zelf noemden, en zeg erbij welk deel nergens is vastgelegd. Noemden ze er niets over, schrijf dan dat ze daar niets over hebben gezegd. Verzin nooit een systeem dat zij niet noemden.
 - kennisbeeld: over de workflows heen, uit dept-wf-systems, dept-wf-knowledge, dept-answer-where, co-knowledge-home, co-meetings en co-knowledge-carrier. systemen = de systemen, mailboxen en documenten die zij noemden en die steeds terugkomen, elk als korte losse regel met erbij waarvoor het gebruikt wordt; terugkerende overleggen uit co-meetings horen hier ook thuis als daar kennis ontstaat, met erbij of er iemand aantekeningen maakt. alleenInHoofden = de kennis die volgens hun eigen antwoorden nergens is vastgelegd en dus bij mensen zit, elk als korte losse regel; noemden zij bij co-knowledge-carrier een persoon, dan staat wat diegene weet hier als eigen regel, zonder de naam erbij. observatie = hooguit twee zinnen die benoemen wat dit betekent: om dit werk door AI te laten doen moet die kennis bereikbaar en vastgelegd zijn, en dat is nu deels niet zo. Geen oplossing aanbieden, geen product noemen, alleen de constatering. Herhaal daarbij niet welke systemen zij gebruiken; die staan al per workflow in de ranglijst. Noemden ze te weinig om iets te zeggen, houd de lijsten dan leeg en schrijf in observatie eerlijk dat hier nog weinig over bekend is en dat dit een goede eerste vraag is voor een vervolg.
 - waarWeZoudenBeginnen: twee of drie zinnen waarom juist deze workflow het startpunt is. Dit staat in het rapport IN de bovenste ranglijstkaart, dus herhaal niet wat daar al staat: noem de naam van de workflow niet opnieuw, en noem de uren en de frequentie niet opnieuw. Schrijf alleen het argument: waarom dit veilig is om mee te beginnen (wat blijft binnen en is terug te draaien, en waar iemand toch al meekijkt voordat het naar buiten gaat).
-- uitzoeksuggesties: de vragen die de invuller zelf niet kon beantwoorden (co-blindspot, dept-cant-answer, dept-answer-where) teruggegeven als onderzoeksuggesties, drie tot vijf maximaal, met per stuk waar het antwoord volgens hen zit. Schrijf ze als vragen die zij zelf kunnen uitzoeken; bied nooit aan dat wij het voor ze doen. Leeg laten als er niets te melden is.
 - waarJeInKuntGroeien: één korte alinea. Geen roadmap, geen fasering, geen termijnen. Strekking: als de eerste workflow eenmaal loopt, ligt het werk uit de tweede groep voor de hand, en wat er over jullie manier van werken wordt vastgelegd komt daar ook weer bij van pas.
 
 Harde regels: geen cijfer of readiness-score, geen sterren, geen percentages (de volgorde zelf is het oordeel). Geen besparingsbelofte en geen bedrag: rapporteer wat het werk nu kost, in hun eigen opgave. Geen prijzen. Geen termijnen en geen belofte over wanneer iets werkt. Het woord "digitale collega" komt nergens voor; het rapport levert workflows op. Wat de invuller al met AI geprobeerd heeft (co-ai-history) raad je niet opnieuw aan. Schrijf in gewone taal, korte zinnen, geen jargon, geen buzzwoorden, geen gedachtestreepjes. Schrijf in de taal van de antwoorden.
@@ -954,11 +894,6 @@ export function guardBeforeAfter(
   return section;
 }
 
-const OPEN_QUESTION_STATUSES = new Set([
-  "kan-nu",
-  "kan-zodra-vastgelegd",
-  "maatwerk",
-]);
 
 /**
  * Zelfde guard als bij sectie F, per vraag: een bestaand capaciteit-id, een
@@ -966,43 +901,6 @@ const OPEN_QUESTION_STATUSES = new Set([
  * verboden woorden of verzonnen getallen. Wat niet klopt valt weg; blijft er
  * niets over, dan verdwijnt de sectie.
  */
-export function guardOpenQuestions(
-  questions: ReportOpenQuestion[] | undefined,
-  answers: AnswerMap,
-): ReportOpenQuestion[] | undefined {
-  if (!questions || questions.length === 0) return undefined;
-  const haystack = answersHaystack(answers);
-
-  const kept = questions.filter((q) => {
-    const reject = (reason: string) => {
-      console.warn(`SCAN_OPEN_QUESTION_DROPPED: ${reason}`);
-      return false;
-    };
-    const quote = normalizeForMatch(q.citaat ?? "");
-    if (quote.length < MIN_QUOTE_CHARS) return reject("citaat te kort");
-    if (!haystack.includes(quote)) return reject("citaat niet in antwoorden");
-    if (!CAPABILITY_IDS.has(q.capaciteit)) {
-      return reject(`onbekende capaciteit "${q.capaciteit}"`);
-    }
-    if (!OPEN_QUESTION_STATUSES.has(q.status)) {
-      return reject(`onbekende status "${q.status}"`);
-    }
-    for (const text of [q.vraag, q.watErvoorNodigIs]) {
-      const word = tripsForbidden(text ?? "");
-      if (word) return reject(`verboden woord "${word}"`);
-      const number = inventsNumber(text ?? "", haystack);
-      if (number) return reject(`verzonnen getal ${number}`);
-    }
-    return true;
-  });
-
-  if (kept.length === 0) {
-    console.warn("SCAN_OPEN_QUESTIONS_DROPPED: geen enkele vraag overleefde de guard");
-    return undefined;
-  }
-  return kept;
-}
-
 /**
  * Het citaat moet letterlijk in hun antwoorden staan, anders verdwijnt het
  * blok. Alleen het citaat: de alinea eronder blijft, want die draagt ook
@@ -1163,7 +1061,6 @@ async function generateReportPayloadOnce(input: {
   // geen prompttekst, dus ook geen model dat er alsnog iets van maakt.
   const wantsAddedValue = addedValueApplies(input.answers);
   const wantsOwnPicture = ownPictureApplies(input.answers);
-  const wantsOpenQuestions = openQuestionsApply(input.answers);
   const wantsBeforeAfter = beforeAfterApplies(input.answers);
   // Sectie A-bis rijdt mee op sectie A: zonder procesverhaal is er geen keten
   // om vanaf nul opnieuw op te zetten.
@@ -1196,13 +1093,11 @@ async function generateReportPayloadOnce(input: {
   // zoZietHetEruit verwijzen er net zo goed naar als watDitToevoegt. Voorheen
   // hing de kaart alleen aan sectie F, waardoor een invuller zonder AI-gebruik
   // secties kon verliezen op onbekende ids.
-  const wantsCapabilities =
-    wantsAddedValue || wantsOpenQuestions || wantsBeforeAfter;
+  const wantsCapabilities = wantsAddedValue || wantsBeforeAfter;
   const system =
     SYSTEM_PROMPT +
     (isTeam ? TEAM_PROMPT_EXTRA : "") +
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
-    (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
     (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
     (wantsAddedValue ? ADDED_VALUE_PROMPT_EXTRA : "") +
     (wantsCapabilities ? `\n\n${capabilitiesPromptBlock()}` : "");
@@ -1242,7 +1137,6 @@ async function generateReportPayloadOnce(input: {
           isTeam,
           wantsAddedValue,
           wantsOwnPicture,
-          wantsOpenQuestions,
           wantsBeforeAfter,
         ),
       },
@@ -1273,7 +1167,6 @@ async function generateReportPayloadOnce(input: {
   const parsed = JSON.parse(text) as Omit<ReportPayload, "version" | "language" | "scanVorm">;
   const watDitToevoegt = guardAddedValue(parsed.watDitToevoegt, input.answers);
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
-  const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
   const vanafNul = guardFromScratch(
     await fromScratchPromise,
@@ -1291,9 +1184,5 @@ async function generateReportPayloadOnce(input: {
     zoZietHetEruit,
     vanafNul,
     jouwEigenBeeld,
-    openVragen,
-    // De oude huiswerklijst wordt niet meer gevraagd zodra openVragen aan
-    // staat; oude opgeslagen rapporten houden hun eigen veld.
-    uitzoeksuggesties: parsed.uitzoeksuggesties ?? [],
   };
 }
