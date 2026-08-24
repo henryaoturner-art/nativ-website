@@ -52,16 +52,30 @@ const sections: Section[] = [
     n: 3,
     title: "Waarvoor en op welke grondslag",
     body: (
-      <ul className="space-y-1.5 list-disc pl-5">
-        <li>
-          Om te reageren op je vraag of verzoek (grondslag: uitvoering van of aanloop naar
-          een overeenkomst, dan wel ons gerechtvaardigd belang bij contact).
-        </li>
-        <li>
-          Om de website te verbeteren, te beveiligen en betrouwbaar te houden (grondslag:
-          ons gerechtvaardigd belang).
-        </li>
-      </ul>
+      <>
+        <ul className="space-y-1.5 list-disc pl-5">
+          <li>
+            Om te reageren op je vraag of verzoek (grondslag: uitvoering van of aanloop naar
+            een overeenkomst, dan wel ons gerechtvaardigd belang bij contact).
+          </li>
+          <li>
+            Om de website te verbeteren, te beveiligen en betrouwbaar te houden (grondslag:
+            ons gerechtvaardigd belang).
+          </li>
+        </ul>
+        <p className="mt-3">
+          <span className="text-grey">Zakelijke benadering (acquisitie).</span> We benaderen soms
+          beslissers bij Nederlandse bedrijven met een zakelijke e-mail, bijvoorbeeld een
+          uitnodiging voor onze gratis AI-scan. De gegevens die we daarvoor gebruiken (naam,
+          functie, zakelijk e-mailadres en werkgever) halen we uit openbare bronnen, zoals een
+          vacature die het bedrijf zelf heeft gepubliceerd, aangevuld via zakelijke databronnen.
+          Grondslag: ons gerechtvaardigd belang bij het onder de aandacht brengen van onze
+          diensten bij bedrijven waarvoor die relevant zijn. We mailen alleen zakelijke adressen
+          en sturen hooguit één opvolgmail. Elke mail bevat een afmeldmogelijkheid; na afmelding
+          benaderen we je niet opnieuw. Wil je inzage in je gegevens of ze laten verwijderen?
+          Mail info@gonativ.nl.
+        </p>
+      </>
     ),
   },
   {
