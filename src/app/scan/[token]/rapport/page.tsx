@@ -52,6 +52,7 @@ const staticCopy = {
     mensenZagen: "Wat je mensen zagen en jij niet",
     toevoegt: "Wat dit toevoegt aan wat je nu al doet",
     toevoegtNodig: "Wat daarvoor nodig is",
+    toevoegtMogelijk: "Wat mogelijk wordt door de toepassing van een Company Brain:",
     zoZietHetEruit: "Zo ziet dit werk eruit als je AI toevoegt",
     zoZietHetEruitIntro:
       "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Eerst de keten in één beeld, daarna jouw stappen ernaast.",
@@ -113,6 +114,7 @@ const staticCopy = {
     mensenZagen: "What your people saw that you did not",
     toevoegt: "What this adds to what you already do",
     toevoegtNodig: "What that takes",
+    toevoegtMogelijk: "What becomes possible with a Company Brain:",
     zoZietHetEruit: "What this work looks like once you add AI",
     zoZietHetEruitIntro:
       "This is only about the work above, where we would start. First the chain in one picture, then your own steps next to it.",
@@ -384,7 +386,10 @@ export default async function ScanReportPage({
       body: (
         <>
           <Prose text={av.watErNuGoedGaat} />
-          <ul className="mt-5 space-y-3">
+          <p className="mt-5 text-grey/85 font-light leading-relaxed">
+            {c.toevoegtMogelijk}
+          </p>
+          <ul className="mt-2 space-y-2">
             {(av.toevoegingen ?? []).map((item) => (
               <li key={item.toevoeging} className="text-grey/85 font-light leading-relaxed">
                 · {item.toevoeging}
