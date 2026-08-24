@@ -89,14 +89,19 @@ export interface ReportBeforeAfter {
  * zou opzetten. Minder stappen, en per verdwenen stap waarom die er ooit was. */
 export interface ReportFromScratch {
   keten: { stap: string; capaciteit: string }[];
-  /** Eén regel per verdwenen stap: welke stap weg is, en waarom die er ooit
-   * was. Bewust platte tekst en geen object: het gecombineerde JSON-schema
-   * van dit rapport zit tegen de grammatica-limiet van de API aan, en één
-   * genest objecttype minder is precies wat het weer laat passen. De guard
-   * bewaakt de tweeledigheid met een minimumlengte. */
-  watErVerdwijnt: string[];
-  watErbijKomt: string[];
-  watErvoorNodigIs: string;
+  /** Eén zin: wat er verdwijnt, en waarom die stappen er ooit waren. Was een
+   * lijst met een regel per stap; dat maakte dit blok het langste van het
+   * rapport (421 van de 1991 woorden, meting 24-08). Het leermoment zit in
+   * het waarom, en dat hoeft één keer. */
+  watVerdwijnt: string;
+  /** Eén zin: wat deze manier van werken van je vraagt. Voegt samen wat
+   * eerst twee blokken waren (wat erbij komt, wat ervoor nodig is) en die
+   * elkaar grotendeels herhaalden. */
+  watHetVraagt: string;
+  /** Oude vorm, alleen nog om opgeslagen rapporten te kunnen tonen. */
+  watErVerdwijnt?: string[];
+  watErbijKomt?: string[];
+  watErvoorNodigIs?: string;
 }
 
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
@@ -291,11 +296,10 @@ function fromScratchSchema() {
           additionalProperties: false,
         },
       },
-      watErVerdwijnt: { type: "array", items: { type: "string" } },
-      watErbijKomt: { type: "array", items: { type: "string" } },
-      watErvoorNodigIs: { type: "string" },
+      watVerdwijnt: { type: "string" },
+      watHetVraagt: { type: "string" },
     },
-    required: ["keten", "watErVerdwijnt", "watErbijKomt", "watErvoorNodigIs"],
+    required: ["keten", "watVerdwijnt", "watHetVraagt"],
     additionalProperties: false,
   };
 }
@@ -504,24 +508,26 @@ Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel 
 // zetten. Er is dus geen aparte poort.
 // ---------------------------------------------------------------------------
 
-const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou opzetten.
+const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou ontwerpen.
 
-LEES DIT EERST, WANT HIER GAAT HET MIS. Elders in het rapport staat ditzelfde werk al één keer uitgetekend: dezelfde keten als nu, met gereedschap eronder. Bronnen worden ontsloten, gesprekken genotuleerd, documenten geüpload, en het concept staat klaar op het moment dat iemand begint. DIT BLOK BEGINT DAAR. Je schrijft niet nog een keer op welke stap gereedschap krijgt, en je schrijft al helemaal niet dezelfde keten met een paar stappen eruit. Dat is de meest gemaakte fout en het maakt dit blok waardeloos.
+DIT BLOK IS KORT. Samen hooguit 130 woorden. Het was het langste blok van het rapport en dat is precies wat het kapot maakte; alles wat je twee keer zegt, laat je weg.
+
+LEES DIT EERST, WANT HIER GAAT HET MIS. Elders in het rapport staat ditzelfde werk al één keer uitgetekend: dezelfde keten als nu, met gereedschap eronder. Bronnen worden ontsloten, gesprekken genotuleerd, documenten geüpload, en het concept staat klaar op het moment dat iemand begint. DIT BLOK BEGINT DAAR. Je schrijft niet nog een keer op welke stap gereedschap krijgt, en al helemaal niet dezelfde keten met een paar stappen eruit.
 
 De vraag hier is een andere: wat is het resultaat van dit werk eigenlijk, wanneer ontstaat het, en wat beslist de mens? Neem aan dat het ontsluiten van bronnen al geregeld is en bouw daarbovenop.
 
 Er zijn precies drie richtingen waarin het antwoord mag liggen. Kies wat bij hun werk past, meestal twee van de drie. Verzin geen vierde.
-1. De EENHEID verandert. Nu is de uitkomst een stuk dat je per keer maakt: een document, een overzicht, een verstuurd bericht. Straks is het een stand die altijd actueel is, en het stuk is daar een uitdraai van op het moment dat je hem nodig hebt.
-2. Het MOMENT verandert. Nu begint het werk als iemand eraan begint, en dat is meestal precies wanneer het druk is. Straks loopt het door op een vast ritme en is er geen startmoment meer.
-3. Wat er OPGELEVERD wordt verandert. Nu is de uitkomst één antwoord. Straks staat er ook bij wat nog ontbreekt of onzeker is, met de bron erbij, zodat de lezer weet waar hij naar kijkt.
+1. De EENHEID verandert. Nu is de uitkomst een stuk dat je per keer maakt. Straks is het een stand die altijd actueel is, en het stuk is daar een uitdraai van.
+2. Het MOMENT verandert. Nu begint het werk als iemand eraan begint, en dat is meestal precies wanneer het druk is. Straks loopt het door en is er geen startmoment meer.
+3. Wat er OPGELEVERD wordt verandert. Nu is de uitkomst één antwoord. Straks staat erbij wat nog ontbreekt of onzeker is.
 
-- keten: hoogstens vier stappen die samen die nieuwe manier van werken beschrijven. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan, met de capaciteit menselijke-poort, maar hij verandert van karakter: van maker naar iemand die de norm stelt en oordeelt.
-- VERBODEN in keten: elke stap die over inname gaat. Dus niets over notuleren, uploaden, koppelen of bronnen doorzoekbaar maken. Dat staat al in het andere blok en het herhalen ervan is precies de fout hierboven.
-- watErVerdwijnt: twee tot vier regels, één per stap uit hun huidige proces die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen. Let op: hier hoort ook het soort stap dat verdwijnt omdat er geen startmoment meer is, of omdat er niets meer per keer wordt opgebouwd.
-- watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
-- watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan elders in het rapport. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
+Drie velden, meer niet:
 
-Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij; schrijf nooit over hem in de derde persoon. Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
+- keten: hoogstens VIER stappen, en elke stap is ÉÉN KORTE ZIN van hooguit vijftien woorden. Per stap: stap = die zin, capaciteit = het id uit de capaciteitenkaart dat hem mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan, met capaciteit menselijke-poort, maar hij verandert van karakter: van maker naar iemand die de norm stelt en oordeelt. VERBODEN: elke stap die over inname gaat, dus niets over notuleren, uploaden, koppelen of doorzoekbaar maken. Dat staat al elders. Gebruik ook niet twee keer dezelfde capaciteit.
+- watVerdwijnt: ÉÉN zin, hooguit veertig woorden. Eerst wat er verdwijnt, samengevat als één soort werk en niet als lijstje, dan waarom dat er ooit was. Dat waarom is verplicht en het is het belangrijkste van dit blok; zonder dat leest het als een verwijt, en die stappen waren logisch met de middelen van toen. Bijvoorbeeld: "Wat verdwijnt is het rondbrengen: onthouden wie nog moet reageren en zelf op het juiste moment beginnen. Die stappen bestonden omdat alleen een mens kon zien dat er iets lag."
+- watHetVraagt: ÉÉN zin, hooguit veertig woorden. Wat deze manier van werken van hén vraagt: de norm één keer opschrijven, en daarna elke uitkomst beoordelen. Zeg concreet wat er bij hen op papier moet en benoem dat het nu in iemands hoofd zit als hun antwoorden dat laten zien. Gebruik dept-wf-done als zij die vraag beantwoordden: wie nu bepaalt of het goed genoeg is, wordt degene die de norm opschrijft.
+
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij. Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
 
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
@@ -800,8 +806,14 @@ export function guardAddedValue(
  * schrijft het model gewoon `straks` nog een keer op, en dan staat er twee
  * keer hetzelfde in het rapport.
  */
-/** Onder deze lengte staat er onmogelijk én de stap én waarom die er was. */
+/** Onder deze lengte staat er onmogelijk én wat verdwijnt én waarom dat er
+ * ooit was. Dat waarom is het hele leermoment van dit blok. */
 const FROM_SCRATCH_MIN_GONE_CHARS = 60;
+
+/** Boven deze lengte is het blok weer aan het uitdijen. 130 woorden is de
+ * afspraak (Jorus 24-08); dit is de ruime bovengrens in tekens waarbij we nog
+ * niet gaan weggooien maar wel een spoor achterlaten in de logs. */
+const FROM_SCRATCH_SOFT_MAX_CHARS = 1100;
 
 /** Groep 1 van de capaciteitenkaart: hoe kennis binnenkomt. Dat is het
  * leidingwerk en het staat al in de straks-kolom. Herhaalt het kijkje vooruit
@@ -839,9 +851,21 @@ export function guardFromScratch(
       `keten telt ${section.keten.length} stappen tegen ${beforeAfter.nu.length} in nu`,
     );
   }
-  if (!section.watErVerdwijnt?.length) return drop("niets verdwijnt");
-  if (!section.watErbijKomt?.length) return drop("er komt niets bij");
-  if (!section.watErvoorNodigIs?.trim()) return drop("watErvoorNodigIs is leeg");
+  if (section.keten.length > 4) {
+    return drop(`keten telt ${section.keten.length} stappen, hooguit 4 toegestaan`);
+  }
+  if ((section.watVerdwijnt ?? "").trim().length < FROM_SCRATCH_MIN_GONE_CHARS) {
+    return drop("watVerdwijnt mist de uitleg waarom die stappen er ooit waren");
+  }
+  if (!section.watHetVraagt?.trim()) return drop("watHetVraagt is leeg");
+
+  // Twee keer dezelfde capaciteit betekent bijna altijd één stap die in
+  // tweeën is geknipt, en dat is precies het uitspinnen dat dit blok te lang
+  // maakte.
+  const gebruikt = new Set(section.keten.map((step) => step.capaciteit));
+  if (gebruikt.size !== section.keten.length) {
+    return drop("dezelfde capaciteit twee keer in de keten");
+  }
 
   for (const step of section.keten) {
     if (!VOORUITBLIK_CAPABILITY_IDS.has(step.capaciteit)) {
@@ -866,10 +890,11 @@ export function guardFromScratch(
   // uitzondering: de stap die verdwijnt is hun eigen stap, in hun woorden.
   const haystack = answersHaystack(answers);
   const prose: [string, boolean][] = [
-    [section.watErvoorNodigIs, false],
+    [section.watHetVraagt, false],
+    // watVerdwijnt geeft hun eigen stappen terug, dus daar is een merknaam
+    // hun tool en geen bewering van ons.
+    [section.watVerdwijnt, true],
     ...section.keten.map((s): [string, boolean] => [s.stap, false]),
-    ...section.watErbijKomt.map((s): [string, boolean] => [s, false]),
-    ...section.watErVerdwijnt.map((s): [string, boolean] => [s, true]),
   ];
   for (const [text, allowBrands] of prose) {
     const word = tripsForbidden(text ?? "", allowBrands);
@@ -878,14 +903,12 @@ export function guardFromScratch(
     if (number) return drop(`verzonnen getal ${number}`);
   }
 
-  // Een verdwenen stap zonder uitleg waarom hij er ooit was, leest als een
-  // verwijt. Dat is precies waar dit blok niet over gaat. Nu de twee delen in
-  // één string zitten is de lengte de enige harde controle die overblijft:
-  // een kale stapnaam haalt die niet.
-  for (const gone of section.watErVerdwijnt) {
-    if ((gone ?? "").trim().length < FROM_SCRATCH_MIN_GONE_CHARS) {
-      return drop("verdwenen stap zonder uitleg waarom die er ooit was");
-    }
+  const lengte =
+    section.keten.reduce((n, step) => n + step.stap.length, 0) +
+    section.watVerdwijnt.length +
+    section.watHetVraagt.length;
+  if (lengte > FROM_SCRATCH_SOFT_MAX_CHARS) {
+    console.warn(`SCAN_FROM_SCRATCH_LANG: ${lengte} tekens, richtlijn is ~800`);
   }
 
   return section;
