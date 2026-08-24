@@ -65,15 +65,8 @@ const staticCopy = {
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
     werkwijzeBody:
       "Vastleggen, inrichten, goedkeuren, beoordelen, groeien: die volgorde zit in het platform ingebouwd en geen stap is optioneel. Daarom verwijst elk antwoord naar zijn bron.",
-    rechtenTitel: "Per feit ligt vast wie het mag zien",
-    rechtenChips: [
-      "Iedereen in het bedrijf",
-      "Bepaalde afdelingen",
-      "Alleen de leiding",
-      "Met naam genoemde personen",
-    ],
     rechtenBody:
-      "Die regel zit in het zoeken zelf, en geldt ook wanneer iemand de kennis vanuit zijn eigen AI-tool opvraagt.",
+      "Per feit ligt vast wie het mag zien. Die regel zit in het zoeken zelf, en geldt ook wanneer iemand de kennis vanuit zijn eigen AI-tool opvraagt.",
     nergensStaat: "Wat nergens staat",
     groeien: "Waar je in kunt groeien",
     gegevens: "Jullie gegevens, en verder praten",
@@ -137,13 +130,6 @@ const staticCopy = {
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
     werkwijzeBody:
       "Capture, set up, approve, review, grow: that order is built into the platform and no step is optional. That is why every answer points to its source.",
-    rechtenTitel: "For every fact, who may see it is fixed",
-    rechtenChips: [
-      "Everyone in the company",
-      "Certain departments",
-      "Leadership only",
-      "Named individuals",
-    ],
     rechtenBody:
       "That rule lives inside the search itself, and also applies when someone queries the knowledge from their own AI tool.",
     nergensStaat: "What is written down nowhere",
@@ -416,31 +402,15 @@ export default async function ScanReportPage({
           <div className="mt-5">
             <Prose text={av.watErvoorInDePlaatsKomt} />
           </div>
-          <div className="mt-6 bg-surface rounded-xl p-5 md:p-6 border border-sage-light">
-            <h3 className="text-xs uppercase tracking-wide text-grey/45">
-              {c.rechtenTitel}
-            </h3>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {c.rechtenChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="text-sm text-grey/80 border border-sage/40 bg-cream/60 rounded-full px-3.5 py-1"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <p className="mt-3 text-sm text-grey/70 font-light leading-relaxed">
-              {c.rechtenBody}
-            </p>
+          {/* Het rechtenblok was een kop, vier chips en een alinea: een
+              productuitleg midden in een sectie die over hun werk gaat.
+              Teruggebracht tot één zin, en het kopje boven "wat daarvoor
+              nodig is" is eraf (Jorus 24-08, inkorten). */}
+          <div className="mt-4">
+            <Prose text={c.rechtenBody} />
           </div>
-          <div className="mt-5">
-            <h3 className="text-xs uppercase tracking-wide text-grey/45">
-              {c.toevoegtNodig}
-            </h3>
-            <div className="mt-2">
-              <Prose text={av.watErvoorNodigIs} />
-            </div>
+          <div className="mt-4">
+            <Prose text={av.watErvoorNodigIs} />
           </div>
         </>
       ),
