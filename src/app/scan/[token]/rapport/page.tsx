@@ -57,6 +57,12 @@ const staticCopy = {
       "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Eerst de keten in één beeld, daarna jouw stappen ernaast.",
     zoZietHetEruitNu: "Zoals je het zelf vertelde",
     zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
+    vanafNul: "En als je dit werk vanaf nul opnieuw zou opzetten",
+    vanafNulIntro:
+      "AI kan het werk overnemen zoals het nu loopt. Maar het maakt ook iets anders mogelijk: het werk zelf anders doen. Dit stuk is een kijkje vooruit. Niet wat je maandag doet, maar hoe dit werk eruit zou zien als je het vandaag vanaf nul zou opzetten.",
+    vanafNulKeten: "Zo zou het kunnen lopen",
+    vanafNulWeg: "Wat er verdwijnt, en waarom die stap er ooit was",
+    vanafNulBij: "Wat erbij komt",
     ketenCaption:
       "De keten waarop dit rapport is gebouwd. De kennis in het midden is de bron voor alles rechts ervan.",
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
@@ -135,6 +141,12 @@ const staticCopy = {
       "This is only about the work above, where we would start. First the chain in one picture, then your own steps next to it.",
     zoZietHetEruitNu: "As you described it",
     zoZietHetEruitStraks: "As it looks once this is set up",
+    vanafNul: "And if you set this work up from scratch",
+    vanafNulIntro:
+      "AI can take over the work as it runs today. But it also makes something else possible: doing the work differently. This part is a look ahead. Not what you do on Monday, but what this work would look like if you set it up from scratch today.",
+    vanafNulKeten: "How it could run",
+    vanafNulWeg: "What disappears, and why that step was there",
+    vanafNulBij: "What is added",
     ketenCaption:
       "The chain this report is built on. The knowledge in the middle is the source for everything to its right.",
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
@@ -367,6 +379,66 @@ export default async function ScanReportPage({
               <Prose text={ba.watErvoorNodigIs} />
             </div>
           </div>
+          {payload.vanafNul ? (
+            <div className="mt-8 rounded-xl border-2 border-sage bg-white px-6 py-6">
+              <h3 className="font-serif text-lg font-normal text-grey">
+                {c.vanafNul}
+              </h3>
+              <div className="mt-2">
+                <Prose text={c.vanafNulIntro} />
+              </div>
+
+              <h4 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                {c.vanafNulKeten}
+              </h4>
+              <ol className="mt-3 space-y-2 list-decimal pl-4">
+                {payload.vanafNul.keten.map((item) => (
+                  <li
+                    key={item.stap}
+                    className="text-grey/85 font-light leading-relaxed"
+                  >
+                    {item.stap}
+                  </li>
+                ))}
+              </ol>
+
+              <h4 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                {c.vanafNulWeg}
+              </h4>
+              <ul className="mt-3 space-y-2 list-disc pl-4">
+                {payload.vanafNul.watErVerdwijnt.map((item) => (
+                  <li
+                    key={item.stap}
+                    className="text-grey/85 font-light leading-relaxed"
+                  >
+                    <span className="text-grey">{item.stap}</span>{" "}
+                    {item.waaromDieErWas}
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                {c.vanafNulBij}
+              </h4>
+              <ul className="mt-3 space-y-2 list-disc pl-4">
+                {payload.vanafNul.watErbijKomt.map((item) => (
+                  <li
+                    key={item}
+                    className="text-grey/85 font-light leading-relaxed"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="mt-6 text-xs uppercase tracking-wide text-grey/45">
+                {c.toevoegtNodig}
+              </h4>
+              <div className="mt-2">
+                <Prose text={payload.vanafNul.watErvoorNodigIs} />
+              </div>
+            </div>
+          ) : null}
         </>
       ),
     });

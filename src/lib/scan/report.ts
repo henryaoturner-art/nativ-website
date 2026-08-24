@@ -80,6 +80,16 @@ export interface ReportBeforeAfter {
   watErvoorNodigIs: string;
 }
 
+/** Sectie A-bis: het kijkje vooruit. Niet dezelfde keten ingericht (dat is
+ * `straks`), maar hoe dit werk eruit zou zien als je het vandaag vanaf nul
+ * zou opzetten. Minder stappen, en per verdwenen stap waarom die er ooit was. */
+export interface ReportFromScratch {
+  keten: { stap: string; capaciteit: string }[];
+  watErVerdwijnt: { stap: string; waaromDieErWas: string }[];
+  watErbijKomt: string[];
+  watErvoorNodigIs: string;
+}
+
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
@@ -89,7 +99,7 @@ export interface ReportAddedValue {
 }
 
 export interface ReportPayload {
-  version: 1 | 2;
+  version: 1 | 2 | 3;
   language: "nl" | "en";
   /** Optioneel: rapporten van vóór de teamflow zijn allemaal solo. */
   scanVorm?: "solo" | "team";
@@ -109,6 +119,9 @@ export interface ReportPayload {
   watDitToevoegt?: ReportAddedValue;
   /** Sectie A — alleen als zij een procesverhaal gaven; anders afwezig. */
   zoZietHetEruit?: ReportBeforeAfter;
+  /** Sectie A-bis — rijdt mee op sectie A; verdwijnt heel als de guard iets
+   * niet vertrouwt. Rapporten van vóór versie 3 hebben dit veld niet. */
+  vanafNul?: ReportFromScratch;
   /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
   kennisbeeld?: {
     systemen: string[];
@@ -253,6 +266,42 @@ function beforeAfterSchema() {
   };
 }
 
+function fromScratchSchema() {
+  return {
+    type: "object",
+    properties: {
+      keten: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            stap: { type: "string" },
+            capaciteit: { type: "string" },
+          },
+          required: ["stap", "capaciteit"],
+          additionalProperties: false,
+        },
+      },
+      watErVerdwijnt: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            stap: { type: "string" },
+            waaromDieErWas: { type: "string" },
+          },
+          required: ["stap", "waaromDieErWas"],
+          additionalProperties: false,
+        },
+      },
+      watErbijKomt: { type: "array", items: { type: "string" } },
+      watErvoorNodigIs: { type: "string" },
+    },
+    required: ["keten", "watErVerdwijnt", "watErbijKomt", "watErvoorNodigIs"],
+    additionalProperties: false,
+  };
+}
+
 function openQuestionsSchema() {
   return {
     type: "array",
@@ -300,6 +349,7 @@ function reportSchema(
   ownPicture: boolean,
   openQuestions: boolean,
   beforeAfter: boolean,
+  fromScratch: boolean,
 ) {
   return {
     type: "object",
@@ -320,6 +370,7 @@ function reportSchema(
       ...(team ? { watJeMensenZagen: { type: "string" } } : {}),
       ...(addedValue ? { watDitToevoegt: addedValueSchema() } : {}),
       ...(beforeAfter ? { zoZietHetEruit: beforeAfterSchema() } : {}),
+      ...(fromScratch ? { vanafNul: fromScratchSchema() } : {}),
       kennisbeeld: {
         type: "object",
         properties: {
@@ -345,6 +396,7 @@ function reportSchema(
       ...(team ? ["watJeMensenZagen"] : []),
       ...(addedValue ? ["watDitToevoegt"] : []),
       ...(beforeAfter ? ["zoZietHetEruit"] : []),
+      ...(fromScratch ? ["vanafNul"] : []),
       "kennisbeeld",
       "waarWeZoudenBeginnen",
       openQuestions ? "openVragen" : "uitzoeksuggesties",
@@ -445,6 +497,29 @@ Je schrijft ook zoZietHetEruit: hoe het werk uit hierZouIkBeginnen eruitziet als
 - watErvoorNodigIs: één of twee zinnen. Wat moet er gebeuren of vastgelegd zijn voordat deze keten zo kan lopen, eerlijk, inclusief het deel dat nu alleen in iemands hoofd zit.
 
 Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel getal dat zij niet zelf noemden. Schrijf de inrichting, niet het resultaat: beschrijf hoe het werk er dan uitziet, niet hoeveel beter of makkelijker het wordt. Verzin geen systeem en geen stap die zij niet noemden.`;
+
+// ---------------------------------------------------------------------------
+// Sectie A-bis — het kijkje vooruit. Sectie A laat dezelfde keten zien met
+// gereedschap eronder ("ongeveer evenveel stappen", en dat is bewust: die
+// kolom moet herkenbaar blijven). Daardoor kan het rapport nooit de vraag
+// stellen waarom dit werk eigenlijk zo loopt. Dit blok stelt hem wel, als
+// vraag en niet als oordeel.
+//
+// Rijdt mee op sectie A: zonder procesverhaal geen keten om opnieuw op te
+// zetten. Er is dus geen aparte poort.
+// ---------------------------------------------------------------------------
+
+const FROM_SCRATCH_PROMPT_EXTRA = `
+
+Je schrijft ook vanafNul: hoe ditzelfde werk eruit zou zien als iemand het vandaag vanaf nul zou opzetten. Dit is een kijkje vooruit, geen plan en geen oordeel over hoe zij het nu doen. Waar straks dezelfde keten met ongeveer evenveel stappen is, mag dit een ANDERE keten zijn.
+
+- keten: de heringerichte stappen, MINDER dan er in nu staan. Als het er evenveel zijn heb je hetzelfde opgeschreven als straks en dan is dit blok waardeloos. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
+- Denk bij het herinrichten aan twee dingen, en aan niet meer dan deze twee. Ten eerste: het meeste in een proces is geen werk maar vervoer, dus overtypen, doorsturen, ergens achteraan zitten en informatie bij elkaar zoeken zijn geen stap meer. Ten tweede: de mens maakt niet meer maar bepaalt de norm en beoordeelt de uitkomst. Verzin geen derde beweging.
+- watErVerdwijnt: twee tot vier stappen uit nu die er niet meer zijn. Per stap: stap = welke stap verdwijnt, in hun eigen woorden, en waaromDieErWas = waarom die stap er ooit was. Dat tweede is verplicht en het is het belangrijkste van dit hele blok. Bijvoorbeeld: die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd. Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
+- watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
+- watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan bij straks. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
+
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet.`;
 
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
@@ -708,6 +783,75 @@ export function guardAddedValue(
  * Guard op sectie A. Alles of niets: een half voor-en-na is verwarrender dan
  * geen voor-en-na, dus bij één fout valt de hele sectie weg.
  */
+/**
+ * Houdt sectie A-bis tegen het licht. Strenger dan de andere guards, en met
+ * opzet alles-of-niets: waar bij `grenzen` losse items eruit filteren prima
+ * werkt, is een keten met een gat erin onleesbaar. Beter geen kijkje vooruit
+ * dan een halve.
+ *
+ * De hardste eis is de telling: minder stappen dan in `nu`. Zonder die eis
+ * schrijft het model gewoon `straks` nog een keer op, en dan staat er twee
+ * keer hetzelfde in het rapport.
+ */
+export function guardFromScratch(
+  section: ReportFromScratch | undefined,
+  beforeAfter: ReportBeforeAfter | undefined,
+  answers: AnswerMap,
+): ReportFromScratch | undefined {
+  if (!section) return undefined;
+  const drop = (reason: string) => {
+    console.warn(`SCAN_FROM_SCRATCH_DROPPED: ${reason}`);
+    return undefined;
+  };
+
+  // Zonder sectie A is er geen keten om naast te leggen, en dan kan de
+  // stappentelling niet gecontroleerd worden. Sectie A viel weg = deze ook.
+  if (!beforeAfter) return drop("sectie A ontbreekt");
+  if (!section.keten?.length) return drop("lege keten");
+  if (section.keten.length >= beforeAfter.nu.length) {
+    return drop(
+      `keten telt ${section.keten.length} stappen tegen ${beforeAfter.nu.length} in nu`,
+    );
+  }
+  if (!section.watErVerdwijnt?.length) return drop("niets verdwijnt");
+  if (!section.watErbijKomt?.length) return drop("er komt niets bij");
+  if (!section.watErvoorNodigIs?.trim()) return drop("watErvoorNodigIs is leeg");
+
+  for (const step of section.keten) {
+    if (!CAPABILITY_IDS.has(step.capaciteit)) {
+      return drop(`onbekende capaciteit "${step.capaciteit}"`);
+    }
+  }
+
+  // Alles in dit blok is een uitspraak van ons over hoe het werk kán lopen,
+  // dus nergens merknamen en nergens een getal dat zij niet gaven. Enige
+  // uitzondering: de stap die verdwijnt is hun eigen stap, in hun woorden.
+  const haystack = answersHaystack(answers);
+  const prose: [string, boolean][] = [
+    [section.watErvoorNodigIs, false],
+    ...section.keten.map((s): [string, boolean] => [s.stap, false]),
+    ...section.watErbijKomt.map((s): [string, boolean] => [s, false]),
+    ...section.watErVerdwijnt.flatMap((s): [string, boolean][] => [
+      [s.stap, true],
+      [s.waaromDieErWas, false],
+    ]),
+  ];
+  for (const [text, allowBrands] of prose) {
+    const word = tripsForbidden(text ?? "", allowBrands);
+    if (word) return drop(`verboden woord "${word}"`);
+    const number = inventsNumber(text ?? "", haystack);
+    if (number) return drop(`verzonnen getal ${number}`);
+  }
+
+  // Een verdwenen stap zonder uitleg waarom hij er ooit was, leest als een
+  // verwijt. Dat is precies waar dit blok niet over gaat.
+  for (const gone of section.watErVerdwijnt) {
+    if (!gone.waaromDieErWas?.trim()) return drop("stap verdwijnt zonder reden");
+  }
+
+  return section;
+}
+
 export function guardBeforeAfter(
   section: ReportBeforeAfter | undefined,
   answers: AnswerMap,
@@ -903,6 +1047,9 @@ async function generateReportPayloadOnce(input: {
   const wantsOwnPicture = ownPictureApplies(input.answers);
   const wantsOpenQuestions = openQuestionsApply(input.answers);
   const wantsBeforeAfter = beforeAfterApplies(input.answers);
+  // Sectie A-bis rijdt mee op sectie A: zonder procesverhaal is er geen keten
+  // om vanaf nul opnieuw op te zetten.
+  const wantsFromScratch = wantsBeforeAfter;
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -939,6 +1086,7 @@ async function generateReportPayloadOnce(input: {
     (wantsOwnPicture ? OWN_PICTURE_PROMPT_EXTRA : "") +
     (wantsOpenQuestions ? OPEN_QUESTIONS_PROMPT_EXTRA : "") +
     (wantsBeforeAfter ? BEFORE_AFTER_PROMPT_EXTRA : "") +
+    (wantsFromScratch ? FROM_SCRATCH_PROMPT_EXTRA : "") +
     (wantsAddedValue ? ADDED_VALUE_PROMPT_EXTRA : "") +
     (wantsCapabilities ? `\n\n${capabilitiesPromptBlock()}` : "");
 
@@ -965,6 +1113,7 @@ async function generateReportPayloadOnce(input: {
           wantsOwnPicture,
           wantsOpenQuestions,
           wantsBeforeAfter,
+          wantsFromScratch,
         ),
       },
     },
@@ -996,15 +1145,17 @@ async function generateReportPayloadOnce(input: {
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
+  const vanafNul = guardFromScratch(parsed.vanafNul, zoZietHetEruit, input.answers);
   const watErVerandert = guardWatErVerandert(parsed.watErVerandert, input.answers);
   return {
-    version: 2,
+    version: 3,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
     watErVerandert,
     watDitToevoegt,
     zoZietHetEruit,
+    vanafNul,
     jouwEigenBeeld,
     openVragen,
     // De oude huiswerklijst wordt niet meer gevraagd zodra openVragen aan
