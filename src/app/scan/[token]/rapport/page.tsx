@@ -63,8 +63,6 @@ const staticCopy = {
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
     werkwijzeBody:
       "Vastleggen, inrichten, goedkeuren, beoordelen, groeien: die volgorde zit in het platform ingebouwd en geen stap is optioneel. Daarom verwijst elk antwoord naar zijn bron.",
-    rechtenBody:
-      "Per feit ligt vast wie het mag zien. Die regel zit in het zoeken zelf, en geldt ook wanneer iemand de kennis vanuit zijn eigen AI-tool opvraagt.",
     nergensStaat: "Wat nergens staat",
     groeien: "Waar je in kunt groeien",
     gegevens: "Jullie gegevens, en verder praten",
@@ -126,8 +124,6 @@ const staticCopy = {
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
     werkwijzeBody:
       "Capture, set up, approve, review, grow: that order is built into the platform and no step is optional. That is why every answer points to its source.",
-    rechtenBody:
-      "That rule lives inside the search itself, and also applies when someone queries the knowledge from their own AI tool.",
     nergensStaat: "What is written down nowhere",
     uitzoeken: "What you could look into next",
     groeien: "Where you can grow",
@@ -398,13 +394,9 @@ export default async function ScanReportPage({
           <div className="mt-5">
             <Prose text={av.watErvoorInDePlaatsKomt} />
           </div>
-          {/* Het rechtenblok was een kop, vier chips en een alinea: een
-              productuitleg midden in een sectie die over hun werk gaat.
-              Teruggebracht tot één zin, en het kopje boven "wat daarvoor
-              nodig is" is eraf (Jorus 24-08, inkorten). */}
-          <div className="mt-4">
-            <Prose text={c.rechtenBody} />
-          </div>
+          {/* Het rechtenblok (kop, vier chips, alinea) is er 24-08 uit: eerst
+              teruggebracht tot één zin, daarna helemaal, want die zin zei
+              hetzelfde als watErvoorNodigIs hieronder. */}
           <div className="mt-4">
             <Prose text={av.watErvoorNodigIs} />
           </div>
