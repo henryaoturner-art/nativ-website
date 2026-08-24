@@ -500,15 +500,24 @@ Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel 
 // zetten. Er is dus geen aparte poort.
 // ---------------------------------------------------------------------------
 
-const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou opzetten. Dit is een kijkje vooruit, geen plan en geen oordeel over hoe zij het nu doen. Elders in het rapport staat diezelfde keten met gereedschap eronder en ongeveer evenveel stappen; dit blok mag juist een ANDERE keten zijn.
+const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou opzetten.
 
-- keten: de heringerichte stappen, HOOGSTENS VIER en altijd minder dan het aantal stappen in hun eigen procesverhaal. Zijn het er evenveel als in hun huidige proces, dan heb je niets nieuws opgeschreven en is dit blok waardeloos. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
-- Denk bij het herinrichten aan twee dingen, en aan niet meer dan deze twee. Ten eerste: het meeste in een proces is geen werk maar vervoer, dus overtypen, doorsturen, ergens achteraan zitten en informatie bij elkaar zoeken zijn geen stap meer. Ten tweede: de mens maakt niet meer maar bepaalt de norm en beoordeelt de uitkomst. Verzin geen derde beweging.
-- watErVerdwijnt: twee tot vier regels, één per stap uit hun huidige proces die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht en het is het belangrijkste van dit hele blok; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
+LEES DIT EERST, WANT HIER GAAT HET MIS. Elders in het rapport staat ditzelfde werk al één keer uitgetekend: dezelfde keten als nu, met gereedschap eronder. Bronnen worden ontsloten, gesprekken genotuleerd, documenten geüpload, en het concept staat klaar op het moment dat iemand begint. DIT BLOK BEGINT DAAR. Je schrijft niet nog een keer op welke stap gereedschap krijgt, en je schrijft al helemaal niet dezelfde keten met een paar stappen eruit. Dat is de meest gemaakte fout en het maakt dit blok waardeloos.
+
+De vraag hier is een andere: wat is het resultaat van dit werk eigenlijk, wanneer ontstaat het, en wat beslist de mens? Neem aan dat het ontsluiten van bronnen al geregeld is en bouw daarbovenop.
+
+Er zijn precies drie richtingen waarin het antwoord mag liggen. Kies wat bij hun werk past, meestal twee van de drie. Verzin geen vierde.
+1. De EENHEID verandert. Nu is de uitkomst een stuk dat je per keer maakt: een document, een overzicht, een verstuurd bericht. Straks is het een stand die altijd actueel is, en het stuk is daar een uitdraai van op het moment dat je hem nodig hebt.
+2. Het MOMENT verandert. Nu begint het werk als iemand eraan begint, en dat is meestal precies wanneer het druk is. Straks loopt het door op een vast ritme en is er geen startmoment meer.
+3. Wat er OPGELEVERD wordt verandert. Nu is de uitkomst één antwoord. Straks staat er ook bij wat nog ontbreekt of onzeker is, met de bron erbij, zodat de lezer weet waar hij naar kijkt.
+
+- keten: hoogstens vier stappen die samen die nieuwe manier van werken beschrijven. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan, met de capaciteit menselijke-poort, maar hij verandert van karakter: van maker naar iemand die de norm stelt en oordeelt.
+- VERBODEN in keten: elke stap die over inname gaat. Dus niets over notuleren, uploaden, koppelen of bronnen doorzoekbaar maken. Dat staat al in het andere blok en het herhalen ervan is precies de fout hierboven.
+- watErVerdwijnt: twee tot vier regels, één per stap uit hun huidige proces die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen. Let op: hier hoort ook het soort stap dat verdwijnt omdat er geen startmoment meer is, of omdat er niets meer per keer wordt opgebouwd.
 - watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
-- watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan bij straks. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
+- watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan elders in het rapport. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
 
-Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij, net als de rest van het rapport; schrijf nooit over hem in de derde persoon (niet "de eigenaar beoordeelt", wel "jij beoordeelt"). Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij; schrijf nooit over hem in de derde persoon. Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
 
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
@@ -790,6 +799,22 @@ export function guardAddedValue(
 /** Onder deze lengte staat er onmogelijk én de stap én waarom die er was. */
 const FROM_SCRATCH_MIN_GONE_CHARS = 60;
 
+/** Groep 1 van de capaciteitenkaart: hoe kennis binnenkomt. Dat is het
+ * leidingwerk en het staat al in de straks-kolom. Herhaalt het kijkje vooruit
+ * die stappen, dan is het geen andere manier van werken maar dezelfde lijst
+ * met een paar regels eruit. Precies wat er bij de eerste echte generatie
+ * gebeurde (Founder Bridge, 24 aug): kolom 3 was kolom 2 min drie stappen. */
+const INNAME_CAPABILITIES = new Set([
+  "vergaderinname",
+  "gesprekstypes",
+  "interview",
+  "gesprekken-extern",
+  "interne-studie",
+  "documenten-inname",
+  "email-koppeling",
+  "kanaaldata",
+]);
+
 export function guardFromScratch(
   section: ReportFromScratch | undefined,
   beforeAfter: ReportBeforeAfter | undefined,
@@ -818,6 +843,18 @@ export function guardFromScratch(
     if (!CAPABILITY_IDS.has(step.capaciteit)) {
       return drop(`onbekende capaciteit "${step.capaciteit}"`);
     }
+    if (INNAME_CAPABILITIES.has(step.capaciteit)) {
+      return drop(`inname-stap "${step.capaciteit}" hoort in de straks-kolom`);
+    }
+  }
+
+  // De hardste eis: er moet écht iets anders in staan. Zonder minstens één
+  // capaciteit die de straks-kolom niet gebruikt, leest dit blok als een
+  // samenvatting van het vorige en verwarrt het de lezer meer dan het hem
+  // brengt. Dan liever geen kijkje vooruit.
+  const straksIds = new Set(beforeAfter.straks.map((step) => step.capaciteit));
+  if (section.keten.every((step) => straksIds.has(step.capaciteit))) {
+    return drop("geen enkele capaciteit die de straks-kolom niet al gebruikt");
   }
 
   // Alles in dit blok is een uitspraak van ons over hoe het werk kán lopen,

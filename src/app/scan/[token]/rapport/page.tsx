@@ -59,7 +59,7 @@ const staticCopy = {
     zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
     vanafNul: "En als je dit werk vanaf nul opnieuw zou opzetten",
     vanafNulIntro:
-      "AI kan het werk overnemen zoals het nu loopt. Maar het maakt ook iets anders mogelijk: het werk zelf anders doen. Dit stuk is een kijkje vooruit. Niet wat je maandag doet, maar hoe dit werk eruit zou zien als je het vandaag vanaf nul zou opzetten.",
+      "Hierboven staat hetzelfde werk als nu, alleen ingericht. Dit is iets anders. AI kan werk overnemen zoals het loopt, maar het maakt ook mogelijk om het werk zelf anders te organiseren. Dit stuk is een kijkje vooruit: niet wat je maandag doet, maar hoe dit werk eruit zou zien als je het vandaag vanaf nul zou opzetten.",
     vanafNulKeten: "Zo zou het kunnen lopen",
     vanafNulWeg: "Wat er verdwijnt, en waarom die stap er ooit was",
     vanafNulBij: "Wat erbij komt",
@@ -143,7 +143,7 @@ const staticCopy = {
     zoZietHetEruitStraks: "As it looks once this is set up",
     vanafNul: "And if you set this work up from scratch",
     vanafNulIntro:
-      "AI can take over the work as it runs today. But it also makes something else possible: doing the work differently. This part is a look ahead. Not what you do on Monday, but what this work would look like if you set it up from scratch today.",
+      "Above is the same work as today, only set up properly. This is something else. AI can take over work as it runs, but it also makes it possible to organise the work itself differently. This part is a look ahead: not what you do on Monday, but what this work would look like if you set it up from scratch today.",
     vanafNulKeten: "How it could run",
     vanafNulWeg: "What disappears, and why that step was there",
     vanafNulBij: "What is added",
