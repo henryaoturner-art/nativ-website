@@ -408,11 +408,10 @@ export default async function ScanReportPage({
               <ul className="mt-3 space-y-2 list-disc pl-4">
                 {payload.vanafNul.watErVerdwijnt.map((item) => (
                   <li
-                    key={item.stap}
+                    key={item}
                     className="text-grey/85 font-light leading-relaxed"
                   >
-                    <span className="text-grey">{item.stap}</span>{" "}
-                    {item.waaromDieErWas}
+                    {item}
                   </li>
                 ))}
               </ul>

@@ -85,7 +85,12 @@ export interface ReportBeforeAfter {
  * zou opzetten. Minder stappen, en per verdwenen stap waarom die er ooit was. */
 export interface ReportFromScratch {
   keten: { stap: string; capaciteit: string }[];
-  watErVerdwijnt: { stap: string; waaromDieErWas: string }[];
+  /** Eén regel per verdwenen stap: welke stap weg is, en waarom die er ooit
+   * was. Bewust platte tekst en geen object: het gecombineerde JSON-schema
+   * van dit rapport zit tegen de grammatica-limiet van de API aan, en één
+   * genest objecttype minder is precies wat het weer laat passen. De guard
+   * bewaakt de tweeledigheid met een minimumlengte. */
+  watErVerdwijnt: string[];
   watErbijKomt: string[];
   watErvoorNodigIs: string;
 }
@@ -282,18 +287,7 @@ function fromScratchSchema() {
           additionalProperties: false,
         },
       },
-      watErVerdwijnt: {
-        type: "array",
-        items: {
-          type: "object",
-          properties: {
-            stap: { type: "string" },
-            waaromDieErWas: { type: "string" },
-          },
-          required: ["stap", "waaromDieErWas"],
-          additionalProperties: false,
-        },
-      },
+      watErVerdwijnt: { type: "array", items: { type: "string" } },
       watErbijKomt: { type: "array", items: { type: "string" } },
       watErvoorNodigIs: { type: "string" },
     },
@@ -515,7 +509,7 @@ Je schrijft ook vanafNul: hoe ditzelfde werk eruit zou zien als iemand het vanda
 
 - keten: de heringerichte stappen, MINDER dan er in nu staan. Als het er evenveel zijn heb je hetzelfde opgeschreven als straks en dan is dit blok waardeloos. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan; schrijf hem dan zo op, met de capaciteit menselijke-poort.
 - Denk bij het herinrichten aan twee dingen, en aan niet meer dan deze twee. Ten eerste: het meeste in een proces is geen werk maar vervoer, dus overtypen, doorsturen, ergens achteraan zitten en informatie bij elkaar zoeken zijn geen stap meer. Ten tweede: de mens maakt niet meer maar bepaalt de norm en beoordeelt de uitkomst. Verzin geen derde beweging.
-- watErVerdwijnt: twee tot vier stappen uit nu die er niet meer zijn. Per stap: stap = welke stap verdwijnt, in hun eigen woorden, en waaromDieErWas = waarom die stap er ooit was. Dat tweede is verplicht en het is het belangrijkste van dit hele blok. Bijvoorbeeld: die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd. Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
+- watErVerdwijnt: twee tot vier regels, één per stap uit nu die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht en het is het belangrijkste van dit hele blok; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen.
 - watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
 - watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan bij straks. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
 
@@ -793,6 +787,9 @@ export function guardAddedValue(
  * schrijft het model gewoon `straks` nog een keer op, en dan staat er twee
  * keer hetzelfde in het rapport.
  */
+/** Onder deze lengte staat er onmogelijk én de stap én waarom die er was. */
+const FROM_SCRATCH_MIN_GONE_CHARS = 60;
+
 export function guardFromScratch(
   section: ReportFromScratch | undefined,
   beforeAfter: ReportBeforeAfter | undefined,
@@ -831,10 +828,7 @@ export function guardFromScratch(
     [section.watErvoorNodigIs, false],
     ...section.keten.map((s): [string, boolean] => [s.stap, false]),
     ...section.watErbijKomt.map((s): [string, boolean] => [s, false]),
-    ...section.watErVerdwijnt.flatMap((s): [string, boolean][] => [
-      [s.stap, true],
-      [s.waaromDieErWas, false],
-    ]),
+    ...section.watErVerdwijnt.map((s): [string, boolean] => [s, true]),
   ];
   for (const [text, allowBrands] of prose) {
     const word = tripsForbidden(text ?? "", allowBrands);
@@ -844,9 +838,13 @@ export function guardFromScratch(
   }
 
   // Een verdwenen stap zonder uitleg waarom hij er ooit was, leest als een
-  // verwijt. Dat is precies waar dit blok niet over gaat.
+  // verwijt. Dat is precies waar dit blok niet over gaat. Nu de twee delen in
+  // één string zitten is de lengte de enige harde controle die overblijft:
+  // een kale stapnaam haalt die niet.
   for (const gone of section.watErVerdwijnt) {
-    if (!gone.waaromDieErWas?.trim()) return drop("stap verdwijnt zonder reden");
+    if ((gone ?? "").trim().length < FROM_SCRATCH_MIN_GONE_CHARS) {
+      return drop("verdwenen stap zonder uitleg waarom die er ooit was");
+    }
   }
 
   return section;
