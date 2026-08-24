@@ -62,7 +62,7 @@ const staticCopy = {
     werkwijzeTitel: "Dit is onze vaste werkwijze, geen losse handigheid.",
     werkwijzeBody:
       "Vastleggen, inrichten, goedkeuren, beoordelen, groeien: die volgorde zit in het platform ingebouwd en geen stap is optioneel. Daarom verwijst elk antwoord naar zijn bron.",
-    nergensStaat: "Wat nergens staat",
+    nergensStaat: "Wat nergens is vastgelegd",
     groeien: "Waar je in kunt groeien",
     gegevens: "Jullie gegevens, en verder praten",
     gegevensPunten: [
@@ -122,7 +122,7 @@ const staticCopy = {
     werkwijzeTitel: "This is our standard way of working, not a loose trick.",
     werkwijzeBody:
       "Capture, set up, approve, review, grow: that order is built into the platform and no step is optional. That is why every answer points to its source.",
-    nergensStaat: "What is written down nowhere",
+    nergensStaat: "What is not recorded anywhere",
     uitzoeken: "What you could look into next",
     groeien: "Where you can grow",
     gegevens: "Your data, and talking further",
