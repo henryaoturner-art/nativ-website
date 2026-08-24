@@ -52,11 +52,11 @@ const staticCopy = {
     mensenZagen: "Wat je mensen zagen en jij niet",
     toevoegt: "Wat dit toevoegt aan wat je nu al doet",
     toevoegtNodig: "Wat daarvoor nodig is",
-    zoZietHetEruit: "Zo ziet dit werk eruit als het is ingericht",
+    zoZietHetEruit: "Zo ziet dit werk eruit als je AI toevoegt",
     zoZietHetEruitIntro:
       "Dit gaat alleen over het werk hierboven, waar we zouden beginnen. Eerst de keten in één beeld, daarna jouw stappen ernaast.",
     zoZietHetEruitNu: "Zoals je het zelf vertelde",
-    zoZietHetEruitStraks: "Zoals het eruitziet als dit is ingericht",
+    zoZietHetEruitStraks: "Zoals het eruitziet als je AI toevoegt",
     vanafNul: "En zo zou je dit werk opnieuw vanaf nul kunnen ontwerpen",
     ketenCaption:
       "De keten waarop dit rapport is gebouwd. De Company Brain in het midden is de bron voor alles rechts ervan.",
@@ -113,11 +113,11 @@ const staticCopy = {
     mensenZagen: "What your people saw that you did not",
     toevoegt: "What this adds to what you already do",
     toevoegtNodig: "What that takes",
-    zoZietHetEruit: "What this work looks like once it is set up",
+    zoZietHetEruit: "What this work looks like once you add AI",
     zoZietHetEruitIntro:
       "This is only about the work above, where we would start. First the chain in one picture, then your own steps next to it.",
     zoZietHetEruitNu: "As you described it",
-    zoZietHetEruitStraks: "As it looks once this is set up",
+    zoZietHetEruitStraks: "As it looks once you add AI",
     vanafNul: "And this is how you could design this work from scratch",
     ketenCaption:
       "The chain this report is built on. The Company Brain in the middle is the source for everything to its right.",
