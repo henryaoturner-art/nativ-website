@@ -1,5 +1,5 @@
 {
-  "bankVersion": "2026-08-19-v6",
+  "bankVersion": "2026-08-24-v7",
   "companyQuestions": [
     {
       "id": "co-profile",
@@ -678,6 +678,20 @@
       "help": {
         "nl": "Bijvoorbeeld: 'Alles wacht op akkoord van de directeur', 'het blijft liggen tot iemand tijd heeft om het na te kijken', of: 'we wachten op gegevens van de klant of leverancier.' Ben jíj degene op wie gewacht wordt? Ook dat is een prima antwoord. Loopt het eigenlijk nooit vast? Zeg dat dan gewoon. Al verteld in je verhaal? Herhaal het gerust in één zin.",
         "en": "For example: 'Everything waits for the director's sign-off', 'it sits there until someone has time to check it', or: 'we're waiting on details from the customer or supplier.' Are you the one others wait for? That's a perfectly good answer too. Does it never really stall? Just say so. Already covered this in your story? Repeat it in one line."
+      },
+      "options": null,
+      "optional": false
+    },
+    {
+      "id": "dept-wf-done",
+      "type": "text",
+      "text": {
+        "nl": "Als dit werk klaar is, wat ligt er dan precies? En wie bepaalt of het goed genoeg is?",
+        "en": "When this work is finished, what exactly is there? And who decides whether it is good enough?"
+      },
+      "help": {
+        "nl": "Noem eerst wat er ligt: een offerte, een rooster, een verstuurde mail, een bijgewerkt overzicht. En dan wie ernaar kijkt voordat het weg mag. 'Ik kijk er zelf even overheen' is een prima antwoord, en 'niemand, het gaat gewoon de deur uit' ook. Waar let diegene dan op? Dat laatste is het nuttigst om te weten.",
+        "en": "First name what is there: a quote, a schedule, a sent email, an updated overview. Then who looks at it before it can go out. 'I give it a quick check myself' is a fine answer, and so is 'nobody, it just goes out'. What does that person look for? That last bit is the most useful to know."
       },
       "options": null,
       "optional": false

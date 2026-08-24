@@ -268,7 +268,7 @@ export const CAPABILITIES: readonly ScanCapability[] = [
   // ── Groep 4 · Het benoemde werk — de vier teams ───────────────────────
   {
     id: "sales-team",
-    wat: "Voor verkoop staat een vast team van digitale collega's klaar, elk met een eigen taak. Profile Builder stelt een onderzoeksdossier samen over een contactpersoon of bedrijf, Lead Scout vindt en beoordeelt nieuwe leads, Outreach Writer schrijft een eerste bericht, Meeting Prep Producer maakt de voorbereiding voor een klantgesprek, en Proposal Builder bouwt een offertedocument. Follow-up Sentinel houdt bij welke leads opvolging nodig hebben, Pipeline Steward controleert of de pijplijn nog klopt met het bewijs, Account Grower zoekt kansen bij bestaande klanten, en Deal Debrief & Playbook Learner werkt een verkoopgesprek uit tot lessen voor het team. Update CRM en Add to CRM stellen wijzigingen in het klantenbestand voor. Een mens beoordeelt elk voorstel voordat er iets verandert of de deur uit gaat.",
+    wat: "Voor verkoop staat een vast team van workflows klaar, elk met een eigen taak. Profile Builder stelt een onderzoeksdossier samen over een contactpersoon of bedrijf, Lead Scout vindt en beoordeelt nieuwe leads, Outreach Writer schrijft een eerste bericht, Meeting Prep Producer maakt de voorbereiding voor een klantgesprek, en Proposal Builder bouwt een offertedocument. Follow-up Sentinel houdt bij welke leads opvolging nodig hebben, Pipeline Steward controleert of de pijplijn nog klopt met het bewijs, Account Grower zoekt kansen bij bestaande klanten, en Deal Debrief & Playbook Learner werkt een verkoopgesprek uit tot lessen voor het team. Update CRM en Add to CRM stellen wijzigingen in het klantenbestand voor. Een mens beoordeelt elk voorstel voordat er iets verandert of de deur uit gaat.",
     voorwaarde:
       "Een gevulde Brain en een bijgehouden klantenbestand; er moet iemand zijn die voorstellen beoordeelt.",
     status: "live",
@@ -328,7 +328,7 @@ export const NIET_MOGELIJK: readonly string[] = [
   "Medische en andere gevoelige gegevens gaan er niet in.",
   "Er wordt nooit een uitspraak gedaan over hoe lang iets duurt, wat het kost of wat het bespaart.",
   "Er wordt nooit beweerd dat ons taalmodel beter of slimmer is dan het model dat zij al gebruiken. Het verschil zit in wat eromheen staat.",
-  "Nooit: een aantal digitale collega's als getal, duizenden integraties, implementatieweken of salaris-vergelijkingen.",
+  "Nooit: een aantal workflows als getal, duizenden integraties, implementatieweken of salaris-vergelijkingen.",
 ];
 
 /** De ids die een rapport mag dragen: alles behalve niet-aan (ruling 14-08). */
@@ -343,5 +343,5 @@ export function capabilitiesPromptBlock(): string {
     .map((c) => `- ${c.id}: ${c.wat} VOORWAARDE: ${c.voorwaarde}`)
     .join("\n");
   const grenzen = NIET_MOGELIJK.map((r) => `- ${r}`).join("\n");
-  return `## De capaciteitenkaart — het ENIGE dat je over onze mogelijkheden mag beweren\n\n${kaart}\n\n## Wat NIET kan, en dus nooit ergens in doorklinkt\n\n${grenzen}\n\nBenoemd werk: draagt een zin op een team-capaciteit (sales-team, finance-team, hr-team, marketing-team, advertentiebeheer), noem dan de betrokken digitale collega's bij de naam die de kaart geeft (bijvoorbeeld Market Analyst, Outreach Writer, Ledger Sentinel). Dat is geen verkooppraatje maar precisie: het werk bestaat al en heeft een naam. Past een team-capaciteit bij het werk uit de ranglijst, gebruik hem dan ook als drager in plaats van alleen de algemene workflow-capaciteiten. Verzin nooit een naam die niet op de kaart staat.`;
+  return `## De capaciteitenkaart — het ENIGE dat je over onze mogelijkheden mag beweren\n\n${kaart}\n\n## Wat NIET kan, en dus nooit ergens in doorklinkt\n\n${grenzen}\n\nBenoemd werk: draagt een zin op een team-capaciteit (sales-team, finance-team, hr-team, marketing-team, advertentiebeheer), noem dan de betrokken workflows bij de naam die de kaart geeft (bijvoorbeeld Market Analyst, Outreach Writer, Ledger Sentinel). Dat is geen verkooppraatje maar precisie: het werk bestaat al en heeft een naam. Past een team-capaciteit bij het werk uit de ranglijst, gebruik hem dan ook als drager in plaats van alleen de algemene workflow-capaciteiten. Verzin nooit een naam die niet op de kaart staat.`;
 }

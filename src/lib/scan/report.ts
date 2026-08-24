@@ -80,6 +80,21 @@ export interface ReportBeforeAfter {
   watErvoorNodigIs: string;
 }
 
+/** Sectie A-bis: het kijkje vooruit. Niet dezelfde keten ingericht (dat is
+ * `straks`), maar hoe dit werk eruit zou zien als je het vandaag vanaf nul
+ * zou opzetten. Minder stappen, en per verdwenen stap waarom die er ooit was. */
+export interface ReportFromScratch {
+  keten: { stap: string; capaciteit: string }[];
+  /** Eén regel per verdwenen stap: welke stap weg is, en waarom die er ooit
+   * was. Bewust platte tekst en geen object: het gecombineerde JSON-schema
+   * van dit rapport zit tegen de grammatica-limiet van de API aan, en één
+   * genest objecttype minder is precies wat het weer laat passen. De guard
+   * bewaakt de tweeledigheid met een minimumlengte. */
+  watErVerdwijnt: string[];
+  watErbijKomt: string[];
+  watErvoorNodigIs: string;
+}
+
 /** Sectie F: wat dit toevoegt aan wat ze vandaag al doen. */
 export interface ReportAddedValue {
   watErNuGoedGaat: string;
@@ -89,7 +104,7 @@ export interface ReportAddedValue {
 }
 
 export interface ReportPayload {
-  version: 1 | 2;
+  version: 1 | 2 | 3;
   language: "nl" | "en";
   /** Optioneel: rapporten van vóór de teamflow zijn allemaal solo. */
   scanVorm?: "solo" | "team";
@@ -109,6 +124,9 @@ export interface ReportPayload {
   watDitToevoegt?: ReportAddedValue;
   /** Sectie A — alleen als zij een procesverhaal gaven; anders afwezig. */
   zoZietHetEruit?: ReportBeforeAfter;
+  /** Sectie A-bis — rijdt mee op sectie A; verdwijnt heel als de guard iets
+   * niet vertrouwt. Rapporten van vóór versie 3 hebben dit veld niet. */
+  vanafNul?: ReportFromScratch;
   /** Optioneel: rapporten van vóór versie 2 hebben dit blok niet. */
   kennisbeeld?: {
     systemen: string[];
@@ -249,6 +267,31 @@ function beforeAfterSchema() {
       watErvoorNodigIs: { type: "string" },
     },
     required: ["workflow", "citaat", "vraagId", "nu", "straks", "watErvoorNodigIs"],
+    additionalProperties: false,
+  };
+}
+
+function fromScratchSchema() {
+  return {
+    type: "object",
+    properties: {
+      keten: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            stap: { type: "string" },
+            capaciteit: { type: "string" },
+          },
+          required: ["stap", "capaciteit"],
+          additionalProperties: false,
+        },
+      },
+      watErVerdwijnt: { type: "array", items: { type: "string" } },
+      watErbijKomt: { type: "array", items: { type: "string" } },
+      watErvoorNodigIs: { type: "string" },
+    },
+    required: ["keten", "watErVerdwijnt", "watErbijKomt", "watErvoorNodigIs"],
     additionalProperties: false,
   };
 }
@@ -446,6 +489,36 @@ Je schrijft ook zoZietHetEruit: hoe het werk uit hierZouIkBeginnen eruitziet als
 
 Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen enkel getal dat zij niet zelf noemden. Schrijf de inrichting, niet het resultaat: beschrijf hoe het werk er dan uitziet, niet hoeveel beter of makkelijker het wordt. Verzin geen systeem en geen stap die zij niet noemden.`;
 
+// ---------------------------------------------------------------------------
+// Sectie A-bis — het kijkje vooruit. Sectie A laat dezelfde keten zien met
+// gereedschap eronder ("ongeveer evenveel stappen", en dat is bewust: die
+// kolom moet herkenbaar blijven). Daardoor kan het rapport nooit de vraag
+// stellen waarom dit werk eigenlijk zo loopt. Dit blok stelt hem wel, als
+// vraag en niet als oordeel.
+//
+// Rijdt mee op sectie A: zonder procesverhaal geen keten om opnieuw op te
+// zetten. Er is dus geen aparte poort.
+// ---------------------------------------------------------------------------
+
+const FROM_SCRATCH_SYSTEM = `Je schrijft één blok van het rapport van de AI-scan van nativ: het kijkje vooruit. Je krijgt de antwoorden van de invuller en je schrijft hoe het werk uit hun procesverhaal (dept-workflow-story) eruit zou zien als iemand het vandaag vanaf nul zou opzetten.
+
+LEES DIT EERST, WANT HIER GAAT HET MIS. Elders in het rapport staat ditzelfde werk al één keer uitgetekend: dezelfde keten als nu, met gereedschap eronder. Bronnen worden ontsloten, gesprekken genotuleerd, documenten geüpload, en het concept staat klaar op het moment dat iemand begint. DIT BLOK BEGINT DAAR. Je schrijft niet nog een keer op welke stap gereedschap krijgt, en je schrijft al helemaal niet dezelfde keten met een paar stappen eruit. Dat is de meest gemaakte fout en het maakt dit blok waardeloos.
+
+De vraag hier is een andere: wat is het resultaat van dit werk eigenlijk, wanneer ontstaat het, en wat beslist de mens? Neem aan dat het ontsluiten van bronnen al geregeld is en bouw daarbovenop.
+
+Er zijn precies drie richtingen waarin het antwoord mag liggen. Kies wat bij hun werk past, meestal twee van de drie. Verzin geen vierde.
+1. De EENHEID verandert. Nu is de uitkomst een stuk dat je per keer maakt: een document, een overzicht, een verstuurd bericht. Straks is het een stand die altijd actueel is, en het stuk is daar een uitdraai van op het moment dat je hem nodig hebt.
+2. Het MOMENT verandert. Nu begint het werk als iemand eraan begint, en dat is meestal precies wanneer het druk is. Straks loopt het door op een vast ritme en is er geen startmoment meer.
+3. Wat er OPGELEVERD wordt verandert. Nu is de uitkomst één antwoord. Straks staat er ook bij wat nog ontbreekt of onzeker is, met de bron erbij, zodat de lezer weet waar hij naar kijkt.
+
+- keten: hoogstens vier stappen die samen die nieuwe manier van werken beschrijven. Per stap: stap = één korte zin, capaciteit = het id uit de capaciteitenkaart dat die stap mogelijk maakt. De stap waar het menselijk oordeel zit blijft staan, met de capaciteit menselijke-poort, maar hij verandert van karakter: van maker naar iemand die de norm stelt en oordeelt.
+- VERBODEN in keten: elke stap die over inname gaat. Dus niets over notuleren, uploaden, koppelen of bronnen doorzoekbaar maken. Dat staat al in het andere blok en het herhalen ervan is precies de fout hierboven.
+- watErVerdwijnt: twee tot vier regels, één per stap uit hun huidige proces die er niet meer is. Elke regel bestaat uit TWEE delen in deze volgorde: eerst welke stap verdwijnt in hun eigen woorden, dan waarom die stap er ooit was. Dat tweede deel is verplicht; een regel zonder die uitleg is fout. Bijvoorbeeld: "Alles bij elkaar zoeken uit de mailbox en de mappen. Die stap bestond omdat informatie pas bruikbaar werd als een mens hem had gelezen en gesorteerd." Nooit een verwijt, nooit de suggestie dat zij het verkeerd doen; die stappen waren logisch met de middelen van toen. Let op: hier hoort ook het soort stap dat verdwijnt omdat er geen startmoment meer is, of omdat er niets meer per keer wordt opgebouwd.
+- watErbijKomt: twee tot drie dingen die er juist BIJ komen, want dit is geen werk dat verdwijnt. Vrijwel altijd deze twee: één keer opschrijven waaraan je ziet dat het resultaat goed is, en daarna elke uitkomst beoordelen. Gebruik dept-wf-done als zij die vraag beantwoordden: wie er nu bepaalt of het goed genoeg is, is straks degene die de norm opschrijft. Een blok dat alleen stappen wegstreept is niet eerlijk.
+- watErvoorNodigIs: twee of drie zinnen, eerlijker en strenger dan elders in het rapport. Wat moet er vastliggen of gebeuren voordat dit kan, inclusief het deel dat volgens hun eigen antwoorden vandaag alleen in iemands hoofd zit. Zeg er ook bij wat van hen blijft: hun oordeel gaat niet over.
+
+Harde regels: geen uren, geen besparing, geen tempo, geen termijn en geen getal dat zij niet zelf noemden. Verzin geen systeem en geen stap die zij niet noemden. Schrijf de inrichting, niet het resultaat. Beloof niet dat dit er komt en schrijf nergens dat wij dit voor ze klaarzetten; dit is hoe het werk eruit KAN zien, meer niet. Schrijf in gewone taal, korte zinnen, geen jargon, geen gedachtestreepjes, en in de taal van de antwoorden. Spreek de lezer aan met je en jij; schrijf nooit over hem in de derde persoon. Het woord "digitale collega" komt nergens voor, en gebruik geen interne namen van losse workflows; beschrijf wat er gebeurt in plaats van hoe iets bij ons heet.`;
+
 const OPEN_QUESTION_IDS = ["co-blindspot", "dept-cant-answer", "dept-answer-where"];
 
 export function openQuestionsApply(answers: AnswerMap): boolean {
@@ -563,6 +636,11 @@ Herhalingsregel (het rapport is kort, en dit is hoe het kort blijft): drie belof
 /** Vergelijkingen, beloftes en prijzen. Deze mogen nergens staan: niet in wat
  * wij schrijven en niet in wat wij van hen overnemen. */
 const FORBIDDEN_CLAIMS = [
+  // Ruling Jorus 24-08: mag sowieso nergens staan. Stond tot dan alleen als
+  // instructie in de prompt, en de capaciteitenkaart voerde het woord zelf
+  // aan het model. Nu een harde controle in plaats van een verzoek.
+  "digitale collega",
+  "digitaal collega",
   "beter",
   "sneller",
   "slimmer",
@@ -708,6 +786,107 @@ export function guardAddedValue(
  * Guard op sectie A. Alles of niets: een half voor-en-na is verwarrender dan
  * geen voor-en-na, dus bij één fout valt de hele sectie weg.
  */
+/**
+ * Houdt sectie A-bis tegen het licht. Strenger dan de andere guards, en met
+ * opzet alles-of-niets: waar bij `grenzen` losse items eruit filteren prima
+ * werkt, is een keten met een gat erin onleesbaar. Beter geen kijkje vooruit
+ * dan een halve.
+ *
+ * De hardste eis is de telling: minder stappen dan in `nu`. Zonder die eis
+ * schrijft het model gewoon `straks` nog een keer op, en dan staat er twee
+ * keer hetzelfde in het rapport.
+ */
+/** Onder deze lengte staat er onmogelijk én de stap én waarom die er was. */
+const FROM_SCRATCH_MIN_GONE_CHARS = 60;
+
+/** Groep 1 van de capaciteitenkaart: hoe kennis binnenkomt. Dat is het
+ * leidingwerk en het staat al in de straks-kolom. Herhaalt het kijkje vooruit
+ * die stappen, dan is het geen andere manier van werken maar dezelfde lijst
+ * met een paar regels eruit. Precies wat er bij de eerste echte generatie
+ * gebeurde (Founder Bridge, 24 aug): kolom 3 was kolom 2 min drie stappen. */
+const INNAME_CAPABILITIES = new Set([
+  "vergaderinname",
+  "gesprekstypes",
+  "interview",
+  "gesprekken-extern",
+  "interne-studie",
+  "documenten-inname",
+  "email-koppeling",
+  "kanaaldata",
+]);
+
+export function guardFromScratch(
+  section: ReportFromScratch | undefined,
+  beforeAfter: ReportBeforeAfter | undefined,
+  answers: AnswerMap,
+): ReportFromScratch | undefined {
+  if (!section) return undefined;
+  const drop = (reason: string) => {
+    console.warn(`SCAN_FROM_SCRATCH_DROPPED: ${reason}`);
+    return undefined;
+  };
+
+  // Zonder sectie A is er geen keten om naast te leggen, en dan kan de
+  // stappentelling niet gecontroleerd worden. Sectie A viel weg = deze ook.
+  if (!beforeAfter) return drop("sectie A ontbreekt");
+  if (!section.keten?.length) return drop("lege keten");
+  if (section.keten.length >= beforeAfter.nu.length) {
+    return drop(
+      `keten telt ${section.keten.length} stappen tegen ${beforeAfter.nu.length} in nu`,
+    );
+  }
+  if (!section.watErVerdwijnt?.length) return drop("niets verdwijnt");
+  if (!section.watErbijKomt?.length) return drop("er komt niets bij");
+  if (!section.watErvoorNodigIs?.trim()) return drop("watErvoorNodigIs is leeg");
+
+  for (const step of section.keten) {
+    if (!CAPABILITY_IDS.has(step.capaciteit)) {
+      return drop(`onbekende capaciteit "${step.capaciteit}"`);
+    }
+    if (INNAME_CAPABILITIES.has(step.capaciteit)) {
+      return drop(`inname-stap "${step.capaciteit}" hoort in de straks-kolom`);
+    }
+  }
+
+  // De hardste eis: er moet écht iets anders in staan. Zonder minstens één
+  // capaciteit die de straks-kolom niet gebruikt, leest dit blok als een
+  // samenvatting van het vorige en verwarrt het de lezer meer dan het hem
+  // brengt. Dan liever geen kijkje vooruit.
+  const straksIds = new Set(beforeAfter.straks.map((step) => step.capaciteit));
+  if (section.keten.every((step) => straksIds.has(step.capaciteit))) {
+    return drop("geen enkele capaciteit die de straks-kolom niet al gebruikt");
+  }
+
+  // Alles in dit blok is een uitspraak van ons over hoe het werk kán lopen,
+  // dus nergens merknamen en nergens een getal dat zij niet gaven. Enige
+  // uitzondering: de stap die verdwijnt is hun eigen stap, in hun woorden.
+  const haystack = answersHaystack(answers);
+  const prose: [string, boolean][] = [
+    [section.watErvoorNodigIs, false],
+    ...section.keten.map((s): [string, boolean] => [s.stap, false]),
+    ...section.watErbijKomt.map((s): [string, boolean] => [s, false]),
+    ...section.watErVerdwijnt.map((s): [string, boolean] => [s, true]),
+  ];
+  for (const [text, allowBrands] of prose) {
+    const word = tripsForbidden(text ?? "", allowBrands);
+    if (word) return drop(`verboden woord "${word}"`);
+    const number = inventsNumber(text ?? "", haystack);
+    if (number) return drop(`verzonnen getal ${number}`);
+  }
+
+  // Een verdwenen stap zonder uitleg waarom hij er ooit was, leest als een
+  // verwijt. Dat is precies waar dit blok niet over gaat. Nu de twee delen in
+  // één string zitten is de lengte de enige harde controle die overblijft:
+  // een kale stapnaam haalt die niet.
+  for (const gone of section.watErVerdwijnt) {
+    if ((gone ?? "").trim().length < FROM_SCRATCH_MIN_GONE_CHARS) {
+      return drop("verdwenen stap zonder uitleg waarom die er ooit was");
+    }
+  }
+
+  return section;
+}
+
 export function guardBeforeAfter(
   section: ReportBeforeAfter | undefined,
   answers: AnswerMap,
@@ -857,6 +1036,62 @@ function isTransientApiError(err: unknown): boolean {
  * past ruim binnen de maxDuration van 300s van de aanroepende routes. */
 const RETRY_DELAYS_MS = [10_000, 30_000];
 
+/**
+ * Sectie A-bis draait in een EIGEN modelaanroep, niet mee in het hoofdschema.
+ * Reden is hard: het gecombineerde JSON-schema van het rapport zat al tegen de
+ * grammatica-limiet van de API aan, en met dit blok erbij weigerde elke
+ * generatie met "compiled grammar is too large". Losse call = klein schema,
+ * en meteen een tweede voordeel: als dit blok faalt valt niet het hele
+ * rapport om.
+ *
+ * Draait gelijktijdig met de hoofdaanroep, dus het kost geen wachttijd. De
+ * stappentelling tegen de nu-kolom gebeurt daarna alsnog in de guard.
+ */
+async function generateFromScratch(
+  client: Anthropic,
+  system: string,
+  userContent: string,
+): Promise<ReportFromScratch | undefined> {
+  try {
+    const stream = client.beta.messages.stream({
+      model: "claude-fable-5",
+      max_tokens: 16000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      system,
+      output_config: {
+        effort: "high",
+        format: { type: "json_schema", schema: fromScratchSchema() },
+      },
+      messages: [{ role: "user", content: userContent }],
+    } as never);
+    const response = await stream.finalMessage();
+    console.log(
+      `SCAN_FROM_SCRATCH_USAGE: model=${response.model} input=${response.usage.input_tokens} output=${response.usage.output_tokens}`,
+    );
+    if (response.stop_reason === "refusal") {
+      console.warn("SCAN_FROM_SCRATCH_FAILED: geweigerd door het model");
+      return undefined;
+    }
+    const text = (
+      response.content.find((block) => block.type === "text") as
+        | { text: string }
+        | undefined
+    )?.text;
+    if (!text) {
+      console.warn("SCAN_FROM_SCRATCH_FAILED: geen tekst in respons");
+      return undefined;
+    }
+    return JSON.parse(text) as ReportFromScratch;
+  } catch (err) {
+    // Fail-soft met opzet: het rapport is af zonder dit blok, en een kijkje
+    // vooruit is niet het waard om de rest van het rapport voor te laten
+    // hangen. De regel hieronder is het spoor in de Vercel-logs.
+    console.warn(`SCAN_FROM_SCRATCH_FAILED: ${err}`);
+    return undefined;
+  }
+}
+
 export async function generateReportPayload(input: {
   companyName: string;
   contactName: string;
@@ -903,6 +1138,9 @@ async function generateReportPayloadOnce(input: {
   const wantsOwnPicture = ownPictureApplies(input.answers);
   const wantsOpenQuestions = openQuestionsApply(input.answers);
   const wantsBeforeAfter = beforeAfterApplies(input.answers);
+  // Sectie A-bis rijdt mee op sectie A: zonder procesverhaal is er geen keten
+  // om vanaf nul opnieuw op te zetten.
+  const wantsFromScratch = wantsBeforeAfter;
 
   let userContent =
     `Bedrijf: ${input.companyName}\nEigenaar van de scan: ${input.contactName}\n\n` +
@@ -949,6 +1187,20 @@ async function generateReportPayloadOnce(input: {
   // De server-side fallback vangt een weigering van de safety-classifier op
   // door hetzelfde verzoek in dezelfde call op het aanbevolen terugvalmodel
   // te draaien, zodat een rapport nooit leeg terugkomt.
+  // Start allebei tegelijk: het kijkje vooruit heeft alleen dezelfde
+  // antwoorden nodig, dus wachten op het hoofdrapport zou pure vertraging zijn.
+  const fromScratchPromise = wantsFromScratch
+    ? generateFromScratch(
+        client,
+        // De verbodslijst gaat letterlijk mee. De guard gooit het hele blok
+        // weg op één vergelijkend woord, en dat is te duur om aan een
+        // algemene toon-instructie over te laten (BS Toys, 24 aug: alles
+        // viel om op het woord "beter").
+        `${FROM_SCRATCH_SYSTEM}\n\nDeze woorden mogen nergens in dit blok voorkomen, ook niet verbogen: ${FORBIDDEN_CLAIMS.join(", ")}. Ook geen procenttekens en geen merknamen van andere aanbieders. Schrijf niet dat iets beter of sneller wordt; beschrijf alleen hoe het werk dan loopt.\n\n${capabilitiesPromptBlock()}`,
+        userContent,
+      )
+    : Promise.resolve(undefined);
+
   const stream = client.beta.messages.stream({
     model: "claude-fable-5",
     max_tokens: 64000,
@@ -996,15 +1248,21 @@ async function generateReportPayloadOnce(input: {
   const jouwEigenBeeld = guardOwnPicture(parsed.jouwEigenBeeld, input.answers);
   const openVragen = guardOpenQuestions(parsed.openVragen, input.answers);
   const zoZietHetEruit = guardBeforeAfter(parsed.zoZietHetEruit, input.answers);
+  const vanafNul = guardFromScratch(
+    await fromScratchPromise,
+    zoZietHetEruit,
+    input.answers,
+  );
   const watErVerandert = guardWatErVerandert(parsed.watErVerandert, input.answers);
   return {
-    version: 2,
+    version: 3,
     language: input.language,
     scanVorm: isTeam ? "team" : "solo",
     ...parsed,
     watErVerandert,
     watDitToevoegt,
     zoZietHetEruit,
+    vanafNul,
     jouwEigenBeeld,
     openVragen,
     // De oude huiswerklijst wordt niet meer gevraagd zodra openVragen aan
