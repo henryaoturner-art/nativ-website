@@ -387,5 +387,11 @@ export function capabilitiesPromptBlock(
     .map((c) => `- ${c.id}: ${c.wat} VOORWAARDE: ${c.voorwaarde}`)
     .join("\n");
   const grenzen = NIET_MOGELIJK.map((r) => `- ${r}`).join("\n");
-  return `## De capaciteitenkaart — het ENIGE dat je over onze mogelijkheden mag beweren\n\n${kaart}\n\n## Wat NIET kan, en dus nooit ergens in doorklinkt\n\n${grenzen}\n\nBenoemd werk: draagt een zin op een team-capaciteit (sales-team, finance-team, hr-team, marketing-team, advertentiebeheer), noem dan de betrokken workflows bij de naam die de kaart geeft (bijvoorbeeld Market Analyst, Outreach Writer, Ledger Sentinel). Dat is geen verkooppraatje maar precisie: het werk bestaat al en heeft een naam. Past een team-capaciteit bij het werk uit de ranglijst, gebruik hem dan ook als drager in plaats van alleen de algemene workflow-capaciteiten. Verzin nooit een naam die niet op de kaart staat.`;
+  // Het kijkje vooruit gaat over hoe het werk loopt, niet over hoe onze
+  // workflows heten. De naam-instructie hieronder is nuttig in de ranglijst
+  // ("dit bestaat al en heeft een naam") maar maakt daar een productzin van.
+  const namen = opts.vooruitblik
+    ? ""
+    : `\n\nBenoemd werk: draagt een zin op een team-capaciteit (sales-team, finance-team, hr-team, marketing-team, advertentiebeheer), noem dan de betrokken workflows bij de naam die de kaart geeft (bijvoorbeeld Market Analyst, Outreach Writer, Ledger Sentinel). Dat is geen verkooppraatje maar precisie: het werk bestaat al en heeft een naam. Past een team-capaciteit bij het werk uit de ranglijst, gebruik hem dan ook als drager in plaats van alleen de algemene workflow-capaciteiten. Verzin nooit een naam die niet op de kaart staat.`;
+  return `## De capaciteitenkaart — het ENIGE dat je over onze mogelijkheden mag beweren\n\n${kaart}\n\n## Wat NIET kan, en dus nooit ergens in doorklinkt\n\n${grenzen}${namen}`;
 }
