@@ -19,13 +19,13 @@ const translations = {
     quickTitle: "In je eentje",
     quickTime: "± 20 minuten",
     quickBody:
-      "Jij kent je bedrijf. Loop de scan zelf door en breng in kaart waar veel tijd en herhaling in zit. Je krijgt meteen een rapport met het werk waar AI voor jou het meeste oplevert.",
+      "Jij kent je bedrijf. Loop de scan zelf door en breng in kaart hoe het werk bij jullie loopt. Je krijgt meteen een rapport met de workflows die zich het best lenen voor AI, en waar je begint.",
     quickCta: "Start de scan",
 
     teamTitle: "Met je team",
     teamTime: "± 15 minuten per persoon",
     teamBody:
-      "Nodig je mensen uit, per afdeling. Zij zien het terugkerende werk dat jij niet ziet. Je krijgt het beeld van het hele bedrijf, afdeling voor afdeling.",
+      "Nodig je mensen uit, per afdeling. Zij zien het werk dat jij niet ziet. Je krijgt het beeld van het hele bedrijf, afdeling voor afdeling.",
     teamCta: "Nodig je team uit",
 
     cardsFooter:
@@ -33,7 +33,7 @@ const translations = {
 
     reportTitle: "Wat de AI-scan je oplevert",
     reportItems: [
-      "Het werk waar veel tijd en herhaling in zit, op volgorde van wat het meeste oplevert",
+      "De workflows die zich het best lenen voor AI, op volgorde van wat het meeste oplevert",
       "Per onderdeel hoe vaak het gebeurt, wat het nu kost en waarom het zich leent voor AI",
       "Eén concreet startpunt: het werk waar je het snelst resultaat ziet",
       "Een rapport dat je kunt delen met wie je wilt",
@@ -91,13 +91,13 @@ const translations = {
     quickTitle: "On your own",
     quickTime: "± 20 minutes",
     quickBody:
-      "You know your company. Run through the scan yourself and map where time and repetition pile up. You get a report right away, showing the work where AI delivers most for you.",
+      "You know your company. Run through the scan yourself and map how the work flows. You get a report right away, showing the workflows that lend themselves best to AI, and where to start.",
     quickCta: "Start the scan",
 
     teamTitle: "With your team",
     teamTime: "± 15 minutes per person",
     teamBody:
-      "Invite your people, per department. They see the recurring work you don't. You get the picture of the whole company, department by department.",
+      "Invite your people, per department. They see the work you don't. You get the picture of the whole company, department by department.",
     teamCta: "Invite your team",
 
     cardsFooter:
@@ -105,7 +105,7 @@ const translations = {
 
     reportTitle: "What the AI scan gives you",
     reportItems: [
-      "The work with the most time and repetition in it, ordered by what delivers most",
+      "The workflows that lend themselves best to AI, ordered by what delivers most",
       "Per item: how often it happens, what it costs today and why it lends itself to AI",
       "One concrete starting point: the work where you see results fastest",
       "A report you can share with whoever you like",
