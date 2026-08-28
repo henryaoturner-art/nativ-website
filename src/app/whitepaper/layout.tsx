@@ -11,9 +11,9 @@ export const metadata: Metadata = pageMeta(
 const whitepaperSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  headline: "Company brain: kennis uit de hoofden van medewerkers",
+  headline: "Company brain: bedrijfskennis bruikbaar maken voor AI",
   description:
-    "De theorie en praktijk van minimum viable context (MVC): waarom AI in organisaties niet faalt door zwakke modellen maar door gebrek aan context, en hoe tien contextblokken het merendeel van de taken van een AI-agent afdekken.",
+    "De theorie en praktijk van minimum viable context (MVC): waarom AI in organisaties niet faalt door zwakke modellen maar door gebrek aan context, en hoe elf kennisgebieden met ruim vierhonderd categorieën het merendeel van het werk van een AI-workflow afdekken.",
   datePublished: "2026-05-01",
   dateModified: SITE_UPDATED,
   inLanguage: "nl-NL",
