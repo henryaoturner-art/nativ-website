@@ -32,8 +32,6 @@ const translations = {
       "Allebei gratis. Allebei eindigen ze op een rapport dat je kunt delen. Begin gerust in je eentje. Je kunt je team er later altijd bij halen.",
 
     callTitle: "Liever eerst even bellen?",
-    callBody:
-      "Dat kan ook. In een kwartier kijken we samen waar AI bij jou het meeste zou schelen, en of de scan iets voor je is.",
     callCta: "Plan een gesprek",
 
     reportTitle: "Wat de AI-scan je oplevert",
@@ -109,8 +107,6 @@ const translations = {
       "Both are free. Both end in a report you can share. Feel free to start on your own. You can always bring your team in later.",
 
     callTitle: "Rather talk first?",
-    callBody:
-      "That works too. In fifteen minutes we look at where AI would save you the most, and whether the scan is a fit for you.",
     callCta: "Plan a call",
 
     reportTitle: "What the AI scan gives you",
@@ -235,9 +231,6 @@ export default function ScanPage() {
           <FadeIn delay={550}>
             <div className="mt-8 max-w-[640px] mx-auto rounded-xl border border-sage-light bg-cream px-6 py-5 text-center">
               <p className="font-serif text-xl text-grey">{c.callTitle}</p>
-              <p className="mt-2 text-base font-light text-grey/75 leading-relaxed">
-                {c.callBody}
-              </p>
               <Link
                 href="/contact"
                 className="mt-4 inline-block border border-sage text-sage px-6 py-2.5 rounded-lg hover:bg-sage hover:text-white transition-colors font-medium"
