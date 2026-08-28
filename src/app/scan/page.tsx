@@ -33,7 +33,7 @@ const translations = {
 
     callTitle: "Liever eerst even bellen?",
     callBody:
-      "Dat kan ook. In een kwartier hoor je hoe andere bedrijven met AI beginnen, en kijken we samen of de scan iets voor je is.",
+      "Dat kan ook. In een kwartier kijken we samen waar AI bij jou het meeste zou schelen, en of de scan iets voor je is.",
     callCta: "Plan een gesprek",
 
     reportTitle: "Wat de AI-scan je oplevert",
@@ -110,7 +110,7 @@ const translations = {
 
     callTitle: "Rather talk first?",
     callBody:
-      "That works too. In fifteen minutes you hear how other companies get started with AI, and we look at whether the scan is a fit for you.",
+      "That works too. In fifteen minutes we look at where AI would save you the most, and whether the scan is a fit for you.",
     callCta: "Plan a call",
 
     reportTitle: "What the AI scan gives you",
