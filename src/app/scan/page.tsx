@@ -31,6 +31,11 @@ const translations = {
     cardsFooter:
       "Allebei gratis. Allebei eindigen ze op een rapport dat je kunt delen. Begin gerust in je eentje. Je kunt je team er later altijd bij halen.",
 
+    callTitle: "Liever eerst even bellen?",
+    callBody:
+      "Dat kan ook. In een kwartier hoor je hoe andere bedrijven met AI beginnen, en kijken we samen of de scan iets voor je is.",
+    callCta: "Plan een gesprek",
+
     reportTitle: "Wat de AI-scan je oplevert",
     reportItems: [
       "De workflows die zich het best lenen voor AI, op volgorde van wat het meeste oplevert",
@@ -102,6 +107,11 @@ const translations = {
 
     cardsFooter:
       "Both are free. Both end in a report you can share. Feel free to start on your own. You can always bring your team in later.",
+
+    callTitle: "Rather talk first?",
+    callBody:
+      "That works too. In fifteen minutes you hear how other companies get started with AI, and we look at whether the scan is a fit for you.",
+    callCta: "Plan a call",
 
     reportTitle: "What the AI scan gives you",
     reportItems: [
@@ -220,6 +230,21 @@ export default function ScanPage() {
             <p className="mt-6 text-center text-sm text-grey/60 font-light leading-relaxed max-w-[640px] mx-auto">
               {c.cardsFooter}
             </p>
+          </FadeIn>
+
+          <FadeIn delay={550}>
+            <div className="mt-8 max-w-[640px] mx-auto rounded-xl border border-sage-light bg-cream px-6 py-5 text-center">
+              <p className="font-serif text-xl text-grey">{c.callTitle}</p>
+              <p className="mt-2 text-base font-light text-grey/75 leading-relaxed">
+                {c.callBody}
+              </p>
+              <Link
+                href="/contact"
+                className="mt-4 inline-block border border-sage text-sage px-6 py-2.5 rounded-lg hover:bg-sage hover:text-white transition-colors font-medium"
+              >
+                {c.callCta} →
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </section>
