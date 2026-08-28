@@ -6,6 +6,8 @@ import path from "path";
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 const NOTIFY_EMAIL = process.env.LEAD_NOTIFY_EMAIL || "jorus@gonativ.nl";
+// The From domain (gonativ.eu) has no MX record, so a reply there is undeliverable.
+const REPLY_TO_EMAIL = process.env.WHITEPAPER_REPLY_TO_EMAIL || "jorus@gonativ.nl";
 const WHITEPAPER_AUDIENCE_ID = "b2df0faf-195b-4bdf-aa9e-75d78e3ff4b5";
 const GOOGLE_SHEET_WEBHOOK = process.env.GOOGLE_SHEET_WEBHOOK_URL || "";
 
@@ -112,6 +114,7 @@ export async function POST(req: NextRequest) {
       const emailPayload: Parameters<typeof resend.emails.send>[0] = {
         from: `nativ <${FROM_EMAIL}>`,
         to: [lead.email],
+        replyTo: REPLY_TO_EMAIL,
         subject: language === 'en' 
           ? "Your nativ whitepaper: Company brain"
           : "Je nativ whitepaper: Company brain",
