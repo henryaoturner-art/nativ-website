@@ -9,15 +9,15 @@ const translations = {
     heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
-      "Knowledge from the minds of employees: minimum viable context (MVC™). Theory and practice.",
+      "Making company knowledge usable for AI: minimum viable context (MVC™). Theory and practice.",
 
     // What's inside
     insideTitle: "What's inside",
     inside1: "Why 80% of AI projects fail (and it's not the model)",
     inside2: "The scientific basis: from tacit knowledge to context engineering",
-    inside3: "The MVC™ Framework: 10 context blocks that cover 80%+ of AI agent tasks",
-    inside4: "The Ring Model: organizing context for delivery",
-    inside5: "Implementation approach: from scan to deployment",
+    inside3: "The MVC™ framework: eleven knowledge areas with over four hundred categories",
+    inside4: "Governance: every fact with an owner, a shelf life, and access rules",
+    inside5: "From company brain to AI workflows, and how you start",
     inside6: "Full references and research sources",
 
     // Gate / CTA
@@ -41,14 +41,14 @@ const translations = {
     heroTitle: "Company brain",
     heroTitle2: "",
     heroSub:
-      "Kennis uit de hoofden van medewerkers: minimum viable context (MVC™). De theorie en praktijk.",
+      "Bedrijfskennis bruikbaar maken voor AI: minimum viable context (MVC™). De theorie en praktijk.",
 
     insideTitle: "Wat erin staat",
     inside1: "Waarom 80% van AI-projecten faalt (en het ligt niet aan het model)",
     inside2: "De wetenschappelijke basis: van tacit knowledge tot context engineering",
-    inside3: "Het MVC™ Framework: 10 contextblokken die 80%+ van AI-agenttaken afdekken",
-    inside4: "Het ringmodel: context organiseren voor levering",
-    inside5: "Implementatie-aanpak: van scan tot deployment",
+    inside3: "Het MVC™-framework: elf kennisgebieden met ruim vierhonderd categorieën",
+    inside4: "Governance: elk feit met een eigenaar, een houdbaarheidsdatum en toegangsregels",
+    inside5: "Van company brain naar AI-workflows, en hoe je begint",
     inside6: "Volledige referenties en onderzoeksbronnen",
 
     gateTitle: "Download het complete whitepaper",
@@ -159,14 +159,14 @@ export default function WhitepaperPage() {
                     <div className="text-xs text-grey/60 font-medium">Choose language:</div>
                     <div className="flex gap-3">
                       <a
-                        href="/downloads/nativ-whitepaper-v2.2-nl.pdf"
+                        href="/downloads/nativ-whitepaper-v2.3-nl.pdf"
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
                         Nederlands (PDF)
                       </a>
                       <a
-                        href="/downloads/nativ-whitepaper-v2.2-en.pdf"
+                        href="/downloads/nativ-whitepaper-v2.3-en.pdf"
                         download
                         className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >

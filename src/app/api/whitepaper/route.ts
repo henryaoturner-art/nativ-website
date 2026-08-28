@@ -97,8 +97,8 @@ export async function POST(req: NextRequest) {
 
     // Read the appropriate PDF attachment based on language
     const pdfFilename = language === 'en' 
-      ? 'nativ-whitepaper-v2.2-en.pdf'
-      : 'nativ-whitepaper-v2.2-nl.pdf';
+      ? 'nativ-whitepaper-v2.3-en.pdf'
+      : 'nativ-whitepaper-v2.3-nl.pdf';
     const pdfPath = path.join(process.cwd(), "public", "downloads", pdfFilename);
     let pdfBuffer: Buffer | null = null;
     try {
