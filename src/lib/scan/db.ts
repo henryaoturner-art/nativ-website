@@ -28,6 +28,10 @@ export interface ScanRow {
   status: "open" | "afgerond";
   /** Taal van de invuller — stuurt de taal van laat-gegenereerde rapporten. */
   language: "nl" | "en";
+  /** Code achter de link (?bron=mail): waar wij deze bezoeker vandaan stuurden. */
+  source: string | null;
+  /** Antwoord op "hoe ken je ons" in het startformulier. */
+  heard_about: string | null;
   created_at: string;
   completed_at: string | null;
 }
@@ -73,6 +77,10 @@ export async function createQuickScan(input: {
    * daarna op het beheerscherm in plaats van op het rapport. */
   mode?: "quick" | "team";
   language?: "nl" | "en";
+  /** Code achter de scan-link, zie lib/scan/source.ts. */
+  source?: string | null;
+  /** Vrije keuze uit het "hoe ken je ons"-veld. */
+  heardAbout?: string | null;
 }): Promise<{ scanToken: string }> {
   const db = sql();
   const scanId = randomUUID();
@@ -83,8 +91,8 @@ export async function createQuickScan(input: {
 
   await db.transaction([
     db.query(
-      `INSERT INTO scan (id, token, mode, company_name, contact_name, contact_email, bank_version, status, language)
-       VALUES ($1, $2, $7, $3, $4, $5, $6, 'open', $8)`,
+      `INSERT INTO scan (id, token, mode, company_name, contact_name, contact_email, bank_version, status, language, source, heard_about)
+       VALUES ($1, $2, $7, $3, $4, $5, $6, 'open', $8, $9, $10)`,
       [
         scanId,
         scanToken,
@@ -94,6 +102,8 @@ export async function createQuickScan(input: {
         input.bankVersion,
         input.mode ?? "quick",
         input.language ?? "nl",
+        input.source ?? null,
+        input.heardAbout ?? null,
       ],
     ),
     db.query(

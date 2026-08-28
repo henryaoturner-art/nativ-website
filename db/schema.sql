@@ -63,3 +63,10 @@ ALTER TABLE scan ADD COLUMN IF NOT EXISTS reminder_sent_at timestamptz;
 -- Let op: migrate.mjs splitst dit bestand op puntkomma en kent geen
 -- quoting, dus houd commentaarregels vrij van puntkomma en apostrof.
 ALTER TABLE scan ADD COLUMN IF NOT EXISTS language text NOT NULL DEFAULT 'nl';
+
+-- Herkomst van de invuller. Twee losse velden, want ze meten iets anders.
+-- source     = de code achter de link (?bron=mail), dus wat wij zelf stuurden.
+-- heard_about = wat de invuller zelf zegt, het enige dat de onzichtbare
+-- klantreis vangt (mond-tot-mond, een presentatie, iemand die doorverwees).
+ALTER TABLE scan ADD COLUMN IF NOT EXISTS source text;
+ALTER TABLE scan ADD COLUMN IF NOT EXISTS heard_about text;

@@ -4,6 +4,24 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { captureSource } from "@/lib/scan/source";
+
+// De waarde is een vaste code en de tekst vertaalt mee, zodat NL en EN in de
+// database op dezelfde hoop tellen. Dit veld vangt het deel van de klantreis
+// dat we zelf nooit zien: iemand die doorverwees, een praatje, mond-tot-mond.
+const HEARD_ABOUT_OPTIONS = [
+  { value: "mail", nl: "Via een mail van ons", en: "Through an email from us" },
+  { value: "linkedin", nl: "Via LinkedIn", en: "Through LinkedIn" },
+  { value: "google", nl: "Via Google", en: "Through Google" },
+  { value: "via-iemand", nl: "Via iemand die ons kent", en: "Through someone who knows us" },
+  {
+    value: "branche",
+    nl: "Via een brancheorganisatie of netwerkclub",
+    en: "Through a trade association or network",
+  },
+  { value: "evenement", nl: "Op een evenement", en: "At an event" },
+  { value: "anders", nl: "Anders", en: "Something else" },
+];
 
 const translations = {
   nl: {
@@ -14,6 +32,9 @@ const translations = {
     nameLabel: "Je naam",
     emailLabel: "Je e-mailadres",
     emailHelp: "Hierop ontvang je de link naar je rapport.",
+    heardLabel: "Hoe ken je ons?",
+    heardPlaceholder: "Kies er een",
+    heardHelp: "Optioneel. Het helpt ons te weten wat werkt.",
     submit: "Naar de vragen",
     submitting: "Even geduld...",
     errorMsg: "Er ging iets mis. Probeer het opnieuw of mail info@gonativ.nl.",
@@ -29,6 +50,9 @@ const translations = {
     nameLabel: "Your name",
     emailLabel: "Your email address",
     emailHelp: "This is where you receive the link to your report.",
+    heardLabel: "How do you know us?",
+    heardPlaceholder: "Pick one",
+    heardHelp: "Optional. It helps us know what works.",
     submit: "To the questions",
     submitting: "One moment...",
     errorMsg: "Something went wrong. Please try again or email info@gonativ.nl.",
@@ -60,6 +84,10 @@ export default function ScanStartPage() {
       contactEmail: (form.elements.namedItem("email") as HTMLInputElement).value,
       lang: language,
       mode: isTeam ? "team" : "quick",
+      // Uit ?bron= in deze URL, anders uit wat /scan eerder onthield.
+      source: captureSource(),
+      heardAbout:
+        (form.elements.namedItem("heardAbout") as HTMLSelectElement).value || null,
     };
 
     try {
@@ -134,6 +162,25 @@ export default function ScanStartPage() {
                 className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
               />
               <p className="mt-1.5 text-xs text-grey/40">{c.emailHelp}</p>
+            </div>
+            <div>
+              <label htmlFor="heardAbout" className="block text-sm text-grey/60 mb-1.5">
+                {c.heardLabel}
+              </label>
+              <select
+                id="heardAbout"
+                name="heardAbout"
+                defaultValue=""
+                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+              >
+                <option value="">{c.heardPlaceholder}</option>
+                {HEARD_ABOUT_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {language === "en" ? o.en : o.nl}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-1.5 text-xs text-grey/40">{c.heardHelp}</p>
             </div>
             {error && <p className="text-error text-sm">{error}</p>}
             <button

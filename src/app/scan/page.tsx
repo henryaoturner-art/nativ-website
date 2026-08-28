@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
+import { captureSource } from "@/lib/scan/source";
 
 // Beide smaken starten op hetzelfde formulier; ?team=1 maakt er een teamscan
 // van (eigen vragen eerst, daarna het teamoverzicht met uitnodigingen).
@@ -166,6 +168,12 @@ const translations = {
 export default function ScanPage() {
   const { language } = useLanguage();
   const c = translations[language];
+
+  // Leg ?bron=mail vast zodra iemand binnenkomt. Het startformulier leest hem
+  // straks terug, ook als de bezoeker eerst nog wat rondkijkt op de site.
+  useEffect(() => {
+    captureSource();
+  }, []);
 
   return (
     <div className="bg-surface">
