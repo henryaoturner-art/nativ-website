@@ -4,7 +4,7 @@ import { pageMeta, webPage, SITE_UPDATED } from "@/lib/site-meta";
 export const metadata: Metadata = pageMeta(
   "/whitepaper",
   "Whitepaper | nativ",
-  "Onze visie op het Company Brain en digitale collega's voor het mkb. Lees de whitepaper.",
+  "Onze visie op het Company Brain en AI-workflows voor het mkb. Lees de whitepaper.",
 );
 
 // The page itself is a download gate; the citeable thing is the whitepaper.
@@ -33,7 +33,7 @@ const whitepaperJsonLd = [
   webPage(
     "/whitepaper",
     "Whitepaper: Company brain",
-    "Onze visie op het Company Brain en digitale collega's voor het mkb, met het MVC-framework voor context engineering.",
+    "Onze visie op het Company Brain en AI-workflows voor het mkb, met het MVC-framework voor context engineering.",
   ),
   whitepaperSchema,
 ];
