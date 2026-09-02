@@ -157,8 +157,8 @@ export default function CompanyBrainPage() {
                     Iedereen kan de Company Brain alles vragen.
                   </strong>{" "}
                   Eén centrale kennisbank met een bronvermelding bij elk
-                  antwoord. Dat is de basis en de manier waarop je team aan het
-                  werken is met AI.
+                  antwoord. Dat is de basis en de manier waarop je team went aan
+                  werken met AI.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -210,7 +210,8 @@ export default function CompanyBrainPage() {
             </h2>
             <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
               Je begint met een Company Brain, toegankelijk voor al je
-              medewerkers. Klein en concreet, en je breidt uit zodra je de
+              medewerkers. En dan kan je AI-workflows toevoegen als je daar
+              behoefte aan hebt. Klein en concreet, en je breidt uit zodra jij de
               waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
             </p>
             <Link
