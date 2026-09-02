@@ -36,7 +36,7 @@ const servicesSchema = {
         "@type": "Service",
         name: "Build",
         description:
-          "We structureren de kennis die in de organisatie leeft tot een Company Brain: een levende Company Brain waarin elk feit een eigenaar en een verversingsdatum heeft, plus een digitale assistent voor alle medewerkers.",
+          "We structureren de kennis die in de organisatie leeft tot een levende Company Brain waarin elk feit een eigenaar en een verversingsdatum heeft, en die toegankelijk is voor iedereen.",
         provider: { "@type": "Organization", name: "nativ", url: "https://gonativ.nl" },
         url: "https://gonativ.nl/company-brain",
       },

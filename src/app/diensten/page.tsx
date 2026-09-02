@@ -25,7 +25,7 @@ const translations = {
         lead: "Wij bouwen je Company Brain, de context die AI écht nuttig maakt.",
         body: "AI-tools zijn krachtig. Maar zonder de juiste context zijn ze nutteloos. Wij structureren de kennis die in jouw organisatie leeft (in hoofden, systemen, processen) tot een levende Company Brain die jouw bedrijf kent.\n\nElk feit erin heeft een eigenaar en een verversingsdatum. Daardoor is het geen eenmalige snapshot, maar een systeem dat meegroeit met je organisatie.\n\nDit is het fundament. Zonder deze stap is elke AI-investering een gok.",
         features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Een digitale assistent voor alle medewerkers", "Elk feit met een eigenaar en een verversingsdatum", "Integratie met bestaande systemen", "Continue updates: een levend systeem, geen eenmalige snapshot"],
-        meta: "Je Brain staat zodra je tekent",
+        meta: "Je Brain staat klaar zodra je tekent",
         whatLabel: "Wat je krijgt:",
         cta: "Meer weten →", ctaLink: "/contact", primary: false,
         moreLink: { label: "Meer over de Company Brain", href: "/company-brain" },
