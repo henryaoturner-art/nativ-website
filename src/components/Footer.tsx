@@ -10,7 +10,7 @@ const footerTranslations = {
     servicesTitle: "Diensten",
     services: [
       { href: "/scan", label: "Gratis AI-scan" },
-      { href: "/diensten", label: "AI Kennisbank" },
+      { href: "/diensten", label: "Diensten" },
       { href: "/workflows", label: "AI Workflows" },
       { href: "/impact", label: "Impact" },
       { href: "/ai-act", label: "EU AI Act" },
@@ -26,7 +26,7 @@ const footerTranslations = {
     servicesTitle: "Services",
     services: [
       { href: "/scan", label: "Free AI scan" },
-      { href: "/diensten", label: "AI Knowledge Base" },
+      { href: "/diensten", label: "Services" },
       { href: "/workflows", label: "AI Workflows" },
       { href: "/impact", label: "Impact" },
       { href: "/ai-act", label: "EU AI Act" },
