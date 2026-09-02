@@ -10,8 +10,8 @@ const translations = {
     heroTitle: "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meest ontzorgen.",
-    ctaPrimary: "Plan een vrijblijvend gesprek →",
-    ctaSecondary: "Bekijk de workflows",
+    ctaScan: "Doe de gratis AI-scan →",
+    ctaPrimary: "Plan een gesprek",
     ctaWhitepaper: "Whitepaper downloaden",
     heroSeoLine: null,
     problemTitle: "Wat er verandert als je kennis op één plek staat",
@@ -40,7 +40,6 @@ const translations = {
     startScan: "Start met een Scan →",
     trustEU: "EU-datahosting",
     trustGDPR: "GDPR-compliant",
-    trustNoCure: "No cure, no pay",
     closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
     closerSub: "Plan een vrijblijvend gesprek over wat AI voor jouw organisatie kan betekenen.",
     closerCta: "Plan een gesprek →",
@@ -49,8 +48,8 @@ const translations = {
     heroTitle: "A Company Brain with AI workflows for Dutch SMEs.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the foundation for the AI workflows that take the most off your plate.",
-    ctaPrimary: "Book a free consultation →",
-    ctaSecondary: "See the workflows",
+    ctaScan: "Take the free AI scan →",
+    ctaPrimary: "Book a call",
     ctaWhitepaper: "Download whitepaper",
     heroSeoLine: null,
     problemTitle: "What changes once it is all in one place",
@@ -79,7 +78,6 @@ const translations = {
     startScan: "Start with a Scan →",
     trustEU: "EU data hosting",
     trustGDPR: "GDPR compliant",
-    trustNoCure: "No cure, no pay",
     closerTitle: "Ready to discover what your company really knows?",
     closerSub: "Book a free consultation about what AI can do for your organisation.",
     closerCta: "Book a call →",
@@ -255,16 +253,16 @@ export default function HomePage() {
           <FadeIn delay={400}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/contact"
+                href="/scan"
                 className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors text-base"
               >
-                {c.ctaPrimary}
+                {c.ctaScan}
               </Link>
               <Link
-                href="/workflows"
+                href="/contact"
                 className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
-                {c.ctaSecondary}
+                {c.ctaPrimary}
               </Link>
               <Link
                 href="/whitepaper"
@@ -368,8 +366,6 @@ export default function HomePage() {
               <span>{c.trustEU}</span>
               <span aria-hidden="true">·</span>
               <span>{c.trustGDPR}</span>
-              <span aria-hidden="true">·</span>
-              <span>{c.trustNoCure}</span>
             </div>
           </FadeIn>
         </div>
