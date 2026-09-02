@@ -90,10 +90,10 @@ const translations = {
     basePer: "per maand",
     baseNote: "Zelfde bedrag voor elk bedrijf",
     baseBody:
-      "De kennislaag van je bedrijf, met een persoonlijke assistent voor elke medewerker. Alles wat je daarna aanzet, put hieruit.",
+      "De kennislaag van je bedrijf is toegankelijk voor iedereen. Alles wat AI voor je maakt, is hierop gebaseerd.",
     baseFeatures: [
       "De kennis van je bedrijf, vastgelegd en doorzoekbaar",
-      "Een persoonlijke assistent voor iedereen, met bronvermelding bij elk antwoord",
+      "Toegang tot het Company Brain voor iedereen in het bedrijf, met bronvermelding bij elk antwoord",
       "Een eigen CRM: klanten en contacten in één overzicht, dat zichzelf bijwerkt",
       "Koppeling met je eigen AI: Claude, ChatGPT of een ander model, inbegrepen",
       "Onbeperkt gebruikers",
@@ -198,10 +198,10 @@ const translations = {
     basePer: "per month",
     baseNote: "Same price for every company",
     baseBody:
-      "Your company's knowledge layer, with a personal assistant for every employee. Everything you switch on later draws on this.",
+      "Your company's knowledge layer is accessible to everyone. Everything AI makes for you is based on it.",
     baseFeatures: [
       "Your company's knowledge, captured and searchable",
-      "A personal assistant for everyone, with a source on every answer",
+      "Access to the Company Brain for everyone in the company, with a source on every answer",
       "A CRM of your own: customers and contacts in one overview that keeps itself up to date",
       "A connection to your own AI: Claude, ChatGPT or another model, included",
       "Unlimited users",

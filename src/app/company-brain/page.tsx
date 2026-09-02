@@ -13,7 +13,7 @@ const faqItems = [
   {
     question: "Wat is een Company Brain?",
     answer:
-      "Een Company Brain is één centrale kennislaag voor je bedrijf: alles wat je bedrijf weet, uit de hoofden van je mensen, je systemen en documenten, op één plek en klaar voor AI. Het is de basis waarop een persoonlijke assistent en je workflows draaien.",
+      "Een Company Brain is één centrale kennislaag voor je bedrijf: alles wat je bedrijf weet, uit de hoofden van je mensen, je systemen en documenten, op één plek en klaar voor AI. Het is de basis waarop je AI-workflows draaien.",
   },
   {
     question: "Waarom heb je een Company Brain nodig voor AI?",
@@ -72,8 +72,8 @@ export default function CompanyBrainPage() {
             <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
               Een Company Brain is de centrale kennislaag van je bedrijf: één
               plek waar samenkomt wat je bedrijf weet, klaar voor AI om mee te
-              werken. Geen losse tool, maar de basis waarop een persoonlijke
-              assistent en je workflows draaien. Het lost op waar
+              werken. Geen losse tool, maar de basis waarop je AI-workflows
+              draaien. Het lost op waar
               bedrijfs-AI echt op vastloopt: niet een te dom model, maar te
               weinig context.
             </p>
@@ -154,11 +154,11 @@ export default function CompanyBrainPage() {
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
                   <strong className="font-medium text-grey">
-                    Elke medewerker een persoonlijke assistent.
+                    Iedereen kan de Company Brain alles vragen.
                   </strong>{" "}
-                  Eén plek om het bedrijf alles te vragen, met een bronvermelding
-                  bij elk antwoord. Dat is de basis, en de manier waarop je team
-                  went aan werken met AI.
+                  Eén centrale kennisbank met een bronvermelding bij elk
+                  antwoord. Dat is de basis en de manier waarop je team aan het
+                  werken is met AI.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -209,9 +209,9 @@ export default function CompanyBrainPage() {
               Hoe je begint
             </h2>
             <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
-              Je begint met een Company Brain en de persoonlijke assistent, op
-              één plek of één team. Klein en concreet, en je breidt uit zodra je
-              de waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
+              Je begint met een Company Brain, toegankelijk voor al je
+              medewerkers. Klein en concreet, en je breidt uit zodra je de
+              waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
             </p>
             <Link
               href="/contact"
