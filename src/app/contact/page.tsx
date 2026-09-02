@@ -7,8 +7,8 @@ import { useLanguage } from "@/lib/language-context";
 const translations = {
   nl: {
     heroTitle: "Laten we praten",
-    heroSub: "Geen verkooppraatje. Gewoon een eerlijk gesprek over wat AI",
-    heroSub2: "voor jouw organisatie kan betekenen.",
+    heroSub: "Over wat AI voor jouw organisatie",
+    heroSub2: "kan betekenen.",
     calTitle: "Plan direct een gesprek",
     calMeta: "30 minuten · Vrijblijvend · Online",
     calPlaceholder: "Kalender-integratie",
@@ -28,8 +28,8 @@ const translations = {
   },
   en: {
     heroTitle: "Let\u2019s talk",
-    heroSub: "No sales pitch. Just an honest conversation about what AI",
-    heroSub2: "can do for your organisation.",
+    heroSub: "About what AI can do",
+    heroSub2: "for your organisation.",
     calTitle: "Book a call directly",
     calMeta: "30 minutes · No obligation · Online",
     calPlaceholder: "Calendar integration",

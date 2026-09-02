@@ -211,8 +211,8 @@ export default function CompanyBrainPage() {
             <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
               Je begint met een Company Brain, toegankelijk voor al je
               medewerkers. En dan kan je AI-workflows toevoegen als je daar
-              behoefte aan hebt. Klein en concreet, en je breidt uit zodra jij de
-              waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
+              behoefte aan hebt. Zo begin je klein en concreet, en breid je uit
+              zodra jij de waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
             </p>
             <Link
               href="/contact"

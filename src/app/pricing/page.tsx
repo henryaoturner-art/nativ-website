@@ -90,7 +90,7 @@ const translations = {
     basePer: "per maand",
     baseNote: "Zelfde bedrag voor elk bedrijf",
     baseBody:
-      "De kennislaag van je bedrijf is toegankelijk voor alle medewerkers. Alles wat AI voor je maakt, is hierop gebaseerd.",
+      "De kennislaag van je bedrijf. Alles wat AI voor je maakt, is hierop gebaseerd.",
     baseFeatures: [
       "De kennis van je bedrijf, vastgelegd en doorzoekbaar",
       "Toegang tot het Company Brain voor iedereen in het bedrijf, met bronvermelding bij elk antwoord",
@@ -198,7 +198,7 @@ const translations = {
     basePer: "per month",
     baseNote: "Same price for every company",
     baseBody:
-      "Your company's knowledge layer is accessible to all your employees. Everything AI makes for you is based on it.",
+      "Your company's knowledge layer. Everything AI makes for you is based on it.",
     baseFeatures: [
       "Your company's knowledge, captured and searchable",
       "Access to the Company Brain for everyone in the company, with a source on every answer",
