@@ -86,10 +86,10 @@ export default function CompanyBrainPage() {
         <div className="max-w-[680px] mx-auto space-y-14">
           <FadeIn>
             <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
-              De drie bronnen
+              Waar de kennis vandaan komt
             </h2>
             <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
-              Een Company Brain wordt uit drie bronnen gevuld. Die combinatie
+              Een Company Brain wordt uit twee bronnen gevuld. Die combinatie
               maakt het compleet:
             </p>
             <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
@@ -113,16 +113,6 @@ export default function CompanyBrainPage() {
                   </strong>{" "}
                   Wat al is vastgelegd, in je CRM, je drive, je mail, wordt
                   ingelezen, geordend en doorzoekbaar gemaakt.
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
-                <span>
-                  <strong className="font-medium text-grey">
-                    De buitenwereld.
-                  </strong>{" "}
-                  Voor wat buiten je bedrijf speelt, zoals de markt of een
-                  specifieke klant, halen research-agents actuele informatie op.
                 </span>
               </li>
             </ul>

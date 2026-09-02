@@ -159,7 +159,7 @@ export default function PillarBedrijfsbreinPage() {
               Hoe een Company Brain wordt gevuld
             </h2>
             <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
-              Een Company Brain put uit drie bronnen. Die combinatie is wat het
+              Een Company Brain put uit twee bronnen. Die combinatie is wat het
               compleet maakt, en wat een losse chatbot mist:
             </p>
             <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
@@ -183,17 +183,6 @@ export default function PillarBedrijfsbreinPage() {
                   </strong>{" "}
                   Wat al wél is vastgelegd, in je CRM, je drive, je mail, wordt
                   ingelezen, geordend en doorzoekbaar gemaakt.
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
-                <span>
-                  <strong className="font-medium text-grey">
-                    De buitenwereld.
-                  </strong>{" "}
-                  Voor wat buiten je bedrijf speelt, zoals de markt of een
-                  specifieke prospect, halen research-agents actuele informatie
-                  op.
                 </span>
               </li>
             </ul>
