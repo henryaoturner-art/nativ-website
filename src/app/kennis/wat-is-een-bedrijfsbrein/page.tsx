@@ -15,7 +15,7 @@ const faqItems = [
   {
     question: "Wat is een Company Brain (bedrijfsbrein)?",
     answer:
-      "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en documenten. Daarop draaien AI-assistenten en workflows die snappen hoe jullie werken.",
+      "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en de buitenwereld. Er kunnen AI-workflows op draaien die snappen hoe jullie werken.",
   },
   {
     question: "Wat is een AI-workflow?",

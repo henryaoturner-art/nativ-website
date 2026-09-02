@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | nativ",
   },
   description:
-    "nativ bouwt een Company Brain: één AI-kennisbank voor je bedrijf, plus workflows die terugkerend werk overnemen in marketing, sales, finance en hr. Voor het Nederlandse mkb.",
+    "Een Company Brain: de altijd actuele kennisbank van je bedrijf, uit de hoofden van je mensen, je systemen en de buitenwereld. Met AI-workflows die erop draaien.",
   metadataBase: new URL("https://gonativ.nl"),
   // Homepage canonical. Every other route overrides this with its own
   // alternates.canonical (in its page.tsx or a sibling layout.tsx), so this
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "nativ",
     title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
-      "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
+      "De kennisbank van je bedrijf, uit de hoofden van je mensen, je systemen en de buitenwereld. Met AI-workflows die erop draaien.",
     images: [OG_IMAGE],
   },
   twitter: {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     site: "@gonativnl",
     title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
-      "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
+      "De kennisbank van je bedrijf, uit de hoofden van je mensen, je systemen en de buitenwereld. Met AI-workflows die erop draaien.",
     images: [OG_IMAGE],
   },
   robots: { index: true, follow: true },

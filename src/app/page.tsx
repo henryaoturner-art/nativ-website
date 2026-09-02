@@ -129,7 +129,7 @@ const softwareSchema = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description:
-    "Eén centrale AI-kennisbank voor je bedrijf, met workflows voor marketing, sales, finance en hr plus een persoonlijke AI-assistent voor elke medewerker.",
+    "Een Company Brain: de altijd actuele kennisbank van je bedrijf, gevuld uit de hoofden van je mensen, je systemen en de buitenwereld. Iedereen in het bedrijf kan hem alles vragen. En er kunnen AI-workflows op draaien die voor jou waarde toevoegen.",
   // Eén vast maandbedrag voor iedereen (besluit O4), dus een gewone Offer met een
   // maandelijkse UnitPriceSpecification. De oude AggregateOffer noemde nog een
   // Quick Start-instapbedrag; instapkosten bestaan niet meer (besluit O11).
@@ -162,7 +162,7 @@ const faqSchema = {
       name: "Wat is een Company Brain (bedrijfsbrein)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en documenten. Daarop draaien AI-assistenten en workflows die snappen hoe jullie werken.",
+        text: "Een Company Brain is één centrale kennislaag waarin de kennis van je bedrijf samenkomt, uit de hoofden van je mensen, uit je systemen en de buitenwereld. Er kunnen AI-workflows op draaien die snappen hoe jullie werken.",
       },
     },
     {
@@ -186,7 +186,7 @@ const faqSchema = {
       name: "Hoe werkt AI-kennismanagement?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AI-kennismanagement legt de kennis van je bedrijf vast in één centrale laag, het Company Brain, uit de hoofden van je mensen, uit je systemen en uit je documenten. AI-assistenten en workflows werken vervolgens vanuit die laag, zodat het resultaat klopt met hoe jullie echt werken.",
+        text: "AI-kennismanagement legt de kennis van je bedrijf vast in één centrale laag, het Company Brain, uit de hoofden van je mensen, uit je systemen en uit de buitenwereld. Er kunnen AI-workflows op draaien die snappen hoe jullie werken.",
       },
     },
     {
