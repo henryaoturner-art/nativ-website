@@ -141,10 +141,10 @@ const translations = {
       },
     ],
 
-    whyTitle: "Waarom dit zo betaalbaar kan",
+    whyTitle: "Hoe het werkt",
     whyBody: [
       "Je betaalt per maand in plaats van vooraf. Zo kun je op elk moment stoppen wanneer je dat wilt.",
-      "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
+      "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen.",
     ],
 
     exitTitle: "Als je weggaat",
@@ -249,10 +249,10 @@ const translations = {
       },
     ],
 
-    whyTitle: "Why this can be this affordable",
+    whyTitle: "How it works",
     whyBody: [
       "You pay per month instead of up front. That way you can stop whenever you want.",
-      "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills. That is the trade.",
+      "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills.",
     ],
 
     exitTitle: "If you leave",
