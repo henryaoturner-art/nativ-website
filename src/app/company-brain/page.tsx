@@ -6,7 +6,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = pageMeta(
   "/company-brain",
   "Company Brain: één AI-kennisbank voor je bedrijf | nativ",
-  "Eén centrale kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke workflow. Voor het mkb.",
+  "Eén centrale kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en de buitenwereld. De basis onder elke workflow. Voor het mkb.",
 );
 
 const faqItems = [
@@ -54,7 +54,7 @@ export default function CompanyBrainPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            webPage("/company-brain", "Company Brain: één AI-kennisbank voor je bedrijf", "Eén centrale AI-kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en live research. De basis onder elke workflow, voor het mkb."),
+            webPage("/company-brain", "Company Brain: één AI-kennisbank voor je bedrijf", "Eén centrale AI-kennislaag, gevuld vanuit de hoofden van je mensen, je systemen en de buitenwereld. De basis onder elke workflow, voor het mkb."),
             faqSchema,
           ]),
         }}
