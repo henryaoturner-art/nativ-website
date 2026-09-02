@@ -71,8 +71,8 @@ export default function PillarBedrijfsbreinPage() {
             <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
               Een Company Brain (ook wel bedrijfsbrein of tweede brein) is één
               centrale kennislaag waarin samenkomt wat je bedrijf weet: uit de
-              hoofden van je mensen, uit je systemen en documenten, en uit live
-              research. Daarbovenop draaien AI-workflows die snappen hoe jullie
+              hoofden van je mensen, uit je systemen en uit de buitenwereld.
+              Daarbovenop draaien AI-workflows die snappen hoe jullie
               werken, in plaats van algemene antwoorden te geven. nativ bouwt zo'n Company Brain voor het Nederlandse mkb.
             </p>
           </FadeIn>
