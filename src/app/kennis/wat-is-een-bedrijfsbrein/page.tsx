@@ -189,7 +189,7 @@ export default function PillarBedrijfsbreinPage() {
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
                   <strong className="font-medium text-grey">
-                    Live research.
+                    De buitenwereld.
                   </strong>{" "}
                   Voor wat buiten je bedrijf speelt, zoals de markt of een
                   specifieke prospect, halen research-agents actuele informatie

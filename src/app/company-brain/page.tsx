@@ -119,7 +119,7 @@ export default function CompanyBrainPage() {
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
                   <strong className="font-medium text-grey">
-                    Live research.
+                    De buitenwereld.
                   </strong>{" "}
                   Voor wat buiten je bedrijf speelt, zoals de markt of een
                   specifieke klant, halen research-agents actuele informatie op.
