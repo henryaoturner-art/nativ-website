@@ -7,14 +7,13 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Betrouwbare AI die begrijpt hoe jij werkt.",
+    heroTitle: "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het ideale fundament voor je digitale assistent en voor de AI-workflows die jou het meest ontzorgen.",
     ctaPrimary: "Plan een vrijblijvend gesprek →",
     ctaSecondary: "Bekijk de workflows",
     ctaWhitepaper: "Whitepaper downloaden",
-    heroSeoLine:
-      "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
+    heroSeoLine: null,
     problemTitle: "Wat er verandert als je kennis op één plek staat",
     problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
     problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
@@ -47,13 +46,13 @@ const translations = {
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "Reliable AI that understands how you work.",
+    heroTitle: "A Company Brain with AI workflows for Dutch SMEs.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the ideal foundation for your digital assistant and for the AI workflows that take the most off your plate.",
     ctaPrimary: "Book a free consultation →",
     ctaSecondary: "See the workflows",
     ctaWhitepaper: "Download whitepaper",
-    heroSeoLine: "A Company Brain with AI workflows for Dutch SMEs.",
+    heroSeoLine: null,
     problemTitle: "What changes once it is all in one place",
     problemP1: "You can put workflows to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
     problemP2a: "A new colleague is up to speed in days, not months.",
@@ -235,7 +234,7 @@ export default function HomePage() {
       <section className="py-10 md:py-14 lg:py-40 px-6">
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[64px] leading-[1.15] text-grey max-w-3xl mx-auto">
+            <h1 className="font-serif text-3xl md:text-[40px] lg:text-[52px] leading-[1.2] text-grey max-w-4xl mx-auto">
               {c.heroTitle}
             </h1>
           </FadeIn>
@@ -246,11 +245,13 @@ export default function HomePage() {
               {c.heroSub2}
             </p>
           </FadeIn>
-          <FadeIn delay={300}>
-            <h2 className="mt-5 text-base md:text-lg font-medium text-grey/60 max-w-2xl mx-auto">
-              {c.heroSeoLine}
-            </h2>
-          </FadeIn>
+          {c.heroSeoLine && (
+            <FadeIn delay={300}>
+              <h2 className="mt-5 text-base md:text-lg font-medium text-grey/60 max-w-2xl mx-auto">
+                {c.heroSeoLine}
+              </h2>
+            </FadeIn>
+          )}
           <FadeIn delay={400}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
