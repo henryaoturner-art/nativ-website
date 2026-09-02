@@ -120,7 +120,7 @@ export default function CasesPage() {
                   </div>
                   <div>
                     <p className="font-medium text-grey">Build</p>
-                    <p>We bouwden een AI Operating System: een gestructureerde kennisbank met merkidentiteit, concurrentie-inzichten, marktdata en campagnehistorie. Voor beide merken. Niet een eenmalige snapshot, maar een levend systeem met kennislagen, van stabiele merkrichtlijnen tot wekelijks veranderende marktdata.</p>
+                    <p>We bouwden een Company Brain: een gestructureerde kennisbank met merkidentiteit, concurrentie-inzichten, marktdata en campagnehistorie. Voor beide merken. Niet een eenmalige snapshot, maar een levend systeem met kennislagen, van stabiele merkrichtlijnen tot wekelijks veranderende marktdata.</p>
                   </div>
                   <div>
                     <p className="font-medium text-grey">Deploy</p>
@@ -135,7 +135,7 @@ export default function CasesPage() {
                 <ul className="space-y-3 text-grey/80 font-light">
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">↓</span>
-                    Van onvervulde vacature (€3.000 tot €4.000/maand) naar AI Marketing Manager (€995/maand): 3 tot 4x kostenreductie
+                    Van onvervulde vacature naar AI Marketing Manager: 3 tot 4x kostenreductie
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">×2</span>

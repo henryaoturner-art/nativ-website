@@ -95,6 +95,7 @@ const translations = {
       "De kennis van je bedrijf, vastgelegd en doorzoekbaar",
       "Een persoonlijke assistent voor iedereen, met bronvermelding bij elk antwoord",
       "Een eigen CRM: klanten en contacten in één overzicht, dat zichzelf bijwerkt",
+      "Koppeling met je eigen AI: Claude, ChatGPT of een ander model, inbegrepen",
       "Onbeperkt gebruikers",
       "Geen minimale looptijd, één maand opzegtermijn",
     ],
@@ -142,7 +143,7 @@ const translations = {
 
     whyTitle: "Waarom dit zo betaalbaar kan",
     whyBody: [
-      "De prijzen zijn een stuk lager dan ze waren, en daar zit een reden onder die we niet willen verstoppen: je doet zelf meer.",
+      "Je betaalt per maand in plaats van vooraf, en daar zit een reden onder die we niet willen verstoppen: je doet zelf meer.",
       "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen. Dat is de ruil.",
     ],
 
@@ -202,6 +203,7 @@ const translations = {
       "Your company's knowledge, captured and searchable",
       "A personal assistant for everyone, with a source on every answer",
       "A CRM of your own: customers and contacts in one overview that keeps itself up to date",
+      "A connection to your own AI: Claude, ChatGPT or another model, included",
       "Unlimited users",
       "No minimum term, one month's notice",
     ],
@@ -249,7 +251,7 @@ const translations = {
 
     whyTitle: "Why this can be this affordable",
     whyBody: [
-      "The prices are considerably lower than they were, and there is a reason underneath that we would rather not hide: you do more yourself.",
+      "You pay per month instead of up front, and there is a reason underneath that we would rather not hide: you do more yourself.",
       "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills. That is the trade.",
     ],
 

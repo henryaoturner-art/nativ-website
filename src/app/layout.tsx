@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import { OG_IMAGE } from "@/lib/site-meta";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
       "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
@@ -33,6 +35,7 @@ export const metadata: Metadata = {
     title: "Company Brain en AI-workflows voor het mkb | nativ",
     description:
       "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
+    images: [OG_IMAGE],
   },
   robots: { index: true, follow: true },
 };

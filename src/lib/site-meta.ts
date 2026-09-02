@@ -6,6 +6,20 @@ import type { Metadata } from "next";
 // is meaningfully revised — one edit refreshes the signal site-wide.
 export const SITE_UPDATED = "2026-07-09";
 
+/**
+ * Default share card. `twitter:card = summary_large_image` promises an image;
+ * without one every shared link renders as a bare text card in LinkedIn,
+ * WhatsApp and Slack. One brand image covers every route that has no image
+ * of its own. Must stay an absolute URL: LinkedIn does not resolve relative
+ * og:image paths.
+ */
+export const OG_IMAGE = {
+  url: "https://gonativ.nl/og-default.png",
+  width: 1200,
+  height: 630,
+  alt: "nativ - Company Brain | AI Workflows",
+};
+
 const SITE_PUBLISHED = "2026-03-10";
 
 /**
@@ -32,12 +46,14 @@ export function pageMeta(
       url: `https://gonativ.nl${path}`,
       title,
       description,
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       site: "@gonativnl",
       title,
       description,
+      images: [OG_IMAGE.url],
     },
   };
 }

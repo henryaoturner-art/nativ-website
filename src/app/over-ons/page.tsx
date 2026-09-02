@@ -20,7 +20,7 @@ const translations = {
     ],
     howTitle: "Hoe wij werken",
     howP: "Ons eigen bedrijf is onze eerste en meest geteste klant. Dezelfde kennisbank die we voor klanten bouwen, draait al maanden intern. We doen wat we zeggen, en we bewijzen het elke dag op onszelf.",
-    howItems: ["AI-native sinds dag één", "Ons eigen AI Operating System is het meest geteste systeem dat we hebben", "Lean team, grote output", "Eerlijk over wat AI wel en niet kan"],
+    howItems: ["AI-native sinds dag één", "Onze eigen Company Brain is het meest geteste systeem dat we hebben", "Lean team, grote output", "Eerlijk over wat AI wel en niet kan"],
   },
   en: {
     heroTitle: "We are nativ",
@@ -38,7 +38,7 @@ const translations = {
     ],
     howTitle: "How we work",
     howP: "Our own company is our first and most battle-tested client. The same knowledge base we build for clients has been running internally for months. We do what we say, and we prove it on ourselves every day.",
-    howItems: ["AI-native since day one", "Our own AI Operating System is the most tested system we have", "Lean team, big output", "Honest about what AI can and can\u2019t do"],
+    howItems: ["AI-native since day one", "Our own Company Brain is the most tested system we have", "Lean team, big output", "Honest about what AI can and can\u2019t do"],
   },
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { getPost, getAllSlugs } from "@/lib/blog";
+import { OG_IMAGE } from "@/lib/site-meta";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -26,7 +27,7 @@ export async function generateMetadata({
       description: post.description,
       url: `https://gonativ.nl/blog/${slug}`,
       publishedTime: post.date,
-      ...(post.image ? { images: [{ url: `https://gonativ.nl${post.image}` }] } : {}),
+      images: [post.image ? { url: `https://gonativ.nl${post.image}` } : OG_IMAGE],
     },
   };
 }
