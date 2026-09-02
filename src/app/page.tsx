@@ -13,6 +13,10 @@ const translations = {
     ctaScan: "Doe de gratis AI-scan →",
     ctaPrimary: "Plan een gesprek",
     ctaWhitepaper: "Whitepaper downloaden",
+    proofScore: "4,5 / 5 op Sortlist",
+    proofQuote: "Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken.",
+    proofWho: "Dirk Westdijk, CEO, JobTraining",
+    proofAria: "Beoordeling 4,5 van 5",
     heroSeoLine: null,
     problemTitle: "Wat er verandert als je kennis op één plek staat",
     problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
@@ -51,6 +55,10 @@ const translations = {
     ctaScan: "Take the free AI scan →",
     ctaPrimary: "Book a call",
     ctaWhitepaper: "Download whitepaper",
+    proofScore: "4.5 / 5 on Sortlist",
+    proofQuote: "",
+    proofWho: "Dirk Westdijk, CEO, JobTraining",
+    proofAria: "Rated 4.5 out of 5",
     heroSeoLine: null,
     problemTitle: "What changes once it is all in one place",
     problemP1: "You can put workflows to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
@@ -289,6 +297,33 @@ export default function HomePage() {
                 </span>
               </Link>
             </div>
+          </FadeIn>
+          {/* Proof next to the ask, not three screens down. Visible copy only:
+              no Review/aggregateRating markup, per the same Google self-serving
+              review rule documented in cases/page.tsx. */}
+          <FadeIn delay={500}>
+            <figure className="mt-8 mx-auto max-w-xl text-sm text-grey/70">
+              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+                <span
+                  aria-hidden="true"
+                  className="text-sage tracking-wide"
+                >
+                  ★★★★☆
+                </span>
+                <span className="sr-only">{c.proofAria}</span>
+                <Link href="/cases" className="text-sage hover:underline">
+                  {c.proofScore}
+                </Link>
+              </div>
+              {c.proofQuote && (
+                <blockquote className="mt-2 italic">
+                  &ldquo;{c.proofQuote}&rdquo;
+                </blockquote>
+              )}
+              <figcaption className="mt-1 not-italic text-grey/60">
+                {c.proofWho}
+              </figcaption>
+            </figure>
           </FadeIn>
         </div>
         <div className="max-w-[200px] mx-auto mt-16 md:mt-24 border-t border-sage" />
