@@ -42,7 +42,7 @@ const translations = {
     trustGDPR: "GDPR-compliant",
     trustNoCure: "No cure, no pay",
     closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
-    closerSub: "Plan een vrijblijvend gesprek. Geen verkooppraatje, gewoon een eerlijk gesprek over wat AI voor jouw organisatie kan betekenen.",
+    closerSub: "Plan een vrijblijvend gesprek over wat AI voor jouw organisatie kan betekenen.",
     closerCta: "Plan een gesprek →",
   },
   en: {
@@ -81,7 +81,7 @@ const translations = {
     trustGDPR: "GDPR compliant",
     trustNoCure: "No cure, no pay",
     closerTitle: "Ready to discover what your company really knows?",
-    closerSub: "Book a free consultation. No sales pitch, just an honest conversation about what AI can do for your organisation.",
+    closerSub: "Book a free consultation about what AI can do for your organisation.",
     closerCta: "Book a call →",
   },
 };
