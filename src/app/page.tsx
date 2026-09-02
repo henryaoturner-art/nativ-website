@@ -206,7 +206,7 @@ const faqSchema = {
       name: "Hoeveel kost een Company Brain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "De Company Brain kost €1.495 per maand, voor elk bedrijf hetzelfde bedrag. Er zijn geen instapkosten en geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost €75 tot €245 per maand en een studie €50. Alle prijzen staan op gonativ.nl/pricing.",
+        text: "De Company Brain kost €1.495 per maand, voor elk bedrijf hetzelfde bedrag. Er zijn geen instapkosten en geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost €25 tot €245 per maand en een studie €50. Alle prijzen staan op gonativ.nl/pricing.",
       },
     },
   ],

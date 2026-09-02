@@ -14,12 +14,13 @@ import { webPage } from "@/lib/site-meta";
 // De oude ladder Quick Start / Professional / AI Native is vervallen (O5, O11).
 //
 // Afwijking van O13, op aanwijzing van Jorus 10 aug: de bovengrens van de
-// workflow-range stond daar op 250 en gaat naar 245. De ondergrens blijft 75.
+// workflow-range stond daar op 250 en gaat naar 245. De ondergrens ging op
+// aanwijzing van Jorus 2 sep van 75 naar 25.
 // ---------------------------------------------------------------------------
 const PRIJS = {
   brain: { nl: "€1.495", en: "€1,495" },
   crmKoppeling: { nl: "€495", en: "€495" },
-  workflowVan: { nl: "€75", en: "€75" },
+  workflowVan: { nl: "€25", en: "€25" },
   workflowTot: { nl: "€245", en: "€245" },
   studie: { nl: "€50", en: "€50" },
   studieGroot: { nl: "€100", en: "€100" },
