@@ -12,7 +12,6 @@ const translations = {
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meest ontzorgen.",
     ctaScan: "Doe de gratis AI-scan →",
     ctaPrimary: "Plan een gesprek",
-    ctaWhitepaper: "Whitepaper downloaden",
     proofScore: "4,5 / 5 op Sortlist",
     proofQuote: "Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken.",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
@@ -54,7 +53,6 @@ const translations = {
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the foundation for the AI workflows that take the most off your plate.",
     ctaScan: "Take the free AI scan →",
     ctaPrimary: "Book a call",
-    ctaWhitepaper: "Download whitepaper",
     proofScore: "4.5 / 5 on Sortlist",
     proofQuote: "",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
@@ -271,30 +269,6 @@ export default function HomePage() {
                 className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
                 {c.ctaPrimary}
-              </Link>
-              <Link
-                href="/whitepaper"
-                className="group inline-flex items-center gap-2 text-base text-sage hover:text-sage-dark transition-colors"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="transition-transform duration-200 group-hover:translate-y-0.5"
-                  aria-hidden="true"
-                >
-                  <path d="M12 3v12" />
-                  <path d="m7 10 5 5 5-5" />
-                  <path d="M5 21h14" />
-                </svg>
-                <span className="border-b border-transparent pb-0.5 transition-colors group-hover:border-current">
-                  {c.ctaWhitepaper}
-                </span>
               </Link>
             </div>
           </FadeIn>
