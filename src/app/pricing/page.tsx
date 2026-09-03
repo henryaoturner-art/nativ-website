@@ -22,6 +22,9 @@ const PRIJS = {
   crmKoppeling: { nl: "€495", en: "€495" },
   workflowVan: { nl: "€25", en: "€25" },
   workflowTot: { nl: "€245", en: "€245" },
+  // Studies staan sinds 3 sep NIET op de site: de tool is nog niet af en
+  // getest, en de prijsstelling ligt nog open (Jorus). Bedragen hier bewaard
+  // zodat terugzetten één plek is.
   studie: { nl: "€50", en: "€50" },
   studieGroot: { nl: "€100", en: "€100" },
 };
@@ -35,7 +38,7 @@ const pricingFaqSchema = {
       name: "Hoeveel kost een Company Brain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Er zijn geen instapkosten en er is geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost ${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl} per maand en een studie ${PRIJS.studie.nl}.`,
+        text: `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Er zijn geen instapkosten en er is geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost ${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl} per maand.`,
       },
     },
     {
@@ -75,8 +78,8 @@ const pricingFaqSchema = {
 
 const pricingWebPage = webPage(
   "/pricing",
-  "Prijzen: Company Brain, workflows en studies",
-  `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Geen instapkosten, één maand opzegtermijn. Workflows en studies zet je erbij wanneer je ze nodig hebt.`,
+  "Prijzen: Company Brain en AI-workflows",
+  `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Geen instapkosten, één maand opzegtermijn. Workflows zet je erbij wanneer je ze nodig hebt.`,
 );
 
 const translations = {
@@ -111,12 +114,6 @@ const translations = {
         price: `${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl}`,
         per: "per maand, per workflow",
         body: "Een workflow neemt één terugkerende klus over. Het is een range omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Bij het ontwerp zie je wat die van jou kost.",
-      },
-      {
-        name: "Studie",
-        price: PRIJS.studie.nl,
-        per: "per studie",
-        body: `Een vraag uitzetten bij je eigen mensen of je klanten, en er een bruikbaar antwoord uit krijgen. Boven de honderd respondenten wordt het ${PRIJS.studieGroot.nl}. De uitkomsten landen in je Company Brain.`,
       },
       {
         name: "Maatwerk",
@@ -219,12 +216,6 @@ const translations = {
         price: `${PRIJS.workflowVan.en} to ${PRIJS.workflowTot.en}`,
         per: "per month, per workflow",
         body: "A workflow takes over one recurring job. It is a range because a workflow calls external services and sometimes has to connect to another system. At design time you see what yours costs.",
-      },
-      {
-        name: "Study",
-        price: PRIJS.studie.en,
-        per: "per study",
-        body: `Put a question to your own people or your customers and get a usable answer back. Above a hundred respondents it becomes ${PRIJS.studieGroot.en}. The findings land in your Company Brain.`,
       },
       {
         name: "Custom build",
