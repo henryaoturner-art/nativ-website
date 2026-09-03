@@ -9,9 +9,11 @@ const translations = {
     heroSub1: "Drie mensen. Dertig man output.",
     heroSub2: "Niet door harder te werken, maar door AI-native te zijn.",
     storyTitle: "Waarom nativ bestaat",
-    storyP1: "We zagen het steeds weer. Bedrijven die duizenden euro\u2019s uitgeven aan AI-tools. Die er vervolgens niets mee doen. Niet omdat de tools slecht zijn, maar omdat niemand de bedrijfskennis had gestructureerd die AI nodig heeft om nuttig te zijn.",
-    storyP2: "Consultants vragen €30K+ voor een PDF. AI-vendors verkopen tools zonder context. Daar tussenin zit een gat. Dat gat zijn wij.",
-    storyQuote: "nativ bouwt de brug tussen wat je bedrijf weet en wat AI kan.",
+    storyP1: "We zien veel bedrijven die met AI beginnen. Ze geven werknemers toegang, en de eerste resultaten zijn verrassend.",
+    storyP2: "Totdat ze AI serieus in hun werk willen gebruiken, iedere dag opnieuw. Dan merken ze dat het niet voldoet, en dat ligt niet aan de modellen. Maar dat ligt aan de kennis van de modellen over jouw bedrijf: jouw specifieke context.",
+    storyP3: "Die kennis zit verspreid. In je systemen, in e-mails, in gesprekken en in de hoofden van je mensen. Is de juiste persoon er niet, dan sta je stil.",
+    storyP4: "Daarom begonnen we bij de kennis en niet bij de tool. We bouwen de Company Brain: één plek waar staat wat jouw bedrijf weet, met een eigenaar per onderdeel en een herkomst bij elk antwoord. Daar zetten we AI-workflows bovenop.",
+    storyQuote: "AI wordt pas nuttig als hij weet hoe jouw bedrijf werkt.",
     teamTitle: "Het team",
     team: [
       { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
@@ -27,9 +29,11 @@ const translations = {
     heroSub1: "Three people. Thirty people\u2019s output.",
     heroSub2: "Not by working harder, but by being AI-native.",
     storyTitle: "Why nativ exists",
-    storyP1: "We saw it happen again and again. Companies spending thousands on AI tools. Then doing nothing with them. Not because the tools are bad, but because nobody had structured the company knowledge that AI needs to be useful.",
-    storyP2: "Consultants charge €30K+ for a PDF. AI vendors sell tools without context. In between sits a gap. We are that gap.",
-    storyQuote: "nativ builds the bridge between what your company knows and what AI can do.",
+    storyP1: "We see a lot of companies starting with AI. They give their people access, and the first results are impressive.",
+    storyP2: "Until they want to use AI seriously in their work, every day again. Then they find that it falls short, and that is not down to the models. It is down to what the models know about your company: your specific context.",
+    storyP3: "That knowledge sits scattered. In your systems, in emails, in conversations and in your people\u2019s heads. When the right person is not there, the work stops.",
+    storyP4: "So we started with the knowledge instead of the tool. We build the Company Brain: one place that holds what your company knows, with an owner for each part and a source behind every answer. On top of it we put AI workflows.",
+    storyQuote: "AI only becomes useful once it knows how your company works.",
     teamTitle: "The team",
     team: [
       { name: "Livius van Heemstra", role: "Co-founder · Product & Strategy", linkedin: "https://www.linkedin.com/in/lvheemstra/", photo: "/images/livius.jpg" },
@@ -76,6 +80,8 @@ export default function OverOnsPage() {
             <div className="mt-8 space-y-6 text-lg font-light leading-relaxed text-grey/80">
               <p>{c.storyP1}</p>
               <p>{c.storyP2}</p>
+              <p>{c.storyP3}</p>
+              <p>{c.storyP4}</p>
               <p className="font-serif text-grey text-xl italic">{c.storyQuote}</p>
             </div>
           </FadeIn>
