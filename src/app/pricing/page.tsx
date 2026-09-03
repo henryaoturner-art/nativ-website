@@ -46,7 +46,7 @@ const pricingFaqSchema = {
       name: "Zijn er eenmalige kosten?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `Er zijn er precies twee, en niet meer. Een koppeling met je bestaande CRM kost ${PRIJS.crmKoppeling.nl} eenmalig. En een echte maatwerkbouw, iets dat nog niet bestaat, offreren we apart. Verder betaal je alleen het maandbedrag.`,
+        text: `Er is er precies één. Een koppeling met je bestaande CRM kost ${PRIJS.crmKoppeling.nl} eenmalig, en daarmee komen je gesprekken en e-mails vanzelf bij de juiste persoon en het juiste bedrijf te staan. Verder betaal je alleen het maandbedrag.`,
       },
     },
     {
@@ -115,27 +115,16 @@ const translations = {
         per: "per maand, per workflow",
         body: "Een workflow neemt één terugkerende klus over. Het is een range omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Bij het ontwerp zie je wat die van jou kost.",
       },
-      {
-        name: "Maatwerk",
-        price: "Op aanvraag",
-        per: "",
-        body: "Iets dat nog niet bestaat en echt gebouwd moet worden. We offreren dat apart, en altijd vooraf.",
-      },
     ],
 
-    oneOffTitle: "Precies twee eenmalige bedragen",
+    oneOffTitle: "Eén eenmalig bedrag",
     oneOffIntro:
-      "Geen instapkosten betekent bij ons niet dat er nooit een eenmalig bedrag is. Er zijn er twee, en niet meer:",
+      "Geen instapkosten betekent bij ons niet dat er nooit een eenmalig bedrag is. Er is er één:",
     oneOffs: [
       {
         label: "Koppeling met je bestaande CRM",
         value: PRIJS.crmKoppeling.nl,
-        body: "De CRM-functionaliteit zelf zit in de Company Brain. Wil je die koppelen aan het CRM dat je nu gebruikt, dan kost die koppeling eenmalig dit bedrag.",
-      },
-      {
-        label: "Een echte maatwerkbouw",
-        value: "Op aanvraag",
-        body: "Iets dat er nog niet is en speciaal voor jou gebouwd wordt. Dat offreren we vooraf, zodat je weet waar je aan toe bent.",
+        body: "De CRM-functionaliteit zelf zit in de Company Brain. Wil je die koppelen aan het CRM dat je nu gebruikt, dan kost die koppeling eenmalig dit bedrag. Wat je ervoor terugkrijgt: je gesprekken en je e-mails komen vanzelf bij de juiste persoon en het juiste bedrijf te staan. Bij elke klant zie je zo wat er speelt, zonder dat iemand het overtypt.",
       },
     ],
 
@@ -156,7 +145,7 @@ const translations = {
       {
         question: "Zijn er instapkosten?",
         answer:
-          "Nee. Je begint met het maandbedrag voor de Company Brain. Er zijn precies twee eenmalige bedragen, en die staan hierboven: de koppeling met een bestaand CRM, en een echte maatwerkbouw.",
+          "Nee. Je begint met het maandbedrag voor de Company Brain. Er is één eenmalig bedrag, en dat staat hierboven: de koppeling met een bestaand CRM.",
       },
       {
         question: "Zit ik ergens aan vast?",
@@ -167,6 +156,11 @@ const translations = {
         question: "Betaal ik meer als we met meer mensen zijn?",
         answer:
           "Nee. Het bedrag is voor elk bedrijf hetzelfde, of je nu met vijf of met driehonderd bent. Wat wel meetelt is hoeveel je erin zet. Daar zit een grens aan, want boven die grens kost het ons meer om te draaien en rekenen we dat door. Met driehonderd mensen bereik je die grens sneller dan met vijf, en je hoort het van ons voordat het zover is.",
+      },
+      {
+        question: "En als een workflow iets nodig heeft dat er nog niet is?",
+        answer:
+          "Dan bouwen we dat erbij. Het blijft daarna een gewone workflow, met een gewoon maandbedrag. Elke workflow krijgt na het ontwerp een prijs die je ziet voordat je ja zegt, dus je komt nooit voor een verrassing te staan.",
       },
       {
         question: "Waarom kost de ene workflow meer dan de andere?",
@@ -217,27 +211,16 @@ const translations = {
         per: "per month, per workflow",
         body: "A workflow takes over one recurring job. It is a range because a workflow calls external services and sometimes has to connect to another system. At design time you see what yours costs.",
       },
-      {
-        name: "Custom build",
-        price: "On request",
-        per: "",
-        body: "Something that does not exist yet and genuinely has to be built. We quote that separately, and always up front.",
-      },
     ],
 
-    oneOffTitle: "Exactly two one-off amounts",
+    oneOffTitle: "One one-off amount",
     oneOffIntro:
-      "No setup cost does not mean there is never a one-off amount. There are two, and no more:",
+      "No setup cost does not mean there is never a one-off amount. There is one:",
     oneOffs: [
       {
         label: "Connecting your existing CRM",
         value: PRIJS.crmKoppeling.en,
-        body: "The CRM functionality itself is part of the Company Brain. If you want it connected to the CRM you use today, that connection costs this once.",
-      },
-      {
-        label: "A genuine custom build",
-        value: "On request",
-        body: "Something that does not exist yet and gets built for you. We quote that up front, so you know where you stand.",
+        body: "The CRM functionality itself is part of the Company Brain. If you want it connected to the CRM you use today, that connection costs this once. What you get for it: your meetings and your emails end up with the right person and the right company on their own. For every customer you can see what is going on, without anyone retyping it.",
       },
     ],
 
@@ -258,7 +241,7 @@ const translations = {
       {
         question: "Are there setup costs?",
         answer:
-          "No. You start with the monthly fee for the Company Brain. There are exactly two one-off amounts, listed above: connecting an existing CRM, and a genuine custom build.",
+          "No. You start with the monthly fee for the Company Brain. There is one one-off amount, listed above: connecting an existing CRM.",
       },
       {
         question: "Am I tied in?",
@@ -268,6 +251,11 @@ const translations = {
         question: "Do I pay more if we have more people?",
         answer:
           "No. The price is the same for every company, whether you are five or three hundred. What does count is how much you put into it. There is a limit to that, because beyond it running the Brain costs us more and we pass that on. With three hundred people you reach that limit sooner than with five, and you hear from us before you get there.",
+      },
+      {
+        question: "What if a workflow needs something that does not exist yet?",
+        answer:
+          "Then we build it. After that it is a normal workflow with a normal monthly price. Every workflow gets a price after the design, and you see it before you say yes, so nothing comes as a surprise.",
       },
       {
         question: "Why does one workflow cost more than another?",
