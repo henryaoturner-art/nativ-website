@@ -108,11 +108,13 @@ const orgSchema = {
   },
   address: {
     "@type": "PostalAddress",
-    // KVK-registered address of Nativ B.V. (KVK 42125853), verified against
-    // VIES 2026-08-17. Beethovenlaan/Hilversum was the eenmanszaak — do not revert.
-    streetAddress: "Houtmarkt 19",
-    postalCode: "2011 AL",
-    addressLocality: "Haarlem",
+    // Bezoekadres: The Stack, sinds 4 september 2026 ons kantoor en de zakelijke
+    // adresregistratie (Brain-feit 01-identity.hq-address; A4, KAN-425). Het
+    // statutaire adres in Haarlem hoort in de voorwaarden en de privacyverklaring,
+    // niet in de bezoekinformatie. Het KvK-nummer hierboven wordt in KAN-411 gecheckt.
+    streetAddress: "Jacob Bontiusplaats 9",
+    postalCode: "1018 LL",
+    addressLocality: "Amsterdam",
     addressCountry: "NL",
   },
   sameAs: [

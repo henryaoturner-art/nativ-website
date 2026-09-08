@@ -86,7 +86,17 @@ export default function Footer() {
                   {f.planCall}
                 </Link>
               </li>
-              <li className="text-white/60">Amsterdam, NL</li>
+              <li>
+                {/* Bezoekadres (A4, KAN-425): The Stack sinds 4 september 2026,
+                    Brain-feit 01-identity.hq-address. Adressen vertaal je niet. */}
+                <address className="not-italic text-white/60 leading-relaxed" translate="no">
+                  The Stack
+                  <br />
+                  Jacob Bontiusplaats 9
+                  <br />
+                  1018 LL Amsterdam
+                </address>
+              </li>
             </ul>
           </div>
         </div>

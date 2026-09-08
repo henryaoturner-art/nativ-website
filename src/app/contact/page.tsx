@@ -25,6 +25,8 @@ const translations = {
     submitting: "Verzenden...",
     errorMsg: "Er ging iets mis. Probeer het opnieuw of mail info@gonativ.nl.",
     orEmail: "Of mail ons direct:",
+    addressTitle: "Bezoekadres",
+    directions: "Route plannen",
   },
   en: {
     heroTitle: "Let\u2019s talk",
@@ -46,8 +48,13 @@ const translations = {
     submitting: "Sending...",
     errorMsg: "Something went wrong. Please try again or email info@gonativ.nl.",
     orEmail: "Or email us directly:",
+    addressTitle: "Visiting address",
+    directions: "Get directions",
   },
 };
+
+// Geen kaart-embed: die brengt een cookie-muur mee. Een gewone link volstaat.
+const MAPS_URL = "https://maps.google.com/?q=Jacob+Bontiusplaats+9,+1018+LL+Amsterdam";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -107,7 +114,8 @@ export default function ContactPage() {
       <section className="px-6 pb-20 md:pb-28">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <FadeIn>
-            <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
+            <div className="flex flex-col gap-8 h-full">
+            <div className="bg-surface rounded-xl p-8 border border-sage-light">
               <h2 className="font-serif text-2xl mb-4">{c.calTitle}</h2>
               <p className="text-grey/60 font-light text-sm mb-6">{c.calMeta}</p>
               <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
@@ -126,6 +134,27 @@ export default function ContactPage() {
                   style={{ display: calLoaded ? 'block' : 'none' }}
                 />
               </div>
+            </div>
+
+            {/* Bezoekadres (A4, KAN-425): The Stack, Brain-feit 01-identity.hq-address. */}
+            <div className="bg-surface rounded-xl p-8 border border-sage-light">
+              <h2 className="font-serif text-2xl mb-4">{c.addressTitle}</h2>
+              <address className="not-italic text-grey/70 font-light leading-relaxed" translate="no">
+                The Stack
+                <br />
+                Jacob Bontiusplaats 9
+                <br />
+                1018 LL Amsterdam
+              </address>
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block text-sage hover:underline"
+              >
+                {c.directions}
+              </a>
+            </div>
             </div>
           </FadeIn>
 
