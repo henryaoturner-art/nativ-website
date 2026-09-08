@@ -1,44 +1,63 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/language-context";
+import { isNlOnly, localizeHref, stripLocale } from "@/lib/locale";
 
 /**
- * NL | EN switch (A2 stap 1, KAN-425). `translate="no"` keeps Chrome's
- * translator off the labels: "EN" is also the Dutch word for "and", so a
- * translated page used to show "AND". Each button carries its own `lang`.
+ * NL | EN wissel (A2, KAN-425): twee links naar dezelfde pagina in de andere
+ * taal, geen state-toggle meer. `translate="no"` houdt Chrome's vertaler van
+ * de labels af ("EN" is ook het Nederlandse woord "en", dus vertaald werd het
+ * "AND"). Op een NL-only pagina wijst EN naar de Engelse homepage.
  */
+function subscribeToLocation(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  return () => window.removeEventListener("popstate", onChange);
+}
+
 export default function LanguageToggle() {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  const pathname = usePathname();
+  const { path } = stripLocale(pathname ?? "/");
+  // Querystring (bijv. /scan/start?team=1) meenemen. Op de server is die leeg;
+  // useSyncExternalStore geeft server en client dezelfde eerste render.
+  const search = useSyncExternalStore(
+    subscribeToLocation,
+    () => window.location.search,
+    () => "",
+  );
+
+  const nlHref = `${path}${search}`;
+  const enHref = isNlOnly(path) ? "/en" : `${localizeHref(path, "en")}${search}`;
+
+  const cls = (active: boolean) =>
+    `px-2 py-1 rounded transition-colors ${active ? "text-sage font-medium" : "text-grey/50 hover:text-grey"}`;
 
   return (
     <div className="flex items-center gap-0.5 text-sm font-light notranslate" translate="no">
-      <button
-        onClick={() => setLanguage("nl")}
+      <NextLink
+        href={nlHref}
         lang="nl"
-        className={`px-2 py-1 rounded transition-colors cursor-pointer ${
-          language === "nl"
-            ? "text-sage font-medium"
-            : "text-grey/50 hover:text-grey"
-        }`}
+        hrefLang="nl"
+        className={cls(language === "nl")}
         aria-label="Nederlands"
-        aria-pressed={language === "nl"}
+        aria-current={language === "nl" ? "page" : undefined}
       >
         NL
-      </button>
+      </NextLink>
       <span className="text-grey/30" aria-hidden="true">|</span>
-      <button
-        onClick={() => setLanguage("en")}
+      <NextLink
+        href={enHref}
         lang="en"
-        className={`px-2 py-1 rounded transition-colors cursor-pointer ${
-          language === "en"
-            ? "text-sage font-medium"
-            : "text-grey/50 hover:text-grey"
-        }`}
+        hrefLang="en"
+        className={cls(language === "en")}
         aria-label="English"
-        aria-pressed={language === "en"}
+        aria-current={language === "en" ? "page" : undefined}
       >
         EN
-      </button>
+      </NextLink>
     </div>
   );
 }

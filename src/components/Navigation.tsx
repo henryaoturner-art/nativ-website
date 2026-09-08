@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/lib/language-context";
+import { stripLocale } from "@/lib/locale";
 
 const navLinks = {
   nl: [
@@ -34,7 +35,9 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Actieve link vergelijken zonder /en-voorvoegsel (A2 stap 2, KAN-425).
+  const currentPath = stripLocale(pathname ?? "/").path;
 
   const links = t(navLinks);
   const cta = t(ctaText);
@@ -61,7 +64,7 @@ export default function Navigation() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 md:h-24" aria-label="Hoofdnavigatie">
+      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 md:h-24" aria-label={language === "en" ? "Main navigation" : "Hoofdnavigatie"}>
         <Logo />
 
         {/* Desktop nav */}
@@ -71,7 +74,7 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               className={`text-sm font-light tracking-wide transition-colors hover:text-sage ${
-                pathname === link.href ? "text-sage" : "text-grey"
+                currentPath === link.href ? "text-sage" : "text-grey"
               }`}
             >
               {link.label}
@@ -90,7 +93,11 @@ export default function Navigation() {
         <button
           className="md:hidden p-2 text-grey"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Menu sluiten" : "Menu openen"}
+          aria-label={
+            mobileOpen
+              ? language === "en" ? "Close menu" : "Menu sluiten"
+              : language === "en" ? "Open menu" : "Menu openen"
+          }
           aria-expanded={mobileOpen}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -112,7 +119,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={`block text-base transition-colors hover:text-sage ${
-                  pathname === link.href ? "text-sage" : "text-grey"
+                  currentPath === link.href ? "text-sage" : "text-grey"
                 }`}
               >
                 {link.label}

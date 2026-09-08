@@ -7,10 +7,11 @@
  * dat wil — ook als nog niet iedereen klaar is.
  */
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { useRouter } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { localizeHref } from "@/lib/locale";
 
 const translations = {
   nl: {
@@ -184,7 +185,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
       }
       if (!res.ok) throw new Error("complete failed");
       const { reportUrl } = (await res.json()) as { reportUrl: string };
-      router.push(reportUrl);
+      router.push(localizeHref(reportUrl, language));
     } catch {
       setCompleteError(c.completeError);
       setCompleting(false);

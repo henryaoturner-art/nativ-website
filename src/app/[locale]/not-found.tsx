@@ -1,0 +1,41 @@
+"use client";
+
+import Link from "@/components/Link";
+import { useLanguage } from "@/lib/language-context";
+
+const copy = {
+  nl: {
+    title: "Pagina niet gevonden",
+    sub: "Deze pagina bestaat niet of is verplaatst.",
+    home: "Terug naar home",
+  },
+  en: {
+    title: "Page not found",
+    sub: "This page does not exist or has moved.",
+    home: "Back to home",
+  },
+};
+
+export default function NotFound() {
+  const { t } = useLanguage();
+  const c = t(copy);
+  return (
+    <section className="py-32 md:py-40 px-6 text-center">
+      <div className="max-w-[680px] mx-auto">
+        <h1 className="font-serif text-6xl md:text-8xl text-sage/30">404</h1>
+        <h2 className="font-serif text-3xl md:text-[42px] leading-tight mt-6">
+          {c.title}
+        </h2>
+        <p className="mt-4 text-lg font-light text-grey/60">
+          {c.sub}
+        </p>
+        <Link
+          href="/"
+          className="mt-8 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
+        >
+          {c.home}
+        </Link>
+      </div>
+    </section>
+  );
+}

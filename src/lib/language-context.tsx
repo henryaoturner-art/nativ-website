@@ -1,46 +1,28 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
+import type { Locale } from "./locale";
 
-type Language = "nl" | "en";
+type Language = Locale;
 
 interface LanguageContextType {
   language: Language;
-  setLanguage: (lang: Language) => void;
   t: <T>(translations: { nl: T; en: T }) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("nl");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("nativ-lang") as Language | null;
-    if (stored === "en" || stored === "nl") {
-      setLanguageState(stored);
-    }
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem("nativ-lang", language);
-      document.documentElement.lang = language;
-    }
-  }, [language, mounted]);
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-  };
-
-  const t = <T,>(translations: { nl: T; en: T }): T => {
-    return translations[language];
-  };
+/**
+ * De taal komt van de route (app/[locale], A2 stap 2, KAN-425), niet meer uit
+ * client-state of localStorage. De copy-dictionaries per pagina blijven de
+ * bron; alleen de selectie is verhuisd. Wisselen = navigeren naar dezelfde
+ * pagina in de andere taal (LanguageToggle).
+ */
+export function LanguageProvider({ locale, children }: { locale: Language; children: ReactNode }) {
+  const t = <T,>(translations: { nl: T; en: T }): T => translations[locale];
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language: locale, t }}>
       {children}
     </LanguageContext.Provider>
   );

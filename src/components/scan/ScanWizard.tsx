@@ -14,9 +14,10 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/Link";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { localizeHref } from "@/lib/locale";
 import {
   COMPANY_QUESTIONS,
   DEPARTMENT_QUESTIONS,
@@ -221,7 +222,7 @@ export default function ScanWizard({
         if (isTeamOwner) {
           // Eigen deel klaar: door naar het teamoverzicht, waar de eigenaar
           // uitnodigt en het rapport maakt.
-          router.push(`/scan/${token}/team`);
+          router.push(localizeHref(`/scan/${token}/team`, language));
           return;
         }
         setSubmitted(true);
@@ -235,7 +236,7 @@ export default function ScanWizard({
       });
       if (!res.ok) throw new Error("complete failed");
       const { reportUrl } = (await res.json()) as { reportUrl: string };
-      router.push(reportUrl);
+      router.push(localizeHref(reportUrl, language));
     } catch {
       setCompleteError(c.completeError);
       setCompleting(false);

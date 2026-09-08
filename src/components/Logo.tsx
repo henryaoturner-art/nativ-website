@@ -1,5 +1,8 @@
-import Link from "next/link";
+"use client";
+
+import Link from "./Link";
 import Wordmark from "./Wordmark";
+import { useLanguage } from "@/lib/language-context";
 
 /**
  * The wordmark as a link to the homepage. One component for header, footer and
@@ -14,6 +17,7 @@ export default function Logo({
   light?: boolean;
   size?: "header" | "footer";
 }) {
+  const { language } = useLanguage();
   const color = light ? "text-cream" : "text-grey";
   const height = size === "footer" ? "h-10" : "h-11 md:h-14";
   return (
@@ -21,7 +25,7 @@ export default function Logo({
       href="/"
       className={`inline-flex items-center ${color} no-underline notranslate`}
       translate="no"
-      aria-label="nativ, naar homepage"
+      aria-label={language === "en" ? "nativ, to the homepage" : "nativ, naar homepage"}
     >
       <Wordmark onDark={light} className={height} />
     </Link>
