@@ -7,7 +7,7 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = pageMeta(
   "/blog",
   "Blog: inzichten over AI, kennis en het mkb | nativ",
-  "Inzichten over AI, kennismanagement en het Company Brain voor het Nederlandse mkb. Praktisch en eerlijk, zonder hype.",
+  "Inzichten over AI, kennismanagement en het Company Brain voor het mkb. Praktisch en eerlijk, zonder hype.",
 );
 
 function formatDate(dateStr: string) {

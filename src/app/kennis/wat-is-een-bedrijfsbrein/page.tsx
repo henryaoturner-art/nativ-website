@@ -25,7 +25,7 @@ const faqItems = [
   {
     question: "Is dit geschikt voor het mkb?",
     answer:
-      "Ja. nativ is gebouwd voor Nederlandse mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
+      "Ja. nativ is gebouwd voor mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function PillarBedrijfsbreinPage() {
               centrale kennislaag waarin samenkomt wat je bedrijf weet: uit de
               hoofden van je mensen, uit je systemen en uit de buitenwereld.
               Daarbovenop draaien AI-workflows die snappen hoe jullie
-              werken, in plaats van algemene antwoorden te geven. nativ bouwt zo'n Company Brain voor het Nederlandse mkb.
+              werken, in plaats van algemene antwoorden te geven. nativ bouwt zo'n Company Brain voor het mkb.
             </p>
           </FadeIn>
           <FadeIn delay={250}>

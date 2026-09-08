@@ -7,7 +7,7 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Een Company Brain met AI-workflows voor het Nederlandse mkb.",
+    heroTitle: "Een Company Brain met AI-workflows voor het mkb.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meest ontzorgen.",
     ctaScan: "Doe de gratis AI-scan →",
@@ -48,7 +48,7 @@ const translations = {
     closerCta: "Plan een gesprek →",
   },
   en: {
-    heroTitle: "A Company Brain with AI workflows for Dutch SMEs.",
+    heroTitle: "A Company Brain with AI workflows for SMEs.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the foundation for the AI workflows that take the most off your plate.",
     ctaScan: "Take the free AI scan →",
@@ -98,7 +98,7 @@ const orgSchema = {
   url: "https://gonativ.nl",
   logo: "https://gonativ.nl/nativ-logo.png",
   description:
-    "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb.",
+    "nativ bouwt een Company Brain en AI-workflows voor het mkb.",
   email: "info@gonativ.nl",
   foundingDate: "2025-03-10",
   identifier: {
@@ -182,7 +182,7 @@ const faqSchema = {
       name: "Is dit geschikt voor het mkb?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja. nativ is gebouwd voor Nederlandse mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
+        text: "Ja. nativ is gebouwd voor mkb- en mid-market-organisaties die AI bedrijfsbreed willen inzetten, niet als los experiment, maar als onderdeel van het team.",
       },
     },
     {
@@ -215,7 +215,7 @@ const faqSchema = {
 const homepageSchema = webPage(
   "/",
   "nativ, Company Brain en AI-workflows voor het mkb",
-  "nativ bouwt een Company Brain en AI-workflows voor het Nederlandse mkb: één centrale AI-kennislaag met workflows voor marketing, sales, finance en hr.",
+  "nativ bouwt een Company Brain en AI-workflows voor het mkb: één centrale AI-kennislaag met workflows voor marketing, sales, finance en hr.",
 );
 
 const homepageJsonLd = [orgSchema, softwareSchema, faqSchema, homepageSchema];

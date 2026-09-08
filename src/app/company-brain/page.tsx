@@ -23,7 +23,7 @@ const faqItems = [
   {
     question: "Voor wie is een Company Brain?",
     answer:
-      "Voor het Nederlandse mkb dat AI bedrijfsbreed wil inzetten, niet als los experiment maar als vaste basis onder het werk.",
+      "Voor het mkb dat AI bedrijfsbreed wil inzetten, niet als los experiment maar als vaste basis onder het werk.",
   },
   {
     question: "Wat is het verschil tussen een Company Brain en een chatbot zoals ChatGPT?",

@@ -5,7 +5,7 @@
  * expliciet bij dat niets doen ook prima is).
  *
  * Alleen Nederlands: de taal van de invuller wordt niet opgeslagen, en de
- * scan richt zich op het Nederlandse mkb.
+ * scan richt zich op het mkb.
  */
 
 interface ReminderEmailProps {
