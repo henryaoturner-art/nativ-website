@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/lib/language-context";
@@ -6,6 +7,21 @@ import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { OG_IMAGE } from "@/lib/site-meta";
 import "./globals.css";
+
+// Het merkfont (A5, KAN-425). Tot nu toe stond "General Sans" alleen in de CSS
+// zonder @font-face, dus de body viel terug op de systeemfont in gewicht 300.
+// Lokaal gehost (woff2 van Fontshare, gratis voor webgebruik), drie gewichten;
+// een gevraagd gewicht 300 valt automatisch op 400.
+const generalSans = localFont({
+  src: [
+    { path: "./fonts/GeneralSans-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/GeneralSans-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/GeneralSans-Semibold.woff2", weight: "600", style: "normal" },
+  ],
+  variable: "--font-general-sans",
+  display: "swap",
+  fallback: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="nl" className={`h-full antialiased ${generalSans.variable}`} suppressHydrationWarning>
       <head>
         {/* FadeIn starts at opacity 0 and is revealed by an IntersectionObserver.
             Without JS that observer never runs, so every section would stay blank. */}
