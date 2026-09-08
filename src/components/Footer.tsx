@@ -49,7 +49,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {/* Brand */}
           <div>
-            <Logo light />
+            <Logo light size="footer" />
             <p className="mt-4 text-white/60 text-sm font-light leading-relaxed max-w-xs">
               {f.tagline}
             </p>
