@@ -3,11 +3,18 @@ import Link from "@/components/Link";
 import FadeIn from "@/components/FadeIn";
 import { pageMeta, webPage, SITE_UPDATED } from "@/lib/site-meta";
 
-export const metadata: Metadata = pageMeta(
-  "/cases",
-  "Cases | nativ",
-  "Echte resultaten bij echte bedrijven. Bekijk hoe nativ organisaties helpt met AI.",
-);
+// Verborgen sinds 8 september 2026 (besluit Jorus/Livius): één case is te
+// summier voor een eigen tab. Pagina blijft bestaan; niet in menu, sitemap,
+// llms.txt en niet geïndexeerd. Terugzetten: deze noindex weg en de regels
+// in Navigation.tsx, sitemap.ts en llms.txt/route.ts terug.
+export const metadata: Metadata = {
+  ...pageMeta(
+    "/cases",
+    "Cases | nativ",
+    "Echte resultaten bij echte bedrijven. Bekijk hoe nativ organisaties helpt met AI.",
+  ),
+  robots: { index: false, follow: false },
+};
 
 const SORTLIST_REVIEW_URL = "https://www.sortlist.com/agency/nativ";
 

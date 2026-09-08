@@ -288,9 +288,8 @@ export default function HomePage() {
                   ★★★★☆
                 </span>
                 <span className="sr-only">{c.proofAria}</span>
-                <Link href="/cases" className="text-sage hover:underline">
-                  {c.proofScore}
-                </Link>
+                {/* /cases is verborgen (8 sep 2026); de score staat als tekst. */}
+                <span className="text-sage">{c.proofScore}</span>
               </div>
               {c.proofQuote && (
                 <blockquote className="mt-2 italic">

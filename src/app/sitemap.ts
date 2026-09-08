@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/kennis/wat-is-een-bedrijfsbrein",
     "/diensten",
     "/over-ons",
-    "/cases",
     "/ai-events",
     "/pricing",
     "/impact",

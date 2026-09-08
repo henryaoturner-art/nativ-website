@@ -24,7 +24,6 @@ Nativ B.V. (gonativ.nl) is een Nederlands bedrijf, KvK 42125853, statutair geves
 
 const FOOTER = `## Meer
 - [Diensten](https://gonativ.nl/diensten): wat we leveren en hoe een traject loopt.
-- [Cases](https://gonativ.nl/cases): klantvoorbeelden en resultaten.
 - [Over ons](https://gonativ.nl/over-ons): wie nativ is.
 - [Security & privacy](https://gonativ.nl/security): EU-hosting, GDPR, hoe we met gevoelige data omgaan.
 - [Whitepaper](https://gonativ.nl/whitepaper): de onderbouwing achter context engineering en het MVC-framework.
