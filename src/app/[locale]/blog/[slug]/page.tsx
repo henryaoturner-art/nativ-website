@@ -9,6 +9,10 @@ export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
+// Alle posts zijn bij de build bekend; een onbekende slug is een 404 zonder
+// render, zodat de globale 404 (app/global-not-found.tsx) hem afhandelt.
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {

@@ -174,7 +174,8 @@ export async function sendReportReadyEmail(
   const { resend } = await import("./resend");
   const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
   const replyTo = process.env.SCAN_REPLY_TO_EMAIL || "jorus@gonativ.nl";
-  const reportUrl = `https://gonativ.nl/scan/${scan.token}/rapport`;
+  // Engelse scan: link naar de Engelse route (A2 stap 2, KAN-425).
+  const reportUrl = `https://gonativ.nl${language === "en" ? "/en" : ""}/scan/${scan.token}/rapport`;
   try {
     await resend.emails.send({
       from: `nativ <${fromEmail}>`,

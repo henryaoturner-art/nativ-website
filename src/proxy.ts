@@ -36,7 +36,11 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Alles behalve API-routes, Next-internals, Vercel-internals (analytics
-  // post naar /_vercel/insights/view) en bestanden met een extensie
-  // (sitemap.xml, robots.txt, llms.txt, icon.svg, afbeeldingen).
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // post naar /_vercel/insights/view) en statische bestanden (sitemap.xml,
+  // robots.txt, llms.txt, icon.svg, afbeeldingen, downloads). Een pad met een
+  // onbekende extensie (/wp-login.php) gaat wél door de proxy, zodat het als
+  // /nl/... geen route matcht en de gebrande globale 404 krijgt.
+  matcher: [
+    "/((?!api/|_next/|_vercel/|.*\\.(?:png|jpe?g|gif|svg|webp|avif|ico|txt|xml|pdf|mp3|mp4|webm|m4a|wav|woff2?|ttf|otf|css|js|mjs|json|map|html|webmanifest)$).*)",
+  ],
 };

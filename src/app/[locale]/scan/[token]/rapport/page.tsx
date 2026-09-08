@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/components/Link";
 import { notFound, redirect } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
+import { isLocale, localizeHref } from "@/lib/locale";
 import { getReportPayload, getScanBundle, saveReportPayload } from "@/lib/scan/db";
 import { sendReportReadyEmail } from "@/lib/scan-email";
 import {
@@ -154,9 +155,10 @@ const staticCopy = {
 export default async function ScanReportPage({
   params,
 }: {
-  params: Promise<{ token: string }>;
+  params: Promise<{ locale: string; token: string }>;
 }) {
-  const { token } = await params;
+  const { locale, token } = await params;
+  const lang = isLocale(locale) ? locale : "nl";
   const bundle = await getScanBundle(token);
   if (!bundle) notFound();
   const { scan } = bundle;
@@ -165,7 +167,7 @@ export default async function ScanReportPage({
   // Een heropende scan (team uitgenodigd na het solo-rapport) houdt zijn
   // bestaande rapport zichtbaar; alleen zonder rapport gaat een open scan
   // terug naar de vragen.
-  if (scan.status !== "afgerond" && !payload) redirect(`/scan/${token}`);
+  if (scan.status !== "afgerond" && !payload) redirect(localizeHref(`/scan/${token}`, lang));
 
   // Zelfherstellend: kon het rapport bij het afronden niet gemaakt worden
   // (geen sleutel, of de API zat vol), dan wordt het bij het eerste bezoek

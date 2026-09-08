@@ -3,6 +3,8 @@
 import Link from "@/components/Link";
 import { useLanguage } from "@/lib/language-context";
 
+// Bij navigatie op de client (een kapotte interne link) rendert Next deze
+// boundary binnen de layout; een directe aanvraag krijgt app/global-not-found.tsx.
 const copy = {
   nl: {
     title: "Pagina niet gevonden",

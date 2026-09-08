@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // De rootlayout zit in app/[locale] (A2 stap 2, KAN-425). Een 404 kan Next dan
+  // niet uit layout + not-found opbouwen (het levert een kale foutpagina zonder
+  // lang, header of footer); app/global-not-found.tsx is de door Next bedoelde
+  // uitweg voor precies dit geval en rendert een volledig gebrand document.
+  experimental: {
+    globalNotFound: true,
+  },
   async redirects() {
     return [
       // KAN-318 (GEO): consolidate www → non-www (gonativ.nl is canonical).

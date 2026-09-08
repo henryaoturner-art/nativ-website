@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getScanBundle } from "@/lib/scan/db";
 import ScanWizard from "@/components/scan/ScanWizard";
+import { isLocale, localizeHref } from "@/lib/locale";
 
 // Persoonlijke tokenlink: nooit cachen, nooit indexeren.
 export const dynamic = "force-dynamic";
@@ -14,12 +15,14 @@ export const metadata: Metadata = {
 export default async function ScanTokenPage({
   params,
 }: {
-  params: Promise<{ token: string }>;
+  params: Promise<{ locale: string; token: string }>;
 }) {
-  const { token } = await params;
+  const { locale, token } = await params;
   const bundle = await getScanBundle(token);
   if (!bundle) notFound();
-  if (bundle.scan.status === "afgerond") redirect(`/scan/${token}/rapport`);
+  // Taal van de route bewaren (A2 stap 2, KAN-425): /en/scan/<token> blijft Engels.
+  const lang = isLocale(locale) ? locale : "nl";
+  if (bundle.scan.status === "afgerond") redirect(localizeHref(`/scan/${token}/rapport`, lang));
 
   // Alleen de eigen antwoorden van de eigenaar (eerste respondent): bij een
   // teamscan horen de antwoorden van collega's niet in dit formulier.

@@ -100,7 +100,8 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const reportUrl = `${BASE_URL}/scan/${scan.token}/rapport`;
+    // Engelse scan: link naar de Engelse route (A2 stap 2, KAN-425).
+    const reportUrl = `${BASE_URL}${lang === "en" ? "/en" : ""}/scan/${scan.token}/rapport`;
 
     if (process.env.RESEND_API_KEY) {
       // Melding naar Jorus — wat je nodig hebt om te kunnen bellen.

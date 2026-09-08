@@ -21,10 +21,18 @@ const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 
 // Key pages worth re-announcing, plus every blog post (auto-discovered).
+// /digitale-collegas was retired (301 to /workflows, 2026-08-10); the English
+// routes exist since the language routes of KAN-425 (A2, 2026-09-08).
 const STATIC_PATHS = [
   "/",
+  "/en",
   "/company-brain",
-  "/digitale-collegas",
+  "/workflows",
+  "/en/workflows",
+  "/scan",
+  "/en/scan",
+  "/pricing",
+  "/en/pricing",
   "/kennis/wat-is-een-bedrijfsbrein",
   "/blog",
 ];
