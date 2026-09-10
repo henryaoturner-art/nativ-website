@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import FadeIn from "@/components/FadeIn";
+import Section from "@/components/Section";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import type { AgendaEvent } from "@/lib/events";
@@ -19,6 +20,7 @@ const copy = {
     empty: "Geen komende events gevonden. Kom snel terug, de lijst ververst automatisch.",
     online_pill: "Online",
     register: "Aanmelden",
+    toEvent: "Naar het event",
     by: "door",
     foot: "Events worden verzameld via Luma en Meetup. nativ organiseert deze events niet zelf, aanmelden gebeurt bij de organisator.",
     locale: "nl-NL",
@@ -33,11 +35,21 @@ const copy = {
     empty: "No upcoming events found. Check back soon, the list refreshes automatically.",
     online_pill: "Online",
     register: "Sign up",
+    toEvent: "To the event",
     by: "by",
     foot: "Events are gathered from Luma and Meetup. nativ does not host these events, registration happens with the organizer.",
     locale: "en-GB",
   },
 };
+
+// Kicker-stijl (B1) voor de datum in een rij. Als losse klassen en niet als
+// <Kicker>, omdat die component 12px ruimte eronder zet en de rij die niet heeft.
+const kickerCls = "text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark";
+
+// Scheidingspunt in een secundaire regel (B3): een 6px Sage-punt in plaats van het losse middelpunt-teken.
+function Dot() {
+  return <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />;
+}
 
 export default function AgendaView({ events }: { events: AgendaEvent[] }) {
   const { t } = useLanguage();
@@ -68,121 +80,109 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
   ];
 
   return (
-    <>
-      {/* Hero */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[760px] mx-auto text-center">
+    <Section hero>
+      {/* Hero: titel, intro en bronregel links, de filters ernaast (D7 + B4) */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-end">
+        <div className="md:col-span-7">
           <FadeIn>
-            <h1 className="font-serif text-grey">
-              {c.title}
-            </h1>
+            <h1 className="font-serif text-grey">{c.title}</h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl text-grey">{c.sub}</p>
+            <p className="mt-6 max-w-[640px] text-lg text-grey leading-relaxed">{c.sub}</p>
           </FadeIn>
           <FadeIn delay={250}>
             <p className="mt-4 text-sm text-muted">{c.source}</p>
           </FadeIn>
         </div>
-      </section>
-
-      {/* Filters */}
-      <section className="px-6">
-        <div className="max-w-[820px] mx-auto flex flex-wrap justify-center gap-2.5 pb-10">
-          {chips.map((chip) => {
-            const on = filter === chip.id;
-            return (
-              <button
-                key={chip.id}
-                type="button"
-                onClick={() => setFilter(chip.id)}
-                className={`text-sm px-5 py-2 rounded-lg border transition-colors cursor-pointer ${
-                  on
-                    ? "bg-grey border-grey text-cream"
-                    : "bg-transparent border-border text-grey hover:bg-sand"
-                }`}
-              >
-                {chip.label}
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* List */}
-      <section className="px-6 pb-24">
-        <div className="max-w-[820px] mx-auto">
-          {shown.length === 0 && (
-            <p className="text-center text-muted py-12">{c.empty}</p>
-          )}
-
-          {months.map((m) => (
-            <div key={m.key}>
-              <h2 className="font-serif text-[15px] tracking-[0.12em] uppercase text-sage-dark mt-8 first:mt-0 mb-4 pb-2.5 border-b border-sage/25">
-                {m.label}
-              </h2>
-              <div className="space-y-3.5">
-                {m.events.map((e, i) => {
-                  const d = fmt(e.start);
-                  return (
-                    <FadeIn key={e.id} delay={Math.min(i * 60, 300)}>
-                      <a
-                        href={e.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-wrap sm:flex-nowrap items-start gap-4 sm:gap-6 bg-white rounded-2xl px-6 py-5 border border-border transition-all hover:-translate-y-0.5"
-                      >
-                        {/* Date badge */}
-                        <div className="flex sm:flex-col items-baseline sm:items-center gap-2 sm:gap-0 sm:w-[58px] sm:flex-none sm:text-center sm:border-r border-grey/10 sm:pr-5">
-                          <span className="font-serif text-3xl leading-none text-grey">{d.day}</span>
-                          <span className="text-xs tracking-widest uppercase text-sage-dark sm:mt-1.5">{d.month}</span>
-                          <span className="text-[11px] text-muted sm:mt-1">{d.weekday}</span>
-                        </div>
-
-                        {/* Body */}
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-serif text-grey">{e.title}</h3>
-                          <div className="mt-2 flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[13.5px] text-grey">
-                            {e.locationType === "online" ? (
-                              <span className="text-xs px-2.5 py-0.5 rounded-full bg-sage-light text-sage-dark">
-                                {c.online_pill}
-                              </span>
-                            ) : (
-                              <span className="text-xs px-2.5 py-0.5 rounded-full bg-grey/[0.07] text-grey">
-                                {e.city || "Nederland"}
-                              </span>
-                            )}
-                            <span>{d.time}</span>
-                            <span className="text-muted">·</span>
-                            <span className="capitalize">{e.source}</span>
-                          </div>
-                          {e.host && (
-                            <p className="mt-2 text-[13.5px] text-muted">
-                              {c.by} {e.host}
-                            </p>
-                          )}
-                        </div>
-
-                        {/* CTA */}
-                        <span className="self-center inline-flex items-center gap-1 text-sm font-medium text-sage-dark whitespace-nowrap group-hover:text-grey">
-                          {c.register}
-                          <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-                        </span>
-                      </a>
-                    </FadeIn>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer note */}
-      <div className="bg-white border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-muted">
-        <p className="max-w-[640px] mx-auto">{c.foot}</p>
+        <FadeIn delay={250} className="md:col-span-5">
+          <div className="flex flex-wrap gap-2.5 md:justify-end">
+            {chips.map((chip) => {
+              const on = filter === chip.id;
+              return (
+                <button
+                  key={chip.id}
+                  type="button"
+                  onClick={() => setFilter(chip.id)}
+                  className={`text-sm px-5 py-2 rounded-lg border transition-colors cursor-pointer ${
+                    on
+                      ? "bg-grey border-grey text-cream"
+                      : "bg-transparent border-border text-grey hover:bg-sand"
+                  }`}
+                >
+                  {chip.label}
+                </button>
+              );
+            })}
+          </div>
+        </FadeIn>
       </div>
-    </>
+
+      {/* Per maand een kop, daaronder de events als compacte rijen in twee kolommen (D7) */}
+      <div className="mt-12 md:mt-16">
+        {shown.length === 0 && <p className="text-muted py-12">{c.empty}</p>}
+
+        {months.map((m, mi) => (
+          <div key={m.key} className={mi > 0 ? "mt-12" : ""}>
+            <h2 className="font-serif text-grey">{m.label}</h2>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {m.events.map((e, i) => {
+                const d = fmt(e.start);
+                return (
+                  <FadeIn key={e.id} delay={Math.min(i * 60, 300)}>
+                    <a
+                      href={e.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex h-full flex-wrap sm:flex-nowrap items-start gap-x-5 gap-y-3 bg-white border border-border rounded-lg p-4 transition-colors hover:border-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grey"
+                    >
+                      {/* Datum in kicker-stijl, links */}
+                      <div className="flex flex-wrap items-baseline gap-x-3 sm:block sm:w-24 sm:shrink-0 sm:pt-1">
+                        <p className={`${kickerCls} whitespace-nowrap`}>
+                          {d.weekday} {d.day} {d.month}
+                        </p>
+                        <p className="text-sm text-muted sm:mt-1">{d.time}</p>
+                      </div>
+
+                      {/* Titel, plaats en organisator, link */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-serif text-xl text-grey">{e.title}</h3>
+                        <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+                            <span>{e.locationType === "online" ? c.online_pill : e.city || "Nederland"}</span>
+                            {e.host && (
+                              <>
+                                <Dot />
+                                <span>
+                                  {c.by} {e.host}
+                                </span>
+                              </>
+                            )}
+                            <Dot />
+                            <span className="capitalize">{e.source}</span>
+                          </p>
+                          <span className="ml-auto inline-flex items-center gap-2 whitespace-nowrap font-medium text-base text-grey underline underline-offset-4 decoration-1 decoration-sage-dark group-hover:decoration-grey">
+                            {c.toEvent}
+                            <ArrowRight
+                              size={16}
+                              strokeWidth={2}
+                              aria-hidden="true"
+                              className="shrink-0 text-sage-dark transition-transform duration-150 group-hover:translate-x-0.5"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bronregel: blijft (D7) */}
+      <p className="mt-12 md:mt-16 border-t border-border pt-6 text-sm text-muted">{c.foot}</p>
+    </Section>
   );
 }
 
