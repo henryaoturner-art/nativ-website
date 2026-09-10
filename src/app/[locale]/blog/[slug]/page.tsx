@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { getPost, getAllSlugs } from "@/lib/blog";
@@ -123,28 +124,27 @@ export default async function BlogPostPage({
             <div className="mt-16 pt-8 border-t border-sage-light text-center">
               <p className="text-grey/60 font-light">
                 Benieuwd hoe een{" "}
-                <Link href="/company-brain" className="text-sage hover:underline">
+                <Link href="/company-brain" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   Company Brain
                 </Link>{" "}
                 de kennis van jouw bedrijf vastlegt?
               </p>
               <p className="mt-3 text-grey/60 font-light">
                 Lees ook wat onze{" "}
-                <Link href="/workflows" className="text-sage hover:underline">
+                <Link href="/workflows" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   AI-workflows
                 </Link>{" "}
                 doen, of hoe we jouw{" "}
-                <Link href="/diensten" className="text-sage hover:underline">
+                <Link href="/diensten" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   AI-kennisbank
                 </Link>{" "}
                 bouwen.
               </p>
-              <Link
+              <Button className="mt-4"
                 href="/contact"
-                className="mt-4 inline-block bg-sage text-white px-8 py-3.5 rounded-lg hover:bg-sage-dark transition-colors"
               >
                 Plan een vrijblijvende kennismaking
-              </Link>
+              </Button>
             </div>
           </FadeIn>
         </div>

@@ -33,10 +33,11 @@ export default function LanguageToggle() {
   const enHref = isNlOnly(path) ? "/en" : `${localizeHref(path, "en")}${search}`;
 
   const cls = (active: boolean) =>
-    `px-2 py-1 rounded transition-colors ${active ? "text-sage font-medium" : "text-grey/50 hover:text-grey"}`;
+    // Contrast: Charcoal (7,6:1) actief, Muted (4,6:1) inactief; Sage haalde 3,0:1 (B2, KAN-425).
+    `px-2 py-1 rounded transition-colors ${active ? "text-grey font-semibold" : "text-muted hover:text-grey"}`;
 
   return (
-    <div className="flex items-center gap-0.5 text-sm font-light notranslate" translate="no">
+    <div className="flex items-center gap-0.5 text-sm notranslate" translate="no">
       <NextLink
         href={nlHref}
         lang="nl"

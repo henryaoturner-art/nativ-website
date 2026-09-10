@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
@@ -347,12 +347,11 @@ export default function PricingPage() {
               <p className="mt-6 text-sm text-grey/50 font-light leading-relaxed">
                 {c.baseFairUse}
               </p>
-              <Link
+              <Button className="mt-8"
                 href="/contact"
-                className="mt-8 block text-center bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors"
               >
-                {c.baseCta} →
-              </Link>
+                {c.baseCta}
+              </Button>
             </div>
           </FadeIn>
         </div>

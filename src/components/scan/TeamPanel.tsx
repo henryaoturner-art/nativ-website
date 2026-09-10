@@ -7,7 +7,7 @@
  * dat wil — ook als nog niet iedereen klaar is.
  */
 import { useState, type FormEvent } from "react";
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
@@ -209,12 +209,11 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
           <FadeIn>
             <div className="mt-8 bg-surface rounded-xl p-6 border border-sage-light flex flex-wrap items-center justify-between gap-4">
               <p className="text-grey/80 font-light">{c.ownTodo}</p>
-              <Link
+              <Button
                 href={`/scan/${token}`}
-                className="bg-sage text-white px-5 py-2.5 rounded-lg hover:bg-sage-dark transition-colors whitespace-nowrap"
               >
-                {c.ownTodoCta} →
-              </Link>
+                {c.ownTodoCta}
+              </Button>
             </div>
           </FadeIn>
         )}
@@ -247,7 +246,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                             <button
                               type="button"
                               onClick={() => copyRespondLink(person.respondUrl)}
-                              className="ml-2 text-xs text-sage hover:underline cursor-pointer"
+                              className="ml-2 text-xs text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey cursor-pointer"
                             >
                               {copiedUrl === person.respondUrl ? c.linkCopied : c.copyRespondLink}
                             </button>
@@ -338,17 +337,16 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
               <button
                 type="button"
                 onClick={() => setPeople((prev) => [...prev, { name: "", email: "" }])}
-                className="text-sage hover:underline cursor-pointer"
+                className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey cursor-pointer"
               >
                 {c.addPerson}
               </button>
-              <button
+              <Button
                 type="submit"
                 disabled={inviting}
-                className="bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {inviting ? c.inviting : c.invite}
-              </button>
+              </Button>
             </div>
 
             {inviteMessage === "ok" && <p className="mt-4 text-sm text-sage">{c.invitedOk}</p>}
@@ -369,21 +367,19 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
               {hasReport ? c.completeBodyRedo : c.completeBody}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
-              <button
+              <Button
                 type="button"
                 onClick={handleComplete}
                 disabled={completing}
-                className="bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {hasReport ? c.completeRedo : c.complete}
-              </button>
+              </Button>
               {hasReport && (
-                <Link
+                <Button variant="tertiary"
                   href={`/scan/${token}/rapport`}
-                  className="text-sage hover:underline"
                 >
-                  {c.viewReport} →
-                </Link>
+                  {c.viewReport}
+                </Button>
               )}
             </div>
             {completing && <p className="mt-4 text-sm text-grey/60">{c.completing}</p>}

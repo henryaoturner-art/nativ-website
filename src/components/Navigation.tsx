@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import LanguageToggle from "./LanguageToggle";
@@ -27,7 +28,10 @@ const navLinks = {
   ],
 };
 
-const ctaText = { nl: "Download de whitepaper →", en: "Download the whitepaper →" };
+// Header-CTA is de gratis AI-scan, de voordeur sinds 2 september (beslissing D-1,
+// KAN-425). De whitepaper blijft bereikbaar als tekstlink in het mobiele menu en in de footer.
+const ctaText = { nl: "Doe de gratis AI-scan", en: "Take the free AI scan" };
+const whitepaperText = { nl: "Download de whitepaper", en: "Download the whitepaper" };
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,6 +43,7 @@ export default function Navigation() {
 
   const links = t(navLinks);
   const cta = t(ctaText);
+  const whitepaper = t(whitepaperText);
 
   useEffect(() => {
     // Any scroll at all makes the bar opaque: content starts directly below the
@@ -71,20 +76,15 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-light tracking-wide transition-colors hover:text-sage ${
-                currentPath === link.href ? "text-sage" : "text-grey"
+              className={`text-sm tracking-wide text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
+                currentPath === link.href ? "font-semibold underline" : ""
               }`}
             >
               {link.label}
             </Link>
           ))}
           <LanguageToggle />
-          <Link
-            href="/whitepaper"
-            className="bg-sage text-white text-sm px-6 py-2.5 rounded-lg hover:bg-sage-dark transition-colors"
-          >
-            {cta}
-          </Link>
+          <Button href="/scan">{cta}</Button>
         </div>
 
         {/* Mobile hamburger */}
@@ -116,8 +116,8 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block text-base transition-colors hover:text-sage ${
-                  currentPath === link.href ? "text-sage" : "text-grey"
+                className={`block text-base text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
+                  currentPath === link.href ? "font-semibold underline" : ""
                 }`}
               >
                 {link.label}
@@ -126,12 +126,14 @@ export default function Navigation() {
             <div className="py-2">
               <LanguageToggle />
             </div>
-            <Link
-              href="/whitepaper"
-              className="block bg-sage text-white text-center px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors mt-4"
-            >
+            <Button className="mt-4" href="/scan" full>
               {cta}
-            </Link>
+            </Button>
+            <div className="pt-2">
+              <Button variant="tertiary" href="/whitepaper">
+                {whitepaper}
+              </Button>
+            </div>
           </div>
         </div>
       )}

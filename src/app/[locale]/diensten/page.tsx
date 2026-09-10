@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 
@@ -17,7 +17,7 @@ const translations = {
         features: ["In je eentje in ongeveer 20 minuten", "Of compleet met je team, afdeling voor afdeling", "Een deelbaar rapport met één klein startpunt"],
         meta: "Gratis | ± 20 minuten in je eentje | Geen verplichting",
         whatLabel: "Wat je krijgt:",
-        cta: "Start met een Scan →", ctaLink: "/scan", primary: true,
+        cta: "Start met een Scan", ctaLink: "/scan", primary: true,
         moreLink: null,
       },
       {
@@ -27,7 +27,7 @@ const translations = {
         features: ["Gestructureerde bedrijfskennis, toegankelijk voor AI", "Toegankelijk voor iedereen in het bedrijf", "Elk feit met een eigenaar en een verversingsdatum", "Integratie met bestaande systemen", "Continue updates: een levend systeem, geen eenmalige snapshot"],
         meta: "Je Brain staat klaar zodra je tekent",
         whatLabel: "Wat je krijgt:",
-        cta: "Meer weten →", ctaLink: "/contact", primary: false,
+        cta: "Meer weten", ctaLink: "/contact", primary: false,
         moreLink: { label: "Meer over de Company Brain", href: "/company-brain" },
       },
       {
@@ -37,14 +37,14 @@ const translations = {
         features: ["Workflows op maat, gevoed door jouw kennisbank", "Model-onafhankelijk: altijd de beste technologie", "Integratie met je bestaande systemen", "Meetbare resultaten"],
         meta: "Doorlooptijd: doorlopend | Op maat",
         whatLabel: "Wat je krijgt:",
-        cta: "Plan een gesprek →", ctaLink: "/contact", primary: false,
+        cta: "Plan een gesprek", ctaLink: "/contact", primary: false,
         moreLink: { label: "Ontdek onze AI-workflows", href: "/workflows" },
       },
     ],
     whyTitle: "Waarom deze volgorde?",
     whyP1a: "De meeste AI-projecten falen niet door slechte technologie.",
     whyP1b: "Ze falen omdat de basis ontbreekt.",
-    whyFormula: "Scan → Build → Deploy.",
+    whyFormula: "Scan. Build. Deploy.",
     whyP2: "Elke stap bouwt voort op de vorige.\nJe kunt bij stap 1 instappen en op elk moment stoppen.\nGeen lock-in. Geen verplichtingen.",
   },
   en: {
@@ -59,7 +59,7 @@ const translations = {
         features: ["On your own in about 20 minutes", "Or complete with your team, department by department", "A shareable report with one small starting point"],
         meta: "Free | ± 20 minutes on your own | No obligation",
         whatLabel: "What you get:",
-        cta: "Start with a Scan →", ctaLink: "/scan", primary: true,
+        cta: "Start with a Scan", ctaLink: "/scan", primary: true,
         moreLink: null,
       },
       {
@@ -69,7 +69,7 @@ const translations = {
         features: ["Structured company knowledge, accessible to AI", "Accessible to everyone in the company", "Every fact with an owner and a refresh date", "Integration with existing systems", "Continuous updates: a living system, not a one-time snapshot"],
         meta: "Your Brain is live the moment you sign",
         whatLabel: "What you get:",
-        cta: "Learn more →", ctaLink: "/contact", primary: false,
+        cta: "Learn more", ctaLink: "/contact", primary: false,
         // /company-brain has no language support (hardcoded Dutch, no useLanguage),
         // so the English link stays on the bilingual homepage. The Dutch link above
         // does point at /company-brain, where the internal-link value actually lands.
@@ -82,14 +82,14 @@ const translations = {
         features: ["Custom workflows, powered by your knowledge base", "Model-agnostic: always the best technology", "Integration with your existing systems", "Measurable results"],
         meta: "Timeline: ongoing | Custom",
         whatLabel: "What you get:",
-        cta: "Book a call →", ctaLink: "/contact", primary: false,
+        cta: "Book a call", ctaLink: "/contact", primary: false,
         moreLink: { label: "Discover our AI workflows", href: "/workflows" },
       },
     ],
     whyTitle: "Why this order?",
     whyP1a: "Most AI projects don\u2019t fail because of bad technology.",
     whyP1b: "They fail because the foundation is missing.",
-    whyFormula: "Scan → Build → Deploy.",
+    whyFormula: "Scan. Build. Deploy.",
     whyP2: "Each step builds on the previous one.\nYou can start at step 1 and stop at any time.\nNo lock-in. No obligations.",
   },
 };
@@ -152,23 +152,15 @@ export default function DienstenPage() {
             <FadeIn delay={450}>
               <p className="mt-6 text-sm text-grey/50">{layer.meta}</p>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <Link
-                  href={layer.ctaLink}
-                  className={`inline-block px-8 py-3.5 rounded-lg transition-colors ${
-                    layer.primary
-                      ? "bg-sage text-white hover:bg-sage-dark"
-                      : "border border-sage text-sage hover:bg-sage hover:text-white"
-                  }`}
-                >
+                <Button variant={layer.primary ? "primary" : "secondary"} href={layer.ctaLink}>
                   {layer.cta}
-                </Link>
+                </Button>
                 {layer.moreLink && (
-                  <Link
+                  <Button variant="tertiary"
                     href={layer.moreLink.href}
-                    className="inline-block text-sage hover:underline"
                   >
-                    {layer.moreLink.label} →
-                  </Link>
+                    {layer.moreLink.label}
+                  </Button>
                 )}
               </div>
             </FadeIn>

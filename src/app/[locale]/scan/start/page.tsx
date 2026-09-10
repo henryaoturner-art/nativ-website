@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import { localizeHref } from "@/lib/locale";
@@ -185,16 +186,15 @@ export default function ScanStartPage() {
               <p className="mt-1.5 text-xs text-grey/40">{c.heardHelp}</p>
             </div>
             {error && <p className="text-error text-sm">{error}</p>}
-            <button
+            <Button full
               type="submit"
               disabled={loading}
-              className="w-full bg-sage text-white py-3.5 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? c.submitting : c.submit}
-            </button>
+            </Button>
             <p className="text-xs text-grey/40 leading-relaxed">
               {c.privacy}{" "}
-              <Link href="/privacy" className="text-sage hover:underline">
+              <Link href="/privacy" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                 {c.privacyLink}
               </Link>
               .

@@ -14,7 +14,7 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import { localizeHref } from "@/lib/locale";
@@ -314,7 +314,7 @@ export default function ScanWizard({
             <button
               type="button"
               onClick={copyLink}
-              className="text-sage hover:underline cursor-pointer"
+              className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey cursor-pointer"
             >
               {copied ? c.copied : c.copyLink}
             </button>
@@ -322,9 +322,9 @@ export default function ScanWizard({
           {isTeamOwner && (
             <p className="mt-2 text-xs text-grey/40">
               {c.teamOwnerBanner}{" "}
-              <Link href={`/scan/${token}/team`} className="text-sage hover:underline">
-                {c.teamOwnerBannerLink} →
-              </Link>
+              <Button variant="tertiary" href={`/scan/${token}/team`}>
+                {c.teamOwnerBannerLink}
+              </Button>
             </p>
           )}
         </FadeIn>
@@ -362,26 +362,21 @@ export default function ScanWizard({
             <span />
           )}
           {block === 1 ? (
-            <button
-              type="button"
-              onClick={() => switchBlock(2)}
-              className="bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer"
-            >
-              {c.next} →
-            </button>
+            <Button type="button" onClick={() => switchBlock(2)}>
+              {c.next}
+            </Button>
           ) : (
-            <button
+            <Button
               type="button"
               onClick={handleComplete}
               disabled={completing}
-              className="bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isRespondent
                 ? c.respondentComplete
                 : isTeamOwner
                   ? c.teamOwnerComplete
                   : c.complete}
-            </button>
+            </Button>
           )}
         </div>
 
@@ -505,8 +500,8 @@ function QuestionCard({
                 onClick={() => onCommit(String(n))}
                 className={`w-11 h-11 rounded-lg border transition-colors cursor-pointer ${
                   value === String(n)
-                    ? "bg-sage text-white border-sage"
-                    : "bg-cream/50 text-grey border-sage-light hover:border-sage"
+                    ? "bg-grey text-cream border-grey"
+                    : "bg-cream/50 text-grey border-border hover:border-grey"
                 }`}
               >
                 {n}

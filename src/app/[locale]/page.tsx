@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
+import { ArrowRight } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import { webPage } from "@/lib/site-meta";
@@ -10,7 +11,7 @@ const translations = {
     heroTitle: "Een Company Brain met AI-workflows voor het mkb.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
     heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meest ontzorgen.",
-    ctaScan: "Doe de gratis AI-scan →",
+    ctaScan: "Doe de gratis AI-scan",
     ctaPrimary: "Plan een gesprek",
     proofScore: "4,5 / 5 op Sortlist",
     proofQuote: "Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken.",
@@ -40,18 +41,18 @@ const translations = {
         detail: "Geen speelgoed. Geen demo's. Resultaat.",
       },
     ],
-    startScan: "Start met een Scan →",
+    startScan: "Start met een Scan",
     trustEU: "EU-datahosting",
     trustGDPR: "GDPR-compliant",
     closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
     closerSub: "Plan een vrijblijvend gesprek over wat AI voor jouw organisatie kan betekenen.",
-    closerCta: "Plan een gesprek →",
+    closerCta: "Plan een gesprek",
   },
   en: {
     heroTitle: "A Company Brain with AI workflows for SMEs.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
     heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the foundation for the AI workflows that take the most off your plate.",
-    ctaScan: "Take the free AI scan →",
+    ctaScan: "Take the free AI scan",
     ctaPrimary: "Book a call",
     proofScore: "4.5 / 5 on Sortlist",
     proofQuote: "",
@@ -81,12 +82,12 @@ const translations = {
         detail: "No toys. No demos. Results.",
       },
     ],
-    startScan: "Start with a Scan →",
+    startScan: "Start with a Scan",
     trustEU: "EU data hosting",
     trustGDPR: "GDPR compliant",
     closerTitle: "Ready to discover what your company really knows?",
     closerSub: "Book a free consultation about what AI can do for your organisation.",
-    closerCta: "Book a call →",
+    closerCta: "Book a call",
   },
 };
 
@@ -261,18 +262,16 @@ export default function HomePage() {
           )}
           <FadeIn delay={400}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
+              <Button
                 href="/scan"
-                className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors text-base"
               >
                 {c.ctaScan}
-              </Link>
-              <Link
+              </Button>
+              <Button variant="secondary"
                 href="/contact"
-                className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors text-base"
               >
                 {c.ctaPrimary}
-              </Link>
+              </Button>
             </div>
           </FadeIn>
           {/* Proof next to the ask, not three screens down. Visible copy only:
@@ -349,8 +348,9 @@ export default function HomePage() {
                   <p className="text-grey/70 font-light leading-relaxed">
                     {step.desc}
                   </p>
-                  <p className="mt-2 text-sage text-sm font-light">
-                    → {step.detail}
+                  <p className="mt-2 flex items-start gap-1.5 text-sage-dark text-sm">
+                    <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="mt-0.5 shrink-0" />
+                    <span>{step.detail}</span>
                   </p>
                 </div>
               </FadeIn>
@@ -358,12 +358,11 @@ export default function HomePage() {
           </div>
           <FadeIn delay={500}>
             <div className="text-center mt-14">
-              <Link
+              <Button
                 href="/scan"
-                className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block"
               >
                 {c.startScan}
-              </Link>
+              </Button>
             </div>
           </FadeIn>
         </div>
@@ -397,12 +396,11 @@ export default function HomePage() {
           </FadeIn>
           <FadeIn delay={300}>
             <div className="mt-10">
-              <Link
+              <Button
                 href="/contact"
-                className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block text-base"
               >
                 {c.closerCta}
-              </Link>
+              </Button>
             </div>
           </FadeIn>
         </div>

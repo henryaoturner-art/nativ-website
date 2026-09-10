@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 
@@ -33,7 +33,7 @@ const translations = {
     ],
     ctaTitle: "Klaar om impact te maken?",
     ctaSub: "Betere data verzamelen én bijdragen aan een betere wereld. Setup duurt minder dan 5 minuten.",
-    ctaButton: "Plan een gesprek →",
+    ctaButton: "Plan een gesprek",
   },
   en: {
     heroTitle: "The Efficiency Dividend",
@@ -63,7 +63,7 @@ const translations = {
     ],
     ctaTitle: "Ready to make an impact?",
     ctaSub: "Collect better data and contribute to a better world. Setup takes less than 5 minutes.",
-    ctaButton: "Book a call →",
+    ctaButton: "Book a call",
   },
 };
 
@@ -173,9 +173,9 @@ export default function ImpactPage() {
           </FadeIn>
           <FadeIn delay={300}>
             <div className="mt-10">
-              <Link href="/contact" className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block">
+              <Button href="/contact">
                 {c.ctaButton}
-              </Link>
+              </Button>
             </div>
           </FadeIn>
         </div>

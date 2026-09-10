@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import LastUpdated from "@/components/LastUpdated";
 import { useLanguage } from "@/lib/language-context";
@@ -250,9 +250,9 @@ export default function AiActPage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="mt-8">
-              <Link href="/company-brain" className="text-sage hover:underline">
-                {c.brainLink} →
-              </Link>
+              <Button variant="tertiary" href="/company-brain">
+                {c.brainLink}
+              </Button>
             </p>
           </FadeIn>
         </div>
@@ -279,18 +279,16 @@ export default function AiActPage() {
           <FadeIn delay={150}>
             <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.ctaSub}</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <Button
                 href="/scan"
-                className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block"
               >
                 {c.ctaPrimary}
-              </Link>
-              <Link
+              </Button>
+              <Button variant="secondary"
                 href="/contact"
-                className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors inline-block"
               >
                 {c.ctaSecondary}
-              </Link>
+              </Button>
             </div>
           </FadeIn>
         </div>

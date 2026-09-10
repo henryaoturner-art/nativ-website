@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import { useLanguage } from "@/lib/language-context";
 
 // Bij navigatie op de client (een kapotte interne link) rendert Next deze
@@ -31,12 +31,11 @@ export default function NotFound() {
         <p className="mt-4 text-lg font-light text-grey/60">
           {c.sub}
         </p>
-        <Link
+        <Button className="mt-8"
           href="/"
-          className="mt-8 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
         >
           {c.home}
-        </Link>
+        </Button>
       </div>
     </section>
   );

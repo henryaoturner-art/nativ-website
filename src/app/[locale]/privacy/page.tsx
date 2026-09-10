@@ -15,7 +15,7 @@ const sections: Section[] = [
       <>
         Nativ B.V., statutair gevestigd te Haarlem (KvK 42125853), is de verwerkingsverantwoordelijke voor de
         verwerking van persoonsgegevens via deze website. Je bereikt ons via{" "}
-        <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+        <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
           info@gonativ.nl
         </a>
         .
@@ -97,7 +97,7 @@ const sections: Section[] = [
         We bewaren contactgegevens zolang dat nodig is om je vraag af te handelen en daarna een
         redelijke termijn. Scangegevens en het bijbehorende rapport bewaren we maximaal twaalf
         maanden na afronding; op verzoek verwijderen we ze eerder, mail daarvoor{" "}
-        <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+        <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
           info@gonativ.nl
         </a>
         . Bezoekstatistieken worden geaggregeerd bewaard. Serverlogs worden kort bewaard.
@@ -135,7 +135,7 @@ const sections: Section[] = [
       <>
         Je hebt het recht op inzage, correctie, verwijdering, beperking, bezwaar en
         overdraagbaarheid van je gegevens. Stuur je verzoek naar{" "}
-        <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+        <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
           info@gonativ.nl
         </a>
         . Je hebt daarnaast het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens.
@@ -149,7 +149,7 @@ const sections: Section[] = [
       <>
         We nemen passende technische en organisatorische maatregelen om je gegevens te
         beschermen. Meer over hoe we met data omgaan lees je op onze pagina{" "}
-        <Link href="/security" className="text-sage hover:underline">
+        <Link href="/security" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
           Security &amp; Privacy
         </Link>
         .
@@ -163,7 +163,7 @@ const sections: Section[] = [
       <>
         Verwerken we in onze dienst persoonsgegevens namens een klant, dan is die klant de
         verwerkingsverantwoordelijke en zijn wij de verwerker. Daarvoor geldt de{" "}
-        <Link href="/algemene-voorwaarden" className="text-sage hover:underline">
+        <Link href="/algemene-voorwaarden" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
           Verwerkersovereenkomst
         </Link>{" "}
         (Bijlage A van onze algemene voorwaarden), niet deze privacyverklaring.
@@ -294,7 +294,7 @@ export default function PrivacyPage() {
             <div className="mt-12 pt-8 border-t border-grey/10">
               <p className="text-grey/60 font-light leading-relaxed text-sm">
                 Vragen over deze privacyverklaring? Mail{" "}
-                <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   info@gonativ.nl
                 </a>
                 .

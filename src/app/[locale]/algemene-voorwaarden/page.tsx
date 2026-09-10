@@ -593,7 +593,7 @@ export default function VoorwaardenPage() {
             <div className="mt-12 pt-8 border-t border-grey/10">
               <p className="text-grey/60 font-light leading-relaxed text-sm">
                 Vragen over deze voorwaarden of de bijlagen? Mail{" "}
-                <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">
+                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   info@gonativ.nl
                 </a>
                 .

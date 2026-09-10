@@ -5,7 +5,7 @@ import { LanguageProvider, useLanguage } from "@/lib/language-context";
 import { stripLocale } from "@/lib/locale";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
-import Link from "./Link";
+import Button from "./Button";
 
 const copy = {
   nl: {
@@ -65,12 +65,9 @@ function NotFoundBody() {
             <h1 className="font-serif text-6xl md:text-8xl text-sage/30">404</h1>
             <h2 className="font-serif text-3xl md:text-[42px] leading-tight mt-6">{c.title}</h2>
             <p className="mt-4 text-lg font-light text-grey/60">{c.sub}</p>
-            <Link
-              href="/"
-              className="mt-8 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
-            >
+            <Button href="/" className="mt-8">
               {c.home}
-            </Link>
+            </Button>
           </div>
         </section>
       </main>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import { notFound, redirect } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import { isLocale, localizeHref } from "@/lib/locale";
@@ -435,12 +435,11 @@ export default async function ScanReportPage({
         <div className="mt-5">
           <Prose text={c.pratenBody} />
         </div>
-        <Link
+        <Button className="mt-5"
           href="/contact"
-          className="mt-5 inline-block bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors"
         >
           {c.pratenCta}
-        </Link>
+        </Button>
         {/* Alleen bij een solo-rapport: de teamscan als volgende stap.
             Self-service: de knop opent het eigen teamoverzicht. */}
         {payload.scanVorm !== "team" && (
@@ -449,12 +448,11 @@ export default async function ScanReportPage({
             <p className="mt-3 text-grey/80 font-light leading-relaxed">
               {c.volgendeStapBody}
             </p>
-            <Link
+            <Button className="mt-5"
               href={`/scan/${token}/team`}
-              className="mt-5 inline-block bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors"
             >
               {c.volgendeStapCta}
-            </Link>
+            </Button>
           </div>
         )}
       </>
@@ -584,8 +582,8 @@ function TopWorkflowCard({
   );
 }
 
-/** De ketenvisual: bronnen → Company Brain → workflow → menselijke poort
- * → resultaat, met de vijf stappen van de werkwijze als labels. Dit is de ENE
+/** De ketenvisual: bronnen, Company Brain, workflow, menselijke poort,
+ * resultaat, met de vijf stappen van de werkwijze als labels. Dit is de ENE
  * plek waar eigenaar/herkomst/datum wordt uitgeschreven (herhalingsregel). */
 function KetenVisual({
   k,

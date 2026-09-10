@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import Button from "@/components/Button";
 
 const translations = {
   nl: {
@@ -150,7 +151,7 @@ export default function ContactPage() {
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-block text-sage hover:underline"
+                className="mt-4 inline-block text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey"
               >
                 {c.directions}
               </a>
@@ -189,14 +190,14 @@ export default function ContactPage() {
                     <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition resize-none" />
                   </div>
                   {error && <p className="text-error text-sm">{error}</p>}
-                  <button type="submit" disabled={loading} className="w-full bg-sage text-white py-3.5 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+                  <Button full type="submit" disabled={loading}>
                     {loading ? c.submitting : c.submit}
-                  </button>
+                  </Button>
                 </form>
               )}
               <p className="mt-6 text-sm text-grey/40 text-center">
                 {c.orEmail}{" "}
-                <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">info@gonativ.nl</a>
+                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
               </p>
             </div>
           </FadeIn>

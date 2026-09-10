@@ -110,7 +110,7 @@ export default function SecurityPage() {
           <FadeIn delay={150}>
             <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.questionSub}</p>
             <p className="mt-4">
-              <a href="mailto:info@gonativ.nl" className="text-sage hover:underline">info@gonativ.nl</a>
+              <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
             </p>
           </FadeIn>
         </div>

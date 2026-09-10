@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import LastUpdated from "@/components/LastUpdated";
@@ -263,12 +264,11 @@ export default function PillarBedrijfsbreinPage() {
               in zit. Je krijgt een concreet overzicht, op volgorde van wat het
               meeste oplevert, voordat je iets vastlegt.
             </p>
-            <Link
+            <Button className="mt-7"
               href="/scan"
-              className="mt-7 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
             >
-              Doe de gratis AI-scan →
-            </Link>
+              Doe de gratis AI-scan
+            </Button>
           </FadeIn>
         </div>
       </section>

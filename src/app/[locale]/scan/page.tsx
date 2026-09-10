@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
@@ -204,12 +204,11 @@ export default function ScanPage() {
                 <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
                   {c.quickBody}
                 </p>
-                <Link
+                <Button className="mt-7"
                   href={QUICK_SCAN_HREF}
-                  className="mt-7 bg-sage text-white px-6 py-3 rounded-lg hover:bg-sage-dark transition-colors text-center font-medium"
                 >
-                  {c.quickCta} →
-                </Link>
+                  {c.quickCta}
+                </Button>
               </div>
             </FadeIn>
 
@@ -220,12 +219,11 @@ export default function ScanPage() {
                 <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
                   {c.teamBody}
                 </p>
-                <Link
+                <Button variant="secondary" className="mt-7"
                   href={TEAM_SCAN_HREF}
-                  className="mt-7 border border-sage text-sage px-6 py-3 rounded-lg hover:bg-sage hover:text-white transition-colors text-center font-medium"
                 >
-                  {c.teamCta} →
-                </Link>
+                  {c.teamCta}
+                </Button>
               </div>
             </FadeIn>
           </div>
@@ -239,12 +237,11 @@ export default function ScanPage() {
           <FadeIn delay={550}>
             <div className="mt-8 max-w-[640px] mx-auto rounded-xl border border-sage-light bg-cream px-6 py-5 text-center">
               <p className="font-serif text-xl text-grey">{c.callTitle}</p>
-              <Link
+              <Button variant="secondary" className="mt-4"
                 href="/contact"
-                className="mt-4 inline-block border border-sage text-sage px-6 py-2.5 rounded-lg hover:bg-sage hover:text-white transition-colors font-medium"
               >
-                {c.callCta} →
-              </Link>
+                {c.callCta}
+              </Button>
             </div>
           </FadeIn>
         </div>
@@ -329,12 +326,11 @@ export default function ScanPage() {
             <p className="mt-4 text-lg font-light text-grey/70 leading-relaxed">
               {c.closingBody}
             </p>
-            <Link
+            <Button variant="secondary" className="mt-8"
               href="/contact"
-              className="mt-8 border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors inline-block"
             >
-              {c.closingCta} →
-            </Link>
+              {c.closingCta}
+            </Button>
           </FadeIn>
         </div>
       </section>

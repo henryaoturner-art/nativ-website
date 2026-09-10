@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
 import { useLanguage } from "@/lib/language-context";
@@ -298,18 +298,16 @@ export default function WorkflowsPage() {
               {c.ctaBody}
             </p>
             <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <Button
                 href="/scan"
-                className="bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors inline-block"
               >
-                {c.ctaButton} →
-              </Link>
-              <Link
+                {c.ctaButton}
+              </Button>
+              <Button variant="secondary"
                 href="/company-brain"
-                className="border border-sage text-sage px-8 py-4 rounded-lg hover:bg-sage hover:text-white transition-colors inline-block"
               >
-                {c.ctaSecondary} →
-              </Link>
+                {c.ctaSecondary}
+              </Button>
             </div>
           </FadeIn>
         </div>

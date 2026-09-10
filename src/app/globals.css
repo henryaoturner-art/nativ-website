@@ -6,6 +6,11 @@
   --color-sage-dark: #6B7A4B;
   --color-grey: #4A4A48;
   --color-cream: #F2EDE4;
+  /* Ontwerpsysteem deel B (KAN-425): Sand voor één gemarkeerde band en knop-hover,
+     Border voor kaartranden en scheidingslijnen, Muted alleen voor bijschriften. */
+  --color-sand: #E8E2D8;
+  --color-border: #D4CFC7;
+  --color-muted: #6A6A68;
   /* Card/panel surface. Lifts off cream without ever being pure #FFFFFF. */
   --color-surface: #FAF7F2;
   --color-error: #C46B6B;

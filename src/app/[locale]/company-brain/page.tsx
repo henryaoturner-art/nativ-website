@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta, webPage } from "@/lib/site-meta";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = pageMeta(
@@ -204,12 +205,11 @@ export default function CompanyBrainPage() {
               behoefte aan hebt. Zo begin je klein en concreet, en breid je uit
               zodra jij de waarde ziet. Wil je weten of dit bij jou past? Plan een gesprek.
             </p>
-            <Link
+            <Button className="mt-7"
               href="/contact"
-              className="mt-7 inline-block bg-sage text-white px-8 py-4 rounded-lg hover:bg-sage-dark transition-colors"
             >
-              Plan een gesprek →
-            </Link>
+              Plan een gesprek
+            </Button>
           </FadeIn>
         </div>
       </section>

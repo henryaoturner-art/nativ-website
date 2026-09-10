@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/components/Link";
+import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import { pageMeta, webPage, SITE_UPDATED } from "@/lib/site-meta";
 
@@ -123,7 +124,7 @@ export default function CasesPage() {
                 <div className="space-y-4 text-grey/80 font-light leading-relaxed">
                   <div>
                     <p className="font-medium text-grey">Scan</p>
-                    <p>De <Link href="/scan" className="text-sage hover:underline">gratis AI-scan</Link> wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
+                    <p>De <Link href="/scan" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">gratis AI-scan</Link> wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
                   </div>
                   <div>
                     <p className="font-medium text-grey">Build</p>
@@ -178,14 +179,13 @@ export default function CasesPage() {
                 <span className="text-grey/50">·</span>
                 <span className="text-grey/70 font-light">CEO, JobTraining</span>
                 <span className="text-grey/50">·</span>
-                <a
+                <Button variant="tertiary"
                   href={SORTLIST_REVIEW_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sage text-sm hover:underline"
                 >
-                  Geverifieerde review op Sortlist →
-                </a>
+                  Geverifieerde review op Sortlist
+                </Button>
               </figcaption>
             </div>
           </figure>
@@ -197,19 +197,18 @@ export default function CasesPage() {
             <p className="text-grey/60 font-light">
               Wil je de volgende zijn?
             </p>
-            <Link
+            <Button className="mt-4"
               href="/contact"
-              className="mt-4 inline-block bg-sage text-white px-8 py-3.5 rounded-lg hover:bg-sage-dark transition-colors"
             >
-              Plan een gesprek →
-            </Link>
+              Plan een gesprek
+            </Button>
             <p className="mt-6 text-sm text-grey/60 font-light">
               Of lees eerst hoe we een{" "}
-              <Link href="/diensten" className="text-sage hover:underline">
+              <Link href="/diensten" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                 AI-kennisbank
               </Link>{" "}
               bouwen en wat{" "}
-              <Link href="/workflows" className="text-sage hover:underline">
+              <Link href="/workflows" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                 AI-workflows
               </Link>{" "}
               voor je team doen.

@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import Button from "@/components/Button";
 
 const translations = {
   en: {
@@ -27,7 +28,7 @@ const translations = {
     emailLabel: "Email",
     companyLabel: "Company",
     roleLabel: "Role",
-    submit: "Send me the full whitepaper →",
+    submit: "Send me the full whitepaper",
     submitting: "Sending...",
     thankYou: "Here's your whitepaper",
     thankYouSub:
@@ -57,7 +58,7 @@ const translations = {
     emailLabel: "E-mail",
     companyLabel: "Bedrijf",
     roleLabel: "Functie",
-    submit: "Stuur mij het volledige whitepaper →",
+    submit: "Stuur mij het volledige whitepaper",
     submitting: "Verzenden...",
     thankYou: "Hier is je whitepaper",
     thankYouSub:
@@ -158,20 +159,18 @@ export default function WhitepaperPage() {
                   <div className="mt-6 space-y-3">
                     <div className="text-xs text-grey/60 font-medium">Choose language:</div>
                     <div className="flex gap-3">
-                      <a
+                      <Button className="flex-1"
                         href="/downloads/nativ-whitepaper-v2.4-nl.pdf"
                         download
-                        className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
                         Nederlands (PDF)
-                      </a>
-                      <a
+                      </Button>
+                      <Button className="flex-1"
                         href="/downloads/nativ-whitepaper-v2.4-en.pdf"
                         download
-                        className="flex-1 bg-sage text-white py-3 px-6 rounded-lg hover:bg-sage-dark transition-colors font-medium text-center text-sm"
                       >
                         English (PDF)
-                      </a>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -252,13 +251,12 @@ export default function WhitepaperPage() {
 
                     {error && <p className="text-error text-sm">{error}</p>}
 
-                    <button
+                    <Button full
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-sage text-white py-3.5 rounded-lg hover:bg-sage-dark transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-medium"
                     >
                       {loading ? c.submitting : c.submit}
-                    </button>
+                    </Button>
                   </form>
                   <p className="mt-4 text-xs text-grey/40 text-center">{c.privacy}</p>
                 </>

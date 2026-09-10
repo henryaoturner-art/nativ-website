@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import FadeIn from "@/components/FadeIn";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import type { AgendaEvent } from "@/lib/events";
 
@@ -95,10 +96,10 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                 key={chip.id}
                 type="button"
                 onClick={() => setFilter(chip.id)}
-                className={`text-sm px-5 py-2 rounded-full border transition-colors ${
+                className={`text-sm px-5 py-2 rounded-lg border transition-colors cursor-pointer ${
                   on
-                    ? "bg-sage border-sage text-white"
-                    : "bg-transparent border-grey/15 text-grey/70 hover:border-sage hover:text-sage"
+                    ? "bg-grey border-grey text-cream"
+                    : "bg-transparent border-border text-grey hover:bg-sand"
                 }`}
               >
                 {chip.label}
@@ -163,8 +164,9 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                         </div>
 
                         {/* CTA */}
-                        <span className="self-center text-sm text-sage-dark whitespace-nowrap group-hover:text-sage">
-                          {c.register} →
+                        <span className="self-center inline-flex items-center gap-1 text-sm font-medium text-sage-dark whitespace-nowrap group-hover:text-grey">
+                          {c.register}
+                          <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
                         </span>
                       </a>
                     </FadeIn>
