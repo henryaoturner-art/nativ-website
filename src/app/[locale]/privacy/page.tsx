@@ -1,13 +1,26 @@
 "use client";
 
-import Link from "@/components/Link";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Kicker from "@/components/Kicker";
+import Link from "@/components/Link";
+import Section from "@/components/Section";
 
 const VERSIE = "Versie 0.3 · 13 augustus 2026";
 
-type Section = { n: number; title: string; body: React.ReactNode };
+type Artikel = { n: number; title: string; body: React.ReactNode };
 
-const sections: Section[] = [
+/** Lijstpunt uit B3: een 6px Sage-punt in plaats van list-disc. */
+function Bullet({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3">
+      <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
+      <span>{children}</span>
+    </li>
+  );
+}
+
+const sections: Artikel[] = [
   {
     n: 1,
     title: "Wie zijn wij",
@@ -26,26 +39,26 @@ const sections: Section[] = [
     n: 2,
     title: "Welke gegevens we verwerken",
     body: (
-      <ul className="space-y-1.5 list-disc pl-5">
-        <li>
-          <span className="text-grey">Contactgegevens</span>: als je ons mailt of via de
+      <ul className="space-y-2">
+        <Bullet>
+          <span className="font-medium">Contactgegevens</span>: als je ons mailt of via de
           contactpagina contact opneemt: je naam, e-mailadres en de inhoud van je bericht.
-        </li>
-        <li>
-          <span className="text-grey">Scangegevens</span>: als je de scan invult: je
+        </Bullet>
+        <Bullet>
+          <span className="font-medium">Scangegevens</span>: als je de scan invult: je
           bedrijfsnaam, je naam, je e-mailadres en je antwoorden over het werk in je bedrijf,
           plus het rapport dat daaruit volgt. Nodig je collega&apos;s uit voor de scan, dan
           verwerken we ook hun naam, e-mailadres en antwoorden. Er worden geen
           bedrijfsbestanden of vertrouwelijke gegevens gevraagd of opgeslagen.
-        </li>
-        <li>
-          <span className="text-grey">Websitegebruik</span>: geanonimiseerde, cookieloze
+        </Bullet>
+        <Bullet>
+          <span className="font-medium">Websitegebruik</span>: geanonimiseerde, cookieloze
           bezoekstatistieken via Vercel Analytics. Deze gegevens zijn niet tot jou herleidbaar.
-        </li>
-        <li>
-          <span className="text-grey">Technische gegevens</span>: beperkte serverlogs (zoals
+        </Bullet>
+        <Bullet>
+          <span className="font-medium">Technische gegevens</span>: beperkte serverlogs (zoals
           een tijdelijk IP-adres) die nodig zijn om de website te leveren en te beveiligen.
-        </li>
+        </Bullet>
       </ul>
     ),
   },
@@ -54,18 +67,18 @@ const sections: Section[] = [
     title: "Waarvoor en op welke grondslag",
     body: (
       <>
-        <ul className="space-y-1.5 list-disc pl-5">
-          <li>
+        <ul className="space-y-2">
+          <Bullet>
             Om te reageren op je vraag of verzoek (grondslag: uitvoering van of aanloop naar
             een overeenkomst, dan wel ons gerechtvaardigd belang bij contact).
-          </li>
-          <li>
+          </Bullet>
+          <Bullet>
             Om de website te verbeteren, te beveiligen en betrouwbaar te houden (grondslag:
             ons gerechtvaardigd belang).
-          </li>
+          </Bullet>
         </ul>
         <p className="mt-3">
-          <span className="text-grey">Zakelijke benadering (acquisitie).</span> We benaderen soms
+          <span className="font-medium">Zakelijke benadering (acquisitie).</span> We benaderen soms
           beslissers bij Nederlandse bedrijven met een zakelijke e-mail, bijvoorbeeld een
           uitnodiging voor onze gratis AI-scan. De gegevens die we daarvoor gebruiken (naam,
           functie, zakelijk e-mailadres en werkgever) halen we uit openbare bronnen, zoals een
@@ -84,7 +97,7 @@ const sections: Section[] = [
     title: "Cookies",
     body: (
       <>
-        Deze website gebruikt <span className="text-grey">geen tracking- of advertentiecookies</span>.
+        Deze website gebruikt <span className="font-medium">geen tracking- of advertentiecookies</span>.
         De bezoekstatistieken (Vercel Analytics) werken cookieloos en zonder profilering.
       </>
     ),
@@ -182,55 +195,55 @@ const sections: Section[] = [
           gebruiken wij de offici&euml;le API&apos;s van LinkedIn (Microsoft) en Instagram (Meta).
         </p>
 
-        <p className="mt-4 text-grey">Welke gegevens wij verwerken</p>
-        <ul className="mt-2 space-y-1.5 list-disc pl-5">
-          <li>
+        <p className="mt-4 font-medium text-grey">Welke gegevens wij verwerken</p>
+        <ul className="mt-2 space-y-2">
+          <Bullet>
             Toegangstokens waarmee de koppeling werkt. Deze slaan wij versleuteld op en delen wij
             nooit met derden.
-          </li>
-          <li>
+          </Bullet>
+          <Bullet>
             Accountgegevens van het gekoppelde bedrijfsaccount: de naam van de
             LinkedIn-bedrijfspagina respectievelijk de Instagram-gebruikersnaam en het account-ID.
-          </li>
-          <li>
+          </Bullet>
+          <Bullet>
             Berichtgegevens: de door de klant opgestelde berichten die wij namens de klant
             publiceren, en de door het platform teruggegeven bericht-ID&apos;s en permalinks.
-          </li>
-          <li>
+          </Bullet>
+          <Bullet>
             Geaggregeerde statistieken over de eigen berichten en pagina van de klant, zoals
             aantallen weergaven, reacties, likes, shares en volgers. Dit zijn telwaarden zonder
             persoonsgegevens van individuele gebruikers.
-          </li>
+          </Bullet>
         </ul>
 
-        <p className="mt-4 text-grey">Wat wij niet doen</p>
-        <ul className="mt-2 space-y-1.5 list-disc pl-5">
-          <li>
+        <p className="mt-4 font-medium text-grey">Wat wij niet doen</p>
+        <ul className="mt-2 space-y-2">
+          <Bullet>
             Wij verzamelen geen profielgegevens van individuele LinkedIn-leden of
             Instagram-gebruikers en slaan die ook niet op. Voor zover de LinkedIn-API bij het
             ophalen van statistieken incidenteel persoonsgegevens van leden meelevert, worden die
             niet langer dan 24 uur bewaard en daarna verwijderd of ververst, conform de
             API-voorwaarden van LinkedIn.
-          </li>
-          <li>Wij gebruiken deze gegevens niet voor advertentiedoeleinden en verkopen ze niet.</li>
-          <li>
+          </Bullet>
+          <Bullet>Wij gebruiken deze gegevens niet voor advertentiedoeleinden en verkopen ze niet.</Bullet>
+          <Bullet>
             Wij publiceren uitsluitend content die de klant zelf heeft opgesteld en goedgekeurd.
-          </li>
+          </Bullet>
         </ul>
 
         <p className="mt-4">
-          <span className="text-grey">Rol en grondslag.</span> Voor deze verwerking treedt Nativ
+          <span className="font-medium">Rol en grondslag.</span> Voor deze verwerking treedt Nativ
           B.V. op als verwerker in opdracht van de klant (de beheerder van het gekoppelde account).
           De verwerking vindt plaats op grond van de overeenkomst met de klant.
         </p>
         <p className="mt-4">
-          <span className="text-grey">Bewaartermijnen.</span> Toegangstokens bewaren wij zolang de
+          <span className="font-medium">Bewaartermijnen.</span> Toegangstokens bewaren wij zolang de
           koppeling actief is; bij het verbreken van de koppeling worden ze direct verwijderd.
           Geaggregeerde statistieken bewaren wij als onderdeel van de rapportagehistorie van de
           klant.
         </p>
         <p className="mt-4">
-          <span className="text-grey">Koppeling verbreken en gegevens verwijderen.</span> De klant
+          <span className="font-medium">Koppeling verbreken en gegevens verwijderen.</span> De klant
           kan de koppeling op elk moment zelf verbreken in de instellingen van het platform;
           daarmee vervalt onze toegang tot het account. Verzoeken tot verwijdering van gegevens
           kunnen daarnaast worden gericht aan het in deze policy genoemde contactadres.
@@ -249,60 +262,71 @@ const sections: Section[] = [
   },
 ];
 
+const tocLinkCls = "text-grey hover:text-sage-dark transition-colors";
+
 export default function PrivacyPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              Privacyverklaring
-            </h1>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">
-              Nativ B.V. · {VERSIE}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Body */}
-      <section className="pb-16 px-6">
-        <div className="max-w-[760px] mx-auto">
-          <FadeIn>
-            <p className="text-grey leading-relaxed">
+      {/* E6: kop links, versieregel als bijschrift; de inleiding naast de inhoudsopgave (kaart met linkerlijn) */}
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">Privacyverklaring</h1>
+          <p className="mt-4 text-muted">Nativ B.V. · {VERSIE}</p>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <p className="md:col-span-7 max-w-[640px] text-grey leading-relaxed">
               nativ vindt jouw privacy belangrijk. Deze verklaring legt uit welke persoonsgegevens
               we verwerken als je onze website bezoekt of contact met ons opneemt, waarom, en welke
               rechten je hebt.
             </p>
-          </FadeIn>
+            <Card signature className="md:col-span-5">
+              <nav aria-label="Inhoudsopgave">
+                <Kicker>Inhoud</Kicker>
+                <ol className="space-y-2">
+                  {sections.map((s) => (
+                    <li key={s.n}>
+                      <a href={`#artikel-${s.n}`} className={tocLinkCls}>
+                        {s.n}. {s.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </Card>
+          </div>
+        </FadeIn>
+      </Section>
 
-          {sections.map((s) => (
-            <FadeIn key={s.n}>
-              <article className="mt-10">
-                <h2 className="font-serif text-grey">
-                  {s.n}. {s.title}
-                </h2>
-                <div className="mt-4 text-grey leading-relaxed">{s.body}</div>
-              </article>
+      {/* De verklaring zelf: lopende tekst op 8 kolommen, links uitgelijnd; elke kop draagt het anker van de inhoudsopgave */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="md:col-span-8 space-y-10">
+            {sections.map((s) => (
+              <FadeIn key={s.n}>
+                <article>
+                  <h2 id={`artikel-${s.n}`} className="font-serif text-grey scroll-mt-24">
+                    {s.n}. {s.title}
+                  </h2>
+                  <div className="mt-6 text-grey leading-relaxed">{s.body}</div>
+                </article>
+              </FadeIn>
+            ))}
+
+            <FadeIn>
+              <div className="pt-8 border-t border-border">
+                <p className="text-sm text-muted leading-relaxed">
+                  Vragen over deze privacyverklaring? Mail{" "}
+                  <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
+                    info@gonativ.nl
+                  </a>
+                  .
+                </p>
+              </div>
             </FadeIn>
-          ))}
-
-          <FadeIn>
-            <div className="mt-12 pt-8 border-t border-grey/10">
-              <p className="text-muted leading-relaxed text-sm">
-                Vragen over deze privacyverklaring? Mail{" "}
-                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
-                  info@gonativ.nl
-                </a>
-                .
-              </p>
-            </div>
-          </FadeIn>
+          </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

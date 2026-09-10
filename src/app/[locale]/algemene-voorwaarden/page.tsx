@@ -1,11 +1,24 @@
 "use client";
 
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
 
 type Clause = { num: string; text: string };
 type Article = { n: number; title: string; intro?: string; clauses: Clause[] };
 
 const VERSIE = "Versie 0.5 · 28 augustus 2026";
+
+/** Lijstpunt uit B3: een 6px Sage-punt in plaats van list-disc. */
+function Bullet({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3">
+      <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
+      <span>{children}</span>
+    </li>
+  );
+}
 
 const articles: Article[] = [
   {
@@ -286,322 +299,346 @@ const articles: Article[] = [
   },
 ];
 
+// Inhoudsopgave: de 21 artikelen plus de twee bijlagen; de koppen dragen dezelfde ankers.
+const BIJLAGEN = [
+  { id: "bijlage-a", title: "Bijlage A: Verwerkersovereenkomst (AVG art. 28)" },
+  { id: "bijlage-b", title: "Bijlage B: Service Level Agreement" },
+];
+const toc = [
+  ...articles.map((a) => ({ id: `artikel-${a.n}`, title: `${a.n}. ${a.title}` })),
+  ...BIJLAGEN,
+];
+
+const tocLinkCls = "text-grey hover:text-sage-dark transition-colors";
+const thCls = "py-2 pr-4 font-medium text-grey";
+const tdCls = "py-2 pr-4 align-top";
+
 export default function VoorwaardenPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              Algemene Voorwaarden
-            </h1>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">
-              Nativ B.V. · {VERSIE}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      {/* E6: kop links, versieregel als bijschrift; de inhoudsopgave als kaart met linkerlijn, twee kolommen op desktop */}
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">Algemene Voorwaarden</h1>
+          <p className="mt-4 text-muted">Nativ B.V. · {VERSIE}</p>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <Card signature className="mt-8">
+            <nav aria-label="Inhoudsopgave">
+              <Kicker>Inhoud</Kicker>
+              <ol className="md:columns-2 md:gap-x-8">
+                {toc.map((item) => (
+                  <li key={item.id} className="break-inside-avoid py-1">
+                    <a href={`#${item.id}`} className={tocLinkCls}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </Card>
+        </FadeIn>
+      </Section>
 
-      {/* Body */}
-      <section className="pb-16 px-6">
-        <div className="max-w-[760px] mx-auto">
-          {articles.map((a) => (
-            <FadeIn key={a.n}>
-              <article className="mt-10 first:mt-0">
-                <h2 className="font-serif text-grey">
-                  {a.n}. {a.title}
-                </h2>
-                {a.intro && (
-                  <p className="mt-4 text-grey leading-relaxed">{a.intro}</p>
-                )}
-                <div className="mt-4 space-y-3">
-                  {a.clauses.map((cl) => (
-                    <p key={cl.num} className="text-grey leading-relaxed">
-                      <span className="text-sage font-normal tabular-nums mr-2">{cl.num}</span>
-                      {cl.text}
-                    </p>
-                  ))}
-                </div>
-              </article>
-            </FadeIn>
-          ))}
-
-          {/* Bijlage A: Verwerkersovereenkomst */}
-          <FadeIn>
-            <div className="mt-14 pt-10 border-t border-grey/10">
-              <h2 className="font-serif text-grey">
-                Bijlage A: Verwerkersovereenkomst (AVG art. 28)
-              </h2>
-              <p className="mt-4 text-grey leading-relaxed">
-                Deze verwerkersovereenkomst maakt deel uit van de overeenkomst en regelt hoe
-                Nativ (verwerker) persoonsgegevens verwerkt in opdracht van de klant
-                (verwerkingsverantwoordelijke). Bij strijdigheid met de algemene voorwaarden
-                gaat deze bijlage voor voor zover het de verwerking van persoonsgegevens betreft.
-              </p>
-
-              <div className="mt-6 space-y-5">
-                <div>
-                  <h3 className="font-normal text-grey">A.1 Rolverdeling en instructies</h3>
-                  <div className="mt-2 space-y-3">
-                    {[
-                      "De klant is verwerkingsverantwoordelijke; Nativ is verwerker. Is de klant zelf verwerker voor een derde, dan staat de klant ervoor in dat hij bevoegd is Nativ als subverwerker in te schakelen.",
-                      "Nativ verwerkt persoonsgegevens uitsluitend op basis van de gedocumenteerde instructies van de klant, tenzij een wettelijke verplichting anders vereist; in dat geval meldt Nativ dit vooraf, tenzij de wet dat verbiedt.",
-                      "Nativ informeert de klant indien een instructie naar zijn oordeel in strijd is met de AVG of andere gegevensbeschermingswetgeving.",
-                    ].map((t, i) => (
-                      <p key={i} className="text-grey leading-relaxed">{t}</p>
+      {/* De voorwaarden zelf: lopende tekst op 8 kolommen, links uitgelijnd; elke kop draagt het anker van de inhoudsopgave */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="md:col-span-8 space-y-10">
+            {articles.map((a) => (
+              <FadeIn key={a.n}>
+                <article>
+                  <h2 id={`artikel-${a.n}`} className="font-serif text-grey scroll-mt-24">
+                    {a.n}. {a.title}
+                  </h2>
+                  {a.intro && (
+                    <p className="mt-6 text-grey leading-relaxed">{a.intro}</p>
+                  )}
+                  <div className={`${a.intro ? "mt-4" : "mt-6"} space-y-3`}>
+                    {a.clauses.map((cl) => (
+                      <p key={cl.num} className="text-grey leading-relaxed">
+                        <span className="mr-2 tabular-nums text-sage-dark">{cl.num}</span>
+                        {cl.text}
+                      </p>
                     ))}
                   </div>
-                </div>
+                </article>
+              </FadeIn>
+            ))}
 
-                <div>
-                  <h3 className="font-normal text-grey">A.2 Onderwerp, aard, doel en duur</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Het hosten en leveren van de dienst (Company Brain en de daarop draaiende workflows):
-                    het opslaan, structureren, doorzoekbaar maken van en het genereren van uitkomsten
-                    op basis van de klantgegevens, ten behoeve van de bedrijfsvoering van de klant.
-                    De verwerking duurt zolang de overeenkomst loopt, vermeerderd met de exporttermijn
-                    en eventuele wettelijke bewaartermijnen.
-                  </p>
-                </div>
+            {/* Bijlage A: Verwerkersovereenkomst */}
+            <FadeIn>
+              <div className="pt-10 border-t border-border">
+                <h2 id="bijlage-a" className="font-serif text-grey scroll-mt-24">
+                  Bijlage A: Verwerkersovereenkomst (AVG art. 28)
+                </h2>
+                <p className="mt-6 text-grey leading-relaxed">
+                  Deze verwerkersovereenkomst maakt deel uit van de overeenkomst en regelt hoe
+                  Nativ (verwerker) persoonsgegevens verwerkt in opdracht van de klant
+                  (verwerkingsverantwoordelijke). Bij strijdigheid met de algemene voorwaarden
+                  gaat deze bijlage voor voor zover het de verwerking van persoonsgegevens betreft.
+                </p>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.3 Categorieën betrokkenen en gegevens</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Betrokkenen en soorten gegevens worden bepaald door de klant, doorgaans
-                    medewerkers, klanten, contactpersonen en relaties, en gegevens als naam- en
-                    contactgegevens, functie/rol en de inhoud van aangeleverde documenten en kennis.
-                    Bijzondere categorieën (art. 9 AVG, waaronder medische gegevens) en strafrechtelijke
-                    gegevens worden niet ingevoerd, tenzij schriftelijk anders overeengekomen met
-                    passende waarborgen. Nativ blijft bewust weg van medische en andere
-                    hoog-gevoelige gegevens.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-normal text-grey">A.4 Beveiliging (art. 32 AVG)</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ treft passende technische en organisatorische maatregelen, waaronder:
-                  </p>
-                  <ul className="mt-2 space-y-1.5 text-grey leading-relaxed list-disc pl-5">
-                    <li>hosting en verwerking uitsluitend binnen de Europese Unie (AWS, regio EU-North-1, Stockholm);</li>
-                    <li>versleuteling van gegevens in transit (TLS/SSL) en at rest;</li>
-                    <li>logische scheiding van klantdata tussen klanten (multi-tenant isolatie op databaseniveau);</li>
-                    <li>toegang op basis van need-to-know, beperkt tot geautoriseerde teamleden;</li>
-                    <li>klantdata wordt niet gebruikt om AI-modellen te trainen en niet aan derden verkocht;</li>
-                    <li>dagelijkse, versleutelde back-ups met een bewaartermijn van 30 dagen en herstelprocedures.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="font-normal text-grey">A.5 Geheimhouding</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    De personen die toegang hebben tot de persoonsgegevens zijn tot geheimhouding verplicht.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-normal text-grey">A.6 Subverwerkers</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    De klant verleent Nativ algemene toestemming om subverwerkers in te schakelen.
-                    De actuele subverwerkers zijn:
-                  </p>
-                  <div className="mt-3 overflow-x-auto">
-                    <table className="w-full text-sm text-left border-collapse">
-                      <thead>
-                        <tr className="border-b border-grey/20 text-grey">
-                          <th className="py-2 pr-4 font-normal">Subverwerker</th>
-                          <th className="py-2 pr-4 font-normal">Doel</th>
-                          <th className="py-2 font-normal">Locatie</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-grey">
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">Amazon Web Services (AWS)</td>
-                          <td className="py-2 pr-4">hosting en infrastructuur</td>
-                          <td className="py-2">EU (eu-north-1, Stockholm)</td>
-                        </tr>
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">Anthropic (Claude)</td>
-                          <td className="py-2 pr-4">genereren van uitkomsten (LLM)</td>
-                          <td className="py-2">EU, of onder EU-modelcontractbepalingen</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <div className="mt-6 space-y-5">
+                  <div>
+                    <h3 id="bijlage-a-1" className="font-serif text-grey scroll-mt-24">A.1 Rolverdeling en instructies</h3>
+                    <div className="mt-2 space-y-3">
+                      {[
+                        "De klant is verwerkingsverantwoordelijke; Nativ is verwerker. Is de klant zelf verwerker voor een derde, dan staat de klant ervoor in dat hij bevoegd is Nativ als subverwerker in te schakelen.",
+                        "Nativ verwerkt persoonsgegevens uitsluitend op basis van de gedocumenteerde instructies van de klant, tenzij een wettelijke verplichting anders vereist; in dat geval meldt Nativ dit vooraf, tenzij de wet dat verbiedt.",
+                        "Nativ informeert de klant indien een instructie naar zijn oordeel in strijd is met de AVG of andere gegevensbeschermingswetgeving.",
+                      ].map((t, i) => (
+                        <p key={i} className="text-grey leading-relaxed">{t}</p>
+                      ))}
+                    </div>
                   </div>
-                  <p className="mt-3 text-grey leading-relaxed">
-                    Nativ legt elke subverwerker ten minste dezelfde verplichtingen op en blijft
-                    verantwoordelijk voor hun nakoming. Bij een voorgenomen wijziging informeert Nativ
-                    de klant vooraf; de klant mag daartegen binnen dertig (30) dagen op redelijke, met
-                    de gegevensbescherming samenhangende gronden bezwaar maken.
-                  </p>
-                </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.7 Bijstand</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ verleent redelijke bijstand bij verzoeken van betrokkenen (inzage, rectificatie,
-                    wissing, beperking, dataportabiliteit en bezwaar) en bij de verplichtingen van de klant
-                    uit de artikelen 32 tot en met 36 AVG.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-2" className="font-serif text-grey scroll-mt-24">A.2 Onderwerp, aard, doel en duur</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Het hosten en leveren van de dienst (Company Brain en de daarop draaiende workflows):
+                      het opslaan, structureren, doorzoekbaar maken van en het genereren van uitkomsten
+                      op basis van de klantgegevens, ten behoeve van de bedrijfsvoering van de klant.
+                      De verwerking duurt zolang de overeenkomst loopt, vermeerderd met de exporttermijn
+                      en eventuele wettelijke bewaartermijnen.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.8 Datalekken</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ meldt een inbreuk in verband met persoonsgegevens zonder onredelijke vertraging
-                    na ontdekking aan de klant, en waar mogelijk binnen achtenveertig (48) uur, met de
-                    beschikbare informatie. De melding aan de Autoriteit Persoonsgegevens en/of betrokkenen
-                    doet de klant als verwerkingsverantwoordelijke.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-3" className="font-serif text-grey scroll-mt-24">A.3 Categorieën betrokkenen en gegevens</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Betrokkenen en soorten gegevens worden bepaald door de klant, doorgaans
+                      medewerkers, klanten, contactpersonen en relaties, en gegevens als naam- en
+                      contactgegevens, functie/rol en de inhoud van aangeleverde documenten en kennis.
+                      Bijzondere categorieën (art. 9 AVG, waaronder medische gegevens) en strafrechtelijke
+                      gegevens worden niet ingevoerd, tenzij schriftelijk anders overeengekomen met
+                      passende waarborgen. Nativ blijft bewust weg van medische en andere
+                      hoog-gevoelige gegevens.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.9 Doorgifte buiten de EER</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ geeft de persoonsgegevens niet door aan een land buiten de Europese Economische
-                    Ruimte, tenzij op basis van een geldig doorgiftemechanisme (een adequaatheidsbesluit
-                    of de EU-modelcontractbepalingen) en na voorafgaande kennisgeving aan de klant.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-4" className="font-serif text-grey scroll-mt-24">A.4 Beveiliging (art. 32 AVG)</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ treft passende technische en organisatorische maatregelen, waaronder:
+                    </p>
+                    <ul className="mt-2 space-y-2 text-grey leading-relaxed">
+                      <Bullet>hosting en verwerking uitsluitend binnen de Europese Unie (AWS, regio EU-North-1, Stockholm);</Bullet>
+                      <Bullet>versleuteling van gegevens in transit (TLS/SSL) en at rest;</Bullet>
+                      <Bullet>logische scheiding van klantdata tussen klanten (multi-tenant isolatie op databaseniveau);</Bullet>
+                      <Bullet>toegang op basis van need-to-know, beperkt tot geautoriseerde teamleden;</Bullet>
+                      <Bullet>klantdata wordt niet gebruikt om AI-modellen te trainen en niet aan derden verkocht;</Bullet>
+                      <Bullet>dagelijkse, versleutelde back-ups met een bewaartermijn van 30 dagen en herstelprocedures.</Bullet>
+                    </ul>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.10 Teruggave en verwijdering</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Bij het einde van de overeenkomst stelt Nativ de klantgegevens als export ter beschikking
-                    (artikel 9.3). Daarna verwijdert Nativ de persoonsgegevens binnen 30 dagen na de
-                    exporttermijn, behoudens een wettelijke bewaarplicht; op verzoek bevestigt Nativ de
-                    verwijdering schriftelijk.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-5" className="font-serif text-grey scroll-mt-24">A.5 Geheimhouding</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      De personen die toegang hebben tot de persoonsgegevens zijn tot geheimhouding verplicht.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.11 Audit</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ stelt op verzoek de informatie ter beschikking die nodig is om naleving aan te
-                    tonen en maakt audits mogelijk (ten hoogste eenmaal per jaar, redelijk aangekondigd,
-                    vertrouwelijk en voor rekening van de klant), of verstrekt een onafhankelijk auditrapport.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-6" className="font-serif text-grey scroll-mt-24">A.6 Subverwerkers</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      De klant verleent Nativ algemene toestemming om subverwerkers in te schakelen.
+                      De actuele subverwerkers zijn:
+                    </p>
+                    <div className="mt-3 overflow-x-auto">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th scope="col" className={thCls}>Subverwerker</th>
+                            <th scope="col" className={thCls}>Doel</th>
+                            <th scope="col" className={thCls}>Locatie</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-grey">
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>Amazon Web Services (AWS)</td>
+                            <td className={tdCls}>hosting en infrastructuur</td>
+                            <td className={tdCls}>EU (eu-north-1, Stockholm)</td>
+                          </tr>
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>Anthropic (Claude)</td>
+                            <td className={tdCls}>genereren van uitkomsten (LLM)</td>
+                            <td className={tdCls}>EU, of onder EU-modelcontractbepalingen</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p className="mt-3 text-grey leading-relaxed">
+                      Nativ legt elke subverwerker ten minste dezelfde verplichtingen op en blijft
+                      verantwoordelijk voor hun nakoming. Bij een voorgenomen wijziging informeert Nativ
+                      de klant vooraf; de klant mag daartegen binnen dertig (30) dagen op redelijke, met
+                      de gegevensbescherming samenhangende gronden bezwaar maken.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">A.12 Aansprakelijkheid</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Op deze verwerkersovereenkomst is de aansprakelijkheidsregeling van artikel 13 van
-                    toepassing, onverminderd dwingend recht.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
+                  <div>
+                    <h3 id="bijlage-a-7" className="font-serif text-grey scroll-mt-24">A.7 Bijstand</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ verleent redelijke bijstand bij verzoeken van betrokkenen (inzage, rectificatie,
+                      wissing, beperking, dataportabiliteit en bezwaar) en bij de verplichtingen van de klant
+                      uit de artikelen 32 tot en met 36 AVG.
+                    </p>
+                  </div>
 
-          {/* Bijlage B — SLA */}
-          <FadeIn>
-            <div className="mt-14 pt-10 border-t border-grey/10">
-              <h2 className="font-serif text-grey">
-                Bijlage B: Service Level Agreement
-              </h2>
-              <p className="mt-4 text-grey leading-relaxed">
-                Deze SLA maakt deel uit van de overeenkomst en beschrijft het serviceniveau van de dienst.
-              </p>
+                  <div>
+                    <h3 id="bijlage-a-8" className="font-serif text-grey scroll-mt-24">A.8 Datalekken</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ meldt een inbreuk in verband met persoonsgegevens zonder onredelijke vertraging
+                      na ontdekking aan de klant, en waar mogelijk binnen achtenveertig (48) uur, met de
+                      beschikbare informatie. De melding aan de Autoriteit Persoonsgegevens en/of betrokkenen
+                      doet de klant als verwerkingsverantwoordelijke.
+                    </p>
+                  </div>
 
-              <div className="mt-6 space-y-5">
-                <div>
-                  <h3 className="font-normal text-grey">B.1 Beschikbaarheid</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Nativ streeft naar een beschikbaarheid van 99,5% per kalendermaand (inspanningsverbintenis).
-                    Bij de berekening tellen niet mee: gepland onderhoud, overmacht, oorzaken aan de zijde van
-                    de klant, diens gebruikers of derden, en onbeschikbaarheid van door de klant voorgeschreven
-                    of ingeschakelde derde-diensten.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-9" className="font-serif text-grey scroll-mt-24">A.9 Doorgifte buiten de EER</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ geeft de persoonsgegevens niet door aan een land buiten de Europese Economische
+                      Ruimte, tenzij op basis van een geldig doorgiftemechanisme (een adequaatheidsbesluit
+                      of de EU-modelcontractbepalingen) en na voorafgaande kennisgeving aan de klant.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">B.2 Onderhoud</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Gepland onderhoud dat de beschikbaarheid merkbaar kan beïnvloeden voert Nativ zo veel
-                    mogelijk buiten kantooruren uit en kondigt Nativ, waar redelijk mogelijk, ten minste
-                    24 uur van tevoren aan. Spoedeisend onderhoud mag Nativ te allen tijde en zonder
-                    voorafgaande aankondiging uitvoeren.
-                  </p>
-                </div>
+                  <div>
+                    <h3 id="bijlage-a-10" className="font-serif text-grey scroll-mt-24">A.10 Teruggave en verwijdering</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Bij het einde van de overeenkomst stelt Nativ de klantgegevens als export ter beschikking
+                      (artikel 9.3). Daarna verwijdert Nativ de persoonsgegevens binnen 30 dagen na de
+                      exporttermijn, behoudens een wettelijke bewaarplicht; op verzoek bevestigt Nativ de
+                      verwijdering schriftelijk.
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="font-normal text-grey">B.3 Support</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Supportmeldingen worden gedaan via de supportfunctie in het platform. Openingstijden:
-                    werkdagen van 09:00 tot 17:00 (CET), met uitzondering van Nederlandse feestdagen. De
-                    reactietijd is de eerste inhoudelijke reactie, niet de oplostijd:
-                  </p>
-                  <div className="mt-3 overflow-x-auto">
-                    <table className="w-full text-sm text-left border-collapse">
-                      <thead>
-                        <tr className="border-b border-grey/20 text-grey">
-                          <th className="py-2 pr-4 font-normal">Prioriteit</th>
-                          <th className="py-2 pr-4 font-normal">Omschrijving</th>
-                          <th className="py-2 font-normal">Reactietijd-streven</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-grey">
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P1: Kritiek</td>
-                          <td className="py-2 pr-4">Dienst onbruikbaar voor alle gebruikers</td>
-                          <td className="py-2">binnen 4 uur</td>
-                        </tr>
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P2: Hoog</td>
-                          <td className="py-2 pr-4">Belangrijke functie ernstig verstoord, geen workaround</td>
-                          <td className="py-2">1 werkdag</td>
-                        </tr>
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P3: Normaal</td>
-                          <td className="py-2 pr-4">Beperkte verstoring of workaround beschikbaar</td>
-                          <td className="py-2">3 werkdagen</td>
-                        </tr>
-                        <tr className="border-b border-grey/10">
-                          <td className="py-2 pr-4">P4: Laag</td>
-                          <td className="py-2 pr-4">Vraag, verzoek of cosmetisch punt</td>
-                          <td className="py-2">5 werkdagen</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div>
+                    <h3 id="bijlage-a-11" className="font-serif text-grey scroll-mt-24">A.11 Audit</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ stelt op verzoek de informatie ter beschikking die nodig is om naleving aan te
+                      tonen en maakt audits mogelijk (ten hoogste eenmaal per jaar, redelijk aangekondigd,
+                      vertrouwelijk en voor rekening van de klant), of verstrekt een onafhankelijk auditrapport.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 id="bijlage-a-12" className="font-serif text-grey scroll-mt-24">A.12 Aansprakelijkheid</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Op deze verwerkersovereenkomst is de aansprakelijkheidsregeling van artikel 13 van
+                      toepassing, onverminderd dwingend recht.
+                    </p>
                   </div>
                 </div>
+              </div>
+            </FadeIn>
 
-                <div>
-                  <h3 className="font-normal text-grey">B.4 Escalatie</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    Wordt een P1-melding niet binnen een redelijke termijn opgepakt, dan kan de klant
-                    escaleren via het door Nativ aangewezen escalatiecontact.
-                  </p>
-                </div>
+            {/* Bijlage B: SLA */}
+            <FadeIn>
+              <div className="pt-10 border-t border-border">
+                <h2 id="bijlage-b" className="font-serif text-grey scroll-mt-24">
+                  Bijlage B: Service Level Agreement
+                </h2>
+                <p className="mt-6 text-grey leading-relaxed">
+                  Deze SLA maakt deel uit van de overeenkomst en beschrijft het serviceniveau van de dienst.
+                </p>
 
-                <div>
-                  <h3 className="font-normal text-grey">B.5 Servicecredits</h3>
-                  <p className="mt-2 text-grey leading-relaxed">
-                    In deze versie zijn aan het beschikbaarheidsstreven geen servicecredits of boetes verbonden.
-                  </p>
+                <div className="mt-6 space-y-5">
+                  <div>
+                    <h3 id="bijlage-b-1" className="font-serif text-grey scroll-mt-24">B.1 Beschikbaarheid</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Nativ streeft naar een beschikbaarheid van 99,5% per kalendermaand (inspanningsverbintenis).
+                      Bij de berekening tellen niet mee: gepland onderhoud, overmacht, oorzaken aan de zijde van
+                      de klant, diens gebruikers of derden, en onbeschikbaarheid van door de klant voorgeschreven
+                      of ingeschakelde derde-diensten.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 id="bijlage-b-2" className="font-serif text-grey scroll-mt-24">B.2 Onderhoud</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Gepland onderhoud dat de beschikbaarheid merkbaar kan beïnvloeden voert Nativ zo veel
+                      mogelijk buiten kantooruren uit en kondigt Nativ, waar redelijk mogelijk, ten minste
+                      24 uur van tevoren aan. Spoedeisend onderhoud mag Nativ te allen tijde en zonder
+                      voorafgaande aankondiging uitvoeren.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 id="bijlage-b-3" className="font-serif text-grey scroll-mt-24">B.3 Support</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Supportmeldingen worden gedaan via de supportfunctie in het platform. Openingstijden:
+                      werkdagen van 09:00 tot 17:00 (CET), met uitzondering van Nederlandse feestdagen. De
+                      reactietijd is de eerste inhoudelijke reactie, niet de oplostijd:
+                    </p>
+                    <div className="mt-3 overflow-x-auto">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th scope="col" className={thCls}>Prioriteit</th>
+                            <th scope="col" className={thCls}>Omschrijving</th>
+                            <th scope="col" className={thCls}>Reactietijd-streven</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-grey">
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>P1: Kritiek</td>
+                            <td className={tdCls}>Dienst onbruikbaar voor alle gebruikers</td>
+                            <td className={tdCls}>binnen 4 uur</td>
+                          </tr>
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>P2: Hoog</td>
+                            <td className={tdCls}>Belangrijke functie ernstig verstoord, geen workaround</td>
+                            <td className={tdCls}>1 werkdag</td>
+                          </tr>
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>P3: Normaal</td>
+                            <td className={tdCls}>Beperkte verstoring of workaround beschikbaar</td>
+                            <td className={tdCls}>3 werkdagen</td>
+                          </tr>
+                          <tr className="border-b border-border">
+                            <td className={tdCls}>P4: Laag</td>
+                            <td className={tdCls}>Vraag, verzoek of cosmetisch punt</td>
+                            <td className={tdCls}>5 werkdagen</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 id="bijlage-b-4" className="font-serif text-grey scroll-mt-24">B.4 Escalatie</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      Wordt een P1-melding niet binnen een redelijke termijn opgepakt, dan kan de klant
+                      escaleren via het door Nativ aangewezen escalatiecontact.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 id="bijlage-b-5" className="font-serif text-grey scroll-mt-24">B.5 Servicecredits</h3>
+                    <p className="mt-2 text-grey leading-relaxed">
+                      In deze versie zijn aan het beschikbaarheidsstreven geen servicecredits of boetes verbonden.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
 
-          {/* Contact */}
-          <FadeIn>
-            <div className="mt-12 pt-8 border-t border-grey/10">
-              <p className="text-muted leading-relaxed text-sm">
-                Vragen over deze voorwaarden of de bijlagen? Mail{" "}
-                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
-                  info@gonativ.nl
-                </a>
-                .
-              </p>
-            </div>
-          </FadeIn>
+            {/* Contact */}
+            <FadeIn>
+              <div className="pt-8 border-t border-border">
+                <p className="text-sm text-muted leading-relaxed">
+                  Vragen over deze voorwaarden of de bijlagen? Mail{" "}
+                  <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
+                    info@gonativ.nl
+                  </a>
+                  .
+                </p>
+              </div>
+            </FadeIn>
+          </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }
