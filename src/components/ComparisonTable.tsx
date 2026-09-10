@@ -49,7 +49,7 @@ export default function ComparisonTable() {
           </thead>
           <tbody>
             {table.rows.map((row, i) => (
-              <tr key={i} className="border-t border-sage-light">
+              <tr key={i} className="border-t border-border">
                 <td className="py-4 px-4 font-serif text-grey">{row.label}</td>
                 <td className="py-4 px-4 text-muted line-through">{row.old}</td>
                 <td className="py-4 px-4 text-grey font-medium">

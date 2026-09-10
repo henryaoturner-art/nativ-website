@@ -169,7 +169,7 @@ export default function WorkflowsPage() {
   const c = translations[language];
 
   return (
-    <div className="bg-surface">
+    <div className="bg-white">
       {/* Hero */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
@@ -218,7 +218,7 @@ export default function WorkflowsPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {c.examples.map((ex, i) => (
               <FadeIn key={ex.area} delay={150 + i * 100}>
-                <div className="h-full bg-surface rounded-xl p-6 border border-sage-light">
+                <div className="h-full bg-white rounded-lg p-6 border border-border">
                   <h3 className="font-serif text-grey">{ex.area}</h3>
                   <p className="mt-3 text-base text-grey leading-relaxed">
                     {ex.body}

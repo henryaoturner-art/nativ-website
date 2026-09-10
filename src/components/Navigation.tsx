@@ -63,7 +63,7 @@ export default function Navigation() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-cream border-b border-sage-light"
+          ? "bg-cream border-b border-border"
           : "bg-transparent border-b border-transparent"
       }`}
     >
@@ -110,7 +110,7 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-cream border-t border-sage-light">
+        <div className="md:hidden bg-cream border-t border-border">
           <div className="px-6 py-6 space-y-4">
             {links.map((link) => (
               <Link

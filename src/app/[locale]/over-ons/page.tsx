@@ -89,7 +89,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Team */}
-      <section className="py-12 md:py-16 px-6 bg-surface">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-center mb-16">{c.teamTitle}</h2>

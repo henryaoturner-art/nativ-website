@@ -392,17 +392,17 @@ export default function ScanWizard({
 
         <div className="fixed bottom-4 right-4 pointer-events-none">
           {saveState === "saving" && (
-            <span className="text-xs text-muted bg-surface border border-sage-light rounded-full px-3 py-1.5">
+            <span className="text-xs text-muted bg-white border border-border rounded-full px-3 py-1.5">
               {c.saving}
             </span>
           )}
           {saveState === "saved" && (
-            <span className="text-xs text-sage bg-surface border border-sage-light rounded-full px-3 py-1.5">
+            <span className="text-xs text-sage bg-white border border-border rounded-full px-3 py-1.5">
               {c.saved}
             </span>
           )}
           {saveState === "error" && (
-            <span className="text-xs text-error bg-surface border border-error/30 rounded-full px-3 py-1.5 pointer-events-auto">
+            <span className="text-xs text-error bg-white border border-error/30 rounded-full px-3 py-1.5 pointer-events-auto">
               {c.saveError}
             </span>
           )}
@@ -444,8 +444,8 @@ function QuestionCard({
   return (
     <div
       id={`vraag-${question.id}`}
-      className={`bg-surface rounded-xl p-6 md:p-8 border transition-colors ${
-        highlight ? "border-error/60" : "border-sage-light"
+      className={`bg-white rounded-lg p-6 md:p-8 border transition-colors ${
+        highlight ? "border-error/60" : "border-border"
       }`}
     >
       <p className="text-grey leading-relaxed">
@@ -488,7 +488,7 @@ function QuestionCard({
             value={value}
             onChange={(e) => onLocal(e.target.value)}
             onBlur={(e) => onCommit(e.target.value)}
-            className="w-32 px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+            className="w-32 px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
           />
         )}
         {question.type === "rating" && (
@@ -546,7 +546,7 @@ function ChoiceField({
             className={`flex items-start gap-3 px-4 py-3 rounded-lg border cursor-pointer transition-colors ${
               isSelected
                 ? "border-sage bg-sage-light"
-                : "border-sage-light bg-cream/50 hover:border-sage/50"
+                : "border-border bg-cream/50 hover:border-sage/50"
             }`}
           >
             <input
@@ -618,8 +618,8 @@ function MultiChoiceField({
               isSelected
                 ? "border-sage bg-sage-light cursor-pointer"
                 : atMax
-                  ? "border-sage-light bg-cream/30 opacity-50 cursor-not-allowed"
-                  : "border-sage-light bg-cream/50 hover:border-sage/50 cursor-pointer"
+                  ? "border-border bg-cream/30 opacity-50 cursor-not-allowed"
+                  : "border-border bg-cream/50 hover:border-sage/50 cursor-pointer"
             }`}
           >
             <input
@@ -750,7 +750,7 @@ function TextField({
         rows={4}
         onChange={(e) => onLocal(e.target.value)}
         onBlur={(e) => onCommit(e.target.value)}
-        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition resize-y"
+        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition resize-y"
       />
       {supported && (
         <button
@@ -759,7 +759,7 @@ function TextField({
           className={`mt-2 inline-flex items-center gap-2 text-sm rounded-full px-4 py-2 border transition-colors cursor-pointer ${
             listening
               ? "border-error/50 text-error bg-error/5"
-              : "border-sage-light text-sage hover:border-sage"
+              : "border-border text-sage hover:border-sage"
           }`}
         >
           <span aria-hidden>{listening ? "■" : "🎙"}</span>

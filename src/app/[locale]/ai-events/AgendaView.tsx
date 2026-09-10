@@ -130,7 +130,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                         href={e.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-wrap sm:flex-nowrap items-start gap-4 sm:gap-6 bg-surface rounded-2xl px-6 py-5 border border-sage-light transition-all hover:-translate-y-0.5"
+                        className="group flex flex-wrap sm:flex-nowrap items-start gap-4 sm:gap-6 bg-white rounded-2xl px-6 py-5 border border-border transition-all hover:-translate-y-0.5"
                       >
                         {/* Date badge */}
                         <div className="flex sm:flex-col items-baseline sm:items-center gap-2 sm:gap-0 sm:w-[58px] sm:flex-none sm:text-center sm:border-r border-grey/10 sm:pr-5">
@@ -179,7 +179,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
       </section>
 
       {/* Footer note */}
-      <div className="bg-surface border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-muted">
+      <div className="bg-white border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-muted">
         <p className="max-w-[640px] mx-auto">{c.foot}</p>
       </div>
     </>

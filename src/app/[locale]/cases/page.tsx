@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "@/components/Link";
 import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
+import Stars from "@/components/Stars";
 import { pageMeta, webPage, SITE_UPDATED } from "@/lib/site-meta";
+import { Check } from "lucide-react";
 
 // Verborgen sinds 8 september 2026 (besluit Jorus/Livius): één case is te
 // summier voor een eigen tab. Pagina blijft bestaan; niet in menu, sitemap,
@@ -89,7 +91,7 @@ export default function CasesPage() {
       <section className="py-10 md:py-16 px-6 pb-20 md:pb-28">
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
-            <article className="bg-surface rounded-xl p-8 md:p-12 border border-sage-light">
+            <article className="bg-white rounded-lg p-8 md:p-12 border border-border">
               {/* Tags */}
               <div className="flex flex-wrap items-center gap-3 text-sm text-muted mb-6">
                 <span className="bg-sage/10 text-sage px-3 py-1 rounded-full text-xs">
@@ -154,7 +156,7 @@ export default function CasesPage() {
                     Van verspreide kennis naar een levende, continu bijgewerkte kennisbank
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-sage mt-0.5 font-bold">✓</span>
+                    <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
                     Operationeel in 4 weken vanaf start
                   </li>
                 </ul>
@@ -166,9 +168,9 @@ export default function CasesPage() {
         {/* Client testimonial — verified Sortlist review (Dirk Westdijk, JobTraining) */}
         <FadeIn delay={300}>
           <figure className="max-w-[800px] mx-auto mt-12">
-            <div className="bg-sage/5 border border-sage-light rounded-xl p-8 md:p-10">
+            <div className="bg-sage/5 border border-border rounded-lg p-8 md:p-10">
               <div className="flex items-center gap-2 text-sage" aria-label="Beoordeling 4,5 van 5">
-                <span aria-hidden="true" className="text-lg tracking-wide">★★★★☆</span>
+                <Stars />
                 <span className="text-sm text-muted">4,5 / 5</span>
               </div>
               <blockquote className="mt-4 font-serif text-xl md:text-2xl leading-snug text-grey">

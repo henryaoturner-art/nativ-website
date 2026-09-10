@@ -120,7 +120,7 @@ export default function PillarBedrijfsbreinPage() {
             </p>
             <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">Een chatbot</strong>{" "}
                   beantwoordt vragen met algemene kennis. Hij weet niets
@@ -128,7 +128,7 @@ export default function PillarBedrijfsbreinPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">RAG</strong> (een
                   techniek die er documenten bij zoekt) haalt losse stukken tekst
@@ -137,7 +137,7 @@ export default function PillarBedrijfsbreinPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Een Company Brain
@@ -165,7 +165,7 @@ export default function PillarBedrijfsbreinPage() {
             </p>
             <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     De hoofden van je mensen.
@@ -177,7 +177,7 @@ export default function PillarBedrijfsbreinPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Je systemen en documenten.
@@ -253,7 +253,7 @@ export default function PillarBedrijfsbreinPage() {
 
       {/* How to start */}
       <section className="py-12 md:py-16 px-6">
-        <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
+        <div className="max-w-[680px] mx-auto text-center bg-white rounded-2xl px-8 py-12 border border-border">
           <FadeIn>
             <h2 className="font-serif text-grey">
               Hoe je begint

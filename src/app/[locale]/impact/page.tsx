@@ -86,7 +86,7 @@ export default function ImpactPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-12 md:py-16 px-6 bg-surface">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-center mb-16">{c.howTitle}</h2>
@@ -116,7 +116,7 @@ export default function ImpactPage() {
           <FadeIn delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {c.whyCards.map((card) => (
-                <div key={card.title} className="bg-surface rounded-xl p-8 border border-sage-light">
+                <div key={card.title} className="bg-white rounded-lg p-8 border border-border">
                   <p className="text-4xl md:text-5xl font-serif text-sage">{card.icon}</p>
                   <p className="mt-3 font-serif text-lg">{card.title}</p>
                   <p className="mt-2 text-sm text-muted">{card.desc}</p>
@@ -128,7 +128,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Flexibility */}
-      <section className="py-12 md:py-16 px-6 bg-surface">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif mb-8">{c.flexTitle}</h2>
@@ -152,7 +152,7 @@ export default function ImpactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {c.beyondItems.map((item, i) => (
               <FadeIn key={item.title} delay={i * 150}>
-                <div className="bg-surface rounded-xl p-8 h-full border border-sage-light">
+                <div className="bg-white rounded-lg p-8 h-full border border-border">
                   <h3 className="font-serif mb-3">{item.title}</h3>
                   <p className="text-grey leading-relaxed text-[15px]">{item.desc}</p>
                 </div>

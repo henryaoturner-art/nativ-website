@@ -111,7 +111,7 @@ export default async function BlogPostPage({
               <img
                 src={post.image}
                 alt={post.title}
-                className="mt-8 w-full rounded-xl object-cover"
+                className="mt-8 w-full rounded-lg object-cover"
               />
             </FadeIn>
           )}
@@ -121,7 +121,7 @@ export default async function BlogPostPage({
           </FadeIn>
 
           <FadeIn delay={400}>
-            <div className="mt-16 pt-8 border-t border-sage-light text-center">
+            <div className="mt-16 pt-8 border-t border-border text-center">
               <p className="text-muted">
                 Benieuwd hoe een{" "}
                 <Link href="/company-brain" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">

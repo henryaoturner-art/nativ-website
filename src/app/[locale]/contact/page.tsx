@@ -116,7 +116,7 @@ export default function ContactPage() {
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <FadeIn>
             <div className="flex flex-col gap-8 h-full">
-            <div className="bg-surface rounded-xl p-8 border border-sage-light">
+            <div className="bg-white rounded-lg p-8 border border-border">
               <h2 className="font-serif mb-4">{c.calTitle}</h2>
               <p className="text-muted text-sm mb-6">{c.calMeta}</p>
               <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
@@ -138,7 +138,7 @@ export default function ContactPage() {
             </div>
 
             {/* Bezoekadres (A4, KAN-425): The Stack, Brain-feit 01-identity.hq-address. */}
-            <div className="bg-surface rounded-xl p-8 border border-sage-light">
+            <div className="bg-white rounded-lg p-8 border border-border">
               <h2 className="font-serif mb-4">{c.addressTitle}</h2>
               <address className="not-italic text-grey leading-relaxed" translate="no">
                 The Stack
@@ -160,7 +160,7 @@ export default function ContactPage() {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
+            <div className="bg-white rounded-lg p-8 border border-border h-full">
               <h2 className="font-serif mb-6">{c.formTitle}</h2>
               {submitted ? (
                 <div className="flex items-center justify-center h-80 text-center">
@@ -173,21 +173,21 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="name" className="block text-sm text-muted mb-1.5">{c.nameLabel}</label>
-                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
+                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm text-muted mb-1.5">{c.emailLabel}</label>
-                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
+                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
                   </div>
                   <div>
                     <label htmlFor="company" className="block text-sm text-muted mb-1.5">{c.companyLabel}</label>
-                    <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
+                    <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm text-muted mb-1.5">
                       {c.messageLabel} <span className="text-muted">{c.messageOptional}</span>
                     </label>
-                    <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition resize-none" />
+                    <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition resize-none" />
                   </div>
                   {error && <p className="text-error text-sm">{error}</p>}
                   <Button full type="submit" disabled={loading}>

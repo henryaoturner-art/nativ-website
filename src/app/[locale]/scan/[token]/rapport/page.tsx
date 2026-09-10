@@ -301,7 +301,7 @@ export default async function ScanReportPage({
             {c.werkwijzeBody}
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-xl p-6 bg-surface border border-sage-light">
+            <div className="rounded-lg p-6 bg-white border border-border">
               <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.zoZietHetEruitNu}
               </h3>
@@ -313,7 +313,7 @@ export default async function ScanReportPage({
                 ))}
               </ol>
             </div>
-            <div className="rounded-xl p-6 bg-sage-light border border-sage/40">
+            <div className="rounded-lg p-6 bg-white border border-border border-l-[3px] border-l-sage">
               <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.zoZietHetEruitStraks}
               </h3>
@@ -335,7 +335,7 @@ export default async function ScanReportPage({
             </div>
           </div>
           {payload.vanafNul ? (
-            <div className="mt-8 rounded-xl border-2 border-sage bg-white px-6 py-6">
+            <div className="mt-8 rounded-lg border-2 border-sage bg-white px-6 py-6">
               <h3 className="font-serif font-normal text-grey">
                 {c.vanafNul}
               </h3>
@@ -443,7 +443,7 @@ export default async function ScanReportPage({
         {/* Alleen bij een solo-rapport: de teamscan als volgende stap.
             Self-service: de knop opent het eigen teamoverzicht. */}
         {payload.scanVorm !== "team" && (
-          <div className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
+          <div className="mt-8 bg-white rounded-lg p-6 md:p-8 border border-border">
             <h3 className="font-serif text-grey">{c.volgendeStapTitel}</h3>
             <p className="mt-3 text-grey leading-relaxed">
               {c.volgendeStapBody}
@@ -475,7 +475,7 @@ export default async function ScanReportPage({
         {/* Kop-conclusie: het antwoord in vijftien seconden. */}
         {topWorkflow && (
           <FadeIn>
-            <div className="mt-8 rounded-xl bg-sage-light border border-sage/40 p-6 md:p-7">
+            <div className="mt-8 rounded-lg bg-white border border-border border-l-[3px] border-l-sage p-6 md:p-7">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.kortAntwoord}
               </p>
@@ -492,7 +492,7 @@ export default async function ScanReportPage({
 
         {/* Inhoudsopgave */}
         <FadeIn>
-          <div className="mt-6 rounded-xl bg-surface border border-sage-light p-6 md:p-7">
+          <div className="mt-6 rounded-lg bg-white border border-border p-6 md:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.toc}</p>
             <ol className="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
               {sections.map((s, i) => (
@@ -561,11 +561,11 @@ function TopWorkflowCard({
     [c.waaromHier, waarom],
   ];
   return (
-    <div className="rounded-xl p-6 md:p-7 border bg-sage-light border-sage/40">
+    <div className="rounded-lg p-6 md:p-7 border bg-white border-border border-l-[3px] border-l-sage">
       <div className="flex items-baseline justify-between gap-3">
         <h4 className="font-serif text-lg text-grey">{item.naam}</h4>
         {item.afdeling && (
-          <span className="shrink-0 text-xs text-sage bg-cream/60 border border-sage-light rounded-full px-2.5 py-0.5">
+          <span className="shrink-0 text-xs text-sage bg-cream/60 border border-border rounded-full px-2.5 py-0.5">
             {item.afdeling}
           </span>
         )}

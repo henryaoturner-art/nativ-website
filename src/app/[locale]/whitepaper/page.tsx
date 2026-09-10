@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import Button from "@/components/Button";
+import { Check } from "lucide-react";
 
 const translations = {
   en: {
@@ -139,7 +140,7 @@ export default function WhitepaperPage() {
               <ul className="space-y-3">
                 {[c.inside1, c.inside2, c.inside3, c.inside4, c.inside5, c.inside6].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-sage mt-0.5 shrink-0">✓</span>
+                    <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
                     <span className="text-sm text-grey leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -149,7 +150,7 @@ export default function WhitepaperPage() {
 
           {/* Right: Download form */}
           <FadeIn delay={200}>
-            <div className="bg-surface rounded-xl p-8 border border-sage-light">
+            <div className="bg-white rounded-lg p-8 border border-border">
               {submitted ? (
                 <div className="text-center py-8">
                   <p className="font-serif text-2xl text-sage">{c.thankYou}</p>
@@ -191,7 +192,7 @@ export default function WhitepaperPage() {
                         id="name"
                         name="name"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                       />
                     </div>
                     <div>
@@ -203,7 +204,7 @@ export default function WhitepaperPage() {
                         id="email"
                         name="email"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                       />
                     </div>
                     <div>
@@ -214,7 +215,7 @@ export default function WhitepaperPage() {
                         type="text"
                         id="company"
                         name="company"
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                       />
                     </div>
                     <div>
@@ -225,7 +226,7 @@ export default function WhitepaperPage() {
                         type="text"
                         id="role"
                         name="role"
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                       />
                     </div>
                     
@@ -238,7 +239,7 @@ export default function WhitepaperPage() {
                         name="language"
                         value={selectedLanguage}
                         onChange={(e) => setSelectedLanguage(e.target.value)}
-                        className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                       >
                         <option value="">
                           {language === 'en' ? 'Auto-detect (based on website language)' : 'Automatisch detecteren (op basis van website taal)'}

@@ -95,7 +95,7 @@ export default function CompanyBrainPage() {
             </p>
             <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     De hoofden van je mensen.
@@ -107,7 +107,7 @@ export default function CompanyBrainPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Je systemen en documenten.
@@ -130,7 +130,7 @@ export default function CompanyBrainPage() {
             </h2>
             <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Je kennis blijft van je bedrijf.
@@ -142,7 +142,7 @@ export default function CompanyBrainPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Iedereen kan de Company Brain alles vragen.
@@ -153,7 +153,7 @@ export default function CompanyBrainPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Workflows per afdeling.
@@ -164,7 +164,7 @@ export default function CompanyBrainPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-sage mt-1.5 shrink-0">·</span>
+                <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
                 <span>
                   <strong className="font-medium text-grey">
                     Output die klopt.
@@ -194,7 +194,7 @@ export default function CompanyBrainPage() {
 
       {/* How to start */}
       <section className="py-12 md:py-16 px-6">
-        <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
+        <div className="max-w-[680px] mx-auto text-center bg-white rounded-2xl px-8 py-12 border border-border">
           <FadeIn>
             <h2 className="font-serif text-grey">
               Hoe je begint

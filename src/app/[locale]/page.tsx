@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import { ArrowRight } from "lucide-react";
+import Stars from "@/components/Stars";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import { webPage } from "@/lib/site-meta";
@@ -280,12 +281,7 @@ export default function HomePage() {
           <FadeIn delay={500}>
             <figure className="mt-8 mx-auto max-w-xl text-sm text-grey">
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-                <span
-                  aria-hidden="true"
-                  className="text-sage tracking-wide"
-                >
-                  ★★★★☆
-                </span>
+                <Stars />
                 <span className="sr-only">{c.proofAria}</span>
                 {/* /cases is verborgen (8 sep 2026); de score staat als tekst. */}
                 <span className="text-sage">{c.proofScore}</span>
@@ -301,7 +297,6 @@ export default function HomePage() {
             </figure>
           </FadeIn>
         </div>
-        <div className="max-w-[200px] mx-auto mt-16 md:mt-24 border-t border-sage" />
       </section>
 
       {/* Payoff: what the hero's problem looks like once it is solved */}

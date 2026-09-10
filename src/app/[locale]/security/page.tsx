@@ -2,6 +2,7 @@
 
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { Check } from "lucide-react";
 
 const translations = {
   nl: {
@@ -69,7 +70,7 @@ export default function SecurityPage() {
               {c.principles.map((item) => (
                 <div key={item.title} className="flex gap-5">
                   <div className="shrink-0 w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center mt-0.5" aria-hidden="true">
-                    <span className="text-sage text-sm">✓</span>
+                    <Check size={16} strokeWidth={2} className="text-sage-dark" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-serif">{item.title}</h3>
@@ -83,7 +84,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Trust */}
-      <section className="py-12 md:py-16 px-6 bg-surface">
+      <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif mb-10">{c.trustTitle}</h2>

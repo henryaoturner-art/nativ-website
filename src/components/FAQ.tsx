@@ -1,47 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
+/** FAQ-accordeon in kaartstijl (B3, KAN-425): vraag in Georgia 20px, ChevronDown draait bij openen, Sage-rand alleen open of bij hover. */
 export default function FAQ({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-3">
-      {items.map((item, i) => (
-        <div key={i} className="bg-surface rounded-xl border border-sage-light">
-          <button
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
-            aria-expanded={openIndex === i}
-            aria-controls={`faq-answer-${i}`}
-          >
-            <span className="font-serif text-lg text-grey font-normal">
-              {item.question}
-            </span>
-            <span
-              className="text-sage text-2xl shrink-0 transition-transform duration-300"
-              style={{ transform: openIndex === i ? "rotate(45deg)" : "rotate(0deg)" }}
-              aria-hidden="true"
-            >
-              +
-            </span>
-          </button>
+      {items.map((item, i) => {
+        const open = openIndex === i;
+        return (
           <div
-            id={`faq-answer-${i}`}
-            role="region"
-            className={`faq-answer ${openIndex === i ? "open" : ""}`}
+            key={i}
+            className={`bg-white rounded-lg border transition-colors ${open ? "border-sage" : "border-border hover:border-sage"}`}
           >
-            <p className="px-6 pb-5 text-grey leading-relaxed">
-              {item.answer}
-            </p>
+            <button
+              onClick={() => setOpenIndex(open ? null : i)}
+              className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
+              aria-expanded={open}
+              aria-controls={`faq-answer-${i}`}
+            >
+              <span className="font-serif text-xl text-grey">{item.question}</span>
+              <ChevronDown
+                size={20}
+                strokeWidth={1.5}
+                aria-hidden="true"
+                className={`shrink-0 text-sage-dark transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+              />
+            </button>
+            <div id={`faq-answer-${i}`} role="region" className={`faq-answer ${open ? "open" : ""}`}>
+              <p className="px-6 pb-5 text-grey leading-relaxed">{item.answer}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

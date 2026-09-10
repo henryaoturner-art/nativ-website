@@ -49,7 +49,7 @@ export default function BlogPage() {
           {posts.map((post, i) => (
             <FadeIn key={post.slug} delay={i * 100}>
               <Link href={`/blog/${post.slug}`} className="block group">
-                <article className="bg-surface rounded-xl overflow-hidden border border-sage-light group-hover:border-sage transition-colors">
+                <article className="bg-white rounded-lg overflow-hidden border border-border group-hover:border-sage transition-colors">
                   {post.image && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img

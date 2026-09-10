@@ -176,7 +176,7 @@ export default function ScanPage() {
   }, []);
 
   return (
-    <div className="bg-surface">
+    <div className="bg-white">
       {/* Hero */}
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
@@ -198,7 +198,7 @@ export default function ScanPage() {
         <div className="max-w-[900px] mx-auto">
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn delay={150}>
-              <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
+              <div className="h-full bg-white rounded-lg p-7 md:p-8 border-l-[3px] border-sage -[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
                 <h2 className="font-serif text-grey">{c.quickTitle}</h2>
                 <p className="mt-1 text-sm text-muted">{c.quickTime}</p>
                 <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
@@ -213,7 +213,7 @@ export default function ScanPage() {
             </FadeIn>
 
             <FadeIn delay={300}>
-              <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage-light shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
+              <div className="h-full bg-white rounded-lg p-7 md:p-8 border-l-[3px] border-border -[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
                 <h2 className="font-serif text-grey">{c.teamTitle}</h2>
                 <p className="mt-1 text-sm text-muted">{c.teamTime}</p>
                 <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
@@ -235,7 +235,7 @@ export default function ScanPage() {
           </FadeIn>
 
           <FadeIn delay={550}>
-            <div className="mt-8 max-w-[640px] mx-auto rounded-xl border border-sage-light bg-cream px-6 py-5 text-center">
+            <div className="mt-8 max-w-[640px] mx-auto rounded-lg border border-border bg-cream px-6 py-5 text-center">
               <p className="font-serif text-xl text-grey">{c.callTitle}</p>
               <Button variant="secondary" className="mt-4"
                 href="/contact"
@@ -290,7 +290,7 @@ export default function ScanPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <div className="bg-white rounded-xl p-6 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div className="bg-white rounded-lg p-6 md:p-8 border-l-[3px] border-sage -[0_2px_8px_rgba(0,0,0,0.06)]">
               <h2 className="font-serif text-grey">{c.dataTitle}</h2>
               <p className="mt-3 text-base text-grey leading-relaxed">
                 {c.dataBody}

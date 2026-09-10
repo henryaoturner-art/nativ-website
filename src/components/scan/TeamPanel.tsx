@@ -207,7 +207,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
 
         {!ownDone && (
           <FadeIn>
-            <div className="mt-8 bg-surface rounded-xl p-6 border border-sage-light flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-8 bg-white rounded-lg p-6 border border-border flex flex-wrap items-center justify-between gap-4">
               <p className="text-grey">{c.ownTodo}</p>
               <Button
                 href={`/scan/${token}`}
@@ -228,7 +228,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
               {teamDepartments.map((department) => (
                 <div
                   key={department.name}
-                  className="bg-surface rounded-xl p-6 border border-sage-light"
+                  className="bg-white rounded-lg p-6 border border-border"
                 >
                   <h3 className="font-serif text-grey">{department.name}</h3>
                   <ul className="mt-3 space-y-2">
@@ -257,8 +257,8 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                             person.status === "klaar"
                               ? "text-white bg-sage border-sage"
                               : person.status === "bezig"
-                                ? "text-sage bg-cream/60 border-sage-light"
-                                : "text-muted bg-cream/40 border-sage-light"
+                                ? "text-sage bg-cream/60 border-border"
+                                : "text-muted bg-cream/40 border-border"
                           }`}
                         >
                           {c.statusLabels[person.status]}
@@ -276,7 +276,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
         <FadeIn>
           <form
             onSubmit={handleInvite}
-            className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light"
+            className="mt-8 bg-white rounded-lg p-6 md:p-8 border border-border"
           >
             <h2 className="font-serif text-grey">{c.formTitle}</h2>
             <div className="mt-5">
@@ -291,7 +291,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                 required
                 maxLength={200}
                 placeholder={c.deptNamePlaceholder}
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey placeholder:text-muted focus:border-grey transition"
               />
             </div>
 
@@ -306,7 +306,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                       onChange={(e) => setPerson(index, { name: e.target.value })}
                       required
                       maxLength={200}
-                      className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                     />
                   </div>
                   <div className="flex-1 min-w-[180px]">
@@ -317,7 +317,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                       onChange={(e) => setPerson(index, { email: e.target.value })}
                       required
                       maxLength={200}
-                      className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
                     />
                   </div>
                   {people.length > 1 && (
@@ -361,7 +361,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
 
         {/* Afronden */}
         <FadeIn>
-          <div className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
+          <div className="mt-8 bg-white rounded-lg p-6 md:p-8 border border-border">
             <h2 className="font-serif text-grey">{c.completeTitle}</h2>
             <p className="mt-3 text-grey leading-relaxed">
               {hasReport ? c.completeBodyRedo : c.completeBody}

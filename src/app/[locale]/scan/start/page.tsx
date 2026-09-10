@@ -124,7 +124,7 @@ export default function ScanStartPage() {
         <FadeIn delay={250}>
           <form
             onSubmit={handleSubmit}
-            className="mt-10 bg-surface rounded-xl p-8 border border-sage-light space-y-5"
+            className="mt-10 bg-white rounded-lg p-8 border border-border space-y-5"
           >
             <div>
               <label htmlFor="company" className="block text-sm text-muted mb-1.5">
@@ -136,7 +136,7 @@ export default function ScanStartPage() {
                 name="company"
                 required
                 maxLength={200}
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
               />
             </div>
             <div>
@@ -149,7 +149,7 @@ export default function ScanStartPage() {
                 name="name"
                 required
                 maxLength={200}
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
               />
             </div>
             <div>
@@ -162,7 +162,7 @@ export default function ScanStartPage() {
                 name="email"
                 required
                 maxLength={200}
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
               />
               <p className="mt-1.5 text-xs text-muted">{c.emailHelp}</p>
             </div>
@@ -174,7 +174,7 @@ export default function ScanStartPage() {
                 id="heardAbout"
                 name="heardAbout"
                 defaultValue=""
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
               >
                 <option value="">{c.heardPlaceholder}</option>
                 {HEARD_ABOUT_OPTIONS.map((o) => (
