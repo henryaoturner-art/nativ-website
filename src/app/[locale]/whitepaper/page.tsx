@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import FadeIn from "@/components/FadeIn";
-import { useLanguage } from "@/lib/language-context";
 import Button from "@/components/Button";
+import Card from "@/components/Card";
+import FadeIn from "@/components/FadeIn";
+import Section from "@/components/Section";
+import { useLanguage } from "@/lib/language-context";
 import { Check } from "lucide-react";
 
 const translations = {
   en: {
-    heroTitle: "Company brain",
+    heroTitle: "Company Brain",
     heroTitle2: "",
     heroSub:
       "Making company knowledge usable for AI: minimum viable context (MVC™). Theory and practice.",
@@ -40,7 +42,7 @@ const translations = {
     footerCopy: "© 2026 Nativ B.V. All rights reserved.",
   },
   nl: {
-    heroTitle: "Company brain",
+    heroTitle: "Company Brain",
     heroTitle2: "",
     heroSub:
       "Bedrijfskennis bruikbaar maken voor AI: minimum viable context (MVC™). De theorie en praktijk.",
@@ -70,6 +72,10 @@ const translations = {
     footerCopy: "© 2026 Nativ B.V. Alle rechten voorbehouden.",
   },
 };
+
+const inputClass =
+  "w-full px-4 py-3 rounded-lg border border-border bg-surface text-grey focus:border-grey transition";
+const labelClass = "block text-sm text-muted mb-1.5";
 
 export default function WhitepaperPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -110,81 +116,63 @@ export default function WhitepaperPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[800px] mx-auto">
-
-          <FadeIn delay={100}>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-              {c.heroTitle2 && <><br />{c.heroTitle2}</>}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-muted italic leading-relaxed">
-              {c.heroSub}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* What's inside + Download */}
-      <section className="px-6 pb-16 md:pb-20 lg:pb-24">
-        <div className="max-w-[800px] mx-auto grid md:grid-cols-2 gap-10 items-start">
-          {/* Left: What's inside */}
-          <FadeIn>
-            <div>
-              <h2 className="font-serif text-grey mb-6">
-                {c.insideTitle}
-              </h2>
-              <ul className="space-y-3">
-                {[c.inside1, c.inside2, c.inside3, c.inside4, c.inside5, c.inside6].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
-                    <span className="text-sm text-grey leading-relaxed">{item}</span>
+      {/* E2 (KAN-425): links de kop, de ondertitel en "Wat erin staat" (7 kolommen),
+          rechts het downloadformulier in de signatuurkaart (5 kolommen). */}
+      <Section hero>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-7">
+            <FadeIn>
+              <h1 className="font-serif text-grey">
+                {c.heroTitle}
+                {c.heroTitle2 && <><br />{c.heroTitle2}</>}
+              </h1>
+            </FadeIn>
+            <FadeIn delay={150}>
+              <p className="mt-6 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+            </FadeIn>
+            <FadeIn delay={300}>
+              <h2 className="mt-12 font-serif text-grey">{c.insideTitle}</h2>
+              <ul className="mt-6 max-w-[640px] space-y-3">
+                {[c.inside1, c.inside2, c.inside3, c.inside4, c.inside5, c.inside6].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-grey">
+                    <Check size={18} strokeWidth={2} className="mt-1 shrink-0 text-sage-dark" aria-hidden="true" />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
 
-          {/* Right: Download form */}
-          <FadeIn delay={200}>
-            <div className="bg-white rounded-lg p-8 border border-border">
+          <FadeIn delay={300} className="md:col-span-5">
+            <Card signature primary>
               {submitted ? (
-                <div className="text-center py-8">
-                  <p className="font-serif text-2xl text-sage">{c.thankYou}</p>
-                  <p className="mt-3 text-muted text-sm leading-relaxed">
-                    {c.thankYouSub}
-                  </p>
-                  <div className="mt-6 space-y-3">
-                    <div className="text-xs text-muted font-medium">Choose language:</div>
-                    <div className="flex gap-3">
-                      <Button className="flex-1"
-                        href="/downloads/nativ-whitepaper-v2.4-nl.pdf"
-                        download
-                      >
-                        Nederlands (PDF)
-                      </Button>
-                      <Button className="flex-1"
-                        href="/downloads/nativ-whitepaper-v2.4-en.pdf"
-                        download
-                      >
-                        English (PDF)
-                      </Button>
-                    </div>
+                <div>
+                  <h3 className="font-serif text-grey">{c.thankYou}</h3>
+                  <p className="mt-3 text-grey leading-relaxed">{c.thankYouSub}</p>
+                  <p className="mt-6 text-sm text-muted">Choose language:</p>
+                  <div className="mt-3 flex flex-col sm:flex-row gap-3">
+                    <Button className="flex-1"
+                      href="/downloads/nativ-whitepaper-v2.4-nl.pdf"
+                      download
+                    >
+                      Nederlands (PDF)
+                    </Button>
+                    <Button className="flex-1"
+                      href="/downloads/nativ-whitepaper-v2.4-en.pdf"
+                      download
+                    >
+                      English (PDF)
+                    </Button>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h2 className="font-serif text-grey mb-1">
-                    {c.gateTitle}
-                  </h2>
-                  <p className="text-sage text-xs font-sans font-medium mb-6">{c.gateNote}</p>
+                  <h3 className="font-serif text-grey">{c.gateTitle}</h3>
+                  <p className="mt-2 text-sm text-muted">{c.gateNote}</p>
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm text-muted mb-1.5">
+                      <label htmlFor="name" className={labelClass}>
                         {c.nameLabel} *
                       </label>
                       <input
@@ -192,11 +180,11 @@ export default function WhitepaperPage() {
                         id="name"
                         name="name"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
+                        className={inputClass}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm text-muted mb-1.5">
+                      <label htmlFor="email" className={labelClass}>
                         {c.emailLabel} *
                       </label>
                       <input
@@ -204,34 +192,34 @@ export default function WhitepaperPage() {
                         id="email"
                         name="email"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
+                        className={inputClass}
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm text-muted mb-1.5">
+                      <label htmlFor="company" className={labelClass}>
                         {c.companyLabel}
                       </label>
                       <input
                         type="text"
                         id="company"
                         name="company"
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
+                        className={inputClass}
                       />
                     </div>
                     <div>
-                      <label htmlFor="role" className="block text-sm text-muted mb-1.5">
+                      <label htmlFor="role" className={labelClass}>
                         {c.roleLabel}
                       </label>
                       <input
                         type="text"
                         id="role"
                         name="role"
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
+                        className={inputClass}
                       />
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="language" className="block text-sm text-muted mb-1.5">
+                      <label htmlFor="language" className={labelClass}>
                         {language === 'en' ? 'Whitepaper language' : 'Taal whitepaper'}
                       </label>
                       <select
@@ -239,7 +227,7 @@ export default function WhitepaperPage() {
                         name="language"
                         value={selectedLanguage}
                         onChange={(e) => setSelectedLanguage(e.target.value)}
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition"
+                        className={inputClass}
                       >
                         <option value="">
                           {language === 'en' ? 'Auto-detect (based on website language)' : 'Automatisch detecteren (op basis van website taal)'}
@@ -248,7 +236,6 @@ export default function WhitepaperPage() {
                         <option value="en">English</option>
                       </select>
                     </div>
-
 
                     {error && <p className="text-error text-sm">{error}</p>}
 
@@ -259,13 +246,13 @@ export default function WhitepaperPage() {
                       {loading ? c.submitting : c.submit}
                     </Button>
                   </form>
-                  <p className="mt-4 text-xs text-muted text-center">{c.privacy}</p>
+                  <p className="mt-4 text-xs text-muted">{c.privacy}</p>
                 </>
               )}
-            </div>
+            </Card>
           </FadeIn>
         </div>
-      </section>
+      </Section>
     </>
   );
 }
