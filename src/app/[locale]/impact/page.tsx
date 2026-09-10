@@ -1,8 +1,18 @@
 "use client";
 
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
+import { BookOpen, Euro, GraduationCap, LayoutDashboard, Leaf, TrendingUp } from "lucide-react";
+
+// Eén lucide-icoon per kaart (B3, KAN-425). `whyIcons` volgt de volgorde van
+// `whyCards` (hogere respons, lage kosten, transparant dashboard) en vervangt
+// de tekens "↑", "€" en "≡" die daar als icoon dienden. `beyondIcons` volgt
+// `beyondItems` (AI-educatie, duurzame technologie, open kennis).
+const whyIcons = [TrendingUp, Euro, LayoutDashboard];
+const beyondIcons = [GraduationCap, Leaf, BookOpen];
 
 const translations = {
   nl: {
@@ -17,9 +27,9 @@ const translations = {
     ],
     whyTitle: "Waarom het werkt",
     whyCards: [
-      { icon: "↑", title: "Hogere responspercentage", desc: "Respondenten vullen eerder en vollediger in als hun deelname direct bijdraagt aan een goed doel." },
-      { icon: "€", title: "Lage kosten, groot effect", desc: "Vanaf €0,01 per respons. Een klein bedrag dat zich terugverdient in betere data en hogere betrokkenheid." },
-      { icon: "≡", title: "Transparant dashboard", desc: "Realtime inzicht in totale donaties, verdeling per goed doel en responspercentagetrends." },
+      { title: "Hogere responspercentage", desc: "Respondenten vullen eerder en vollediger in als hun deelname direct bijdraagt aan een goed doel." },
+      { title: "Lage kosten, groot effect", desc: "Vanaf €0,01 per respons. Een klein bedrag dat zich terugverdient in betere data en hogere betrokkenheid." },
+      { title: "Transparant dashboard", desc: "Realtime inzicht in totale donaties, verdeling per goed doel en responspercentagetrends." },
     ],
     flexTitle: "Volledige flexibiliteit",
     flexP1: "Kies zelf je goede doelen: elk geregistreerd goed doel is mogelijk. Lokaal of internationaal, groot of klein.",
@@ -47,9 +57,9 @@ const translations = {
     ],
     whyTitle: "Why it works",
     whyCards: [
-      { icon: "↑", title: "Higher response rates", desc: "Respondents are more likely to complete the survey when their participation directly contributes to a good cause." },
-      { icon: "€", title: "Low cost, big effect", desc: "From €0.01 per response. A small amount that pays for itself in better data and higher engagement." },
-      { icon: "≡", title: "Transparent dashboard", desc: "Real-time insight into total donations, distribution per charity and response rate trends." },
+      { title: "Higher response rates", desc: "Respondents are more likely to complete the survey when their participation directly contributes to a good cause." },
+      { title: "Low cost, big effect", desc: "From €0.01 per response. A small amount that pays for itself in better data and higher engagement." },
+      { title: "Transparent dashboard", desc: "Real-time insight into total donations, distribution per charity and response rate trends." },
     ],
     flexTitle: "Full flexibility",
     flexP1: "Choose your own charities: any registered charity is possible. Local or international, big or small.",
@@ -67,119 +77,111 @@ const translations = {
   },
 };
 
+// Cijfer in een stappenrij (B1): Georgia 400, 40px, Sage Dark, regelhoogte 1.
+const stepNumberCls = "font-serif text-[40px] leading-none text-sage-dark";
+
 export default function ImpactPage() {
   const { t } = useLanguage();
   const c = t(translations);
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed max-w-2xl mx-auto">{c.heroSub}</p>
-          </FadeIn>
-        </div>
-      </section>
+      {/* Hero: links uitgelijnd, het korte hero-ritme (B1, B4) */}
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+          <p className="mt-4 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+        </FadeIn>
+      </Section>
 
-      {/* How It Works */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-center mb-16">{c.howTitle}</h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {c.howSteps.map((item, i) => (
-              <FadeIn key={item.step} delay={i * 150}>
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-sage font-serif text-lg">{item.step}</span>
-                  </div>
-                  <h3 className="font-serif mb-2">{item.title}</h3>
-                  <p className="text-grey leading-relaxed text-sm">{item.desc}</p>
-                </div>
-              </FadeIn>
+      {/* E5: Hoe het werkt als stappenrij van vier, cijfer boven de H3 */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.howTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <ol className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none p-0">
+            {c.howSteps.map((item) => (
+              <li key={item.step}>
+                <p className={stepNumberCls} aria-hidden="true">
+                  {item.step}
+                </p>
+                <h3 className="mt-4 font-serif text-grey">{item.title}</h3>
+                <p className="mt-3 text-grey leading-relaxed">{item.desc}</p>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ol>
+        </FadeIn>
+      </Section>
 
-      {/* Results */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif mb-12">{c.whyTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {c.whyCards.map((card) => (
-                <div key={card.title} className="bg-white rounded-lg p-8 border border-border">
-                  <p className="text-4xl md:text-5xl font-serif text-sage">{card.icon}</p>
-                  <p className="mt-3 font-serif text-lg">{card.title}</p>
-                  <p className="mt-2 text-sm text-muted">{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      {/* E5: Waarom het werkt als kaartenrij van drie, één icoon per kaart (B3) */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.whyTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <ul className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 list-none p-0">
+            {c.whyCards.map((card, i) => {
+              const Icon = whyIcons[i];
+              return (
+                <Card key={card.title} as="li">
+                  <Icon size={24} strokeWidth={1.5} className="text-sage-dark" aria-hidden="true" />
+                  <h3 className="mt-4 font-serif text-grey">{card.title}</h3>
+                  <p className="mt-3 text-grey leading-relaxed">{card.desc}</p>
+                </Card>
+              );
+            })}
+          </ul>
+        </FadeIn>
+      </Section>
 
-      {/* Flexibility */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif mb-8">{c.flexTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="space-y-6 text-lg leading-relaxed text-grey">
+      {/* E5: twee blokken naast elkaar. Links de lopende tekst van Volledige
+          flexibiliteit (max 640px), rechts Daarnaast investeren we in als
+          gestapelde kaarten met een icoon per kaart (B3, B4) */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12">
+          <FadeIn className="md:col-span-6">
+            <h2 className="font-serif text-grey">{c.flexTitle}</h2>
+            <div className="mt-6 max-w-[640px] space-y-5 text-grey leading-relaxed">
               <p>{c.flexP1}</p>
               <p>{c.flexP2}</p>
               <p>{c.flexP3}</p>
             </div>
           </FadeIn>
+          <FadeIn delay={150} className="md:col-span-6">
+            <h2 className="font-serif text-grey">{c.beyondTitle}</h2>
+            <ul className="mt-6 grid grid-cols-1 gap-6 list-none p-0">
+              {c.beyondItems.map((item, i) => {
+                const Icon = beyondIcons[i];
+                return (
+                  <Card key={item.title} as="li" className="flex items-start gap-4">
+                    <Icon size={24} strokeWidth={1.5} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
+                    <div>
+                      <h3 className="font-serif text-grey">{item.title}</h3>
+                      <p className="mt-2 text-grey leading-relaxed">{item.desc}</p>
+                    </div>
+                  </Card>
+                );
+              })}
+            </ul>
+          </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* Beyond Diagnostics */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-center mb-16">{c.beyondTitle}</h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {c.beyondItems.map((item, i) => (
-              <FadeIn key={item.title} delay={i * 150}>
-                <div className="bg-white rounded-lg p-8 h-full border border-border">
-                  <h3 className="font-serif mb-3">{item.title}</h3>
-                  <p className="text-grey leading-relaxed text-[15px]">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">{c.ctaTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">{c.ctaSub}</p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <div className="mt-10">
-              <Button href="/contact">
-                {c.ctaButton}
-              </Button>
+      {/* E5: de afsluiting als de ene Sand-band van de pagina (B4) */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-7">
+              <h2 className="font-serif text-grey">{c.ctaTitle}</h2>
+              <p className="mt-4 max-w-[640px] text-grey leading-relaxed">{c.ctaSub}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
+            <div className="md:col-span-5 flex md:justify-end">
+              <Button href="/contact">{c.ctaButton}</Button>
+            </div>
+          </div>
+        </FadeIn>
+      </Section>
     </>
   );
 }
