@@ -1,9 +1,16 @@
 "use client";
 
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
+import { Calculator, Handshake, Megaphone, Users } from "lucide-react";
+
+// Eén lucide-icoon per afdelingskaart (D4, KAN-425), in de volgorde van
+// `examples`: Marketing, Sales, Finance, HR en kantoor.
+const exampleIcons = [Megaphone, Handshake, Calculator, Users];
 
 const translations = {
   nl: {
@@ -169,149 +176,103 @@ export default function WorkflowsPage() {
   const c = translations[language];
 
   return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed max-w-2xl mx-auto">
-              {c.heroSub}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+    <>
+      {/* Hero: links uitgelijnd, het korte hero-ritme */}
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+          <p className="mt-4 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+        </FadeIn>
+      </Section>
 
-      {/* What a workflow is */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
+      {/* D4: wat een AI-workflow is, in twee kolommen (H2 + eerste alinea links, alinea twee en drie rechts) */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FadeIn>
-            <h2 className="font-serif">
-              {c.whatTitle}
-            </h2>
+            <h2 className="font-serif text-grey">{c.whatTitle}</h2>
+            <p className="mt-6 text-grey leading-relaxed">{c.whatBody[0]}</p>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
-              {c.whatBody.map((p, i) => (
+            <div className="space-y-5 text-grey leading-relaxed">
+              {c.whatBody.slice(1).map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* Examples per area */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[820px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.examplesTitle}
-            </h2>
-            <p className="mt-5 text-lg text-grey leading-relaxed max-w-[680px]">
-              {c.examplesIntro}
-            </p>
-          </FadeIn>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {c.examples.map((ex, i) => (
-              <FadeIn key={ex.area} delay={150 + i * 100}>
-                <div className="h-full bg-white rounded-lg p-6 border border-border">
-                  <h3 className="font-serif text-grey">{ex.area}</h3>
-                  <p className="mt-3 text-base text-grey leading-relaxed">
-                    {ex.body}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
+      {/* D4: de vier afdelingen in één rij van vier, met een icoon per kaart; de regel eronder ongewijzigd */}
+      <Section>
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-4 items-end">
+            <h2 className="font-serif text-grey md:col-span-5">{c.examplesTitle}</h2>
+            <p className="max-w-[640px] text-grey leading-relaxed md:col-span-7">{c.examplesIntro}</p>
           </div>
-          <FadeIn delay={550}>
-            <p className="mt-8 text-base text-muted leading-relaxed max-w-[680px]">
-              {c.examplesNote}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0">
+            {c.examples.map((ex, i) => {
+              const Icon = exampleIcons[i];
+              return (
+                <Card key={ex.area} as="li">
+                  <Icon size={24} strokeWidth={1.5} className="text-sage-dark" aria-hidden="true" />
+                  <h3 className="mt-4 font-serif text-grey">{ex.area}</h3>
+                  <p className="mt-3 text-grey leading-relaxed">{ex.body}</p>
+                </Card>
+              );
+            })}
+          </ul>
+          <p className="mt-6 max-w-[640px] text-muted leading-relaxed">{c.examplesNote}</p>
+        </FadeIn>
+      </Section>
 
-      {/* You stay in control */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
+      {/* D4: "Jij houdt de regie" en "Waarom niet gewoon ChatGPT?" naast elkaar in één sectie */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
           <FadeIn>
-            <h2 className="font-serif">
-              {c.controlTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
+            <h2 className="font-serif text-grey">{c.controlTitle}</h2>
+            <div className="mt-6 space-y-5 text-grey leading-relaxed">
               {c.controlBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* Why not ChatGPT */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.chatgptTitle}
-            </h2>
-          </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
+            <h2 className="font-serif text-grey">{c.chatgptTitle}</h2>
+            <div className="mt-6 space-y-5 text-grey leading-relaxed">
               {c.chatgptBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* FAQ */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.faqTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8">
-              <FAQ items={c.faq.map((f) => ({ question: f.q, answer: f.a }))} />
+      {/* D4: FAQ in twee kolommen (het JSON-LD ervan staat in layout.tsx) en de sluitband
+          samen in de ene Sand-band van de pagina, zoals op /pricing en /scan */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <h2 className="font-serif text-grey md:col-span-3">{c.faqTitle}</h2>
+            <div className="md:col-span-9">
+              <FAQ items={c.faq.map((f) => ({ question: f.q, answer: f.a }))} columns={2} />
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.ctaTitle}
-            </h2>
-            <p className="mt-5 text-lg text-grey leading-relaxed">
-              {c.ctaBody}
-            </p>
-            <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                href="/scan"
-              >
-                {c.ctaButton}
-              </Button>
-              <Button variant="secondary"
-                href="/company-brain"
-              >
-                {c.ctaSecondary}
-              </Button>
+          </div>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-12 pt-10 border-t border-border grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-7">
+              <h2 className="font-serif text-grey">{c.ctaTitle}</h2>
+              <p className="mt-4 max-w-[640px] text-grey leading-relaxed">{c.ctaBody}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-    </div>
+            <div className="md:col-span-5 flex flex-col sm:flex-row flex-wrap gap-4 md:justify-end">
+              <Button href="/scan">{c.ctaButton}</Button>
+              <Button variant="secondary" href="/company-brain">{c.ctaSecondary}</Button>
+            </div>
+          </div>
+        </FadeIn>
+      </Section>
+    </>
   );
 }
