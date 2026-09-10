@@ -4,6 +4,9 @@ import { useState, type FormEvent } from "react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
 import Button from "@/components/Button";
+import Card from "@/components/Card";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
 
 const translations = {
   nl: {
@@ -14,6 +17,7 @@ const translations = {
     calMeta: "30 minuten · Vrijblijvend · Online",
     calPlaceholder: "Kalender-integratie",
     calSub: "Cal.com / Calendly embed wordt hier geplaatst",
+    calFallback: "Open de agenda in een nieuw tabblad",
     formTitle: "Of stuur een bericht",
     thankYou: "Bedankt!",
     thankYouSub: "We nemen zo snel mogelijk contact op.",
@@ -37,6 +41,7 @@ const translations = {
     calMeta: "30 minutes · No obligation · Online",
     calPlaceholder: "Calendar integration",
     calSub: "Cal.com / Calendly embed will be placed here",
+    calFallback: "Open the calendar in a new tab",
     formTitle: "Or send a message",
     thankYou: "Thank you!",
     thankYouSub: "We\u2019ll get back to you as soon as possible.",
@@ -56,6 +61,14 @@ const translations = {
 
 // Geen kaart-embed: die brengt een cookie-muur mee. Een gewone link volstaat.
 const MAPS_URL = "https://maps.google.com/?q=Jacob+Bontiusplaats+9,+1018+LL+Amsterdam";
+// Eén agenda-URL voor de embed én de tekstlink eronder (D8): wie de embed
+// weigert (cookie-muur, beslisblad-review 12 juli F03) komt via de link op
+// dezelfde agenda uit.
+const CALENDAR_URL = "https://calendly.com/jorus-nativ";
+
+const inputClass =
+  "w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition";
+const labelClass = "block text-sm text-muted mb-1.5";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -95,99 +108,121 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
+      {/* D8 (KAN-425): twee kolommen op één scherm. Drie rastercellen in plaats
+          van twee, zodat de leesvolgorde van 8 september (H1, agenda, formulier)
+          op mobiel en voor schermlezers blijft staan: links boven H1, intro,
+          bezoekadres en mailadres; rechts, over beide rijen, de agenda; links
+          onder het formulier. */}
+      <Section hero>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <FadeIn className="md:col-span-5">
             <h1 className="font-serif text-grey">{c.heroTitle}</h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
+            <p className="mt-6 text-grey leading-relaxed">
               {c.heroSub}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
             </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Two-column */}
-      <section className="px-6 pb-16 md:pb-20 lg:pb-24">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          <FadeIn>
-            <div className="flex flex-col gap-8 h-full">
-            <div className="bg-white rounded-lg p-8 border border-border">
-              <h2 className="font-serif mb-4">{c.calTitle}</h2>
-              <p className="text-muted text-sm mb-6">{c.calMeta}</p>
-              <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
-                {!calLoaded && (
-                  <div className="bg-cream h-[580px] flex items-center justify-center text-muted text-sm">
-                    <p>Kalender laden...</p>
-                  </div>
-                )}
-                <iframe
-                  src="https://calendly.com/jorus-nativ"
-                  width="100%"
-                  height="580"
-                  frameBorder="0"
-                  title="Plan een gesprek"
-                  onLoad={() => setCalLoaded(true)}
-                  style={{ display: calLoaded ? 'block' : 'none' }}
-                />
-              </div>
-            </div>
 
             {/* Bezoekadres (A4, KAN-425): The Stack, Brain-feit 01-identity.hq-address. */}
-            <div className="bg-white rounded-lg p-8 border border-border">
-              <h2 className="font-serif mb-4">{c.addressTitle}</h2>
-              <address className="not-italic text-grey leading-relaxed" translate="no">
+            <div className="mt-8">
+              <Kicker>{c.addressTitle}</Kicker>
+              <address className="not-italic text-grey" translate="no">
                 The Stack
                 <br />
                 Jacob Bontiusplaats 9
                 <br />
                 1018 LL Amsterdam
               </address>
-              <a
+              <Button
+                variant="tertiary"
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-block text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey"
+                className="mt-2"
               >
                 {c.directions}
+              </Button>
+            </div>
+
+            <p className="mt-4 text-grey">
+              {c.orEmail}{" "}
+              <a
+                href="mailto:info@gonativ.nl"
+                className="underline underline-offset-4 decoration-1 decoration-sage-dark hover:decoration-grey"
+              >
+                info@gonativ.nl
               </a>
-            </div>
-            </div>
+            </p>
           </FadeIn>
 
-          <FadeIn delay={200}>
-            <div className="bg-white rounded-lg p-8 border border-border h-full">
-              <h2 className="font-serif mb-6">{c.formTitle}</h2>
+          <FadeIn delay={100} className="md:col-span-7 md:row-span-2">
+            <h2 className="font-serif text-grey">{c.calTitle}</h2>
+            <p className="mt-2 text-sm text-muted">{c.calMeta}</p>
+            <div
+              className="mt-6 rounded-lg overflow-hidden border border-border bg-white"
+              style={{ minHeight: 580 }}
+            >
+              {!calLoaded && (
+                <div className="bg-cream h-[580px] flex items-center justify-center text-muted text-sm">
+                  <p>Kalender laden...</p>
+                </div>
+              )}
+              <iframe
+                src={CALENDAR_URL}
+                width="100%"
+                height="580"
+                frameBorder="0"
+                title="Plan een gesprek"
+                onLoad={() => setCalLoaded(true)}
+                style={{ display: calLoaded ? 'block' : 'none' }}
+              />
+            </div>
+            <Button
+              variant="tertiary"
+              href={CALENDAR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4"
+            >
+              {c.calFallback}
+            </Button>
+          </FadeIn>
+
+          <FadeIn delay={200} className="md:col-span-5 md:col-start-1">
+            <h2 className="font-serif text-grey">{c.formTitle}</h2>
+            <Card className="mt-6">
               {submitted ? (
                 <div className="flex items-center justify-center h-80 text-center">
                   <div>
-                    <p className="text-sage text-lg font-serif">{c.thankYou}</p>
+                    <p className="text-sage-dark text-lg font-serif">{c.thankYou}</p>
                     <p className="mt-2 text-muted text-sm">{c.thankYouSub}</p>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label htmlFor="name" className="block text-sm text-muted mb-1.5">{c.nameLabel}</label>
-                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Velden twee-aan-twee naast elkaar (D8: naast elkaar, niet
+                      onder elkaar), zodat het formulier de agendahoogte haalt. */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className={labelClass}>{c.nameLabel}</label>
+                      <input type="text" id="name" name="name" required className={inputClass} />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className={labelClass}>{c.emailLabel}</label>
+                      <input type="email" id="email" name="email" required className={inputClass} />
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm text-muted mb-1.5">{c.emailLabel}</label>
-                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
-                  </div>
-                  <div>
-                    <label htmlFor="company" className="block text-sm text-muted mb-1.5">{c.companyLabel}</label>
-                    <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition" />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm text-muted mb-1.5">
-                      {c.messageLabel} <span className="text-muted">{c.messageOptional}</span>
-                    </label>
-                    <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-border bg-cream/50 text-grey focus:border-grey transition resize-none" />
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="company" className={labelClass}>{c.companyLabel}</label>
+                      <input type="text" id="company" name="company" className={inputClass} />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className={labelClass}>
+                        {c.messageLabel} <span className="text-muted">{c.messageOptional}</span>
+                      </label>
+                      <textarea id="message" name="message" rows={2} className={`${inputClass} resize-none`} />
+                    </div>
                   </div>
                   {error && <p className="text-error text-sm">{error}</p>}
                   <Button full type="submit" disabled={loading}>
@@ -195,14 +230,10 @@ export default function ContactPage() {
                   </Button>
                 </form>
               )}
-              <p className="mt-6 text-sm text-muted text-center">
-                {c.orEmail}{" "}
-                <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
-              </p>
-            </div>
+            </Card>
           </FadeIn>
         </div>
-      </section>
+      </Section>
     </>
   );
 }
