@@ -1,8 +1,11 @@
 "use client";
 
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Kicker from "@/components/Kicker";
 import LastUpdated from "@/components/LastUpdated";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
 import { Check } from "lucide-react";
 
@@ -137,163 +140,129 @@ export default function AiActPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <p className="text-sm uppercase tracking-wider text-sage mb-4">EU AI Act</p>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
-              {c.heroSub}
-            </p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <div className="mt-6 flex justify-center">
-              <LastUpdated />
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      {/* Hero: kicker, H1 links uitgelijnd, het korte hero-ritme; de datumregel eronder */}
+      <Section hero>
+        <FadeIn>
+          <Kicker>EU AI Act</Kicker>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <p className="mt-6 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+          <div className="mt-6">
+            <LastUpdated />
+          </div>
+        </FadeIn>
+      </Section>
 
-      {/* Wat verandert er */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
+      {/* E3: wat er verandert, in twee kolommen (H2 + eerste alinea links, alinea twee en drie rechts) */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FadeIn>
-            <h2 className="font-serif">{c.changeTitle}</h2>
+            <h2 className="font-serif text-grey">{c.changeTitle}</h2>
+            <p className="mt-6 text-grey leading-relaxed">{c.changeBody[0]}</p>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5">
-              {c.changeBody.map((p, i) => (
-                <p key={i} className="text-grey leading-relaxed text-lg">
-                  {p}
-                </p>
+            <div className="space-y-5 text-grey leading-relaxed">
+              {c.changeBody.slice(1).map((p, i) => (
+                <p key={i}>{p}</p>
               ))}
             </div>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* Wat de Act vraagt */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">{c.asksTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-10 space-y-8">
-              {c.asks.map((item) => (
-                <div key={item.title} className="flex gap-5">
-                  <div
-                    className="shrink-0 w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center mt-0.5"
-                    aria-hidden="true"
-                  >
-                    <Check size={16} strokeWidth={2} className="text-sage-dark" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif">{item.title}</h3>
-                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
-                  </div>
+      {/* E3: wat de Act in de kern vraagt, als rij van drie kaarten; het vinkje blijft het Check-icoon (B3) */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.asksTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <ul className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 list-none p-0">
+            {c.asks.map((item) => (
+              <Card key={item.title} as="li">
+                <div className="flex items-start gap-3">
+                  <Check size={18} strokeWidth={2} className="mt-1 shrink-0 text-sage-dark" aria-hidden="true" />
+                  <h3 className="font-serif text-grey">{item.title}</h3>
                 </div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+                <p className="mt-3 text-grey leading-relaxed">{item.desc}</p>
+              </Card>
+            ))}
+          </ul>
+        </FadeIn>
+      </Section>
 
-      {/* Waarom gewone AI vastloopt */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
+      {/* E3: waarom gewone AI vastloopt, in twee kolommen (H2 + eerste alinea links, tweede alinea rechts) */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FadeIn>
-            <h2 className="font-serif">{c.gapTitle}</h2>
+            <h2 className="font-serif text-grey">{c.gapTitle}</h2>
+            <p className="mt-6 text-grey leading-relaxed">{c.gapBody[0]}</p>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5">
-              {c.gapBody.map((p, i) => (
-                <p key={i} className="text-grey leading-relaxed text-lg">
-                  {p}
-                </p>
-              ))}
-            </div>
+            <p className="text-grey leading-relaxed">{c.gapBody[1]}</p>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* Company Brain */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">{c.brainTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">{c.brainSub}</p>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-10 space-y-8">
-              {c.brainPoints.map((item) => (
-                <div key={item.title} className="flex gap-5">
-                  <div
-                    className="shrink-0 w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center mt-0.5"
-                    aria-hidden="true"
-                  >
-                    <Check size={16} strokeWidth={2} className="text-sage-dark" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif">{item.title}</h3>
-                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-8">
-              <Button variant="tertiary" href="/company-brain">
-                {c.brainLink}
-              </Button>
-            </p>
-          </FadeIn>
+      {/* E3: de Company Brain, tekst links (5 kolommen) en de vier punten rechts in twee kolommen, met de link onder de tekst */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="md:col-span-5">
+            <FadeIn>
+              <h2 className="font-serif text-grey">{c.brainTitle}</h2>
+              <p className="mt-6 max-w-[640px] text-grey leading-relaxed">{c.brainSub}</p>
+              <p className="mt-8">
+                <Button variant="tertiary" href="/company-brain">
+                  {c.brainLink}
+                </Button>
+              </p>
+            </FadeIn>
+          </div>
+          <div className="md:col-span-7">
+            <FadeIn delay={150}>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 list-none p-0">
+                {c.brainPoints.map((item) => (
+                  <li key={item.title}>
+                    <div className="flex items-start gap-3">
+                      <Check size={18} strokeWidth={2} className="mt-1 shrink-0 text-sage-dark" aria-hidden="true" />
+                      <h3 className="font-serif text-grey">{item.title}</h3>
+                    </div>
+                    <p className="mt-3 text-grey leading-relaxed">{item.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
+          </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Eerlijke disclaimer */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <div className="border border-sage/30 rounded-lg p-6 md:p-8 bg-sage/5">
-              <h3 className="font-serif">{c.disclaimerTitle}</h3>
-              <p className="mt-3 text-grey leading-relaxed">{c.disclaimerBody}</p>
+      {/* E3: de disclaimer als de ene signatuurkaart van de pagina, kop links en tekst rechts */}
+      <Section>
+        <FadeIn>
+          <Card signature primary>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-4">
+              <h3 className="font-serif text-grey md:col-span-4">{c.disclaimerTitle}</h3>
+              <p className="max-w-[640px] text-grey leading-relaxed md:col-span-8">{c.disclaimerBody}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </Card>
+        </FadeIn>
+      </Section>
 
-      {/* CTA */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">{c.ctaTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">{c.ctaSub}</p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                href="/scan"
-              >
-                {c.ctaPrimary}
-              </Button>
-              <Button variant="secondary"
-                href="/contact"
-              >
-                {c.ctaSecondary}
-              </Button>
+      {/* E3: de sluitband als de ene Sand-band van de pagina, in één rij: tekst links, knoppen rechts */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-7">
+              <h2 className="font-serif text-grey">{c.ctaTitle}</h2>
+              <p className="mt-6 max-w-[640px] text-grey leading-relaxed">{c.ctaSub}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
+            <div className="md:col-span-5 flex flex-col sm:flex-row flex-wrap gap-4 md:justify-end">
+              <Button href="/scan">{c.ctaPrimary}</Button>
+              <Button variant="secondary" href="/contact">{c.ctaSecondary}</Button>
+            </div>
+          </div>
+        </FadeIn>
+      </Section>
     </>
   );
 }
