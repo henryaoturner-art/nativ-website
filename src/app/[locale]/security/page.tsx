@@ -1,8 +1,16 @@
 "use client";
 
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
-import { Check } from "lucide-react";
+import { Database, Eye, FileCheck, Lock, Server, Shield } from "lucide-react";
+
+// Opbouw van de pagina: deel E4 van de website-ronde (KAN-425, 10 sep 2026):
+// hero links uitgelijnd, de zes principes als kaartenrij met een lucide-icoon
+// boven elke H3, en "Vragen over security?" als de ene Sand-band in één rij.
+// "Vertrouwd door" toonde alleen generieke badges (geen namen of logo's) en is
+// geschrapt (beslissing E-1, standaard uit de brief). De teksten zijn ongewijzigd.
 
 const translations = {
   nl: {
@@ -17,8 +25,6 @@ const translations = {
       { title: "Multi-tenant isolatie", desc: "Strikte scheiding tussen klantdata op database-niveau. Alleen geautoriseerde teamleden hebben toegang." },
       { title: "Transparantie", desc: "We zijn altijd open over hoe we data verwerken. Vraag het ons, we leggen het uit." },
     ],
-    trustTitle: "Vertrouwd door",
-    trustBadges: ["EU-datahosting", "GDPR", "SSL/TLS", "Versleutelde opslag"],
     questionTitle: "Vragen over security?",
     questionSub: "We beantwoorden graag al je vragen over hoe we met data omgaan.",
   },
@@ -32,14 +38,18 @@ const translations = {
       { title: "Encryption", desc: "Data is encrypted in transit (SSL/TLS) and at rest. All connections are secured." },
       { title: "Your data stays yours", desc: "Your company data is never used to train AI models or sold to third parties. Everything runs on your accounts, fully transferable." },
       { title: "Multi-tenant isolation", desc: "Strict separation of client data at database level. Only authorised team members have access." },
-      { title: "Transparency", desc: "We are always open about how we process data. Ask us \u2014 we\u2019ll explain." },
+      { title: "Transparency", desc: "We are always open about how we process data. Ask us, we’ll explain." },
     ],
-    trustTitle: "Trusted by",
-    trustBadges: ["EU data hosting", "GDPR", "SSL/TLS", "Encrypted storage"],
     questionTitle: "Questions about security?",
-    questionSub: "We\u2019re happy to answer all your questions about how we handle data.",
+    questionSub: "We’re happy to answer all your questions about how we handle data.",
   },
 };
+
+// Eén icoon per principe, in de volgorde van de lijst hierboven (B3: lucide,
+// 24px, lijndikte 1,5, Sage Dark, links boven de H3). De brief noemt Shield,
+// Lock, Server en FileCheck; er zijn zes principes, dus Database (isolatie op
+// database-niveau) en Eye (transparantie) erbij.
+const PRINCIPLE_ICONS = [Server, FileCheck, Lock, Shield, Database, Eye];
 
 export default function SecurityPage() {
   const { t } = useLanguage();
@@ -48,74 +58,53 @@ export default function SecurityPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">{c.heroSub}</p>
-          </FadeIn>
-        </div>
-      </section>
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+          <p className="mt-4 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+        </FadeIn>
+      </Section>
 
-      {/* Principles */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">{c.principlesTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-10 space-y-8">
-              {c.principles.map((item) => (
-                <div key={item.title} className="flex gap-5">
-                  <div className="shrink-0 w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center mt-0.5" aria-hidden="true">
-                    <Check size={16} strokeWidth={2} className="text-sage-dark" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif">{item.title}</h3>
-                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+      {/* Principes als kaartenrij met iconen */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.principlesTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <ul className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {c.principles.map((item, i) => {
+              const Icon = PRINCIPLE_ICONS[i] ?? Shield;
+              return (
+                <Card as="li" key={item.title}>
+                  <Icon size={24} strokeWidth={1.5} className="text-sage-dark" aria-hidden="true" />
+                  <h3 className="mt-4 font-serif text-grey">{item.title}</h3>
+                  <p className="mt-3 text-grey leading-relaxed">{item.desc}</p>
+                </Card>
+              );
+            })}
+          </ul>
+        </FadeIn>
+      </Section>
+
+      {/* Vragen over security? De ene Sand-band van de pagina, in één rij. */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-center">
+            <div className="md:col-span-7">
+              <h2 className="font-serif text-grey">{c.questionTitle}</h2>
+              <p className="mt-4 max-w-[640px] text-lg text-grey leading-relaxed">{c.questionSub}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Trust */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif mb-10">{c.trustTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
-              {c.trustBadges.map((badge, i) => (
-                <span key={badge} className="flex items-center gap-8">
-                  {i > 0 && <span aria-hidden="true" className="text-muted">·</span>}
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">{c.questionTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">{c.questionSub}</p>
-            <p className="mt-4">
-              <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
+            <p className="md:col-span-5 md:justify-self-end text-lg text-grey">
+              <a
+                href="mailto:info@gonativ.nl"
+                className="underline underline-offset-4 decoration-1 decoration-sage-dark hover:decoration-grey"
+              >
+                info@gonativ.nl
+              </a>
             </p>
-          </FadeIn>
-        </div>
-      </section>
+          </div>
+        </FadeIn>
+      </Section>
     </>
   );
 }
