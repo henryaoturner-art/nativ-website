@@ -120,7 +120,7 @@ export default function DienstenPage() {
 
       {/* Service Layers */}
       {c.layers.map((layer, i) => (
-        <section key={layer.step} className={`py-12 md:py-16 px-6 ${i % 2 === 1 ? "bg-white" : ""}`}>
+        <section key={layer.step} className="py-16 md:py-20 lg:py-24 px-6">
           <div className="max-w-[680px] mx-auto">
             <FadeIn>
               <span className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{layer.step}</span>
