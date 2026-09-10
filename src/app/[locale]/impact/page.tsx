@@ -77,10 +77,10 @@ export default function ImpactPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>
+            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed max-w-2xl mx-auto">{c.heroSub}</p>
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed max-w-2xl mx-auto">{c.heroSub}</p>
           </FadeIn>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function ImpactPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.howTitle}</h2>
+            <h2 className="font-serif text-center mb-16">{c.howTitle}</h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {c.howSteps.map((item, i) => (
@@ -98,8 +98,8 @@ export default function ImpactPage() {
                   <div className="w-12 h-12 rounded-full bg-sage/10 flex items-center justify-center mx-auto mb-4">
                     <span className="text-sage font-serif text-lg">{item.step}</span>
                   </div>
-                  <h3 className="font-serif text-lg mb-2">{item.title}</h3>
-                  <p className="text-grey/70 font-light leading-relaxed text-sm">{item.desc}</p>
+                  <h3 className="font-serif mb-2">{item.title}</h3>
+                  <p className="text-grey leading-relaxed text-sm">{item.desc}</p>
                 </div>
               </FadeIn>
             ))}
@@ -111,7 +111,7 @@ export default function ImpactPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-12">{c.whyTitle}</h2>
+            <h2 className="font-serif mb-12">{c.whyTitle}</h2>
           </FadeIn>
           <FadeIn delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -119,7 +119,7 @@ export default function ImpactPage() {
                 <div key={card.title} className="bg-surface rounded-xl p-8 border border-sage-light">
                   <p className="text-4xl md:text-5xl font-serif text-sage">{card.icon}</p>
                   <p className="mt-3 font-serif text-lg">{card.title}</p>
-                  <p className="mt-2 text-sm text-grey/60 font-light">{card.desc}</p>
+                  <p className="mt-2 text-sm text-muted">{card.desc}</p>
                 </div>
               ))}
             </div>
@@ -131,10 +131,10 @@ export default function ImpactPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-8">{c.flexTitle}</h2>
+            <h2 className="font-serif mb-8">{c.flexTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="space-y-6 text-lg font-light leading-relaxed text-grey/80">
+            <div className="space-y-6 text-lg leading-relaxed text-grey">
               <p>{c.flexP1}</p>
               <p>{c.flexP2}</p>
               <p>{c.flexP3}</p>
@@ -147,14 +147,14 @@ export default function ImpactPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">{c.beyondTitle}</h2>
+            <h2 className="font-serif text-center mb-16">{c.beyondTitle}</h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {c.beyondItems.map((item, i) => (
               <FadeIn key={item.title} delay={i * 150}>
                 <div className="bg-surface rounded-xl p-8 h-full border border-sage-light">
-                  <h3 className="font-serif text-xl mb-3">{item.title}</h3>
-                  <p className="text-grey/70 font-light leading-relaxed text-[15px]">{item.desc}</p>
+                  <h3 className="font-serif mb-3">{item.title}</h3>
+                  <p className="text-grey leading-relaxed text-[15px]">{item.desc}</p>
                 </div>
               </FadeIn>
             ))}
@@ -166,10 +166,10 @@ export default function ImpactPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.ctaTitle}</h2>
+            <h2 className="font-serif">{c.ctaTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.ctaSub}</p>
+            <p className="mt-6 text-lg text-grey leading-relaxed">{c.ctaSub}</p>
           </FadeIn>
           <FadeIn delay={300}>
             <div className="mt-10">

@@ -202,11 +202,11 @@ export default async function ScanReportPage({
       <section className="py-16 px-6 pb-24">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
-            <p className="text-sm text-sage uppercase tracking-wide">{c.reportLabel}</p>
-            <h1 className="mt-2 font-serif text-3xl md:text-4xl leading-[1.15] text-grey">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.reportLabel}</p>
+            <h1 className="mt-2 font-serif text-grey">
               {c.pendingTitle}
             </h1>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               {c.pendingBody}
             </p>
           </FadeIn>
@@ -237,7 +237,7 @@ export default async function ScanReportPage({
     title: c.ranglijst,
     body: (
       <>
-        <h3 className="font-serif text-xl text-grey">{c.beginnen}</h3>
+        <h3 className="font-serif text-grey">{c.beginnen}</h3>
         <div className="mt-4 space-y-4">
           {payload.ranglijst.hierZouIkBeginnen.map((item, i) => (
             <TopWorkflowCard
@@ -252,10 +252,10 @@ export default async function ScanReportPage({
         </div>
         {payload.ranglijst.sterkeKandidaten.length > 0 && (
           <>
-            <h3 className="mt-8 font-serif text-xl text-grey">{c.kandidaten}</h3>
+            <h3 className="mt-8 font-serif text-grey">{c.kandidaten}</h3>
             <ul className="mt-3 space-y-2.5">
               {payload.ranglijst.sterkeKandidaten.map((item) => (
-                <li key={item.naam} className="text-grey/85 font-light leading-relaxed">
+                <li key={item.naam} className="text-grey leading-relaxed">
                   <span className="font-normal text-grey">{item.naam}.</span>{" "}
                   {item.waarDeKennisZit ?? item.watHetNuIs}
                 </li>
@@ -265,10 +265,10 @@ export default async function ScanReportPage({
         )}
         {payload.ranglijst.laterInteressant.length > 0 && (
           <>
-            <h3 className="mt-8 font-serif text-xl text-grey">{c.later}</h3>
+            <h3 className="mt-8 font-serif text-grey">{c.later}</h3>
             <ul className="mt-3 space-y-1.5">
               {payload.ranglijst.laterInteressant.map((line) => (
-                <li key={line} className="text-grey/70 font-light leading-relaxed">
+                <li key={line} className="text-grey leading-relaxed">
                   · {line}
                 </li>
               ))}
@@ -296,30 +296,30 @@ export default async function ScanReportPage({
         <>
           <Prose text={c.zoZietHetEruitIntro} />
           <KetenVisual k={c.keten} caption={c.ketenCaption} />
-          <div className="mt-4 rounded-lg border-l-[3px] border-sage bg-cream/70 px-5 py-3.5 text-[15px] text-grey/85 leading-relaxed">
+          <div className="mt-4 rounded-lg border-l-[3px] border-sage bg-cream/70 px-5 py-3.5 text-[15px] text-grey leading-relaxed">
             <span className="font-normal text-grey">{c.werkwijzeTitel}</span>{" "}
             {c.werkwijzeBody}
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <div className="rounded-xl p-6 bg-surface border border-sage-light">
-              <h3 className="text-xs uppercase tracking-wide text-grey/45">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.zoZietHetEruitNu}
               </h3>
               <ol className="mt-3 space-y-2 list-decimal pl-4">
                 {ba.nu.map((stap) => (
-                  <li key={stap} className="text-grey/85 font-light leading-relaxed">
+                  <li key={stap} className="text-grey leading-relaxed">
                     {stap}
                   </li>
                 ))}
               </ol>
             </div>
             <div className="rounded-xl p-6 bg-sage-light border border-sage/40">
-              <h3 className="text-xs uppercase tracking-wide text-grey/45">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.zoZietHetEruitStraks}
               </h3>
               <ol className="mt-3 space-y-2 list-decimal pl-4">
                 {ba.straks.map((item) => (
-                  <li key={item.stap} className="text-grey/85 font-light leading-relaxed">
+                  <li key={item.stap} className="text-grey leading-relaxed">
                     {item.stap}
                   </li>
                 ))}
@@ -327,7 +327,7 @@ export default async function ScanReportPage({
             </div>
           </div>
           <div className="mt-5">
-            <h3 className="text-xs uppercase tracking-wide text-grey/45">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
               {c.toevoegtNodig}
             </h3>
             <div className="mt-2">
@@ -336,7 +336,7 @@ export default async function ScanReportPage({
           </div>
           {payload.vanafNul ? (
             <div className="mt-8 rounded-xl border-2 border-sage bg-white px-6 py-6">
-              <h3 className="font-serif text-lg font-normal text-grey">
+              <h3 className="font-serif font-normal text-grey">
                 {c.vanafNul}
               </h3>
               {/* Geen inleiding meer. Die herhaalde de kop in langere
@@ -346,7 +346,7 @@ export default async function ScanReportPage({
                 {payload.vanafNul.keten.map((item) => (
                   <li
                     key={item.stap}
-                    className="text-grey/85 font-light leading-relaxed"
+                    className="text-grey leading-relaxed"
                   >
                     {item.stap}
                   </li>
@@ -395,7 +395,7 @@ export default async function ScanReportPage({
           {payload.kennisbeeld.alleenInHoofden.length > 0 && (
             <ul className="mt-4 space-y-1.5">
               {payload.kennisbeeld.alleenInHoofden.map((line) => (
-                <li key={line} className="text-grey/80 font-light leading-relaxed">
+                <li key={line} className="text-grey leading-relaxed">
                   · {line}
                 </li>
               ))}
@@ -427,7 +427,7 @@ export default async function ScanReportPage({
       <>
         <ul className="space-y-2">
           {c.gegevensPunten.map((punt) => (
-            <li key={punt} className="text-grey/80 font-light leading-relaxed">
+            <li key={punt} className="text-grey leading-relaxed">
               · {punt}
             </li>
           ))}
@@ -444,8 +444,8 @@ export default async function ScanReportPage({
             Self-service: de knop opent het eigen teamoverzicht. */}
         {payload.scanVorm !== "team" && (
           <div className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
-            <h3 className="font-serif text-xl text-grey">{c.volgendeStapTitel}</h3>
-            <p className="mt-3 text-grey/80 font-light leading-relaxed">
+            <h3 className="font-serif text-grey">{c.volgendeStapTitel}</h3>
+            <p className="mt-3 text-grey leading-relaxed">
               {c.volgendeStapBody}
             </p>
             <Button className="mt-5"
@@ -463,11 +463,11 @@ export default async function ScanReportPage({
     <section className="py-12 md:py-16 px-6 pb-20 md:pb-28">
       <div className="max-w-[760px] mx-auto">
         <FadeIn>
-          <p className="text-sm text-sage uppercase tracking-wide">{c.reportLabel}</p>
-          <h1 className="mt-2 font-serif text-3xl md:text-5xl leading-[1.15] text-grey">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.reportLabel}</p>
+          <h1 className="mt-2 font-serif text-grey">
             {scan.company_name}
           </h1>
-          <p className="mt-4 text-lg font-light text-grey/70 leading-relaxed max-w-[640px]">
+          <p className="mt-4 text-lg text-grey leading-relaxed max-w-[640px]">
             {c.lede}
           </p>
         </FadeIn>
@@ -476,7 +476,7 @@ export default async function ScanReportPage({
         {topWorkflow && (
           <FadeIn>
             <div className="mt-8 rounded-xl bg-sage-light border border-sage/40 p-6 md:p-7">
-              <p className="text-xs uppercase tracking-wide text-sage-dark">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
                 {c.kortAntwoord}
               </p>
               <dl className="mt-3 space-y-2.5">
@@ -493,11 +493,11 @@ export default async function ScanReportPage({
         {/* Inhoudsopgave */}
         <FadeIn>
           <div className="mt-6 rounded-xl bg-surface border border-sage-light p-6 md:p-7">
-            <p className="text-xs uppercase tracking-wide text-grey/45">{c.toc}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.toc}</p>
             <ol className="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
               {sections.map((s, i) => (
-                <li key={s.id} className="text-[15px] font-light">
-                  <a href={`#${s.id}`} className="text-grey/80 hover:text-sage-dark">
+                <li key={s.id} className="text-[15px]">
+                  <a href={`#${s.id}`} className="text-grey hover:text-sage-dark">
                     <span className="font-serif text-sage-dark inline-block w-6">
                       {i + 1}
                     </span>
@@ -513,7 +513,7 @@ export default async function ScanReportPage({
           <FadeIn key={s.id}>
             <div id={s.id} className="mt-12 md:mt-16 scroll-mt-24">
               <p className="font-serif text-sage-dark text-sm">{i + 1}</p>
-              <h2 className="mt-1 font-serif text-2xl md:text-3xl text-grey pb-3 border-b border-sage/30">
+              <h2 className="mt-1 font-serif text-grey pb-3 border-b border-sage/30">
                 {s.title}
               </h2>
               <div className="mt-5">{s.body}</div>
@@ -528,15 +528,15 @@ export default async function ScanReportPage({
 function KickerRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="sm:grid sm:grid-cols-[110px_1fr] sm:gap-4">
-      <dt className="text-xs uppercase tracking-wide text-grey/50 pt-0.5">{label}</dt>
-      <dd className="text-grey/90 font-light leading-relaxed">{value}</dd>
+      <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark pt-0.5">{label}</dt>
+      <dd className="text-grey leading-relaxed">{value}</dd>
     </div>
   );
 }
 
 function Prose({ text }: { text: string }) {
   return (
-    <p className="text-grey/80 font-light leading-relaxed whitespace-pre-line">{text}</p>
+    <p className="text-grey leading-relaxed whitespace-pre-line">{text}</p>
   );
 }
 
@@ -573,8 +573,8 @@ function TopWorkflowCard({
       <dl className="mt-4 space-y-2.5">
         {rows.map(([label, value]) => (
           <div key={label}>
-            <dt className="text-xs uppercase tracking-wide text-grey/45">{label}</dt>
-            <dd className="text-grey/85 font-light leading-relaxed">{value}</dd>
+            <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{label}</dt>
+            <dd className="text-grey leading-relaxed">{value}</dd>
           </div>
         ))}
       </dl>
@@ -706,7 +706,7 @@ function KetenVisual({
           </g>
         </svg>
       </div>
-      <figcaption className="mt-2 text-xs text-grey/50 tracking-wide">
+      <figcaption className="mt-2 text-xs text-muted tracking-wide">
         {caption}
       </figcaption>
     </figure>

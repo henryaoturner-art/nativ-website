@@ -296,12 +296,12 @@ export default function PricingPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub}
             </p>
           </FadeIn>
@@ -312,7 +312,7 @@ export default function PricingPage() {
       <section className="px-6 pb-4">
         <div className="max-w-[820px] mx-auto">
           <FadeIn>
-            <p className="text-sage text-sm font-medium tracking-wide uppercase text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark text-center">
               {c.baseLabel}
             </p>
           </FadeIn>
@@ -320,14 +320,14 @@ export default function PricingPage() {
             <div className="mt-4 bg-surface rounded-xl p-8 md:p-10 ring-2 ring-sage">
               <div className="md:flex md:items-start md:justify-between md:gap-10">
                 <div className="md:flex-1">
-                  <h2 className="font-serif text-2xl text-grey">{c.baseName}</h2>
-                  <p className="mt-3 text-base font-light text-grey/80 leading-relaxed">
+                  <h2 className="font-serif text-grey">{c.baseName}</h2>
+                  <p className="mt-3 text-base text-grey leading-relaxed">
                     {c.baseBody}
                   </p>
                 </div>
                 <div className="mt-6 md:mt-0 md:text-right shrink-0">
                   <p className="text-4xl font-serif text-sage">{c.basePrice}</p>
-                  <p className="text-sm text-grey/50">{c.basePer}</p>
+                  <p className="text-sm text-muted">{c.basePer}</p>
                   <p className="mt-2 text-sm text-sage font-medium">
                     {c.baseNote}
                   </p>
@@ -337,14 +337,14 @@ export default function PricingPage() {
                 {c.baseFeatures.map((f) => (
                   <li
                     key={f}
-                    className="flex items-start gap-2 text-sm text-grey/70 font-light"
+                    className="flex items-start gap-2 text-sm text-grey"
                   >
                     <span className="text-sage mt-0.5 shrink-0">✓</span>
                     {f}
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm text-grey/50 font-light leading-relaxed">
+              <p className="mt-6 text-sm text-muted leading-relaxed">
                 {c.baseFairUse}
               </p>
               <Button className="mt-8"
@@ -361,7 +361,7 @@ export default function PricingPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[1000px] mx-auto">
           <FadeIn>
-            <p className="text-sage text-sm font-medium tracking-wide uppercase text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark text-center">
               {c.addonsLabel}
             </p>
           </FadeIn>
@@ -369,10 +369,10 @@ export default function PricingPage() {
             {c.addons.map((a, i) => (
               <FadeIn key={a.name} delay={150 + i * 120}>
                 <div className="h-full bg-surface rounded-xl p-7 border border-sage-light flex flex-col">
-                  <h3 className="font-serif text-xl text-grey">{a.name}</h3>
+                  <h3 className="font-serif text-grey">{a.name}</h3>
                   <p className="mt-4 text-2xl font-serif text-sage">{a.price}</p>
-                  {a.per && <p className="text-sm text-grey/50">{a.per}</p>}
-                  <p className="mt-4 flex-1 text-sm text-grey/70 font-light leading-relaxed">
+                  {a.per && <p className="text-sm text-muted">{a.per}</p>}
+                  <p className="mt-4 flex-1 text-sm text-grey leading-relaxed">
                     {a.body}
                   </p>
                 </div>
@@ -391,10 +391,10 @@ export default function PricingPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.oneOffTitle}
             </h2>
-            <p className="mt-5 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-5 text-lg text-grey leading-relaxed">
               {c.oneOffIntro}
             </p>
           </FadeIn>
@@ -403,12 +403,12 @@ export default function PricingPage() {
               <FadeIn key={o.label} delay={150 + i * 120}>
                 <div className="bg-surface rounded-xl p-6 border-l-[3px] border-sage">
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif text-lg text-grey">{o.label}</h3>
+                    <h3 className="font-serif text-grey">{o.label}</h3>
                     <p className="font-serif text-xl text-sage shrink-0">
                       {o.value}
                     </p>
                   </div>
-                  <p className="mt-2 text-sm text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-sm text-grey leading-relaxed">
                     {o.body}
                   </p>
                 </div>
@@ -422,12 +422,12 @@ export default function PricingPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.whyTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
               {c.whyBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -441,8 +441,8 @@ export default function PricingPage() {
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="bg-surface rounded-xl p-6 md:p-8 border-l-[3px] border-sage">
-              <h2 className="font-serif text-xl text-grey">{c.exitTitle}</h2>
-              <p className="mt-3 text-base text-grey/70 font-light leading-relaxed">
+              <h2 className="font-serif text-grey">{c.exitTitle}</h2>
+              <p className="mt-3 text-base text-grey leading-relaxed">
                 {c.exitBody}
               </p>
             </div>
@@ -454,7 +454,7 @@ export default function PricingPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">
+            <h2 className="font-serif mb-10">
               {c.faqTitle}
             </h2>
           </FadeIn>

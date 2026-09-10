@@ -36,7 +36,7 @@ export default function FAQ({ items }: { items: FAQItem[] }) {
             role="region"
             className={`faq-answer ${openIndex === i ? "open" : ""}`}
           >
-            <p className="px-6 pb-5 text-grey/80 leading-relaxed">
+            <p className="px-6 pb-5 text-grey leading-relaxed">
               {item.answer}
             </p>
           </div>

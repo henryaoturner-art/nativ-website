@@ -256,12 +256,12 @@ export default function PrivacyPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               Privacyverklaring
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Nativ B.V. · {VERSIE}
             </p>
           </FadeIn>
@@ -272,7 +272,7 @@ export default function PrivacyPage() {
       <section className="pb-16 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <p className="text-grey/70 font-light leading-relaxed">
+            <p className="text-grey leading-relaxed">
               nativ vindt jouw privacy belangrijk. Deze verklaring legt uit welke persoonsgegevens
               we verwerken als je onze website bezoekt of contact met ons opneemt, waarom, en welke
               rechten je hebt.
@@ -282,17 +282,17 @@ export default function PrivacyPage() {
           {sections.map((s) => (
             <FadeIn key={s.n}>
               <article className="mt-10">
-                <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
+                <h2 className="font-serif text-grey">
                   {s.n}. {s.title}
                 </h2>
-                <div className="mt-4 text-grey/70 font-light leading-relaxed">{s.body}</div>
+                <div className="mt-4 text-grey leading-relaxed">{s.body}</div>
               </article>
             </FadeIn>
           ))}
 
           <FadeIn>
             <div className="mt-12 pt-8 border-t border-grey/10">
-              <p className="text-grey/60 font-light leading-relaxed text-sm">
+              <p className="text-muted leading-relaxed text-sm">
                 Vragen over deze privacyverklaring? Mail{" "}
                 <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   info@gonativ.nl

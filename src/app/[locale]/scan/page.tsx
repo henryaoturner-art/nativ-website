@@ -181,12 +181,12 @@ export default function ScanPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub}
             </p>
           </FadeIn>
@@ -199,9 +199,9 @@ export default function ScanPage() {
           <div className="grid gap-6 md:grid-cols-2">
             <FadeIn delay={150}>
               <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
-                <h2 className="font-serif text-2xl text-grey">{c.quickTitle}</h2>
-                <p className="mt-1 text-sm text-grey/50">{c.quickTime}</p>
-                <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
+                <h2 className="font-serif text-grey">{c.quickTitle}</h2>
+                <p className="mt-1 text-sm text-muted">{c.quickTime}</p>
+                <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
                   {c.quickBody}
                 </p>
                 <Button className="mt-7"
@@ -214,9 +214,9 @@ export default function ScanPage() {
 
             <FadeIn delay={300}>
               <div className="h-full bg-white rounded-xl p-7 md:p-8 border-l-[3px] border-sage-light shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
-                <h2 className="font-serif text-2xl text-grey">{c.teamTitle}</h2>
-                <p className="mt-1 text-sm text-grey/50">{c.teamTime}</p>
-                <p className="mt-4 flex-1 text-base font-light text-grey/80 leading-relaxed">
+                <h2 className="font-serif text-grey">{c.teamTitle}</h2>
+                <p className="mt-1 text-sm text-muted">{c.teamTime}</p>
+                <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
                   {c.teamBody}
                 </p>
                 <Button variant="secondary" className="mt-7"
@@ -229,7 +229,7 @@ export default function ScanPage() {
           </div>
 
           <FadeIn delay={450}>
-            <p className="mt-6 text-center text-sm text-grey/60 font-light leading-relaxed max-w-[640px] mx-auto">
+            <p className="mt-6 text-center text-sm text-muted leading-relaxed max-w-[640px] mx-auto">
               {c.cardsFooter}
             </p>
           </FadeIn>
@@ -251,12 +251,12 @@ export default function ScanPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.reportTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <ul className="mt-8 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+            <ul className="mt-8 space-y-4 text-lg text-grey leading-relaxed">
               {c.reportItems.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="text-sage mt-1">·</span>
@@ -272,12 +272,12 @@ export default function ScanPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.teamHowTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
               {c.teamHowBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -291,8 +291,8 @@ export default function ScanPage() {
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="bg-white rounded-xl p-6 md:p-8 border-l-[3px] border-sage shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-              <h2 className="font-serif text-xl text-grey">{c.dataTitle}</h2>
-              <p className="mt-3 text-base text-grey/70 font-light leading-relaxed">
+              <h2 className="font-serif text-grey">{c.dataTitle}</h2>
+              <p className="mt-3 text-base text-grey leading-relaxed">
                 {c.dataBody}
               </p>
             </div>
@@ -304,7 +304,7 @@ export default function ScanPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.faqTitle}
             </h2>
           </FadeIn>
@@ -320,10 +320,10 @@ export default function ScanPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.closingTitle}
             </h2>
-            <p className="mt-4 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-4 text-lg text-grey leading-relaxed">
               {c.closingBody}
             </p>
             <Button variant="secondary" className="mt-8"

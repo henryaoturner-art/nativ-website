@@ -36,10 +36,10 @@ export default function ComparisonTable() {
         <table className="w-full" role="table">
           <thead>
             <tr>
-              <th className="text-left py-4 px-4 text-sm font-sans font-normal uppercase tracking-wider text-grey/50" scope="col">
+              <th className="text-left py-4 px-4 text-sm font-sans font-normal uppercase tracking-wider text-muted" scope="col">
                 &nbsp;
               </th>
-              <th className="text-left py-4 px-4 text-sm font-sans font-normal uppercase tracking-wider text-grey/40 line-through" scope="col">
+              <th className="text-left py-4 px-4 text-sm font-sans font-normal uppercase tracking-wider text-muted line-through" scope="col">
                 {table.oldHeader}
               </th>
               <th className="text-left py-4 px-4 text-sm font-sans font-normal uppercase tracking-wider text-sage" scope="col">
@@ -51,7 +51,7 @@ export default function ComparisonTable() {
             {table.rows.map((row, i) => (
               <tr key={i} className="border-t border-sage-light">
                 <td className="py-4 px-4 font-serif text-grey">{row.label}</td>
-                <td className="py-4 px-4 text-grey/40 line-through">{row.old}</td>
+                <td className="py-4 px-4 text-muted line-through">{row.old}</td>
                 <td className="py-4 px-4 text-grey font-medium">
                   <span className="text-sage">●</span>{" "}
                   {row.nativ}

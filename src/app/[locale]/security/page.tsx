@@ -50,10 +50,10 @@ export default function SecurityPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>
+            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">{c.heroSub}</p>
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">{c.heroSub}</p>
           </FadeIn>
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function SecurityPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.principlesTitle}</h2>
+            <h2 className="font-serif">{c.principlesTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-10 space-y-8">
@@ -72,8 +72,8 @@ export default function SecurityPage() {
                     <span className="text-sage text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg">{item.title}</h3>
-                    <p className="mt-1 text-grey/70 font-light leading-relaxed text-sm">{item.desc}</p>
+                    <h3 className="font-serif">{item.title}</h3>
+                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -86,13 +86,13 @@ export default function SecurityPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10">{c.trustTitle}</h2>
+            <h2 className="font-serif mb-10">{c.trustTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-grey/60">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
               {c.trustBadges.map((badge, i) => (
                 <span key={badge} className="flex items-center gap-8">
-                  {i > 0 && <span aria-hidden="true" className="text-grey/30">·</span>}
+                  {i > 0 && <span aria-hidden="true" className="text-muted">·</span>}
                   {badge}
                 </span>
               ))}
@@ -105,10 +105,10 @@ export default function SecurityPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.questionTitle}</h2>
+            <h2 className="font-serif">{c.questionTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.questionSub}</p>
+            <p className="mt-6 text-lg text-grey leading-relaxed">{c.questionSub}</p>
             <p className="mt-4">
               <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
             </p>

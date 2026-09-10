@@ -52,7 +52,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Logo light size="footer" />
-            <p className="mt-4 text-white/60 text-sm font-light leading-relaxed max-w-xs">
+            <p className="mt-4 text-white/60 text-sm leading-relaxed max-w-xs">
               {f.tagline}
             </p>
             <p className="mt-6 text-white/40 text-xs">

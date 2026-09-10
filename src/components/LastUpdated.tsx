@@ -4,7 +4,7 @@ import { SITE_UPDATED, formatDateNL } from "@/lib/site-meta";
 // that complements the dateModified schema (GEO / AI-visibility).
 export default function LastUpdated({ date = SITE_UPDATED }: { date?: string }) {
   return (
-    <p className="text-sm text-grey/50">
+    <p className="text-sm text-muted">
       Laatst bijgewerkt:{" "}
       <time dateTime={date}>{formatDateNL(date)}</time>
     </p>

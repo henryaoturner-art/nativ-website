@@ -73,12 +73,12 @@ export default function CasesPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               Wat we hebben gebouwd
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70">
+            <p className="mt-6 text-lg md:text-xl text-grey">
               Echte resultaten bij echte bedrijven.
             </p>
           </FadeIn>
@@ -91,7 +91,7 @@ export default function CasesPage() {
           <FadeIn>
             <article className="bg-surface rounded-xl p-8 md:p-12 border border-sage-light">
               {/* Tags */}
-              <div className="flex flex-wrap items-center gap-3 text-sm text-grey/50 mb-6">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted mb-6">
                 <span className="bg-sage/10 text-sage px-3 py-1 rounded-full text-xs">
                   Training &amp; Development
                 </span>
@@ -102,26 +102,26 @@ export default function CasesPage() {
               </div>
 
               {/* Headline */}
-              <h2 className="font-serif text-2xl md:text-3xl leading-snug text-grey">
+              <h2 className="font-serif text-grey">
                 AI Marketing Manager: Van onvervulbare vacature naar 14 workflows in 4 weken
               </h2>
 
-              <p className="mt-4 text-grey/70 font-light leading-relaxed">
+              <p className="mt-4 text-grey leading-relaxed">
                 Een groeiend trainings- en ontwikkelingsbedrijf met twee merken: één gericht op B2B, één op B2C. Twintig interne medewerkers, zestig freelance trainers, en een marketingafdeling die al maanden een Senior B2C Marketeer zocht. Zonder succes.
               </p>
 
               {/* De uitdaging */}
               <div className="mt-10">
-                <p className="text-sm text-grey/50 uppercase tracking-wide mb-2">De uitdaging</p>
-                <p className="text-grey/80 font-light leading-relaxed">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark mb-2">De uitdaging</p>
+                <p className="text-grey leading-relaxed">
                   De marketingkennis zat verspreid: in hoofden van medewerkers, bij externe bureaus, in losse systemen. Het bedrijf had een sterk product, maar geen gestructureerde manier om marketing over twee merken te schalen. En de vacature die dat moest oplossen? Al maanden onvervuld, met een maandelijks salaris van €3.000 tot €4.000.
                 </p>
               </div>
 
               {/* Onze aanpak */}
               <div className="mt-8">
-                <p className="text-sm text-grey/50 uppercase tracking-wide mb-2">Onze aanpak</p>
-                <div className="space-y-4 text-grey/80 font-light leading-relaxed">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark mb-2">Onze aanpak</p>
+                <div className="space-y-4 text-grey leading-relaxed">
                   <div>
                     <p className="font-medium text-grey">Scan</p>
                     <p>De <Link href="/scan" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">gratis AI-scan</Link> wees marketing aan als het gebied met de hoogste impact. Specifiek: een AI Marketing Manager kon de onvervulde vacature vervangen, tegen een fractie van de kosten.</p>
@@ -139,8 +139,8 @@ export default function CasesPage() {
 
               {/* Resultaat */}
               <div className="mt-8">
-                <p className="text-sm text-grey/50 uppercase tracking-wide mb-3">Het resultaat</p>
-                <ul className="space-y-3 text-grey/80 font-light">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark mb-3">Het resultaat</p>
+                <ul className="space-y-3 text-grey">
                   <li className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 font-bold">↓</span>
                     Van onvervulde vacature naar AI Marketing Manager: 3 tot 4x kostenreductie
@@ -169,16 +169,16 @@ export default function CasesPage() {
             <div className="bg-sage/5 border border-sage-light rounded-xl p-8 md:p-10">
               <div className="flex items-center gap-2 text-sage" aria-label="Beoordeling 4,5 van 5">
                 <span aria-hidden="true" className="text-lg tracking-wide">★★★★☆</span>
-                <span className="text-sm text-grey/60">4,5 / 5</span>
+                <span className="text-sm text-muted">4,5 / 5</span>
               </div>
               <blockquote className="mt-4 font-serif text-xl md:text-2xl leading-snug text-grey">
                 &ldquo;nativ heeft voor ons een Company Brain met digitale collega&apos;s gebouwd die echt meewerken in onze marketing. Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken. Het team is bereikbaar, helder en snel, en denkt echt mee over wat resultaat oplevert. Een aanrader voor elk mkb-bedrijf dat AI serieus wil inzetten.&rdquo;
               </blockquote>
               <figcaption className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span className="font-medium text-grey">Dirk Westdijk</span>
-                <span className="text-grey/50">·</span>
-                <span className="text-grey/70 font-light">CEO, JobTraining</span>
-                <span className="text-grey/50">·</span>
+                <span className="text-muted">·</span>
+                <span className="text-grey">CEO, JobTraining</span>
+                <span className="text-muted">·</span>
                 <Button variant="tertiary"
                   href={SORTLIST_REVIEW_URL}
                   target="_blank"
@@ -194,7 +194,7 @@ export default function CasesPage() {
         {/* CTA for future cases */}
         <FadeIn delay={400}>
           <div className="max-w-[680px] mx-auto text-center mt-16">
-            <p className="text-grey/60 font-light">
+            <p className="text-muted">
               Wil je de volgende zijn?
             </p>
             <Button className="mt-4"
@@ -202,7 +202,7 @@ export default function CasesPage() {
             >
               Plan een gesprek
             </Button>
-            <p className="mt-6 text-sm text-grey/60 font-light">
+            <p className="mt-6 text-sm text-muted">
               Of lees eerst hoe we een{" "}
               <Link href="/diensten" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                 AI-kennisbank

@@ -141,12 +141,12 @@ export default function AiActPage() {
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <p className="text-sm uppercase tracking-wider text-sage mb-4">EU AI Act</p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub}
             </p>
           </FadeIn>
@@ -162,12 +162,12 @@ export default function AiActPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.changeTitle}</h2>
+            <h2 className="font-serif">{c.changeTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-8 space-y-5">
               {c.changeBody.map((p, i) => (
-                <p key={i} className="text-grey/70 font-light leading-relaxed text-lg">
+                <p key={i} className="text-grey leading-relaxed text-lg">
                   {p}
                 </p>
               ))}
@@ -180,7 +180,7 @@ export default function AiActPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.asksTitle}</h2>
+            <h2 className="font-serif">{c.asksTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-10 space-y-8">
@@ -193,8 +193,8 @@ export default function AiActPage() {
                     <span className="text-sage text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg">{item.title}</h3>
-                    <p className="mt-1 text-grey/70 font-light leading-relaxed text-sm">{item.desc}</p>
+                    <h3 className="font-serif">{item.title}</h3>
+                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -207,12 +207,12 @@ export default function AiActPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.gapTitle}</h2>
+            <h2 className="font-serif">{c.gapTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-8 space-y-5">
               {c.gapBody.map((p, i) => (
-                <p key={i} className="text-grey/70 font-light leading-relaxed text-lg">
+                <p key={i} className="text-grey leading-relaxed text-lg">
                   {p}
                 </p>
               ))}
@@ -225,10 +225,10 @@ export default function AiActPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.brainTitle}</h2>
+            <h2 className="font-serif">{c.brainTitle}</h2>
           </FadeIn>
           <FadeIn delay={100}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.brainSub}</p>
+            <p className="mt-6 text-lg text-grey leading-relaxed">{c.brainSub}</p>
           </FadeIn>
           <FadeIn delay={150}>
             <div className="mt-10 space-y-8">
@@ -241,8 +241,8 @@ export default function AiActPage() {
                     <span className="text-sage text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg">{item.title}</h3>
-                    <p className="mt-1 text-grey/70 font-light leading-relaxed text-sm">{item.desc}</p>
+                    <h3 className="font-serif">{item.title}</h3>
+                    <p className="mt-1 text-grey leading-relaxed text-sm">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -263,8 +263,8 @@ export default function AiActPage() {
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="border border-sage/30 rounded-lg p-6 md:p-8 bg-sage/5">
-              <h3 className="font-serif text-xl">{c.disclaimerTitle}</h3>
-              <p className="mt-3 text-grey/70 font-light leading-relaxed">{c.disclaimerBody}</p>
+              <h3 className="font-serif">{c.disclaimerTitle}</h3>
+              <p className="mt-3 text-grey leading-relaxed">{c.disclaimerBody}</p>
             </div>
           </FadeIn>
         </div>
@@ -274,10 +274,10 @@ export default function AiActPage() {
       <section className="py-12 md:py-16 px-6 bg-surface">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.ctaTitle}</h2>
+            <h2 className="font-serif">{c.ctaTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">{c.ctaSub}</p>
+            <p className="mt-6 text-lg text-grey leading-relaxed">{c.ctaSub}</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/scan"

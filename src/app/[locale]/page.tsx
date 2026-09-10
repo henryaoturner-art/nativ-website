@@ -242,12 +242,12 @@ export default function HomePage() {
       <section className="py-10 md:py-14 lg:py-40 px-6">
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-3xl md:text-[40px] lg:text-[52px] leading-[1.2] text-grey max-w-4xl mx-auto">
+            <h1 className="font-serif text-grey max-w-4xl mx-auto">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 md:mt-8 text-lg md:text-xl font-light text-grey/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 md:mt-8 text-lg md:text-xl text-grey max-w-2xl mx-auto leading-relaxed">
               {c.heroSub1}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
@@ -255,7 +255,7 @@ export default function HomePage() {
           </FadeIn>
           {c.heroSeoLine && (
             <FadeIn delay={300}>
-              <h2 className="mt-5 text-base md:text-lg font-medium text-grey/60 max-w-2xl mx-auto">
+              <h2 className="mt-5 font-medium text-muted max-w-2xl mx-auto">
                 {c.heroSeoLine}
               </h2>
             </FadeIn>
@@ -278,7 +278,7 @@ export default function HomePage() {
               no Review/aggregateRating markup, per the same Google self-serving
               review rule documented in cases/page.tsx. */}
           <FadeIn delay={500}>
-            <figure className="mt-8 mx-auto max-w-xl text-sm text-grey/70">
+            <figure className="mt-8 mx-auto max-w-xl text-sm text-grey">
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
                 <span
                   aria-hidden="true"
@@ -295,7 +295,7 @@ export default function HomePage() {
                   &ldquo;{c.proofQuote}&rdquo;
                 </blockquote>
               )}
-              <figcaption className="mt-1 not-italic text-grey/60">
+              <figcaption className="mt-1 not-italic text-muted">
                 {c.proofWho}
               </figcaption>
             </figure>
@@ -308,12 +308,12 @@ export default function HomePage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.problemTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-6 text-lg font-light leading-relaxed text-grey/80">
+            <div className="mt-8 space-y-6 text-lg leading-relaxed text-grey">
               <p>{c.problemP1}</p>
               <p>
                 {c.problemP2a}
@@ -330,7 +330,7 @@ export default function HomePage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight text-center mb-16">
+            <h2 className="font-serif text-center mb-16">
               {c.howTitle}
             </h2>
           </FadeIn>
@@ -342,10 +342,10 @@ export default function HomePage() {
                   <span className="inline-block text-5xl font-serif text-sage mb-4">
                     {step.num}
                   </span>
-                  <h3 className="font-serif text-2xl md:text-[28px] mb-3">
+                  <h3 className="font-serif mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-grey/70 font-light leading-relaxed">
+                  <p className="text-grey leading-relaxed">
                     {step.desc}
                   </p>
                   <p className="mt-2 flex items-start gap-1.5 text-sage-dark text-sm">
@@ -372,7 +372,7 @@ export default function HomePage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-grey/60">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted">
               <span>{c.trustEU}</span>
               <span aria-hidden="true">·</span>
               <span>{c.trustGDPR}</span>
@@ -385,12 +385,12 @@ export default function HomePage() {
       <section className="py-12 md:py-16 px-6 bg-cream">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.closerTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               {c.closerSub}
             </p>
           </FadeIn>

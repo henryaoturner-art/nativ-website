@@ -99,10 +99,10 @@ export default function ContactPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">{c.heroTitle}</h1>
+            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
@@ -117,11 +117,11 @@ export default function ContactPage() {
           <FadeIn>
             <div className="flex flex-col gap-8 h-full">
             <div className="bg-surface rounded-xl p-8 border border-sage-light">
-              <h2 className="font-serif text-2xl mb-4">{c.calTitle}</h2>
-              <p className="text-grey/60 font-light text-sm mb-6">{c.calMeta}</p>
+              <h2 className="font-serif mb-4">{c.calTitle}</h2>
+              <p className="text-muted text-sm mb-6">{c.calMeta}</p>
               <div className="rounded-lg overflow-hidden" style={{ minHeight: 580 }}>
                 {!calLoaded && (
-                  <div className="bg-cream h-[580px] flex items-center justify-center text-grey/40 text-sm">
+                  <div className="bg-cream h-[580px] flex items-center justify-center text-muted text-sm">
                     <p>Kalender laden...</p>
                   </div>
                 )}
@@ -139,8 +139,8 @@ export default function ContactPage() {
 
             {/* Bezoekadres (A4, KAN-425): The Stack, Brain-feit 01-identity.hq-address. */}
             <div className="bg-surface rounded-xl p-8 border border-sage-light">
-              <h2 className="font-serif text-2xl mb-4">{c.addressTitle}</h2>
-              <address className="not-italic text-grey/70 font-light leading-relaxed" translate="no">
+              <h2 className="font-serif mb-4">{c.addressTitle}</h2>
+              <address className="not-italic text-grey leading-relaxed" translate="no">
                 The Stack
                 <br />
                 Jacob Bontiusplaats 9
@@ -161,31 +161,31 @@ export default function ContactPage() {
 
           <FadeIn delay={200}>
             <div className="bg-surface rounded-xl p-8 border border-sage-light h-full">
-              <h2 className="font-serif text-2xl mb-6">{c.formTitle}</h2>
+              <h2 className="font-serif mb-6">{c.formTitle}</h2>
               {submitted ? (
                 <div className="flex items-center justify-center h-80 text-center">
                   <div>
                     <p className="text-sage text-lg font-serif">{c.thankYou}</p>
-                    <p className="mt-2 text-grey/60 font-light text-sm">{c.thankYouSub}</p>
+                    <p className="mt-2 text-muted text-sm">{c.thankYouSub}</p>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="name" className="block text-sm text-grey/60 mb-1.5">{c.nameLabel}</label>
+                    <label htmlFor="name" className="block text-sm text-muted mb-1.5">{c.nameLabel}</label>
                     <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm text-grey/60 mb-1.5">{c.emailLabel}</label>
+                    <label htmlFor="email" className="block text-sm text-muted mb-1.5">{c.emailLabel}</label>
                     <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm text-grey/60 mb-1.5">{c.companyLabel}</label>
+                    <label htmlFor="company" className="block text-sm text-muted mb-1.5">{c.companyLabel}</label>
                     <input type="text" id="company" name="company" className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition" />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm text-grey/60 mb-1.5">
-                      {c.messageLabel} <span className="text-grey/30">{c.messageOptional}</span>
+                    <label htmlFor="message" className="block text-sm text-muted mb-1.5">
+                      {c.messageLabel} <span className="text-muted">{c.messageOptional}</span>
                     </label>
                     <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition resize-none" />
                   </div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                   </Button>
                 </form>
               )}
-              <p className="mt-6 text-sm text-grey/40 text-center">
+              <p className="mt-6 text-sm text-muted text-center">
                 {c.orEmail}{" "}
                 <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">info@gonativ.nl</a>
               </p>

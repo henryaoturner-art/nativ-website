@@ -63,8 +63,8 @@ function NotFoundBody() {
         <section className="py-32 md:py-40 px-6 text-center">
           <div className="max-w-[680px] mx-auto">
             <h1 className="font-serif text-6xl md:text-8xl text-sage/30">404</h1>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mt-6">{c.title}</h2>
-            <p className="mt-4 text-lg font-light text-grey/60">{c.sub}</p>
+            <h2 className="font-serif mt-6">{c.title}</h2>
+            <p className="mt-4 text-lg text-muted">{c.sub}</p>
             <Button href="/" className="mt-8">
               {c.home}
             </Button>

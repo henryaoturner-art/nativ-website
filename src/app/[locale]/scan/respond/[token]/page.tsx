@@ -32,10 +32,10 @@ export default async function ScanRespondPage({
       <section className="py-16 px-6 pb-24">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-3xl md:text-4xl text-grey">
+            <h1 className="font-serif text-grey">
               Bedankt, je antwoorden zijn binnen
             </h1>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Je deel van de scan is klaar. Je antwoorden gaan mee in het rapport voor{" "}
               {access.scan.company_name}. Je kunt dit venster sluiten.
             </p>
@@ -49,10 +49,10 @@ export default async function ScanRespondPage({
       <section className="py-16 px-6 pb-24">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-3xl md:text-4xl text-grey">
+            <h1 className="font-serif text-grey">
               Deze scan is al afgerond
             </h1>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               De scan van {access.scan.company_name} is inmiddels afgerond, dus invullen kan
               niet meer. Je hoeft niets te doen.
             </p>

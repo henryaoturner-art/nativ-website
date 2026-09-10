@@ -73,15 +73,15 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[760px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.title}
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70">{c.sub}</p>
+            <p className="mt-6 text-lg md:text-xl text-grey">{c.sub}</p>
           </FadeIn>
           <FadeIn delay={250}>
-            <p className="mt-4 text-sm text-grey/45">{c.source}</p>
+            <p className="mt-4 text-sm text-muted">{c.source}</p>
           </FadeIn>
         </div>
       </section>
@@ -113,7 +113,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
       <section className="px-6 pb-24">
         <div className="max-w-[820px] mx-auto">
           {shown.length === 0 && (
-            <p className="text-center text-grey/50 font-light py-12">{c.empty}</p>
+            <p className="text-center text-muted py-12">{c.empty}</p>
           )}
 
           {months.map((m) => (
@@ -136,13 +136,13 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                         <div className="flex sm:flex-col items-baseline sm:items-center gap-2 sm:gap-0 sm:w-[58px] sm:flex-none sm:text-center sm:border-r border-grey/10 sm:pr-5">
                           <span className="font-serif text-3xl leading-none text-grey">{d.day}</span>
                           <span className="text-xs tracking-widest uppercase text-sage-dark sm:mt-1.5">{d.month}</span>
-                          <span className="text-[11px] text-grey/50 sm:mt-1">{d.weekday}</span>
+                          <span className="text-[11px] text-muted sm:mt-1">{d.weekday}</span>
                         </div>
 
                         {/* Body */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-serif text-lg md:text-xl text-grey leading-snug">{e.title}</h3>
-                          <div className="mt-2 flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[13.5px] text-grey/70">
+                          <h3 className="font-serif text-grey">{e.title}</h3>
+                          <div className="mt-2 flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[13.5px] text-grey">
                             {e.locationType === "online" ? (
                               <span className="text-xs px-2.5 py-0.5 rounded-full bg-sage-light text-sage-dark">
                                 {c.online_pill}
@@ -153,11 +153,11 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
                               </span>
                             )}
                             <span>{d.time}</span>
-                            <span className="text-grey/40">·</span>
+                            <span className="text-muted">·</span>
                             <span className="capitalize">{e.source}</span>
                           </div>
                           {e.host && (
-                            <p className="mt-2 text-[13.5px] text-grey/55">
+                            <p className="mt-2 text-[13.5px] text-muted">
                               {c.by} {e.host}
                             </p>
                           )}
@@ -179,7 +179,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
       </section>
 
       {/* Footer note */}
-      <div className="bg-surface border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-grey/55">
+      <div className="bg-surface border-t border-grey/10 py-10 px-6 text-center text-[13.5px] text-muted">
         <p className="max-w-[640px] mx-auto">{c.foot}</p>
       </div>
     </>

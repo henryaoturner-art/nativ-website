@@ -104,12 +104,12 @@ export default function DienstenPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub1}
               <br />
               {c.heroSub2}
@@ -123,14 +123,14 @@ export default function DienstenPage() {
         <section key={layer.step} className={`py-12 md:py-16 px-6 ${i % 2 === 1 ? "bg-surface" : ""}`}>
           <div className="max-w-[680px] mx-auto">
             <FadeIn>
-              <span className="text-sage text-sm font-medium tracking-wide uppercase">{layer.step}</span>
-              <h2 className="font-serif text-3xl md:text-[42px] leading-tight mt-2">{layer.title}</h2>
+              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{layer.step}</span>
+              <h2 className="font-serif mt-2">{layer.title}</h2>
             </FadeIn>
             <FadeIn delay={150}>
-              <p className="mt-4 text-xl font-serif text-grey/80 italic leading-relaxed">{layer.lead}</p>
+              <p className="mt-4 text-xl font-serif text-grey italic leading-relaxed">{layer.lead}</p>
             </FadeIn>
             <FadeIn delay={250}>
-              <div className="mt-6 space-y-4 text-grey/70 font-light leading-relaxed">
+              <div className="mt-6 space-y-4 text-grey leading-relaxed">
                 {layer.body.split("\n\n").map((p, j) => (
                   <p key={j}>{p}</p>
                 ))}
@@ -138,10 +138,10 @@ export default function DienstenPage() {
             </FadeIn>
             <FadeIn delay={350}>
               <div className="mt-8">
-                <p className="text-sm text-grey/50 uppercase tracking-wide mb-3">{layer.whatLabel}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark mb-3">{layer.whatLabel}</p>
                 <ul className="space-y-2">
                   {layer.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-grey/80 font-light">
+                    <li key={f} className="flex items-start gap-3 text-grey">
                       <span className="text-sage mt-0.5">·</span>
                       {f}
                     </li>
@@ -150,7 +150,7 @@ export default function DienstenPage() {
               </div>
             </FadeIn>
             <FadeIn delay={450}>
-              <p className="mt-6 text-sm text-grey/50">{layer.meta}</p>
+              <p className="mt-6 text-sm text-muted">{layer.meta}</p>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <Button variant={layer.primary ? "primary" : "secondary"} href={layer.ctaLink}>
                   {layer.cta}
@@ -172,10 +172,10 @@ export default function DienstenPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">{c.whyTitle}</h2>
+            <h2 className="font-serif">{c.whyTitle}</h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-6 text-lg font-light leading-relaxed text-grey/80">
+            <div className="mt-8 space-y-6 text-lg leading-relaxed text-grey">
               <p>
                 {c.whyP1a}
                 <br />

@@ -24,20 +24,47 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Typografie (B1, KAN-425). Deze regels staan bewust buiten de Tailwind-lagen,
+   zodat ze de oude maatklassen op de pagina's overstemmen: één maat per rol,
+   overal. 16px mobiel, 17px desktop; lopende tekst in Charcoal, Muted alleen
+   voor bijschriften. */
 body {
   background-color: var(--color-cream);
   color: var(--color-grey);
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 17px;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   color: var(--color-grey);
-  line-height: 1.2;
   font-weight: 400;
+}
+/* Maten per rol in de base-laag: een utility op een kop (bijv. de '404') wint nog. */
+@layer base {
+  h1 {
+    font-size: clamp(44px, 3.9vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: clamp(32px, 2.8vw, 40px);
+    line-height: 1.15;
+  }
+  h3 {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  h4, h5, h6 {
+    line-height: 1.25;
+  }
 }
 
 /* Fade-in animation */
@@ -104,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Blog post content (markdown rendered via marked) */
 .blog-prose {
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
 }
 .blog-prose h2 {

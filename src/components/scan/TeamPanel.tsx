@@ -200,15 +200,15 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
     <section className="py-10 md:py-14 px-6 pb-20 md:pb-28">
       <div className="max-w-[720px] mx-auto">
         <FadeIn>
-          <h1 className="font-serif text-3xl md:text-4xl text-grey">{c.heroTitle}</h1>
-          <p className="mt-3 text-grey/60 font-light leading-relaxed">{c.heroSub}</p>
-          <p className="mt-4 text-xs text-grey/40">{c.linkHint}</p>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+          <p className="mt-3 text-muted leading-relaxed">{c.heroSub}</p>
+          <p className="mt-4 text-xs text-muted">{c.linkHint}</p>
         </FadeIn>
 
         {!ownDone && (
           <FadeIn>
             <div className="mt-8 bg-surface rounded-xl p-6 border border-sage-light flex flex-wrap items-center justify-between gap-4">
-              <p className="text-grey/80 font-light">{c.ownTodo}</p>
+              <p className="text-grey">{c.ownTodo}</p>
               <Button
                 href={`/scan/${token}`}
               >
@@ -220,9 +220,9 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
 
         {/* Bestaande afdelingen + voortgang */}
         <FadeIn>
-          <h2 className="mt-10 font-serif text-2xl text-grey">{c.deptTitle}</h2>
+          <h2 className="mt-10 font-serif text-grey">{c.deptTitle}</h2>
           {teamDepartments.length === 0 ? (
-            <p className="mt-3 text-grey/60 font-light leading-relaxed">{c.deptEmpty}</p>
+            <p className="mt-3 text-muted leading-relaxed">{c.deptEmpty}</p>
           ) : (
             <div className="mt-4 space-y-4">
               {teamDepartments.map((department) => (
@@ -230,17 +230,17 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                   key={department.name}
                   className="bg-surface rounded-xl p-6 border border-sage-light"
                 >
-                  <h3 className="font-serif text-lg text-grey">{department.name}</h3>
+                  <h3 className="font-serif text-grey">{department.name}</h3>
                   <ul className="mt-3 space-y-2">
                     {department.respondents.map((person) => (
                       <li
                         key={person.email || person.name}
                         className="flex items-center justify-between gap-3"
                       >
-                        <span className="text-grey/80 font-light">
+                        <span className="text-grey">
                           {person.name}
                           {person.email && (
-                            <span className="text-grey/40"> · {person.email}</span>
+                            <span className="text-muted"> · {person.email}</span>
                           )}
                           {person.status !== "klaar" && (
                             <button
@@ -258,7 +258,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                               ? "text-white bg-sage border-sage"
                               : person.status === "bezig"
                                 ? "text-sage bg-cream/60 border-sage-light"
-                                : "text-grey/50 bg-cream/40 border-sage-light"
+                                : "text-muted bg-cream/40 border-sage-light"
                           }`}
                         >
                           {c.statusLabels[person.status]}
@@ -278,9 +278,9 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
             onSubmit={handleInvite}
             className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light"
           >
-            <h2 className="font-serif text-2xl text-grey">{c.formTitle}</h2>
+            <h2 className="font-serif text-grey">{c.formTitle}</h2>
             <div className="mt-5">
-              <label htmlFor="dept-name" className="block text-sm text-grey/60 mb-1.5">
+              <label htmlFor="dept-name" className="block text-sm text-muted mb-1.5">
                 {c.deptNameLabel}
               </label>
               <input
@@ -291,7 +291,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                 required
                 maxLength={200}
                 placeholder={c.deptNamePlaceholder}
-                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey placeholder:text-grey/30 focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
               />
             </div>
 
@@ -299,7 +299,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
               {people.map((person, index) => (
                 <div key={index} className="flex flex-wrap items-end gap-3">
                   <div className="flex-1 min-w-[140px]">
-                    <label className="block text-sm text-grey/60 mb-1.5">{c.personName}</label>
+                    <label className="block text-sm text-muted mb-1.5">{c.personName}</label>
                     <input
                       type="text"
                       value={person.name}
@@ -310,7 +310,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                     />
                   </div>
                   <div className="flex-1 min-w-[180px]">
-                    <label className="block text-sm text-grey/60 mb-1.5">{c.personEmail}</label>
+                    <label className="block text-sm text-muted mb-1.5">{c.personEmail}</label>
                     <input
                       type="email"
                       value={person.email}
@@ -324,7 +324,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                     <button
                       type="button"
                       onClick={() => setPeople((prev) => prev.filter((_, i) => i !== index))}
-                      className="text-sm text-grey/50 hover:text-error transition-colors cursor-pointer pb-3"
+                      className="text-sm text-muted hover:text-error transition-colors cursor-pointer pb-3"
                     >
                       {c.removePerson}
                     </button>
@@ -351,7 +351,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
 
             {inviteMessage === "ok" && <p className="mt-4 text-sm text-sage">{c.invitedOk}</p>}
             {inviteMessage === "partial" && (
-              <p className="mt-4 text-sm text-grey/70">{c.invitedPartial}</p>
+              <p className="mt-4 text-sm text-grey">{c.invitedPartial}</p>
             )}
             {inviteMessage === "error" && (
               <p className="mt-4 text-sm text-error">{c.inviteError}</p>
@@ -362,8 +362,8 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
         {/* Afronden */}
         <FadeIn>
           <div className="mt-8 bg-surface rounded-xl p-6 md:p-8 border border-sage-light">
-            <h2 className="font-serif text-2xl text-grey">{c.completeTitle}</h2>
-            <p className="mt-3 text-grey/80 font-light leading-relaxed">
+            <h2 className="font-serif text-grey">{c.completeTitle}</h2>
+            <p className="mt-3 text-grey leading-relaxed">
               {hasReport ? c.completeBodyRedo : c.completeBody}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
@@ -382,7 +382,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
                 </Button>
               )}
             </div>
-            {completing && <p className="mt-4 text-sm text-grey/60">{c.completing}</p>}
+            {completing && <p className="mt-4 text-sm text-muted">{c.completing}</p>}
             {completeError && <p className="mt-4 text-sm text-error">{completeError}</p>}
           </div>
         </FadeIn>

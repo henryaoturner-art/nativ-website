@@ -65,12 +65,12 @@ export default function CompanyBrainPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               Een Company Brain voor je bedrijf
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               Een Company Brain is de centrale kennislaag van je bedrijf: één
               plek waar samenkomt wat je bedrijf weet, klaar voor AI om mee te
               werken. Geen losse tool, maar de basis waarop je AI-workflows
@@ -86,14 +86,14 @@ export default function CompanyBrainPage() {
       <section className="py-8 md:py-12 px-6">
         <div className="max-w-[680px] mx-auto space-y-14">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Waar de kennis vandaan komt
             </h2>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Een Company Brain wordt uit twee bronnen gevuld. Die combinatie
               maakt het compleet:
             </p>
-            <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+            <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
@@ -117,7 +117,7 @@ export default function CompanyBrainPage() {
                 </span>
               </li>
             </ul>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Je hoeft niet alles vast te leggen. nativ begint met de Minimum
               Viable Context (MVC™): de gestructureerde twintig procent van je
               bedrijfscontext die zo'n tachtig procent van de AI-taken dekt.
@@ -125,10 +125,10 @@ export default function CompanyBrainPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Wat het oplevert
             </h2>
-            <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+            <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
@@ -177,10 +177,10 @@ export default function CompanyBrainPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Veilig, en je data blijft van jou
             </h2>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Je Company Brain draait in een eigen, afgeschermde omgeving: per
               bedrijf gescheiden, versleuteld opgeslagen, en de isolatie wordt
               bij elke zoekopdracht afgedwongen. Je kunt je data in de EU laten
@@ -196,10 +196,10 @@ export default function CompanyBrainPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Hoe je begint
             </h2>
-            <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-5 text-lg text-grey leading-relaxed">
               Je begint met een Company Brain, toegankelijk voor al je
               medewerkers. En dan kan je AI-workflows toevoegen als je daar
               behoefte aan hebt. Zo begin je klein en concreet, en breid je uit

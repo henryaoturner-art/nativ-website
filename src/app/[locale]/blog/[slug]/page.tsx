@@ -86,7 +86,7 @@ export default async function BlogPostPage({
             <Link href="/blog" className="text-sage text-sm hover:underline mb-8 inline-block">
               ← Terug naar blog
             </Link>
-            <div className="flex items-center gap-3 text-sm text-grey/50 mb-4">
+            <div className="flex items-center gap-3 text-sm text-muted mb-4">
               {post.tag && (
                 <span className="bg-sage/10 text-sage px-3 py-0.5 rounded-full text-xs">
                   {post.tag}
@@ -100,7 +100,7 @@ export default async function BlogPostPage({
                 </>
               )}
             </div>
-            <h1 className="font-serif text-3xl md:text-[42px] leading-tight text-grey">
+            <h1 className="font-serif text-grey">
               {post.title}
             </h1>
           </FadeIn>
@@ -122,14 +122,14 @@ export default async function BlogPostPage({
 
           <FadeIn delay={400}>
             <div className="mt-16 pt-8 border-t border-sage-light text-center">
-              <p className="text-grey/60 font-light">
+              <p className="text-muted">
                 Benieuwd hoe een{" "}
                 <Link href="/company-brain" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   Company Brain
                 </Link>{" "}
                 de kennis van jouw bedrijf vastlegt?
               </p>
-              <p className="mt-3 text-grey/60 font-light">
+              <p className="mt-3 text-muted">
                 Lees ook wat onze{" "}
                 <Link href="/workflows" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   AI-workflows

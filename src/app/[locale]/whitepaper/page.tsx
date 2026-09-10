@@ -114,13 +114,13 @@ export default function WhitepaperPage() {
         <div className="max-w-[800px] mx-auto">
 
           <FadeIn delay={100}>
-            <h1 className="font-serif text-3xl md:text-5xl lg:text-[52px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
               {c.heroTitle2 && <><br />{c.heroTitle2}</>}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/60 italic leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-muted italic leading-relaxed">
               {c.heroSub}
             </p>
           </FadeIn>
@@ -133,14 +133,14 @@ export default function WhitepaperPage() {
           {/* Left: What's inside */}
           <FadeIn>
             <div>
-              <h2 className="font-serif text-2xl text-grey mb-6">
+              <h2 className="font-serif text-grey mb-6">
                 {c.insideTitle}
               </h2>
               <ul className="space-y-3">
                 {[c.inside1, c.inside2, c.inside3, c.inside4, c.inside5, c.inside6].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-sage mt-0.5 shrink-0">✓</span>
-                    <span className="text-sm text-grey/80 font-light leading-relaxed">{item}</span>
+                    <span className="text-sm text-grey leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -153,11 +153,11 @@ export default function WhitepaperPage() {
               {submitted ? (
                 <div className="text-center py-8">
                   <p className="font-serif text-2xl text-sage">{c.thankYou}</p>
-                  <p className="mt-3 text-grey/60 font-light text-sm leading-relaxed">
+                  <p className="mt-3 text-muted text-sm leading-relaxed">
                     {c.thankYouSub}
                   </p>
                   <div className="mt-6 space-y-3">
-                    <div className="text-xs text-grey/60 font-medium">Choose language:</div>
+                    <div className="text-xs text-muted font-medium">Choose language:</div>
                     <div className="flex gap-3">
                       <Button className="flex-1"
                         href="/downloads/nativ-whitepaper-v2.4-nl.pdf"
@@ -176,14 +176,14 @@ export default function WhitepaperPage() {
                 </div>
               ) : (
                 <>
-                  <h2 className="font-serif text-xl text-grey mb-1">
+                  <h2 className="font-serif text-grey mb-1">
                     {c.gateTitle}
                   </h2>
                   <p className="text-sage text-xs font-sans font-medium mb-6">{c.gateNote}</p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm text-grey/60 mb-1.5">
+                      <label htmlFor="name" className="block text-sm text-muted mb-1.5">
                         {c.nameLabel} *
                       </label>
                       <input
@@ -195,7 +195,7 @@ export default function WhitepaperPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm text-grey/60 mb-1.5">
+                      <label htmlFor="email" className="block text-sm text-muted mb-1.5">
                         {c.emailLabel} *
                       </label>
                       <input
@@ -207,7 +207,7 @@ export default function WhitepaperPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm text-grey/60 mb-1.5">
+                      <label htmlFor="company" className="block text-sm text-muted mb-1.5">
                         {c.companyLabel}
                       </label>
                       <input
@@ -218,7 +218,7 @@ export default function WhitepaperPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="role" className="block text-sm text-grey/60 mb-1.5">
+                      <label htmlFor="role" className="block text-sm text-muted mb-1.5">
                         {c.roleLabel}
                       </label>
                       <input
@@ -230,7 +230,7 @@ export default function WhitepaperPage() {
                     </div>
                     
                     <div>
-                      <label htmlFor="language" className="block text-sm text-grey/60 mb-1.5">
+                      <label htmlFor="language" className="block text-sm text-muted mb-1.5">
                         {language === 'en' ? 'Whitepaper language' : 'Taal whitepaper'}
                       </label>
                       <select
@@ -258,7 +258,7 @@ export default function WhitepaperPage() {
                       {loading ? c.submitting : c.submit}
                     </Button>
                   </form>
-                  <p className="mt-4 text-xs text-grey/40 text-center">{c.privacy}</p>
+                  <p className="mt-4 text-xs text-muted text-center">{c.privacy}</p>
                 </>
               )}
             </div>

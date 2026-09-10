@@ -112,12 +112,12 @@ export default function ScanStartPage() {
     <section className="py-10 md:py-14 px-6 pb-20 md:pb-28">
       <div className="max-w-[560px] mx-auto">
         <FadeIn>
-          <h1 className="font-serif text-4xl md:text-5xl leading-[1.15] text-grey text-center">
+          <h1 className="font-serif text-grey text-center">
             {c.heroTitle}
           </h1>
         </FadeIn>
         <FadeIn delay={150}>
-          <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed text-center">
+          <p className="mt-6 text-lg text-grey leading-relaxed text-center">
             {c.heroSub}
           </p>
         </FadeIn>
@@ -127,7 +127,7 @@ export default function ScanStartPage() {
             className="mt-10 bg-surface rounded-xl p-8 border border-sage-light space-y-5"
           >
             <div>
-              <label htmlFor="company" className="block text-sm text-grey/60 mb-1.5">
+              <label htmlFor="company" className="block text-sm text-muted mb-1.5">
                 {c.companyLabel}
               </label>
               <input
@@ -140,7 +140,7 @@ export default function ScanStartPage() {
               />
             </div>
             <div>
-              <label htmlFor="name" className="block text-sm text-grey/60 mb-1.5">
+              <label htmlFor="name" className="block text-sm text-muted mb-1.5">
                 {c.nameLabel}
               </label>
               <input
@@ -153,7 +153,7 @@ export default function ScanStartPage() {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-grey/60 mb-1.5">
+              <label htmlFor="email" className="block text-sm text-muted mb-1.5">
                 {c.emailLabel}
               </label>
               <input
@@ -164,10 +164,10 @@ export default function ScanStartPage() {
                 maxLength={200}
                 className="w-full px-4 py-3 rounded-lg border border-sage-light bg-cream/50 text-grey focus:outline-none focus:ring-2 focus:ring-sage/30 transition"
               />
-              <p className="mt-1.5 text-xs text-grey/40">{c.emailHelp}</p>
+              <p className="mt-1.5 text-xs text-muted">{c.emailHelp}</p>
             </div>
             <div>
-              <label htmlFor="heardAbout" className="block text-sm text-grey/60 mb-1.5">
+              <label htmlFor="heardAbout" className="block text-sm text-muted mb-1.5">
                 {c.heardLabel}
               </label>
               <select
@@ -183,7 +183,7 @@ export default function ScanStartPage() {
                   </option>
                 ))}
               </select>
-              <p className="mt-1.5 text-xs text-grey/40">{c.heardHelp}</p>
+              <p className="mt-1.5 text-xs text-muted">{c.heardHelp}</p>
             </div>
             {error && <p className="text-error text-sm">{error}</p>}
             <Button full
@@ -192,7 +192,7 @@ export default function ScanStartPage() {
             >
               {loading ? c.submitting : c.submit}
             </Button>
-            <p className="text-xs text-grey/40 leading-relaxed">
+            <p className="text-xs text-muted leading-relaxed">
               {c.privacy}{" "}
               <Link href="/privacy" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                 {c.privacyLink}

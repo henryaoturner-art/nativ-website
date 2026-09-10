@@ -174,12 +174,12 @@ export default function WorkflowsPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               {c.heroTitle}
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed max-w-2xl mx-auto">
               {c.heroSub}
             </p>
           </FadeIn>
@@ -190,12 +190,12 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.whatTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
               {c.whatBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -208,10 +208,10 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[820px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.examplesTitle}
             </h2>
-            <p className="mt-5 text-lg font-light text-grey/70 leading-relaxed max-w-[680px]">
+            <p className="mt-5 text-lg text-grey leading-relaxed max-w-[680px]">
               {c.examplesIntro}
             </p>
           </FadeIn>
@@ -219,8 +219,8 @@ export default function WorkflowsPage() {
             {c.examples.map((ex, i) => (
               <FadeIn key={ex.area} delay={150 + i * 100}>
                 <div className="h-full bg-surface rounded-xl p-6 border border-sage-light">
-                  <h3 className="font-serif text-xl text-grey">{ex.area}</h3>
-                  <p className="mt-3 text-base font-light text-grey/80 leading-relaxed">
+                  <h3 className="font-serif text-grey">{ex.area}</h3>
+                  <p className="mt-3 text-base text-grey leading-relaxed">
                     {ex.body}
                   </p>
                 </div>
@@ -228,7 +228,7 @@ export default function WorkflowsPage() {
             ))}
           </div>
           <FadeIn delay={550}>
-            <p className="mt-8 text-base font-light text-grey/60 leading-relaxed max-w-[680px]">
+            <p className="mt-8 text-base text-muted leading-relaxed max-w-[680px]">
               {c.examplesNote}
             </p>
           </FadeIn>
@@ -239,12 +239,12 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.controlTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
               {c.controlBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -257,12 +257,12 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.chatgptTitle}
             </h2>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
               {c.chatgptBody.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -275,7 +275,7 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.faqTitle}
             </h2>
           </FadeIn>
@@ -291,10 +291,10 @@ export default function WorkflowsPage() {
       <section className="py-12 md:py-16 px-6 bg-white">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight">
+            <h2 className="font-serif">
               {c.ctaTitle}
             </h2>
-            <p className="mt-5 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-5 text-lg text-grey leading-relaxed">
               {c.ctaBody}
             </p>
             <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">

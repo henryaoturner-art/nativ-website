@@ -265,10 +265,10 @@ export default function ScanWizard({
       <section className="py-16 px-6 pb-24">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-3xl md:text-4xl text-grey">
+            <h1 className="font-serif text-grey">
               {c.respondentDoneTitle}
             </h1>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               {c.respondentDoneBody.replace("{company}", companyName)}
             </p>
           </FadeIn>
@@ -282,9 +282,9 @@ export default function ScanWizard({
       <div className="max-w-[720px] mx-auto">
         <FadeIn>
           {!isRespondent && (
-            <p className="text-sm text-grey/50">{c.stepOf.replace("{n}", String(block))}</p>
+            <p className="text-sm text-muted">{c.stepOf.replace("{n}", String(block))}</p>
           )}
-          <h1 className="mt-1 font-serif text-3xl md:text-4xl text-grey">
+          <h1 className="mt-1 font-serif text-grey">
             {isRespondent
               ? c.respondentTitle.replace("{department}", departmentName)
               : block === 1
@@ -292,7 +292,7 @@ export default function ScanWizard({
                 : c.block2}
           </h1>
           {isRespondent && (
-            <p className="mt-3 text-grey/60 font-light leading-relaxed">
+            <p className="mt-3 text-muted leading-relaxed">
               {c.respondentIntro.replace("{company}", companyName)}
             </p>
           )}
@@ -305,11 +305,11 @@ export default function ScanWizard({
                 }}
               />
             </div>
-            <span className="text-xs text-grey/50 whitespace-nowrap">
+            <span className="text-xs text-muted whitespace-nowrap">
               {progress.answered}/{progress.total} {c.answered}
             </span>
           </div>
-          <p className="mt-4 text-xs text-grey/40">
+          <p className="mt-4 text-xs text-muted">
             {c.linkHint}{" "}
             <button
               type="button"
@@ -320,7 +320,7 @@ export default function ScanWizard({
             </button>
           </p>
           {isTeamOwner && (
-            <p className="mt-2 text-xs text-grey/40">
+            <p className="mt-2 text-xs text-muted">
               {c.teamOwnerBanner}{" "}
               <Button variant="tertiary" href={`/scan/${token}/team`}>
                 {c.teamOwnerBannerLink}
@@ -354,7 +354,7 @@ export default function ScanWizard({
             <button
               type="button"
               onClick={() => switchBlock(1)}
-              className="text-grey/60 hover:text-grey transition-colors cursor-pointer"
+              className="text-muted hover:text-grey transition-colors cursor-pointer"
             >
               ← {c.back}
             </button>
@@ -386,13 +386,13 @@ export default function ScanWizard({
           </p>
         )}
         {completing && !isRespondent && !isTeamOwner && (
-          <p className="mt-4 text-sm text-grey/60 text-right">{c.completing}</p>
+          <p className="mt-4 text-sm text-muted text-right">{c.completing}</p>
         )}
         {completeError && <p className="mt-4 text-error text-sm text-right">{completeError}</p>}
 
         <div className="fixed bottom-4 right-4 pointer-events-none">
           {saveState === "saving" && (
-            <span className="text-xs text-grey/50 bg-surface border border-sage-light rounded-full px-3 py-1.5">
+            <span className="text-xs text-muted bg-surface border border-sage-light rounded-full px-3 py-1.5">
               {c.saving}
             </span>
           )}
@@ -451,21 +451,21 @@ function QuestionCard({
       <p className="text-grey leading-relaxed">
         {question.text[lang]}
         {!required && (
-          <span className="ml-2 text-xs text-grey/40">({labels.optional})</span>
+          <span className="ml-2 text-xs text-muted">({labels.optional})</span>
         )}
       </p>
       {highlight && (
         <p className="mt-2 text-sm text-error">{labels.missingField}</p>
       )}
       {help && (
-        <p className="mt-2 text-sm text-grey/55 font-light leading-relaxed">{help}</p>
+        <p className="mt-2 text-sm text-muted leading-relaxed">{help}</p>
       )}
       {question.moreTips && (
         <details className="mt-2">
           <summary className="text-sm text-sage cursor-pointer select-none">
             {labels.moreTips}
           </summary>
-          <p className="mt-1.5 text-sm text-grey/55 font-light leading-relaxed">
+          <p className="mt-1.5 text-sm text-muted leading-relaxed">
             {question.moreTips[lang]}
           </p>
         </details>

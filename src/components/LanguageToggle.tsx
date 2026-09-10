@@ -48,7 +48,7 @@ export default function LanguageToggle() {
       >
         NL
       </NextLink>
-      <span className="text-grey/30" aria-hidden="true">|</span>
+      <span className="text-muted" aria-hidden="true">|</span>
       <NextLink
         href={enHref}
         lang="en"

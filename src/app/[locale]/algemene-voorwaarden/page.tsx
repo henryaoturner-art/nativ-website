@@ -293,12 +293,12 @@ export default function VoorwaardenPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               Algemene Voorwaarden
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg font-light text-grey/70 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Nativ B.V. · {VERSIE}
             </p>
           </FadeIn>
@@ -311,15 +311,15 @@ export default function VoorwaardenPage() {
           {articles.map((a) => (
             <FadeIn key={a.n}>
               <article className="mt-10 first:mt-0">
-                <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
+                <h2 className="font-serif text-grey">
                   {a.n}. {a.title}
                 </h2>
                 {a.intro && (
-                  <p className="mt-4 text-grey/70 font-light leading-relaxed">{a.intro}</p>
+                  <p className="mt-4 text-grey leading-relaxed">{a.intro}</p>
                 )}
                 <div className="mt-4 space-y-3">
                   {a.clauses.map((cl) => (
-                    <p key={cl.num} className="text-grey/70 font-light leading-relaxed">
+                    <p key={cl.num} className="text-grey leading-relaxed">
                       <span className="text-sage font-normal tabular-nums mr-2">{cl.num}</span>
                       {cl.text}
                     </p>
@@ -332,10 +332,10 @@ export default function VoorwaardenPage() {
           {/* Bijlage A: Verwerkersovereenkomst */}
           <FadeIn>
             <div className="mt-14 pt-10 border-t border-grey/10">
-              <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
+              <h2 className="font-serif text-grey">
                 Bijlage A: Verwerkersovereenkomst (AVG art. 28)
               </h2>
-              <p className="mt-4 text-grey/70 font-light leading-relaxed">
+              <p className="mt-4 text-grey leading-relaxed">
                 Deze verwerkersovereenkomst maakt deel uit van de overeenkomst en regelt hoe
                 Nativ (verwerker) persoonsgegevens verwerkt in opdracht van de klant
                 (verwerkingsverantwoordelijke). Bij strijdigheid met de algemene voorwaarden
@@ -351,14 +351,14 @@ export default function VoorwaardenPage() {
                       "Nativ verwerkt persoonsgegevens uitsluitend op basis van de gedocumenteerde instructies van de klant, tenzij een wettelijke verplichting anders vereist; in dat geval meldt Nativ dit vooraf, tenzij de wet dat verbiedt.",
                       "Nativ informeert de klant indien een instructie naar zijn oordeel in strijd is met de AVG of andere gegevensbeschermingswetgeving.",
                     ].map((t, i) => (
-                      <p key={i} className="text-grey/70 font-light leading-relaxed">{t}</p>
+                      <p key={i} className="text-grey leading-relaxed">{t}</p>
                     ))}
                   </div>
                 </div>
 
                 <div>
                   <h3 className="font-normal text-grey">A.2 Onderwerp, aard, doel en duur</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Het hosten en leveren van de dienst (Company Brain en de daarop draaiende workflows):
                     het opslaan, structureren, doorzoekbaar maken van en het genereren van uitkomsten
                     op basis van de klantgegevens, ten behoeve van de bedrijfsvoering van de klant.
@@ -369,7 +369,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.3 Categorieën betrokkenen en gegevens</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Betrokkenen en soorten gegevens worden bepaald door de klant, doorgaans
                     medewerkers, klanten, contactpersonen en relaties, en gegevens als naam- en
                     contactgegevens, functie/rol en de inhoud van aangeleverde documenten en kennis.
@@ -382,10 +382,10 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.4 Beveiliging (art. 32 AVG)</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ treft passende technische en organisatorische maatregelen, waaronder:
                   </p>
-                  <ul className="mt-2 space-y-1.5 text-grey/70 font-light leading-relaxed list-disc pl-5">
+                  <ul className="mt-2 space-y-1.5 text-grey leading-relaxed list-disc pl-5">
                     <li>hosting en verwerking uitsluitend binnen de Europese Unie (AWS, regio EU-North-1, Stockholm);</li>
                     <li>versleuteling van gegevens in transit (TLS/SSL) en at rest;</li>
                     <li>logische scheiding van klantdata tussen klanten (multi-tenant isolatie op databaseniveau);</li>
@@ -397,14 +397,14 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.5 Geheimhouding</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     De personen die toegang hebben tot de persoonsgegevens zijn tot geheimhouding verplicht.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-normal text-grey">A.6 Subverwerkers</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     De klant verleent Nativ algemene toestemming om subverwerkers in te schakelen.
                     De actuele subverwerkers zijn:
                   </p>
@@ -417,7 +417,7 @@ export default function VoorwaardenPage() {
                           <th className="py-2 font-normal">Locatie</th>
                         </tr>
                       </thead>
-                      <tbody className="text-grey/70 font-light">
+                      <tbody className="text-grey">
                         <tr className="border-b border-grey/10">
                           <td className="py-2 pr-4">Amazon Web Services (AWS)</td>
                           <td className="py-2 pr-4">hosting en infrastructuur</td>
@@ -431,7 +431,7 @@ export default function VoorwaardenPage() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="mt-3 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-3 text-grey leading-relaxed">
                     Nativ legt elke subverwerker ten minste dezelfde verplichtingen op en blijft
                     verantwoordelijk voor hun nakoming. Bij een voorgenomen wijziging informeert Nativ
                     de klant vooraf; de klant mag daartegen binnen dertig (30) dagen op redelijke, met
@@ -441,7 +441,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.7 Bijstand</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ verleent redelijke bijstand bij verzoeken van betrokkenen (inzage, rectificatie,
                     wissing, beperking, dataportabiliteit en bezwaar) en bij de verplichtingen van de klant
                     uit de artikelen 32 tot en met 36 AVG.
@@ -450,7 +450,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.8 Datalekken</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ meldt een inbreuk in verband met persoonsgegevens zonder onredelijke vertraging
                     na ontdekking aan de klant, en waar mogelijk binnen achtenveertig (48) uur, met de
                     beschikbare informatie. De melding aan de Autoriteit Persoonsgegevens en/of betrokkenen
@@ -460,7 +460,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.9 Doorgifte buiten de EER</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ geeft de persoonsgegevens niet door aan een land buiten de Europese Economische
                     Ruimte, tenzij op basis van een geldig doorgiftemechanisme (een adequaatheidsbesluit
                     of de EU-modelcontractbepalingen) en na voorafgaande kennisgeving aan de klant.
@@ -469,7 +469,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.10 Teruggave en verwijdering</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Bij het einde van de overeenkomst stelt Nativ de klantgegevens als export ter beschikking
                     (artikel 9.3). Daarna verwijdert Nativ de persoonsgegevens binnen 30 dagen na de
                     exporttermijn, behoudens een wettelijke bewaarplicht; op verzoek bevestigt Nativ de
@@ -479,7 +479,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.11 Audit</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ stelt op verzoek de informatie ter beschikking die nodig is om naleving aan te
                     tonen en maakt audits mogelijk (ten hoogste eenmaal per jaar, redelijk aangekondigd,
                     vertrouwelijk en voor rekening van de klant), of verstrekt een onafhankelijk auditrapport.
@@ -488,7 +488,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">A.12 Aansprakelijkheid</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Op deze verwerkersovereenkomst is de aansprakelijkheidsregeling van artikel 13 van
                     toepassing, onverminderd dwingend recht.
                   </p>
@@ -500,17 +500,17 @@ export default function VoorwaardenPage() {
           {/* Bijlage B — SLA */}
           <FadeIn>
             <div className="mt-14 pt-10 border-t border-grey/10">
-              <h2 className="font-serif text-2xl md:text-[28px] leading-tight text-grey">
+              <h2 className="font-serif text-grey">
                 Bijlage B: Service Level Agreement
               </h2>
-              <p className="mt-4 text-grey/70 font-light leading-relaxed">
+              <p className="mt-4 text-grey leading-relaxed">
                 Deze SLA maakt deel uit van de overeenkomst en beschrijft het serviceniveau van de dienst.
               </p>
 
               <div className="mt-6 space-y-5">
                 <div>
                   <h3 className="font-normal text-grey">B.1 Beschikbaarheid</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Nativ streeft naar een beschikbaarheid van 99,5% per kalendermaand (inspanningsverbintenis).
                     Bij de berekening tellen niet mee: gepland onderhoud, overmacht, oorzaken aan de zijde van
                     de klant, diens gebruikers of derden, en onbeschikbaarheid van door de klant voorgeschreven
@@ -520,7 +520,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">B.2 Onderhoud</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Gepland onderhoud dat de beschikbaarheid merkbaar kan beïnvloeden voert Nativ zo veel
                     mogelijk buiten kantooruren uit en kondigt Nativ, waar redelijk mogelijk, ten minste
                     24 uur van tevoren aan. Spoedeisend onderhoud mag Nativ te allen tijde en zonder
@@ -530,7 +530,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">B.3 Support</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Supportmeldingen worden gedaan via de supportfunctie in het platform. Openingstijden:
                     werkdagen van 09:00 tot 17:00 (CET), met uitzondering van Nederlandse feestdagen. De
                     reactietijd is de eerste inhoudelijke reactie, niet de oplostijd:
@@ -544,7 +544,7 @@ export default function VoorwaardenPage() {
                           <th className="py-2 font-normal">Reactietijd-streven</th>
                         </tr>
                       </thead>
-                      <tbody className="text-grey/70 font-light">
+                      <tbody className="text-grey">
                         <tr className="border-b border-grey/10">
                           <td className="py-2 pr-4">P1: Kritiek</td>
                           <td className="py-2 pr-4">Dienst onbruikbaar voor alle gebruikers</td>
@@ -572,7 +572,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">B.4 Escalatie</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     Wordt een P1-melding niet binnen een redelijke termijn opgepakt, dan kan de klant
                     escaleren via het door Nativ aangewezen escalatiecontact.
                   </p>
@@ -580,7 +580,7 @@ export default function VoorwaardenPage() {
 
                 <div>
                   <h3 className="font-normal text-grey">B.5 Servicecredits</h3>
-                  <p className="mt-2 text-grey/70 font-light leading-relaxed">
+                  <p className="mt-2 text-grey leading-relaxed">
                     In deze versie zijn aan het beschikbaarheidsstreven geen servicecredits of boetes verbonden.
                   </p>
                 </div>
@@ -591,7 +591,7 @@ export default function VoorwaardenPage() {
           {/* Contact */}
           <FadeIn>
             <div className="mt-12 pt-8 border-t border-grey/10">
-              <p className="text-grey/60 font-light leading-relaxed text-sm">
+              <p className="text-muted leading-relaxed text-sm">
                 Vragen over deze voorwaarden of de bijlagen? Mail{" "}
                 <a href="mailto:info@gonativ.nl" className="text-grey underline decoration-sage-dark underline-offset-4 hover:decoration-grey">
                   info@gonativ.nl

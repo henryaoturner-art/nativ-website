@@ -28,12 +28,12 @@ export default function BlogPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="font-serif text-grey">
               Blog
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/70">
+            <p className="mt-6 text-lg md:text-xl text-grey">
               Inzichten over AI, kennismanagement en het Company Brain voor het mkb.
             </p>
           </FadeIn>
@@ -44,7 +44,7 @@ export default function BlogPage() {
       <section className="px-6 pb-20 md:pb-28">
         <div className="max-w-[900px] mx-auto space-y-6">
           {posts.length === 0 && (
-            <p className="text-center text-grey/50 font-light">Binnenkort de eerste artikelen.</p>
+            <p className="text-center text-muted">Binnenkort de eerste artikelen.</p>
           )}
           {posts.map((post, i) => (
             <FadeIn key={post.slug} delay={i * 100}>
@@ -59,7 +59,7 @@ export default function BlogPage() {
                     />
                   )}
                   <div className="p-8">
-                    <div className="flex items-center gap-3 text-sm text-grey/50 mb-3">
+                    <div className="flex items-center gap-3 text-sm text-muted mb-3">
                       {post.tag && (
                         <span className="bg-sage/10 text-sage px-3 py-0.5 rounded-full text-xs">
                           {post.tag}
@@ -73,10 +73,10 @@ export default function BlogPage() {
                         </>
                       )}
                     </div>
-                    <h2 className="font-serif text-xl md:text-2xl group-hover:text-sage transition-colors">
+                    <h2 className="font-serif group-hover:text-sage transition-colors">
                       {post.title}
                     </h2>
-                    <p className="mt-3 text-grey/60 font-light leading-relaxed">{post.excerpt}</p>
+                    <p className="mt-3 text-muted leading-relaxed">{post.excerpt}</p>
                   </div>
                 </article>
               </Link>

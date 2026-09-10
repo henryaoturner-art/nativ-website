@@ -61,15 +61,15 @@ export default function PillarBedrijfsbreinPage() {
       <section className="py-10 md:py-14 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <p className="text-sage text-sm font-medium tracking-wide uppercase">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">
               Kennis
             </p>
-            <h1 className="mt-3 font-serif text-4xl md:text-5xl lg:text-[56px] leading-[1.15] text-grey">
+            <h1 className="mt-3 font-serif text-grey">
               Wat is een Company Brain?
             </h1>
           </FadeIn>
           <FadeIn delay={150}>
-            <p className="mt-6 text-lg md:text-xl font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               Een Company Brain (ook wel bedrijfsbrein of tweede brein) is één
               centrale kennislaag waarin samenkomt wat je bedrijf weet: uit de
               hoofden van je mensen, uit je systemen en uit de buitenwereld.
@@ -89,10 +89,10 @@ export default function PillarBedrijfsbreinPage() {
       <section className="py-8 md:py-12 px-6">
         <div className="max-w-[680px] mx-auto space-y-14">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Waarom losse AI-tools generiek aanvoelen
             </h2>
-            <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-6 space-y-5 text-lg text-grey leading-relaxed">
               <p>
                 Je hebt ChatGPT geprobeerd. Het schrijft een nette mail, maar
                 weet niets van jouw klanten, jouw afspraken of jouw toon. Dat
@@ -111,14 +111,14 @@ export default function PillarBedrijfsbreinPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Company Brain, chatbot of RAG: het verschil
             </h2>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Een Company Brain is geen chatbot en geen zoekmachine. Kort het
               onderscheid:
             </p>
-            <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+            <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
@@ -149,21 +149,21 @@ export default function PillarBedrijfsbreinPage() {
                 </span>
               </li>
             </ul>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Het verschil zit dus niet in een beter model, maar in
               gestructureerde, herleidbare context.
             </p>
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Hoe een Company Brain wordt gevuld
             </h2>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Een Company Brain put uit twee bronnen. Die combinatie is wat het
               compleet maakt, en wat een losse chatbot mist:
             </p>
-            <ul className="mt-6 space-y-4 text-lg font-light text-grey/80 leading-relaxed">
+            <ul className="mt-6 space-y-4 text-lg text-grey leading-relaxed">
               <li className="flex items-start gap-3">
                 <span className="text-sage mt-1.5 shrink-0">·</span>
                 <span>
@@ -187,7 +187,7 @@ export default function PillarBedrijfsbreinPage() {
                 </span>
               </li>
             </ul>
-            <p className="mt-6 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-6 text-lg text-grey leading-relaxed">
               Je hoeft niet alles vast te leggen. nativ begint met de Minimum
               Viable Context (MVC™): de gestructureerde twintig procent van je
               bedrijfscontext die zo'n tachtig procent van de AI-taken dekt.
@@ -196,10 +196,10 @@ export default function PillarBedrijfsbreinPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Workflows bovenop de Brain
             </h2>
-            <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-6 space-y-5 text-lg text-grey leading-relaxed">
               <p>
                 Op de Brain draaien workflows. Een workflow neemt één
                 terugkerende klus over, van begin tot eind, en put daarbij uit je
@@ -224,10 +224,10 @@ export default function PillarBedrijfsbreinPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Waarom dit voor het mkb juist groter speelt
             </h2>
-            <div className="mt-6 space-y-5 text-lg font-light text-grey/80 leading-relaxed">
+            <div className="mt-6 space-y-5 text-lg text-grey leading-relaxed">
               <p>
                 In een mkb-bedrijf zit de kennis vaak in een paar hoofden.
                 Vertrekt iemand, dan vertrekt de kennis mee. Een groot bedrijf
@@ -255,10 +255,10 @@ export default function PillarBedrijfsbreinPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto text-center bg-surface rounded-2xl px-8 py-12 border border-sage-light">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[38px] leading-tight text-grey">
+            <h2 className="font-serif text-grey">
               Hoe je begint
             </h2>
-            <p className="mt-5 text-lg font-light text-grey/80 leading-relaxed">
+            <p className="mt-5 text-lg text-grey leading-relaxed">
               De eerste stap is de gratis AI-scan. In ongeveer twintig
               minuten breng je in kaart waar in jouw bedrijf veel tijd en herhaling
               in zit. Je krijgt een concreet overzicht, op volgorde van wat het
@@ -277,7 +277,7 @@ export default function PillarBedrijfsbreinPage() {
       <section className="py-12 md:py-16 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <h2 className="font-serif text-3xl md:text-[42px] leading-tight mb-10 text-grey">
+            <h2 className="font-serif mb-10 text-grey">
               Veelgestelde vragen
             </h2>
           </FadeIn>
