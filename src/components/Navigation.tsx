@@ -29,9 +29,8 @@ const navLinks = {
 };
 
 // Header-CTA is de gratis AI-scan, de voordeur sinds 2 september (beslissing D-1,
-// KAN-425). De whitepaper blijft bereikbaar als tekstlink in het mobiele menu en in de footer.
+// KAN-425). De whitepaper staat in de footer (D9).
 const ctaText = { nl: "Doe de gratis AI-scan", en: "Take the free AI scan" };
-const whitepaperText = { nl: "Download de whitepaper", en: "Download the whitepaper" };
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,7 +42,6 @@ export default function Navigation() {
 
   const links = t(navLinks);
   const cta = t(ctaText);
-  const whitepaper = t(whitepaperText);
 
   useEffect(() => {
     // Any scroll at all makes the bar opaque: content starts directly below the
@@ -76,8 +74,8 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm tracking-wide text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
-                currentPath === link.href ? "font-semibold underline" : ""
+              className={`text-[15px] font-medium text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
+                currentPath === link.href ? "underline" : ""
               }`}
             >
               {link.label}
@@ -116,8 +114,8 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block text-base text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
-                  currentPath === link.href ? "font-semibold underline" : ""
+                className={`block font-serif text-[22px] leading-tight text-grey transition-colors underline-offset-8 decoration-2 decoration-sage hover:underline ${
+                  currentPath === link.href ? "underline" : ""
                 }`}
               >
                 {link.label}
@@ -129,11 +127,6 @@ export default function Navigation() {
             <Button className="mt-4" href="/scan" full>
               {cta}
             </Button>
-            <div className="pt-2">
-              <Button variant="tertiary" href="/whitepaper">
-                {whitepaper}
-              </Button>
-            </div>
           </div>
         </div>
       )}
