@@ -363,18 +363,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Signals */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted">
-              <span>{c.trustEU}</span>
-              <span aria-hidden="true">·</span>
-              <span>{c.trustGDPR}</span>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
 
       {/* CTA / Closer */}
       <section className="py-16 md:py-20 lg:py-24 px-6">
