@@ -1,7 +1,10 @@
 "use client";
 
 import Button from "@/components/Button";
-import { ArrowRight } from "lucide-react";
+import Card from "@/components/Card";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
+import { ArrowRight, UserMinus, UserPlus } from "lucide-react";
 import Stars from "@/components/Stars";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
@@ -25,6 +28,7 @@ const translations = {
     problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
     problemP3: "Dat is wat een Company Brain doet: het brengt samen wat je mensen weten en wat je systemen weten. Je ziet wat erin staat, elk stuk kennis heeft een eigenaar, en je ziet altijd waar een antwoord vandaan komt.",
     howTitle: "Hoe we werken",
+    howKicker: "Zo werken we",
     steps: [
       {
         num: "1", title: "Scan",
@@ -66,6 +70,7 @@ const translations = {
     problemP2b: "And when someone leaves, what they knew stays behind.",
     problemP3: "That is what a Company Brain does: it brings together what your people know and what your systems know. You can see what is in it, every piece of knowledge has an owner, and you can always see where an answer came from.",
     howTitle: "How we work",
+    howKicker: "How we work",
     steps: [
       {
         num: "1", title: "Scan",
@@ -239,52 +244,36 @@ export default function HomePage() {
         />
       ))}
 
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey max-w-4xl mx-auto">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 md:mt-8 text-lg md:text-xl text-grey max-w-2xl mx-auto leading-relaxed">
+      {/* D1: hero in twee kolommen (7 en 5). Links H1, intro, de twee knoppen en de
+          bewijsregel; rechts, verticaal gecentreerd, de drie stappen als de ene
+          signatuurkaart van de pagina. Het productbeeld (H4) wacht op NTH-309. */}
+      <Section hero>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-center">
+          <FadeIn className="md:col-span-7">
+            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+            <p className="mt-6 max-w-[640px] text-grey leading-relaxed">
               {c.heroSub1}{" "}
               <br className="hidden md:block" />
               {c.heroSub2}
             </p>
-          </FadeIn>
-          {c.heroSeoLine && (
-            <FadeIn delay={300}>
-              <h2 className="mt-5 font-medium text-muted max-w-2xl mx-auto">
+            {c.heroSeoLine && (
+              <h2 className="mt-5 font-medium text-muted max-w-[640px]">
                 {c.heroSeoLine}
               </h2>
-            </FadeIn>
-          )}
-          <FadeIn delay={400}>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                href="/scan"
-              >
-                {c.ctaScan}
-              </Button>
-              <Button variant="secondary"
-                href="/contact"
-              >
-                {c.ctaPrimary}
-              </Button>
+            )}
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+              <Button href="/scan">{c.ctaScan}</Button>
+              <Button variant="secondary" href="/contact">{c.ctaPrimary}</Button>
             </div>
-          </FadeIn>
-          {/* Proof next to the ask, not three screens down. Visible copy only:
-              no Review/aggregateRating markup, per the same Google self-serving
-              review rule documented in cases/page.tsx. */}
-          <FadeIn delay={500}>
-            <figure className="mt-8 mx-auto max-w-xl text-sm text-grey">
-              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {/* Proof next to the ask, not three screens down. Visible copy only:
+                no Review/aggregateRating markup, per the same Google self-serving
+                review rule documented in cases/page.tsx. */}
+            <figure className="mt-8 max-w-[640px] text-sm text-grey">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                 <Stars />
                 <span className="sr-only">{c.proofAria}</span>
                 {/* /cases is verborgen (8 sep 2026); de score staat als tekst. */}
-                <span className="text-sage">{c.proofScore}</span>
+                <span className="font-medium text-sage-dark">{c.proofScore}</span>
               </div>
               {c.proofQuote && (
                 <blockquote className="mt-2 italic">
@@ -296,98 +285,73 @@ export default function HomePage() {
               </figcaption>
             </figure>
           </FadeIn>
-        </div>
-      </section>
 
-      {/* Payoff: what the hero's problem looks like once it is solved */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.problemTitle}
-            </h2>
+          <FadeIn delay={200} className="md:col-span-5">
+            <Kicker>{c.howKicker}</Kicker>
+            <Card signature>
+              <ol className="divide-y divide-border">
+                {c.steps.map((step) => (
+                  <li key={step.num} className="flex gap-4 py-4 first:pt-0 last:pb-0">
+                    <span className="w-6 shrink-0 font-serif text-[40px] leading-none text-sage-dark">
+                      {step.num}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-serif text-grey">{step.title}</h3>
+                      <p className="mt-2 text-grey leading-relaxed">{step.desc}</p>
+                      <p className="mt-2 flex items-start gap-2 text-sm text-sage-dark">
+                        <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="mt-0.5 shrink-0" />
+                        <span>{step.detail}</span>
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Card>
           </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-grey">
+        </div>
+      </Section>
+
+      {/* D1: wat er verandert, twee kolommen. Links de kop en de twee alinea's,
+          rechts de twee uitkomstregels als kaarten met een lucide-icoon. */}
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-center">
+          <FadeIn className="md:col-span-7">
+            <h2 className="font-serif text-grey">{c.problemTitle}</h2>
+            <div className="mt-6 max-w-[640px] space-y-6 text-grey leading-relaxed">
               <p>{c.problemP1}</p>
-              <p>
-                {c.problemP2a}
-                <br />
-                {c.problemP2b}
-              </p>
               <p>{c.problemP3}</p>
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* Three-Step Journey */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-center mb-16">
-              {c.howTitle}
-            </h2>
+          <FadeIn delay={150} className="md:col-span-5">
+            <div className="grid grid-cols-1 gap-6">
+              <Card>
+                <UserPlus size={24} strokeWidth={1.5} className="text-sage-dark" aria-hidden="true" />
+                <p className="mt-3 font-serif text-[22px] leading-[1.25] text-grey">{c.problemP2a}</p>
+              </Card>
+              <Card>
+                <UserMinus size={24} strokeWidth={1.5} className="text-sage-dark" aria-hidden="true" />
+                <p className="mt-3 font-serif text-[22px] leading-[1.25] text-grey">{c.problemP2b}</p>
+              </Card>
+            </div>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-px bg-sage/20" aria-hidden="true" />
-            {c.steps.map((step, i) => (
-              <FadeIn key={step.num} delay={i * 150}>
-                <div className="text-center md:text-left">
-                  <span className="inline-block text-5xl font-serif text-sage mb-4">
-                    {step.num}
-                  </span>
-                  <h3 className="font-serif mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-grey leading-relaxed">
-                    {step.desc}
-                  </p>
-                  <p className="mt-2 flex items-start gap-1.5 text-sage-dark text-sm">
-                    <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="mt-0.5 shrink-0" />
-                    <span>{step.detail}</span>
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
+        </div>
+      </Section>
+
+      {/* D1: sluitband, de ene Sand-band van de pagina. Eén rij: kop en zin links,
+          knop rechts. De EU-regel staat in de footerbalk (B5). */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-center">
+            <div className="md:col-span-8">
+              <h2 className="font-serif text-grey">{c.closerTitle}</h2>
+              <p className="mt-4 max-w-[640px] text-grey leading-relaxed">{c.closerSub}</p>
+            </div>
+            <div className="md:col-span-4 md:flex md:justify-end">
+              <Button href="/contact">{c.closerCta}</Button>
+            </div>
           </div>
-          <FadeIn delay={500}>
-            <div className="text-center mt-14">
-              <Button
-                href="/scan"
-              >
-                {c.startScan}
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-
-      {/* CTA / Closer */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.closerTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-6 text-lg text-grey leading-relaxed">
-              {c.closerSub}
-            </p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <div className="mt-10">
-              <Button
-                href="/contact"
-              >
-                {c.closerCta}
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+        </FadeIn>
+      </Section>
     </>
   );
 }
