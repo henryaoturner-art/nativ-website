@@ -1,8 +1,11 @@
 "use client";
 
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
 import { webPage } from "@/lib/site-meta";
 import { Check } from "lucide-react";
@@ -16,7 +19,13 @@ import { Check } from "lucide-react";
 //
 // Afwijking van O13, op aanwijzing van Jorus 10 aug: de bovengrens van de
 // workflow-range stond daar op 250 en gaat naar 245. De ondergrens ging op
-// aanwijzing van Jorus 2 sep van 75 naar 25.
+// aanwijzing van Jorus 2 sep van 75 naar 25. De bandbreedte wordt in KAN-411
+// tegen de Brain gecheckt (C7, KAN-425); hier niet veranderen.
+//
+// Opbouw van de pagina: deel C van de website-ronde (KAN-425, 10 sep 2026):
+// alle bedragen in het eerste scherm, dan wat erin zit, een rekenvoorbeeld,
+// hoe het werkt, en de FAQ in twee kolommen. De FAQPage-JSON-LD wordt uit
+// dezelfde FAQ-array gemaakt als de zichtbare vragen.
 // ---------------------------------------------------------------------------
 const PRIJS = {
   brain: { nl: "€1.495", en: "€1,495" },
@@ -30,58 +39,11 @@ const PRIJS = {
   studieGroot: { nl: "€100", en: "€100" },
 };
 
-const pricingFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Hoeveel kost een Company Brain?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Er zijn geen instapkosten en er is geen minimale looptijd; de opzegtermijn is één maand. Daarbovenop kies je zelf wat je aanzet: een workflow kost ${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl} per maand.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Zijn er eenmalige kosten?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Er is er precies één. Een koppeling met je bestaande CRM kost ${PRIJS.crmKoppeling.nl} eenmalig, en daarmee komen je gesprekken en e-mails vanzelf bij de juiste persoon en het juiste bedrijf te staan. Verder betaal je alleen het maandbedrag.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Waarom kost de ene workflow meer dan de andere?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Dat verschilt per workflow, en het zit in de maandprijs verwerkt. Bij het ontwerp zie je vooraf wat jouw workflow per maand kost, dus je wordt niet achteraf verrast.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Hoe snel kan ik beginnen?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Zodra je tekent zetten wij je Company Brain op, en daarna kun je meteen aan de slag. Workflows volgen hun eigen route: intake, ontwerp, prijs.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Wat gebeurt er met mijn gegevens als ik stop?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Je krijgt beide databases mee: de gestructureerde data en de doorzoekbare opslag. Wat we er eerlijk bij zeggen: vanaf het moment dat je weggaat, wordt er niets meer onderhouden.",
-      },
-    },
-  ],
-};
-
-const pricingWebPage = webPage(
-  "/pricing",
-  "Prijzen: Company Brain en AI-workflows",
-  `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Geen instapkosten, één maand opzegtermijn. Workflows zet je erbij wanneer je ze nodig hebt.`,
-);
+// Rekenvoorbeeld (beslisblad C4, optie A): twee voorbeeldworkflows binnen elke
+// bandbreedte die in omloop is. 1495 + 125 + 175 = 1795.
+const VOORBEELD = { brain: 1495, workflow1: 125, workflow2: 175 };
+const VOORBEELD_TOTAAL = VOORBEELD.brain + VOORBEELD.workflow1 + VOORBEELD.workflow2;
+const euro = (n: number, lang: "nl" | "en") => (lang === "nl" ? `€${n.toLocaleString("nl-NL")}` : `€${n.toLocaleString("en-US")}`);
 
 const translations = {
   nl: {
@@ -89,13 +51,28 @@ const translations = {
     heroSub:
       "Alles staat hier gewoon op. Eén maandbedrag voor de basis, en je breidt uit wanneer je er klaar voor bent.",
 
-    baseLabel: "De basis",
-    baseName: "Company Brain",
-    basePrice: PRIJS.brain.nl,
-    basePer: "per maand",
-    baseNote: "Zelfde bedrag voor elk bedrijf",
-    baseBody:
-      "De kennislaag van je bedrijf. Alles wat AI voor je maakt, is hierop gebaseerd.",
+    scan: { kicker: "Om te beginnen", name: "AI-scan", price: "€0", per: "gratis en vrijblijvend", cta: "Doe de gratis AI-scan" },
+    base: {
+      kicker: "De basis",
+      name: "Company Brain",
+      price: PRIJS.brain.nl,
+      per: "per maand",
+      note: "Zelfde bedrag voor elk bedrijf",
+      body: "De kennislaag van je bedrijf. Alles wat AI voor je maakt, is hierop gebaseerd.",
+      cta: "Plan een gesprek",
+    },
+    workflow: {
+      kicker: "Wat je erbij kunt zetten",
+      name: "Workflow",
+      price: `${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl}`,
+      per: "per maand, per workflow",
+      body: "Een workflow neemt één terugkerende klus over. Bij het ontwerp zie je wat die van jou kost.",
+      cta: "Bekijk de workflows",
+    },
+    oneOff: { label: "Eenmalig, alleen als je je bestaande CRM koppelt", value: PRIJS.crmKoppeling.nl },
+
+    includedTitle: "Wat zit erin",
+    inBrainTitle: "In de Company Brain",
     baseFeatures: [
       "De kennis van je bedrijf, vastgelegd en doorzoekbaar",
       "Toegang tot het Company Brain voor iedereen in het bedrijf, met bronvermelding bij elk antwoord",
@@ -104,94 +81,75 @@ const translations = {
       "Onbeperkt gebruikers",
       "Geen minimale looptijd, één maand opzegtermijn",
     ],
-    baseFairUse:
-      "Er zit een grens aan hoeveel je in je Company Brain kunt zetten. Ga je daaroverheen, dan kost het ons meer om te draaien en rekenen we dat door. Je hoort het van ons voordat het zover is.",
-    baseCta: "Plan een gesprek",
-
-    addonsLabel: "Wat je erbij kunt zetten",
+    fairUse: "Er zit een grens aan hoeveel je in je Company Brain kunt zetten. Je hoort het van ons voordat het zover is.",
+    addonsTitle: "Erbij",
     addons: [
       {
-        name: "Workflow",
-        price: `${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl}`,
-        per: "per maand, per workflow",
-        body: "Een workflow neemt één terugkerende klus over. Het is een range omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Bij het ontwerp zie je wat die van jou kost.",
+        label: `Workflow, ${PRIJS.workflowVan.nl} tot ${PRIJS.workflowTot.nl} per maand`,
+        body: "Het is een range omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Bij het ontwerp zie je wat die van jou kost.",
       },
-    ],
-
-    oneOffTitle: "Eén eenmalig bedrag",
-    oneOffIntro:
-      "Geen instapkosten betekent bij ons niet dat er nooit een eenmalig bedrag is. Er is er één:",
-    oneOffs: [
       {
-        label: "Koppeling met je bestaande CRM",
-        value: PRIJS.crmKoppeling.nl,
+        label: `Koppeling met je bestaande CRM, ${PRIJS.crmKoppeling.nl} eenmalig`,
         body: "De CRM-functionaliteit zelf zit in de Company Brain. Wil je die koppelen aan het CRM dat je nu gebruikt, dan kost die koppeling eenmalig dit bedrag. Wat je ervoor terugkrijgt: je gesprekken en je e-mails komen vanzelf bij de juiste persoon en het juiste bedrijf te staan. Bij elke klant zie je zo wat er speelt, zonder dat iemand het overtypt.",
       },
     ],
 
-    whyTitle: "Hoe het werkt",
-    whyBody: [
-      "Je betaalt per maand in plaats van vooraf. Zo kun je op elk moment stoppen wanneer je dat wilt.",
-      "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen.",
+    exampleTitle: "Rekenvoorbeeld",
+    exampleIntro: "Een bedrijf dat met de Company Brain begint en er twee workflows bij zet:",
+    exampleRows: [
+      { label: "Company Brain", value: VOORBEELD.brain },
+      { label: "Workflow 1 (bijvoorbeeld)", value: VOORBEELD.workflow1 },
+      { label: "Workflow 2 (bijvoorbeeld)", value: VOORBEELD.workflow2 },
     ],
+    exampleTotal: "Per maand",
+    exampleNote:
+      "Geen instapkosten. Koppel je een bestaand CRM, dan komt daar eenmalig €495 bij. De workflowbedragen zijn voorbeelden: de prijs van jouw workflow zie je bij het ontwerp.",
 
-    exitTitle: "Als je weggaat",
-    exitBody:
-      "Dan krijg je beide databases mee: de gestructureerde data en de doorzoekbare opslag. Geen gedoe, geen onderhandeling. Wat we er eerlijk bij zeggen: vanaf dat moment wordt er niets meer onderhouden.",
-
-    scanLine: "De AI-scan is gratis en vrijblijvend.",
+    howTitle: "Hoe het werkt",
+    how: [
+      { title: "Per maand, niet vooraf", body: "Je betaalt per maand in plaats van vooraf. Zo kun je op elk moment stoppen wanneer je dat wilt." },
+      { title: "Wij zetten op, jij vult", body: "Wij zetten de Brain voor je op. Daarna vul jij hem met wat jullie weten, houd je hem bij en bepaal je zelf welke workflows erbij komen. Wij zorgen dat dat kan zonder dat je er technisch iets voor hoeft te kunnen." },
+      { title: "Als je weggaat", body: "Dan krijg je beide databases mee: de gestructureerde data en de doorzoekbare opslag. Geen gedoe, geen onderhandeling. Wat we er eerlijk bij zeggen: vanaf dat moment wordt er niets meer onderhouden." },
+    ],
 
     faqTitle: "Veelgestelde vragen over prijzen",
     faqItems: [
-      {
-        question: "Zijn er instapkosten?",
-        answer:
-          "Nee. Je begint met het maandbedrag voor de Company Brain. Er is één eenmalig bedrag, en dat staat hierboven: de koppeling met een bestaand CRM.",
-      },
-      {
-        question: "Zit ik ergens aan vast?",
-        answer:
-          "Nee. Er is geen minimale looptijd en de opzegtermijn is één maand.",
-      },
-      {
-        question: "Betaal ik meer als we met meer mensen zijn?",
-        answer:
-          "Nee. Het bedrag is voor elk bedrijf hetzelfde, of je nu met vijf of met driehonderd bent. Wat wel meetelt is hoeveel je erin zet. Daar zit een grens aan, want boven die grens kost het ons meer om te draaien en rekenen we dat door. Met driehonderd mensen bereik je die grens sneller dan met vijf, en je hoort het van ons voordat het zover is.",
-      },
-      {
-        question: "En als een workflow iets nodig heeft dat er nog niet is?",
-        answer:
-          "Dan bouwen we dat erbij. Het blijft daarna een gewone workflow, met een gewoon maandbedrag. Elke workflow krijgt na het ontwerp een prijs die je ziet voordat je ja zegt, dus je komt nooit voor een verrassing te staan.",
-      },
-      {
-        question: "Waarom kost de ene workflow meer dan de andere?",
-        answer:
-          "Omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Dat verschilt per workflow en het zit in de maandprijs verwerkt. Bij het ontwerp zie je wat die van jou kost.",
-      },
-      {
-        question: "Hoe snel kan ik beginnen?",
-        answer:
-          "Zodra je tekent zetten wij je Company Brain op, en daarna kun je meteen aan de slag. Workflows volgen hun eigen route: intake, ontwerp, prijs.",
-      },
-      {
-        question: "Wat gebeurt er met mijn gegevens als ik stop?",
-        answer:
-          "Je krijgt beide databases mee: de gestructureerde data en de doorzoekbare opslag. Vanaf het moment dat je weggaat wordt er niets meer onderhouden, en dat zeggen we er liever meteen bij.",
-      },
+      { question: "Zijn er instapkosten?", answer: "Nee. Je begint met het maandbedrag voor de Company Brain. Er is één eenmalig bedrag, en dat staat hierboven: de koppeling met een bestaand CRM." },
+      { question: "Zit ik ergens aan vast?", answer: "Nee. Er is geen minimale looptijd en de opzegtermijn is één maand." },
+      { question: "Betaal ik meer als we met meer mensen zijn?", answer: "Nee. Het bedrag is voor elk bedrijf hetzelfde, of je nu met vijf of met driehonderd bent. Wat wel meetelt is hoeveel je erin zet. Daar zit een grens aan, want boven die grens kost het ons meer om te draaien en rekenen we dat door. Met driehonderd mensen bereik je die grens sneller dan met vijf, en je hoort het van ons voordat het zover is." },
+      { question: "En als een workflow iets nodig heeft dat er nog niet is?", answer: "Dan bouwen we dat erbij. Het blijft daarna een gewone workflow, met een gewoon maandbedrag. Elke workflow krijgt na het ontwerp een prijs die je ziet voordat je ja zegt, dus je komt nooit voor een verrassing te staan." },
+      { question: "Waarom kost de ene workflow meer dan de andere?", answer: "Omdat een workflow met externe diensten werkt en soms moet koppelen met een ander systeem. Dat verschilt per workflow en het zit in de maandprijs verwerkt. Bij het ontwerp zie je wat die van jou kost." },
+      { question: "Hoe snel kan ik beginnen?", answer: "Zodra je tekent zetten wij je Company Brain op, en daarna kun je meteen aan de slag. Workflows volgen hun eigen route: intake, ontwerp, prijs." },
     ],
+    closeCta: "Plan een gesprek",
+    closeLink: "Doe de gratis AI-scan",
   },
   en: {
     heroTitle: "Honest pricing",
-    heroSub:
-      "It is all simply listed here. One monthly fee for the base, and you expand when you are ready.",
+    heroSub: "It is all simply listed here. One monthly fee for the base, and you expand when you are ready.",
 
-    baseLabel: "The base",
-    baseName: "Company Brain",
-    basePrice: PRIJS.brain.en,
-    basePer: "per month",
-    baseNote: "Same price for every company",
-    baseBody:
-      "Your company's knowledge layer. Everything AI makes for you is based on it.",
+    scan: { kicker: "To start", name: "AI scan", price: "€0", per: "free and without obligation", cta: "Take the free AI scan" },
+    base: {
+      kicker: "The base",
+      name: "Company Brain",
+      price: PRIJS.brain.en,
+      per: "per month",
+      note: "Same price for every company",
+      body: "Your company's knowledge layer. Everything AI makes for you is based on it.",
+      cta: "Book a call",
+    },
+    workflow: {
+      kicker: "What you can add",
+      name: "Workflow",
+      price: `${PRIJS.workflowVan.en} to ${PRIJS.workflowTot.en}`,
+      per: "per month, per workflow",
+      body: "A workflow takes over one recurring job. At design time you see what yours costs.",
+      cta: "See the workflows",
+    },
+    oneOff: { label: "One-off, only if you connect your existing CRM", value: PRIJS.crmKoppeling.en },
+
+    includedTitle: "What is included",
+    inBrainTitle: "In the Company Brain",
     baseFeatures: [
       "Your company's knowledge, captured and searchable",
       "Access to the Company Brain for everyone in the company, with a source on every answer",
@@ -200,82 +158,69 @@ const translations = {
       "Unlimited users",
       "No minimum term, one month's notice",
     ],
-    baseFairUse:
-      "There is a limit to how much you can put into your Company Brain. Go beyond it and it costs us more to run, and we pass that on. You hear from us before you get there.",
-    baseCta: "Book a call",
-
-    addonsLabel: "What you can add",
+    fairUse: "There is a limit to how much you can put into your Company Brain. You hear from us before you get there.",
+    addonsTitle: "Add-ons",
     addons: [
       {
-        name: "Workflow",
-        price: `${PRIJS.workflowVan.en} to ${PRIJS.workflowTot.en}`,
-        per: "per month, per workflow",
-        body: "A workflow takes over one recurring job. It is a range because a workflow calls external services and sometimes has to connect to another system. At design time you see what yours costs.",
+        label: `Workflow, ${PRIJS.workflowVan.en} to ${PRIJS.workflowTot.en} per month`,
+        body: "It is a range because a workflow calls external services and sometimes has to connect to another system. At design time you see what yours costs.",
       },
-    ],
-
-    oneOffTitle: "One one-off amount",
-    oneOffIntro:
-      "No setup cost does not mean there is never a one-off amount. There is one:",
-    oneOffs: [
       {
-        label: "Connecting your existing CRM",
-        value: PRIJS.crmKoppeling.en,
+        label: `Connecting your existing CRM, ${PRIJS.crmKoppeling.en} one-off`,
         body: "The CRM functionality itself is part of the Company Brain. If you want it connected to the CRM you use today, that connection costs this once. What you get for it: your meetings and your emails end up with the right person and the right company on their own. For every customer you can see what is going on, without anyone retyping it.",
       },
     ],
 
-    whyTitle: "How it works",
-    whyBody: [
-      "You pay per month instead of up front. That way you can stop whenever you want.",
-      "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills.",
+    exampleTitle: "A worked example",
+    exampleIntro: "A company that starts with the Company Brain and adds two workflows:",
+    exampleRows: [
+      { label: "Company Brain", value: VOORBEELD.brain },
+      { label: "Workflow 1 (for example)", value: VOORBEELD.workflow1 },
+      { label: "Workflow 2 (for example)", value: VOORBEELD.workflow2 },
     ],
+    exampleTotal: "Per month",
+    exampleNote:
+      "No setup cost. If you connect an existing CRM, €495 is added once. The workflow amounts are examples: you see the price of your workflow at design time.",
 
-    exitTitle: "If you leave",
-    exitBody:
-      "You take both databases with you: the structured data and the searchable store. No hassle, no negotiation. What we say honestly alongside that: from that moment on, nothing is maintained any more.",
-
-    scanLine: "The AI scan is free and without obligation.",
+    howTitle: "How it works",
+    how: [
+      { title: "Per month, not up front", body: "You pay per month instead of up front. That way you can stop whenever you want." },
+      { title: "We set up, you fill", body: "We set the Brain up for you. After that you fill it with what your company knows, you keep it current, and you decide which workflows come next. We make sure you can do that without needing technical skills." },
+      { title: "If you leave", body: "You take both databases with you: the structured data and the searchable store. No hassle, no negotiation. What we say honestly alongside that: from that moment on, nothing is maintained any more." },
+    ],
 
     faqTitle: "Frequently asked questions about pricing",
     faqItems: [
-      {
-        question: "Are there setup costs?",
-        answer:
-          "No. You start with the monthly fee for the Company Brain. There is one one-off amount, listed above: connecting an existing CRM.",
-      },
-      {
-        question: "Am I tied in?",
-        answer: "No. There is no minimum term and the notice period is one month.",
-      },
-      {
-        question: "Do I pay more if we have more people?",
-        answer:
-          "No. The price is the same for every company, whether you are five or three hundred. What does count is how much you put into it. There is a limit to that, because beyond it running the Brain costs us more and we pass that on. With three hundred people you reach that limit sooner than with five, and you hear from us before you get there.",
-      },
-      {
-        question: "What if a workflow needs something that does not exist yet?",
-        answer:
-          "Then we build it. After that it is a normal workflow with a normal monthly price. Every workflow gets a price after the design, and you see it before you say yes, so nothing comes as a surprise.",
-      },
-      {
-        question: "Why does one workflow cost more than another?",
-        answer:
-          "Because a workflow calls external services and sometimes has to connect to another system. That differs per workflow and it is built into the monthly price. At design time you see what yours costs.",
-      },
-      {
-        question: "How quickly can I start?",
-        answer:
-          "Once you sign we set up your Company Brain, and you can get going straight after. Workflows then follow their own route: intake, design, price.",
-      },
-      {
-        question: "What happens to my data if I stop?",
-        answer:
-          "You take both databases with you: the structured data and the searchable store. From the moment you leave nothing is maintained any more, and we would rather say that up front.",
-      },
+      { question: "Are there setup costs?", answer: "No. You start with the monthly fee for the Company Brain. There is one one-off amount, listed above: connecting an existing CRM." },
+      { question: "Am I tied in?", answer: "No. There is no minimum term and the notice period is one month." },
+      { question: "Do I pay more if we have more people?", answer: "No. The price is the same for every company, whether you are five or three hundred. What does count is how much you put into it. There is a limit to that, because beyond it running the Brain costs us more and we pass that on. With three hundred people you reach that limit sooner than with five, and you hear from us before you get there." },
+      { question: "What if a workflow needs something that does not exist yet?", answer: "Then we build it. After that it is a normal workflow with a normal monthly price. Every workflow gets a price after the design, and you see it before you say yes, so nothing comes as a surprise." },
+      { question: "Why does one workflow cost more than another?", answer: "Because a workflow calls external services and sometimes has to connect to another system. That differs per workflow and it is built into the monthly price. At design time you see what yours costs." },
+      { question: "How quickly can I start?", answer: "Once you sign we set up your Company Brain, and you can get going straight after. Workflows then follow their own route: intake, design, price." },
     ],
+    closeCta: "Book a call",
+    closeLink: "Take the free AI scan",
   },
 };
+
+// C6: de FAQPage-JSON-LD komt uit dezelfde array als de zichtbare vragen.
+const pricingFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: translations.nl.faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const pricingWebPage = webPage(
+  "/pricing",
+  "Prijzen: Company Brain en AI-workflows",
+  `De Company Brain kost ${PRIJS.brain.nl} per maand, voor elk bedrijf hetzelfde. Geen instapkosten, één maand opzegtermijn. Workflows zet je erbij wanneer je ze nodig hebt.`,
+);
+
+const priceCls = "font-serif text-[40px] leading-none text-sage-dark";
 
 export default function PricingPage() {
   const { t, language } = useLanguage();
@@ -287,181 +232,147 @@ export default function PricingPage() {
       {language === "nl" && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([pricingWebPage, pricingFaqSchema]),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([pricingWebPage, pricingFaqSchema]) }}
         />
       )}
 
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
-              {c.heroSub}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* The base */}
-      <section className="px-6 pb-4">
-        <div className="max-w-[820px] mx-auto">
-          <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark text-center">
-              {c.baseLabel}
-            </p>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-4 bg-white rounded-lg p-8 md:p-10 border border-border border-l-[3px] border-l-sage">
-              <div className="md:flex md:items-start md:justify-between md:gap-10">
-                <div className="md:flex-1">
-                  <h2 className="font-serif text-grey">{c.baseName}</h2>
-                  <p className="mt-3 text-base text-grey leading-relaxed">
-                    {c.baseBody}
-                  </p>
-                </div>
-                <div className="mt-6 md:mt-0 md:text-right shrink-0">
-                  <p className="text-4xl font-serif text-sage">{c.basePrice}</p>
-                  <p className="text-sm text-muted">{c.basePer}</p>
-                  <p className="mt-2 text-sm text-sage font-medium">
-                    {c.baseNote}
-                  </p>
-                </div>
+      {/* C1: kop en prijsoverzicht in één scherm */}
+      <Section hero>
+        <FadeIn>
+          <h1 className="font-serif text-grey">{c.heroTitle}</h1>
+          <p className="mt-4 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-[1fr_1.35fr_1fr] gap-4 md:gap-6 items-stretch">
+            <Card className="flex flex-col">
+              <Kicker>{c.scan.kicker}</Kicker>
+              <h3 className="font-serif text-grey">{c.scan.name}</h3>
+              <p className={`mt-4 ${priceCls}`}>{c.scan.price}</p>
+              <p className="mt-2 text-sm text-muted">{c.scan.per}</p>
+              <div className="mt-auto pt-6">
+                <Button variant="tertiary" href="/scan">{c.scan.cta}</Button>
               </div>
-              <ul className="mt-8 space-y-2.5">
+            </Card>
+            <Card signature primary className="flex flex-col">
+              <Kicker>{c.base.kicker}</Kicker>
+              <h3 className="font-serif text-grey text-[28px] leading-[1.2]">{c.base.name}</h3>
+              <p className={`mt-4 ${priceCls}`}>{c.base.price}</p>
+              <p className="mt-2 text-sm text-muted">{c.base.per}</p>
+              <p className="text-sm text-muted">{c.base.note}</p>
+              <p className="mt-4 text-grey leading-relaxed">{c.base.body}</p>
+              <div className="mt-auto pt-6">
+                <Button href="/contact">{c.base.cta}</Button>
+              </div>
+            </Card>
+            <Card className="flex flex-col">
+              <Kicker>{c.workflow.kicker}</Kicker>
+              <h3 className="font-serif text-grey">{c.workflow.name}</h3>
+              <p className={`mt-4 ${priceCls}`}>{c.workflow.price}</p>
+              <p className="mt-2 text-sm text-muted">{c.workflow.per}</p>
+              <p className="mt-4 text-grey leading-relaxed">{c.workflow.body}</p>
+              <div className="mt-auto pt-6">
+                <Button variant="tertiary" href="/workflows">{c.workflow.cta}</Button>
+              </div>
+            </Card>
+          </div>
+          <Card signature className="mt-4 md:mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+            <p className="text-grey">{c.oneOff.label}</p>
+            <p className="font-serif text-2xl text-sage-dark">{c.oneOff.value}</p>
+          </Card>
+        </FadeIn>
+      </Section>
+
+      {/* C2: wat zit erin, twee kolommen */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.includedTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+            <div>
+              <h3 className="font-serif text-grey">{c.inBrainTitle}</h3>
+              <ul className="mt-5 space-y-3">
                 {c.baseFeatures.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2 text-sm text-grey"
-                  >
-                    <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
-                    {f}
+                  <li key={f} className="flex items-start gap-3 text-grey">
+                    <Check size={18} strokeWidth={2} className="mt-1 shrink-0 text-sage-dark" aria-hidden="true" />
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm text-muted leading-relaxed">
-                {c.baseFairUse}
-              </p>
-              <Button className="mt-8"
-                href="/contact"
-              >
-                {c.baseCta}
-              </Button>
+              <p className="mt-6 text-sm text-muted leading-relaxed">{c.fairUse}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Add-ons */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[1000px] mx-auto">
-          <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark text-center">
-              {c.addonsLabel}
-            </p>
-          </FadeIn>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {c.addons.map((a, i) => (
-              <FadeIn key={a.name} delay={150 + i * 120}>
-                <div className="h-full bg-white rounded-lg p-7 border border-border flex flex-col">
-                  <h3 className="font-serif text-grey">{a.name}</h3>
-                  <p className="mt-4 text-2xl font-serif text-sage">{a.price}</p>
-                  {a.per && <p className="text-sm text-muted">{a.per}</p>}
-                  <p className="mt-4 flex-1 text-sm text-grey leading-relaxed">
-                    {a.body}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn delay={520}>
-            <p className="text-center mt-8 text-sage text-sm font-medium">
-              {c.scanLine}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Exactly two one-off amounts */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[760px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.oneOffTitle}
-            </h2>
-            <p className="mt-5 text-lg text-grey leading-relaxed">
-              {c.oneOffIntro}
-            </p>
-          </FadeIn>
-          <div className="mt-8 space-y-4">
-            {c.oneOffs.map((o, i) => (
-              <FadeIn key={o.label} delay={150 + i * 120}>
-                <div className="bg-white rounded-lg p-6 border-l-[3px] border-sage">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif text-grey">{o.label}</h3>
-                    <p className="font-serif text-xl text-sage shrink-0">
-                      {o.value}
-                    </p>
+            <div>
+              <h3 className="font-serif text-grey">{c.addonsTitle}</h3>
+              <div className="mt-5 space-y-6">
+                {c.addons.map((a) => (
+                  <div key={a.label}>
+                    <p className="font-medium text-grey">{a.label}</p>
+                    <p className="mt-2 text-grey leading-relaxed">{a.body}</p>
                   </div>
-                  <p className="mt-2 text-sm text-grey leading-relaxed">
-                    {o.body}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </FadeIn>
+      </Section>
 
-      {/* Why this can be affordable */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
+      {/* C3: rekenvoorbeeld op 8 kolommen */}
+      <Section>
+        <div className="max-w-[792px]">
           <FadeIn>
-            <h2 className="font-serif">
-              {c.whyTitle}
-            </h2>
+            <h2 className="font-serif text-grey">{c.exampleTitle}</h2>
+            <p className="mt-4 text-grey leading-relaxed">{c.exampleIntro}</p>
           </FadeIn>
           <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
-              {c.whyBody.map((p, i) => (
-                <p key={i}>{p}</p>
+            <dl className="mt-6 divide-y divide-border border-y border-border">
+              {c.exampleRows.map((r) => (
+                <div key={r.label} className="grid grid-cols-[1fr_auto] gap-6 py-3">
+                  <dt className="text-grey">{r.label}</dt>
+                  <dd className="font-serif text-xl text-grey">{euro(r.value, language)}</dd>
+                </div>
               ))}
-            </div>
+              <div className="grid grid-cols-[1fr_auto] gap-6 py-3">
+                <dt className="font-medium text-sage-dark">{c.exampleTotal}</dt>
+                <dd className="font-serif text-2xl text-sage-dark">{euro(VOORBEELD_TOTAAL, language)}</dd>
+              </div>
+            </dl>
+            <p className="mt-4 text-sm text-muted leading-relaxed">{c.exampleNote}</p>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* If you leave */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <div className="bg-white rounded-lg p-6 md:p-8 border-l-[3px] border-sage">
-              <h2 className="font-serif text-grey">{c.exitTitle}</h2>
-              <p className="mt-3 text-base text-grey leading-relaxed">
-                {c.exitBody}
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      {/* C4: hoe het werkt, drie kaarten */}
+      <Section>
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.howTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {c.how.map((h) => (
+              <Card key={h.title} signature>
+                <h3 className="font-serif text-grey">{h.title}</h3>
+                <p className="mt-3 text-grey leading-relaxed">{h.body}</p>
+              </Card>
+            ))}
+          </div>
+        </FadeIn>
+      </Section>
 
-      {/* FAQ */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif mb-10">
-              {c.faqTitle}
-            </h2>
-          </FadeIn>
-          <FAQ items={c.faqItems} />
-        </div>
-      </section>
+      {/* C5: FAQ in twee kolommen en afsluiting, de ene band van de pagina */}
+      <Section band="sand">
+        <FadeIn>
+          <h2 className="font-serif text-grey">{c.faqTitle}</h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-6">
+            <FAQ items={c.faqItems} columns={2} />
+          </div>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Button href="/contact">{c.closeCta}</Button>
+            <Button variant="tertiary" href="/scan">{c.closeLink}</Button>
+          </div>
+        </FadeIn>
+      </Section>
     </>
   );
 }

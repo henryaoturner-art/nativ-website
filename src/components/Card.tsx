@@ -21,7 +21,7 @@ export default function Card({
 }) {
   const cls = [
     "bg-white border border-border rounded-lg",
-    primary ? "p-8" : "p-6",
+    primary ? "p-6 md:p-8" : "p-5 md:p-6",
     signature ? "border-l-[3px] border-l-sage" : "",
     className,
   ].filter(Boolean).join(" ");

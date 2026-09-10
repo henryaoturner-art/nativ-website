@@ -9,11 +9,11 @@ interface FAQItem {
 }
 
 /** FAQ-accordeon in kaartstijl (B3, KAN-425): vraag in Georgia 20px, ChevronDown draait bij openen, Sage-rand alleen open of bij hover. */
-export default function FAQ({ items }: { items: FAQItem[] }) {
+export default function FAQ({ items, columns = 1 }: { items: FAQItem[]; columns?: 1 | 2 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="space-y-3">
+    <div className={columns === 2 ? "grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 items-start" : "space-y-3"}>
       {items.map((item, i) => {
         const open = openIndex === i;
         return (

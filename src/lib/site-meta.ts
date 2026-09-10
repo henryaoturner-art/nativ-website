@@ -5,7 +5,7 @@ import { localizeHref, type Locale } from "./locale";
 // AI answer-engines treat undated pages as stale, so every core page emits a
 // WebPage node with dateModified. Bump SITE_UPDATED when core marketing content
 // is meaningfully revised — one edit refreshes the signal site-wide.
-export const SITE_UPDATED = "2026-07-09";
+export const SITE_UPDATED = "2026-09-10";
 
 /**
  * Default share card. `twitter:card = summary_large_image` promises an image;
