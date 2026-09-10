@@ -72,7 +72,7 @@ export default function CasesPage() {
       />
 
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -88,7 +88,7 @@ export default function CasesPage() {
       </section>
 
       {/* Featured Case: JobTraining */}
-      <section className="py-10 md:py-16 px-6 pb-20 md:pb-28">
+      <section className="py-10 md:py-16 px-6 pb-16 md:pb-20 lg:pb-24">
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
             <article className="bg-white rounded-lg p-8 md:p-12 border border-border">

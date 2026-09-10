@@ -138,7 +138,7 @@ export default function AiActPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <p className="text-sm uppercase tracking-wider text-sage mb-4">EU AI Act</p>
@@ -160,7 +160,7 @@ export default function AiActPage() {
       </section>
 
       {/* Wat verandert er */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">{c.changeTitle}</h2>
@@ -178,7 +178,7 @@ export default function AiActPage() {
       </section>
 
       {/* Wat de Act vraagt */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">{c.asksTitle}</h2>
@@ -205,7 +205,7 @@ export default function AiActPage() {
       </section>
 
       {/* Waarom gewone AI vastloopt */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">{c.gapTitle}</h2>
@@ -223,7 +223,7 @@ export default function AiActPage() {
       </section>
 
       {/* Company Brain */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">{c.brainTitle}</h2>
@@ -260,7 +260,7 @@ export default function AiActPage() {
       </section>
 
       {/* Eerlijke disclaimer */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="border border-sage/30 rounded-lg p-6 md:p-8 bg-sage/5">
@@ -272,7 +272,7 @@ export default function AiActPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif">{c.ctaTitle}</h2>

@@ -29,7 +29,7 @@ export default async function ScanRespondPage({
   // de scan inmiddels is afgerond.
   if (access.respondent.status === "klaar") {
     return (
-      <section className="py-16 px-6 pb-24">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -46,7 +46,7 @@ export default async function ScanRespondPage({
   }
   if (access.scan.status !== "open") {
     return (
-      <section className="py-16 px-6 pb-24">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">

@@ -48,7 +48,7 @@ export default function SecurityPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">{c.heroTitle}</h1>
@@ -60,7 +60,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Principles */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">{c.principlesTitle}</h2>
@@ -84,7 +84,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Trust */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif mb-10">{c.trustTitle}</h2>
@@ -103,7 +103,7 @@ export default function SecurityPage() {
       </section>
 
       {/* Contact */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif">{c.questionTitle}</h2>

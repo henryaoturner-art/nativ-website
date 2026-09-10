@@ -111,7 +111,7 @@ export default function WhitepaperPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-16 md:py-24 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[800px] mx-auto">
 
           <FadeIn delay={100}>
@@ -129,7 +129,7 @@ export default function WhitepaperPage() {
       </section>
 
       {/* What's inside + Download */}
-      <section className="px-6 pb-20 md:pb-28">
+      <section className="px-6 pb-16 md:pb-20 lg:pb-24">
         <div className="max-w-[800px] mx-auto grid md:grid-cols-2 gap-10 items-start">
           {/* Left: What's inside */}
           <FadeIn>

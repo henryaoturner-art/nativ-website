@@ -199,7 +199,7 @@ export default async function ScanReportPage({
 
   if (!payload) {
     return (
-      <section className="py-16 px-6 pb-24">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.reportLabel}</p>
@@ -460,7 +460,7 @@ export default async function ScanReportPage({
   });
 
   return (
-    <section className="py-12 md:py-16 px-6 pb-20 md:pb-28">
+    <section className="py-16 md:py-20 lg:py-24 px-6 pb-16 md:pb-20 lg:pb-24">
       <div className="max-w-[760px] mx-auto">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark">{c.reportLabel}</p>

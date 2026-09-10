@@ -74,7 +74,7 @@ export default function ImpactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">{c.heroTitle}</h1>
@@ -86,7 +86,7 @@ export default function ImpactPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-center mb-16">{c.howTitle}</h2>
@@ -108,7 +108,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Results */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif mb-12">{c.whyTitle}</h2>
@@ -128,7 +128,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Flexibility */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif mb-8">{c.flexTitle}</h2>
@@ -144,7 +144,7 @@ export default function ImpactPage() {
       </section>
 
       {/* Beyond Diagnostics */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-center mb-16">{c.beyondTitle}</h2>
@@ -163,7 +163,7 @@ export default function ImpactPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif">{c.ctaTitle}</h2>

@@ -253,7 +253,7 @@ export default function PrivacyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">

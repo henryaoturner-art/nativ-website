@@ -62,7 +62,7 @@ export default function CompanyBrainPage() {
       />
 
       {/* Hero + direct answer */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -193,7 +193,7 @@ export default function CompanyBrainPage() {
       </section>
 
       {/* How to start */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center bg-white rounded-2xl px-8 py-12 border border-border">
           <FadeIn>
             <h2 className="font-serif text-grey">

@@ -178,7 +178,7 @@ export default function ScanPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -248,7 +248,7 @@ export default function ScanPage() {
       </section>
 
       {/* What you get */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -269,7 +269,7 @@ export default function ScanPage() {
       </section>
 
       {/* How the team scan works */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -287,7 +287,7 @@ export default function ScanPage() {
       </section>
 
       {/* Data reassurance */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="bg-white rounded-lg p-6 md:p-8 border-l-[3px] border-sage -[0_2px_8px_rgba(0,0,0,0.06)]">
@@ -301,7 +301,7 @@ export default function ScanPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -317,7 +317,7 @@ export default function ScanPage() {
       </section>
 
       {/* Closing */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif">

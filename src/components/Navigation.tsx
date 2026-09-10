@@ -67,7 +67,7 @@ export default function Navigation() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 md:h-24" aria-label={language === "en" ? "Main navigation" : "Hoofdnavigatie"}>
+      <nav className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-16 md:h-[72px]" aria-label={language === "en" ? "Main navigation" : "Hoofdnavigatie"}>
         <Logo />
 
         {/* Desktop nav */}

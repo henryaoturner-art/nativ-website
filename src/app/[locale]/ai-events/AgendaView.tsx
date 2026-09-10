@@ -70,7 +70,7 @@ export default function AgendaView({ events }: { events: AgendaEvent[] }) {
   return (
     <>
       {/* Hero */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[760px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">

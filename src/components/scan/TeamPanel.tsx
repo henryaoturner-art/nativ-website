@@ -197,7 +197,7 @@ export default function TeamPanel({ token, hasReport, ownDone, departments }: Pa
   }
 
   return (
-    <section className="py-10 md:py-14 px-6 pb-20 md:pb-28">
+    <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6 pb-16 md:pb-20 lg:pb-24">
       <div className="max-w-[720px] mx-auto">
         <FadeIn>
           <h1 className="font-serif text-grey">{c.heroTitle}</h1>

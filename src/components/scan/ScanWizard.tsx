@@ -262,7 +262,7 @@ export default function ScanWizard({
 
   if (submitted) {
     return (
-      <section className="py-16 px-6 pb-24">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[640px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -278,7 +278,7 @@ export default function ScanWizard({
   }
 
   return (
-    <section className="py-10 md:py-14 px-6 pb-20 md:pb-28">
+    <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6 pb-16 md:pb-20 lg:pb-24">
       <div className="max-w-[720px] mx-auto">
         <FadeIn>
           {!isRespondent && (

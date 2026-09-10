@@ -240,7 +240,7 @@ export default function HomePage() {
       ))}
 
       {/* Hero */}
-      <section className="py-10 md:py-14 lg:py-40 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey max-w-4xl mx-auto">
@@ -300,7 +300,7 @@ export default function HomePage() {
       </section>
 
       {/* Payoff: what the hero's problem looks like once it is solved */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -322,7 +322,7 @@ export default function HomePage() {
       </section>
 
       {/* Three-Step Journey */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <h2 className="font-serif text-center mb-16">
@@ -364,7 +364,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust Signals */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted">
@@ -377,7 +377,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA / Closer */}
-      <section className="py-12 md:py-16 px-6 bg-cream">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto text-center">
           <FadeIn>
             <h2 className="font-serif">

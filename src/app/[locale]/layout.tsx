@@ -73,7 +73,7 @@ export default async function RootLayout({
             {locale === "en" ? "Skip to content" : "Naar inhoud"}
           </a>
           <Navigation />
-          <main id="main-content" className="flex-1 pt-20 md:pt-24">
+          <main id="main-content" className="flex-1 pt-16 md:pt-[72px]">
             {children}
           </main>
           <Footer />

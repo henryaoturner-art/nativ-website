@@ -25,7 +25,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -41,7 +41,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="px-6 pb-20 md:pb-28">
+      <section className="px-6 pb-16 md:pb-20 lg:pb-24">
         <div className="max-w-[900px] mx-auto space-y-6">
           {posts.length === 0 && (
             <p className="text-center text-muted">Binnenkort de eerste artikelen.</p>

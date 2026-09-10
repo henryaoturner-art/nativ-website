@@ -24,10 +24,11 @@ export default function FadeIn({
           observer.unobserve(el);
         }
       },
-      // Trigger 120px before the element reaches the viewport, so the fade has
-      // finished by the time it is actually on screen. At threshold 0.1 a heading
-      // only began fading once it was already 10% visible, i.e. half-read.
-      { threshold: 0, rootMargin: "0px 0px 120px 0px" }
+      // Eén viewport vooruit (B4, KAN-425): de inhoud is al zichtbaar voordat hij
+      // in beeld komt, dus niemand leest een kop die nog aan het faden is, en een
+      // full-page screenshot is niet meer half leeg. prefers-reduced-motion staat
+      // in globals.css.
+      { threshold: 0, rootMargin: "0px 0px 100% 0px" }
     );
 
     observer.observe(el);

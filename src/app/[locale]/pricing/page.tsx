@@ -294,7 +294,7 @@ export default function PricingPage() {
       )}
 
       {/* Hero */}
-      <section className="py-10 md:py-14 px-6">
+      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
         <div className="max-w-[800px] mx-auto text-center">
           <FadeIn>
             <h1 className="font-serif text-grey">
@@ -359,7 +359,7 @@ export default function PricingPage() {
       </section>
 
       {/* Add-ons */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[1000px] mx-auto">
           <FadeIn>
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sage-dark text-center">
@@ -389,7 +389,7 @@ export default function PricingPage() {
       </section>
 
       {/* Exactly two one-off amounts */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[760px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -420,7 +420,7 @@ export default function PricingPage() {
       </section>
 
       {/* Why this can be affordable */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif">
@@ -438,7 +438,7 @@ export default function PricingPage() {
       </section>
 
       {/* If you leave */}
-      <section className="py-12 md:py-16 px-6 bg-white">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <div className="bg-white rounded-lg p-6 md:p-8 border-l-[3px] border-sage">
@@ -452,7 +452,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12 md:py-16 px-6">
+      <section className="py-16 md:py-20 lg:py-24 px-6">
         <div className="max-w-[680px] mx-auto">
           <FadeIn>
             <h2 className="font-serif mb-10">
