@@ -1,6 +1,10 @@
 "use client";
 
+import { Brain, Linkedin, Scale, Sparkles, Users } from "lucide-react";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
 
 const translations = {
@@ -26,12 +30,12 @@ const translations = {
   },
   en: {
     heroTitle: "We are nativ",
-    heroSub1: "Three people. Thirty people\u2019s output.",
+    heroSub1: "Three people. Thirty people’s output.",
     heroSub2: "Not by working harder, but by being AI-native.",
     storyTitle: "Why nativ exists",
     storyP1: "We see a lot of companies starting with AI. They give their people access, and the first results are impressive.",
     storyP2: "Until they want to use AI seriously in their work, every day again. Then they find that it falls short, and that is not down to the models. It is down to what the models know about your company: your specific context.",
-    storyP3: "That knowledge sits scattered. In your systems, in emails, in conversations and in your people\u2019s heads. When the right person is not there, the work stops.",
+    storyP3: "That knowledge sits scattered. In your systems, in emails, in conversations and in your people’s heads. When the right person is not there, the work stops.",
     storyP4: "So we started with the knowledge instead of the tool. We build the Company Brain: one place that holds what your company knows, with an owner for each part and a source behind every answer. On top of it we put AI workflows.",
     storyQuote: "AI only becomes useful once it knows how your company works.",
     teamTitle: "The team",
@@ -42,9 +46,12 @@ const translations = {
     ],
     howTitle: "How we work",
     howP: "Our own company is our first and most battle-tested client. The same knowledge base we build for clients has been running internally for months. We do what we say, and we prove it on ourselves every day.",
-    howItems: ["AI-native since day one", "Our own Company Brain is the most tested system we have", "Lean team, big output", "Honest about what AI can and can\u2019t do"],
+    howItems: ["AI-native since day one", "Our own Company Brain is the most tested system we have", "Lean team, big output", "Honest about what AI can and can’t do"],
   },
 };
+
+// Eén lucide-icoon per werkprincipe (B3, KAN-425), in de volgorde van howItems.
+const howIcons = [Sparkles, Brain, Users, Scale];
 
 export default function OverOnsPage() {
   const { t } = useLanguage();
@@ -52,94 +59,102 @@ export default function OverOnsPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
+      {/*
+        Eerste scherm (D5, KAN-425): "Waarom nativ bestaat" is langer dan 120 woorden
+        (138 NL, 142 EN), dus de tekst staat links in 7 kolommen als signatuurkaart en
+        de hero rechts in 5. "Hoe wij werken" staat onder de hero, in de ruimte naast
+        de kaart, zodat de pagina onder de 1900px blijft. Op mobiel: hero, waarom, hoe.
+      */}
+      <Section hero>
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[auto_1fr] gap-x-8 gap-y-10 md:gap-y-12">
+          <FadeIn className="md:col-span-5 md:col-start-8 md:row-start-1">
+            <h1 className="font-serif text-grey">{c.heroTitle}</h1>
             <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
               {c.heroSub1}
               <br />
               {c.heroSub2}
             </p>
           </FadeIn>
-        </div>
-      </section>
 
-      {/* Story */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">{c.storyTitle}</h2>
+          <FadeIn delay={150} className="md:col-span-7 md:col-start-1 md:row-start-1 md:row-span-2">
+            <Card signature primary className="h-full">
+              <h2 className="font-serif text-grey">{c.storyTitle}</h2>
+              <div className="mt-6 space-y-4 text-grey leading-relaxed">
+                <p>{c.storyP1}</p>
+                <p>{c.storyP2}</p>
+                <p>{c.storyP3}</p>
+                <p>{c.storyP4}</p>
+                <p className="font-serif text-xl italic text-grey">{c.storyQuote}</p>
+              </div>
+            </Card>
           </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-grey">
-              <p>{c.storyP1}</p>
-              <p>{c.storyP2}</p>
-              <p>{c.storyP3}</p>
-              <p>{c.storyP4}</p>
-              <p className="font-serif text-grey text-xl italic">{c.storyQuote}</p>
-            </div>
+
+          <FadeIn delay={300} className="md:col-span-5 md:col-start-8 md:row-start-2 md:self-start">
+            <h2 className="font-serif text-grey">{c.howTitle}</h2>
+            <p className="mt-6 text-grey leading-relaxed">{c.howP}</p>
+            <ul className="mt-6 space-y-3">
+              {c.howItems.map((item, i) => {
+                const Icon = howIcons[i] ?? Sparkles;
+                return (
+                  <li key={item} className="flex items-start gap-3 text-grey">
+                    <Icon size={20} strokeWidth={1.5} aria-hidden="true" className="mt-1 shrink-0 text-sage-dark" />
+                    <span>{item}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </FadeIn>
         </div>
-      </section>
+      </Section>
 
-      {/* Team */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif text-center mb-16">{c.teamTitle}</h2>
+      {/* Team: kop in de linkerkolom, drie kaarten uit B3 met de foto (4:5) bovenin; op mobiel foto links. */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <FadeIn className="lg:col-span-3">
+            <h2 className="font-serif text-grey">{c.teamTitle}</h2>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-6">
             {c.team.map((member, i) => (
               <FadeIn key={member.name} delay={i * 150}>
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full bg-sage/10 mx-auto mb-6 overflow-hidden flex items-center justify-center" aria-hidden="true">
+                <Card as="article" className="h-full flex items-start gap-5 md:block">
+                  <div
+                    className="w-24 shrink-0 md:w-full aspect-[4/5] rounded-lg overflow-hidden bg-sage-light flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     {member.photo ? (
                       <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="font-serif text-sage text-3xl">{member.name.charAt(0)}</span>
+                      <span className="font-serif text-sage-dark text-3xl">{member.name.charAt(0)}</span>
                     )}
                   </div>
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-sage transition-colors">
-                    <h3 className="font-serif">{member.name}</h3>
-                  </a>
-                  <p className="text-sage text-sm mt-1">{member.role}</p>
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-muted hover:text-sage transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
+                  <div className="min-w-0 md:mt-5">
+                    <Kicker>{member.role}</Kicker>
+                    <h3 className="font-serif text-grey">
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline decoration-1 decoration-sage-dark underline-offset-4"
+                      >
+                        {member.name}
+                      </a>
+                    </h3>
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="inline-flex mt-3 text-grey hover:text-sage-dark transition-colors"
+                    >
+                      <Linkedin size={20} strokeWidth={1.5} aria-hidden="true" />
+                    </a>
+                  </div>
+                </Card>
               </FadeIn>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* How We Work */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">{c.howTitle}</h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p className="mt-8 text-lg leading-relaxed text-grey">{c.howP}</p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <ul className="mt-8 space-y-3 text-grey">
-              {c.howItems.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="text-sage mt-0.5">·</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </FadeIn>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }
