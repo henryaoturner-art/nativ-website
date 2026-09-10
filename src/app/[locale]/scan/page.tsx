@@ -2,16 +2,25 @@
 
 import { useEffect } from "react";
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 import FadeIn from "@/components/FadeIn";
 import FAQ from "@/components/FAQ";
+import Kicker from "@/components/Kicker";
+import Section from "@/components/Section";
 import { useLanguage } from "@/lib/language-context";
 import { captureSource } from "@/lib/scan/source";
+import { Check, X } from "lucide-react";
 
 // Beide smaken starten op hetzelfde formulier; ?team=1 maakt er een teamscan
 // van (eigen vragen eerst, daarna het teamoverzicht met uitnodigingen).
 const QUICK_SCAN_HREF = "/scan/start";
 const TEAM_SCAN_HREF = "/scan/start?team=1";
 
+// Opbouw van de pagina: deel D2 van de website-ronde (KAN-425, 10 sep 2026):
+// hero links met rechts de kaart "Wat je krijgt", de twee manieren als kaarten
+// naast elkaar, de teamscan als stappenrij, wel/niet in twee kolommen, FAQ in
+// twee kolommen en de afsluiting als de ene Sand-band. Alle zinnen van de
+// pagina van 8 september staan er nog; alleen de plek is veranderd.
 const translations = {
   nl: {
     heroTitle: "De AI-scan: waar kan AI jullie werk uit handen nemen?",
@@ -36,6 +45,7 @@ const translations = {
     callTitle: "Liever eerst even bellen?",
     callCta: "Plan een gesprek",
 
+    reportKicker: "Wat je krijgt",
     reportTitle: "Wat de AI-scan je oplevert",
     reportItems: [
       "De workflows die zich het best lenen voor AI, op volgorde van wat het meeste oplevert",
@@ -52,8 +62,11 @@ const translations = {
     ],
 
     dataTitle: "Wat we wel en niet vragen",
-    dataBody:
-      "We vragen naar het werk zelf: wat het is, hoe vaak het gebeurt en hoeveel tijd het kost. Er gaan geen bedrijfsbestanden of vertrouwelijke gegevens in. Die blijven waar ze horen.",
+    // Eén alinea van 8 september, in twee kolommen gezet (wel / niet).
+    dataAsk:
+      "We vragen naar het werk zelf: wat het is, hoe vaak het gebeurt en hoeveel tijd het kost.",
+    dataNot:
+      "Er gaan geen bedrijfsbestanden of vertrouwelijke gegevens in. Die blijven waar ze horen.",
 
     faqTitle: "Veelgestelde vragen",
     faq: [
@@ -111,6 +124,7 @@ const translations = {
     callTitle: "Rather talk first?",
     callCta: "Plan a call",
 
+    reportKicker: "What you get",
     reportTitle: "What the AI scan gives you",
     reportItems: [
       "The workflows that lend themselves best to AI, ordered by what delivers most",
@@ -127,8 +141,11 @@ const translations = {
     ],
 
     dataTitle: "What we do and don't ask for",
-    dataBody:
-      "We ask about the work itself: what it is, how often it happens and how much time it takes. No company files or confidential data go in. Those stay where they belong.",
+    // One paragraph from 8 September, set in two columns (do / don't).
+    dataAsk:
+      "We ask about the work itself: what it is, how often it happens and how much time it takes.",
+    dataNot:
+      "No company files or confidential data go in. Those stay where they belong.",
 
     faqTitle: "Frequently asked questions",
     faq: [
@@ -165,6 +182,8 @@ const translations = {
   },
 };
 
+const stepNumberCls = "font-serif text-[40px] leading-none text-sage-dark";
+
 export default function ScanPage() {
   const { language } = useLanguage();
   const c = translations[language];
@@ -176,164 +195,122 @@ export default function ScanPage() {
   }, []);
 
   return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="pt-12 lg:pt-20 pb-12 lg:pb-16 px-6">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h1 className="font-serif text-grey">
-              {c.heroTitle}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mt-6 text-lg md:text-xl text-grey leading-relaxed">
-              {c.heroSub}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* The two options */}
-      <section className="px-6 pb-4">
-        <div className="max-w-[900px] mx-auto">
-          <div className="grid gap-6 md:grid-cols-2">
-            <FadeIn delay={150}>
-              <div className="h-full bg-white rounded-lg p-7 md:p-8 border-l-[3px] border-sage -[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
-                <h2 className="font-serif text-grey">{c.quickTitle}</h2>
-                <p className="mt-1 text-sm text-muted">{c.quickTime}</p>
-                <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
-                  {c.quickBody}
-                </p>
-                <Button className="mt-7"
-                  href={QUICK_SCAN_HREF}
-                >
-                  {c.quickCta}
-                </Button>
-              </div>
+    <>
+      {/* D2: hero links, rechts de kaart "Wat je krijgt", daaronder de twee manieren */}
+      <Section hero>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-7">
+            <FadeIn>
+              <h1 className="font-serif text-grey">{c.heroTitle}</h1>
             </FadeIn>
-
-            <FadeIn delay={300}>
-              <div className="h-full bg-white rounded-lg p-7 md:p-8 border-l-[3px] border-border -[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col">
-                <h2 className="font-serif text-grey">{c.teamTitle}</h2>
-                <p className="mt-1 text-sm text-muted">{c.teamTime}</p>
-                <p className="mt-4 flex-1 text-base text-grey leading-relaxed">
-                  {c.teamBody}
+            <FadeIn delay={150}>
+              <p className="mt-6 max-w-[640px] text-lg text-grey leading-relaxed">{c.heroSub}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <Button href={QUICK_SCAN_HREF}>{c.quickCta}</Button>
+                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-grey">
+                  <span>{c.callTitle}</span>
+                  <Button variant="tertiary" href="/contact">
+                    {c.callCta}
+                  </Button>
                 </p>
-                <Button variant="secondary" className="mt-7"
-                  href={TEAM_SCAN_HREF}
-                >
-                  {c.teamCta}
-                </Button>
               </div>
             </FadeIn>
           </div>
 
-          <FadeIn delay={450}>
-            <p className="mt-6 text-center text-sm text-muted leading-relaxed max-w-[640px] mx-auto">
-              {c.cardsFooter}
-            </p>
+          <FadeIn delay={300} className="md:col-span-5">
+            <Card>
+              <Kicker>{c.reportKicker}</Kicker>
+              <h3 className="font-serif text-grey">{c.reportTitle}</h3>
+              <ul className="mt-5 space-y-3">
+                {c.reportItems.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-grey">
+                    <Check size={18} strokeWidth={2} className="mt-1 shrink-0 text-sage-dark" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
           </FadeIn>
+        </div>
 
-          <FadeIn delay={550}>
-            <div className="mt-8 max-w-[640px] mx-auto rounded-lg border border-border bg-cream px-6 py-5 text-center">
-              <p className="font-serif text-xl text-grey">{c.callTitle}</p>
-              <Button variant="secondary" className="mt-4"
-                href="/contact"
-              >
-                {c.callCta}
+        {/* De twee manieren, naast elkaar, elk met een eigen knop */}
+        <FadeIn delay={450}>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card signature className="flex flex-col">
+              <h3 className="font-serif text-grey">{c.quickTitle}</h3>
+              <p className="mt-1 text-sm text-muted">{c.quickTime}</p>
+              <p className="mt-4 flex-1 text-grey leading-relaxed">{c.quickBody}</p>
+              <Button href={QUICK_SCAN_HREF} className="mt-6 self-start">
+                {c.quickCta}
               </Button>
+            </Card>
+
+            <Card className="flex flex-col">
+              <h3 className="font-serif text-grey">{c.teamTitle}</h3>
+              <p className="mt-1 text-sm text-muted">{c.teamTime}</p>
+              <p className="mt-4 flex-1 text-grey leading-relaxed">{c.teamBody}</p>
+              <Button variant="secondary" href={TEAM_SCAN_HREF} className="mt-6 self-start">
+                {c.teamCta}
+              </Button>
+            </Card>
+          </div>
+          <p className="mt-6 text-sm text-muted leading-relaxed">{c.cardsFooter}</p>
+        </FadeIn>
+      </Section>
+
+      {/* Zo werkt de teamscan als stappenrij, daaronder wel/niet in twee kolommen */}
+      <Section>
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <h2 className="font-serif text-grey md:col-span-3 lg:col-span-1">{c.teamHowTitle}</h2>
+            {c.teamHowBody.map((step, i) => (
+              <div key={step}>
+                <p className={stepNumberCls} aria-hidden="true">
+                  {i + 1}
+                </p>
+                <p className="mt-3 text-grey leading-relaxed">{step}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={150}>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-8">
+            <h2 className="font-serif text-grey md:col-span-12 lg:col-span-4">{c.dataTitle}</h2>
+            <div className="flex items-start gap-3 md:col-span-6 lg:col-span-4">
+              <Check size={22} strokeWidth={1.5} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
+              <p className="text-grey leading-relaxed">{c.dataAsk}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* What you get */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.reportTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <ul className="mt-8 space-y-4 text-lg text-grey leading-relaxed">
-              {c.reportItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="text-sage mt-1">·</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* How the team scan works */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.teamHowTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8 space-y-5 text-lg text-grey leading-relaxed">
-              {c.teamHowBody.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+            <div className="flex items-start gap-3 md:col-span-6 lg:col-span-4">
+              <X size={22} strokeWidth={1.5} className="mt-0.5 shrink-0 text-sage-dark" aria-hidden="true" />
+              <p className="text-grey leading-relaxed">{c.dataNot}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </div>
+        </FadeIn>
+      </Section>
 
-      {/* Data reassurance */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <div className="bg-white rounded-lg p-6 md:p-8 border-l-[3px] border-sage -[0_2px_8px_rgba(0,0,0,0.06)]">
-              <h2 className="font-serif text-grey">{c.dataTitle}</h2>
-              <p className="mt-3 text-base text-grey leading-relaxed">
-                {c.dataBody}
-              </p>
+      {/* FAQ in twee kolommen en de afsluiting in één rij: de ene band van de pagina */}
+      <Section band="sand">
+        <FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <h2 className="font-serif text-grey md:col-span-12 lg:col-span-3">{c.faqTitle}</h2>
+            <div className="md:col-span-12 lg:col-span-9">
+              <FAQ items={c.faq.map((f) => ({ question: f.q, answer: f.a }))} columns={2} />
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.faqTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="mt-8">
-              <FAQ items={c.faq.map((f) => ({ question: f.q, answer: f.a }))} />
+          </div>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <div className="mt-10 pt-10 border-t border-border flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-[640px]">
+              <h2 className="font-serif text-grey">{c.closingTitle}</h2>
+              <p className="mt-3 text-grey leading-relaxed">{c.closingBody}</p>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Closing */}
-      <section className="py-16 md:py-20 lg:py-24 px-6">
-        <div className="max-w-[680px] mx-auto text-center">
-          <FadeIn>
-            <h2 className="font-serif">
-              {c.closingTitle}
-            </h2>
-            <p className="mt-4 text-lg text-grey leading-relaxed">
-              {c.closingBody}
-            </p>
-            <Button variant="secondary" className="mt-8"
-              href="/contact"
-            >
+            <Button href="/contact" className="shrink-0">
               {c.closingCta}
             </Button>
-          </FadeIn>
-        </div>
-      </section>
-    </div>
+          </div>
+        </FadeIn>
+      </Section>
+    </>
   );
 }
