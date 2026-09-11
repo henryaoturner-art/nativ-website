@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
 import { GLOSSARY, termTitle } from "@/lib/glossary";
+import { COMPARISONS } from "@/lib/comparisons";
 
 // llms.txt — the map LLM-aware crawlers (ChatGPT, Claude, Perplexity) read to
 // understand the site. Generated at build time so every new blog post lands here
@@ -51,7 +52,12 @@ export function GET() {
   ).join("\n");
   const glossarySection = `## Begrippen\n${glossaryLines}\n\n`;
 
-  const body = `${HEADER}\n\n${glossarySection}${blogSection}${FOOTER}\n`;
+  const comparisonLines = COMPARISONS.map(
+    (c) => `- [nativ of ${c.name}?](${BASE}/vergelijk/${c.slug}): ${c.short}`,
+  ).join("\n");
+  const comparisonSection = `## Vergelijkingen\n${comparisonLines}\n\n`;
+
+  const body = `${HEADER}\n\n${glossarySection}${comparisonSection}${blogSection}${FOOTER}\n`;
 
   return new Response(body, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },

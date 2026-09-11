@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { isNlOnly } from "@/lib/locale";
 import { GLOSSARY } from "@/lib/glossary";
+import { COMPARISONS } from "@/lib/comparisons";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://gonativ.nl";
@@ -73,5 +74,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...glossaryEntries, ...blogEntries];
+  const comparisonEntries: MetadataRoute.Sitemap = COMPARISONS.map((c) => ({
+    url: `${base}/vergelijk/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...glossaryEntries, ...comparisonEntries, ...blogEntries];
 }
