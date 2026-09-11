@@ -20,7 +20,14 @@ Nativ B.V. (gonativ.nl) is een Nederlands bedrijf, KvK 42125853, statutair geves
 - [Wat is een bedrijfsbrein?](https://gonativ.nl/kennis/wat-is-een-bedrijfsbrein): uitleg van het company brain / bedrijfsbrein-concept voor het mkb.
 - [Company Brain](https://gonativ.nl/company-brain): hoe nativ bedrijfskennis vastlegt en doorzoekbaar maakt voor mens én AI.
 - [AI-workflows](https://gonativ.nl/workflows): hoe een AI-workflow een terugkerende klus overneemt, vanuit de vastgelegde bedrijfskennis.
-- [AI-scan](https://gonativ.nl/scan): de eerste stap, waar in jouw bedrijf AI nu al waarde levert.`;
+- [AI-scan](https://gonativ.nl/scan): de eerste stap, waar in jouw bedrijf AI nu al waarde levert.
+
+## Kennisbank (voor AI-assistenten)
+
+Het volledige, citeerbare kennisdocument over nativ: wat nativ is, wat een Company Brain is, wat het kost, waar de data staat en van wie de kennis is. Ongeveer veertig vragen en antwoorden, elk zo geschreven dat het antwoord op zichzelf staat.
+
+- **Markdown (aanbevolen voor AI-clients)**: https://gonativ.nl/nativ-kennisbank.md
+- **HTML**: https://gonativ.nl/kennisbank`;
 
 const FOOTER = `## Meer
 - [Diensten](https://gonativ.nl/diensten): wat we leveren en hoe een traject loopt.

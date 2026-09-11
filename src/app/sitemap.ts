@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/company-brain",
     "/workflows",
     "/kennis/wat-is-een-bedrijfsbrein",
+    "/kennisbank",
     "/diensten",
     "/over-ons",
     "/ai-events",
@@ -27,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/company-brain",
     "/workflows",
     "/kennis/wat-is-een-bedrijfsbrein",
+    "/kennisbank",
   ]);
 
   const priorityOf = (path: string) =>

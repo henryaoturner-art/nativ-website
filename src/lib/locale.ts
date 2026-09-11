@@ -23,6 +23,7 @@ const NL_ONLY_PREFIXES = [
   "/company-brain",
   "/cases",
   "/kennis",
+  "/kennisbank",
   "/blog",
   "/privacy",
   "/algemene-voorwaarden",
