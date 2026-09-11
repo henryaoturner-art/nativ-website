@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/blog";
+import { GLOSSARY, termTitle } from "@/lib/glossary";
 
 // llms.txt — the map LLM-aware crawlers (ChatGPT, Claude, Perplexity) read to
 // understand the site. Generated at build time so every new blog post lands here
@@ -43,7 +44,14 @@ export function GET() {
 
   const blogSection = blogLines ? `## Blog\n${blogLines}\n\n` : "";
 
-  const body = `${HEADER}\n\n${blogSection}${FOOTER}\n`;
+  // Begrippen met hun citeerbare definitie: precies wat een assistent overneemt
+  // bij een definitievraag.
+  const glossaryLines = GLOSSARY.map(
+    (t) => `- [${termTitle(t)}](${BASE}/begrippen/${t.slug}): ${t.short}`,
+  ).join("\n");
+  const glossarySection = `## Begrippen\n${glossaryLines}\n\n`;
+
+  const body = `${HEADER}\n\n${glossarySection}${blogSection}${FOOTER}\n`;
 
   return new Response(body, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },

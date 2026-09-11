@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/language-context";
  * Footer in vier kolommen (B5, KAN-425): merk + payoff + adres, Diensten,
  * Contact, Vertrouwen. Links 15px Warm White op 80 procent, hover 100.
  * /cases staat er niet in zolang die pagina verborgen is (8 september 2026).
- * /kennisbank staat alleen in de Nederlandse footer: de pagina is NL-only (met
+ * /kennisbank en /begrippen staan alleen in de Nederlandse footer: de pagina is NL-only (met
  * een Engels kernblok onderaan), dus een Engelse bezoeker zou op Nederlandse
  * inhoud landen. De Engelse kant bereikt hem via llms.txt en de zoekmachine.
  */
@@ -21,6 +21,7 @@ const copy = {
       { href: "/workflows", label: "AI Workflows" },
       { href: "/whitepaper", label: "Whitepaper" },
       { href: "/kennisbank", label: "Kennisbank" },
+      { href: "/begrippen", label: "Begrippen" },
     ] },
     contact: { title: "Contact", links: [
       { href: "/contact", label: "Plan een gesprek" },

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { isNlOnly } from "@/lib/locale";
+import { GLOSSARY } from "@/lib/glossary";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://gonativ.nl";
@@ -64,5 +65,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  // Eén entry per begrip (NL-only, net als de hub).
+  const glossaryEntries: MetadataRoute.Sitemap = GLOSSARY.map((t) => ({
+    url: `${base}/begrippen/${t.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...glossaryEntries, ...blogEntries];
 }

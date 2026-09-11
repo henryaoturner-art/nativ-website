@@ -24,6 +24,7 @@ const NL_ONLY_PREFIXES = [
   "/cases",
   "/kennis",
   "/kennisbank",
+  "/begrippen",
   "/blog",
   "/privacy",
   "/algemene-voorwaarden",
