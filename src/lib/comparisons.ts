@@ -288,8 +288,8 @@ export const COMPARISONS: Comparison[] = [
     strengths: {
       heading: "Waar een adviesbureau sterker is",
       paragraphs: [
-        "Als je vraag breder is dan AI. Een organisatie herinrichten, processen herontwerpen, een verandertraject begeleiden: daar zijn wij niet voor en een goed bureau wel.",
-        "En als je een grote, complexe omgeving hebt met veel maatwerk, is een team dat maanden bij je binnen zit soms simpelweg wat je nodig hebt.",
+        "Als je iets zoekt dat niet gebouwd hoeft te worden. Een bureau kan je organisatie doorlichten, meedenken over je structuur of de bemensing, of een verandertraject begeleiden. Wij doen dat geen van drieën.",
+        "En draai je op eigen software die nergens anders bestaat, dan heb je soms een team nodig dat maanden bij je binnen zit. Dat zijn wij niet.",
       ],
     },
     verdict: {
@@ -302,7 +302,7 @@ export const COMPARISONS: Comparison[] = [
     faq: [
       {
         q: "Doet nativ ook advies?",
-        a: "Beperkt, en altijd rond het bouwen. De scan laat zien waar AI in jouw bedrijf het meeste oplevert en in welke volgorde je zou beginnen. Voor bredere organisatievraagstukken ben je bij een adviesbureau beter af.",
+        a: "Alleen over waar je met AI begint. De scan laat zien welk werk in jouw bedrijf zich leent voor AI en in welke volgorde je dat zou aanpakken. Wat we niet doen: je organisatie doorlichten, meedenken over je structuur of je bemensing, of adviseren welke software je moet kopen. Wij bouwen.",
       },
       {
         q: "Wat kost de eerste stap bij nativ?",
