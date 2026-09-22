@@ -14,7 +14,7 @@ const translations = {
   nl: {
     heroTitle: "Een Company Brain met AI-workflows voor het mkb.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
-    heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meest ontzorgen.",
+    heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meeste werk uit handen nemen.",
     ctaScan: "Doe de gratis AI-scan",
     ctaPrimary: "Plan een gesprek",
     proofScore: "4,5 / 5 op Sortlist",
