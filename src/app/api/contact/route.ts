@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { resend } from "@/lib/resend";
+import { normaliseSource } from "@/lib/scan/source";
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 const NOTIFY_EMAIL = process.env.LEAD_NOTIFY_EMAIL || "jorus@gonativ.nl";
@@ -18,6 +19,7 @@ export async function POST(req: NextRequest) {
       email?: string;
       company?: string;
       message?: string;
+      source?: string;
     };
 
     if (!body.name?.trim() || !body.email?.trim()) {
@@ -32,6 +34,9 @@ export async function POST(req: NextRequest) {
       email: body.email.trim(),
       company: body.company?.trim() || "",
       message: body.message?.trim() || "",
+      // Herkomstcode achter de link, zie lib/scan/source.ts. Leeg = iemand die
+      // de site zelf vond; gevuld = binnengekomen via een campagne of post.
+      source: normaliseSource(body.source),
       timestamp: new Date().toISOString(),
     };
 
@@ -50,6 +55,7 @@ export async function POST(req: NextRequest) {
           `<li><strong>Naam:</strong> ${esc(lead.name)}</li>` +
           `<li><strong>E-mail:</strong> ${esc(lead.email)}</li>` +
           `<li><strong>Bedrijf:</strong> ${esc(lead.company) || "—"}</li>` +
+          `<li><strong>Kwam binnen via:</strong> ${esc(lead.source || "") || "onbekend"}</li>` +
           `<li><strong>Tijd:</strong> ${lead.timestamp}</li>` +
           `</ul>` +
           `<p><strong>Bericht:</strong></p>` +

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/lib/language-context";
+import { captureSource } from "@/lib/scan/source";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Kicker from "@/components/Kicker";
@@ -78,6 +79,13 @@ export default function ContactPage() {
   const { t } = useLanguage();
   const c = t(translations);
 
+  // Leg ?bron= vast zodra iemand binnenkomt, net als op /scan. De koude mail
+  // wijst naar deze pagina, dus zonder dit is een bericht uit een campagne niet
+  // te onderscheiden van iemand die de site zelf vond.
+  useEffect(() => {
+    captureSource();
+  }, []);
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -89,6 +97,8 @@ export default function ContactPage() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       company: (form.elements.namedItem("company") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      // Uit ?bron= in deze URL, anders uit wat eerder in deze sessie is onthouden.
+      source: captureSource(),
     };
 
     try {
