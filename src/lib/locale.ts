@@ -29,6 +29,7 @@ const NL_ONLY_PREFIXES = [
   "/blog",
   "/privacy",
   "/algemene-voorwaarden",
+  "/afmelden",
 ];
 
 export function isNlOnly(path: string): boolean {
