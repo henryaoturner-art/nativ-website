@@ -12,16 +12,16 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "Een Company Brain met AI-workflows voor het mkb.",
+    heroTitle: "AI die gebruikt wat je klant vorige week zei, en er werk mee doet volgens jullie eigen regels.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
-    heroSub2: "nativ brengt al die kennis samen in één Company Brain. Zo is jouw bedrijfskennis geborgd en altijd voor iedereen beschikbaar. En je hebt het fundament voor de AI-workflows die jou het meeste werk uit handen nemen.",
+    heroSub2: "nativ brengt die kennis samen in één Company Brain. Daarop draaien AI-workflows die werk afleveren met jullie eigen prijzen, werkwijze en toon. ChatGPT kan dat niet, want die kent je bedrijf niet. Gebruik je al ChatGPT of Claude? Dan koppel je de Brain daar gewoon aan.",
     ctaScan: "Doe de gratis AI-scan",
     ctaPrimary: "Plan een gesprek",
     proofScore: "4,5 / 5 op Sortlist",
     proofQuote: "Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken.",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
     proofAria: "Beoordeling 4,5 van 5",
-    heroSeoLine: null,
+    heroSeoLine: "Een Company Brain met AI-workflows voor het mkb.",
     problemTitle: "Wat er verandert als je kennis op één plek staat",
     problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
     problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
@@ -32,7 +32,7 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We brengen in kaart waar AI de meeste impact heeft, en wat het oplevert.",
+        desc: "We brengen in kaart welke workflows zich het best lenen voor AI, en hoe je begint.",
         detail: "Je weet daarna precies waar de kansen liggen.",
       },
       {
@@ -43,27 +43,27 @@ const translations = {
       {
         num: "3", title: "Deploy",
         desc: "We zetten workflows in die gevoed worden vanuit jouw Company Brain en echt werk leveren.",
-        detail: "Geen speelgoed. Geen demo's. Resultaat.",
+        detail: "Elke workflow gebruikt de kennis uit je Brain, dus het resultaat past bij hoe jullie werken.",
       },
     ],
     startScan: "Start met een Scan",
     trustEU: "EU-datahosting",
     trustGDPR: "GDPR-compliant",
     closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
-    closerSub: "Plan een vrijblijvend gesprek over wat AI voor jouw organisatie kan betekenen.",
+    closerSub: "Plan een gesprek. We laten zien wat AI doet als het jullie eigen kennis kent.",
     closerCta: "Plan een gesprek",
   },
   en: {
-    heroTitle: "A Company Brain with AI workflows for SMEs.",
+    heroTitle: "AI that uses what your client said last week, and does the work with it by your own rules.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
-    heroSub2: "nativ brings all that knowledge together in one Company Brain. That way your company knowledge is safeguarded and always available to everyone. And you have the foundation for the AI workflows that take the most off your plate.",
+    heroSub2: "nativ brings that knowledge together in one Company Brain. AI workflows run on it and deliver work with your own prices, way of working and tone. ChatGPT can't do that, because it doesn't know your company. Already using ChatGPT or Claude? Then you simply connect the Brain to it.",
     ctaScan: "Take the free AI scan",
     ctaPrimary: "Book a call",
     proofScore: "4.5 / 5 on Sortlist",
     proofQuote: "",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
     proofAria: "Rated 4.5 out of 5",
-    heroSeoLine: null,
+    heroSeoLine: "A Company Brain with AI workflows for SMEs.",
     problemTitle: "What changes once it is all in one place",
     problemP1: "You can put workflows to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
     problemP2a: "A new colleague is up to speed in days, not months.",
@@ -74,7 +74,7 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We map where AI has the highest impact, and what it delivers.",
+        desc: "We map which workflows are best suited to AI, and how to start.",
         detail: "You come out knowing exactly where the opportunities are.",
       },
       {
@@ -85,14 +85,14 @@ const translations = {
       {
         num: "3", title: "Deploy",
         desc: "We deploy workflows that are fed from your Company Brain and deliver real work.",
-        detail: "No toys. No demos. Results.",
+        detail: "Every workflow uses the knowledge in your Brain, so the result fits how you work.",
       },
     ],
     startScan: "Start with a Scan",
     trustEU: "EU data hosting",
     trustGDPR: "GDPR compliant",
     closerTitle: "Ready to discover what your company really knows?",
-    closerSub: "Book a free consultation about what AI can do for your organisation.",
+    closerSub: "Book a call. We'll show you what AI does once it knows your own knowledge.",
     closerCta: "Book a call",
   },
 };
