@@ -14,7 +14,7 @@ const translations = {
   nl: {
     heroTitle: "AI die gebruikt wat je klant vorige week zei, en er werk mee doet volgens jullie eigen regels.",
     heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
-    heroSub2: "nativ brengt die kennis samen in één Company Brain. Daarop draaien AI-workflows die werk afleveren met jullie eigen prijzen, werkwijze en toon. ChatGPT kan dat niet, want die kent je bedrijf niet. Gebruik je al ChatGPT of Claude? Dan koppel je de Brain daar gewoon aan.",
+    heroSub2: "nativ brengt die kennis samen in één Company Brain. Daarop draaien AI-workflows die werk afleveren met jullie eigen prijzen, werkwijze en toon. Iedereen in je team gebruikt dezelfde kennis en deelt de learnings. Gebruik je al ChatGPT of Claude? Dan koppel je de Brain daar gewoon aan.",
     ctaScan: "Doe de gratis AI-scan",
     ctaPrimary: "Plan een gesprek",
     proofScore: "4,5 / 5 op Sortlist",
@@ -56,7 +56,7 @@ const translations = {
   en: {
     heroTitle: "AI that uses what your client said last week, and does the work with it by your own rules.",
     heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
-    heroSub2: "nativ brings that knowledge together in one Company Brain. AI workflows run on it and deliver work with your own prices, way of working and tone. ChatGPT can't do that, because it doesn't know your company. Already using ChatGPT or Claude? Then you simply connect the Brain to it.",
+    heroSub2: "nativ brings that knowledge together in one Company Brain. AI workflows run on it and deliver work with your own prices, way of working and tone. Your whole team uses the same knowledge and shares what it learns. Already using ChatGPT or Claude? Then you simply connect the Brain to it.",
     ctaScan: "Take the free AI scan",
     ctaPrimary: "Book a call",
     proofScore: "4.5 / 5 on Sortlist",
