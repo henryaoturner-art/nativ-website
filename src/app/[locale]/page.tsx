@@ -12,18 +12,18 @@ import { webPage } from "@/lib/site-meta";
 
 const translations = {
   nl: {
-    heroTitle: "AI die gebruikt wat je klant vorige week zei, en er werk mee doet volgens jullie eigen regels.",
-    heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je medewerkers, in e-mails, in gesprekken en in losse tools die niemand deelt.",
-    heroSub2: "nativ brengt die kennis samen in één Company Brain. Daarop draaien AI-workflows die werk afleveren met jullie eigen prijzen, werkwijze en toon. Iedereen in je team gebruikt dezelfde kennis en deelt de learnings. Gebruik je al ChatGPT of Claude? Dan koppel je de Brain daar gewoon aan.",
+    heroTitle: "De maandrapportage staat klaar voordat iemand erom vraagt.",
+    heroSub1: "De kennis van je bedrijf zit verspreid: in systemen, in de hoofden van je mensen, in e-mails en in gesprekken.",
+    heroSub2: "Wij brengen die kennis bij elkaar in een Company Brain, taak voor taak. Je begint met één taak die AI voor je overneemt, en met elke taak groeit je Brain.",
     ctaScan: "Doe de gratis AI-scan",
     ctaPrimary: "Plan een gesprek",
     proofScore: "4,5 / 5 op Sortlist",
     proofQuote: "Geen advies-traject, maar werkende oplossingen die we elke dag gebruiken.",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
     proofAria: "Beoordeling 4,5 van 5",
-    heroSeoLine: "Een Company Brain met AI-workflows voor het mkb.",
+    heroSeoLine: "Dat doet AI, met de kennis uit jullie Company Brain.",
     problemTitle: "Wat er verandert als je kennis op één plek staat",
-    problemP1: "Dan kun je workflows inzetten die werk van hoge kwaliteit afleveren, omdat ze putten uit wat jouw bedrijf echt weet.",
+    problemP1: "Dan kan AI taken overnemen en het werk afleveren zoals jullie dat zelf doen, omdat het put uit wat jouw bedrijf echt weet.",
     problemP2a: "Een nieuwe collega is in dagen ingewerkt, niet in maanden.",
     problemP2b: "En vertrekt er iemand, dan blijft wat diegene wist gewoon staan.",
     problemP3: "Dat is wat een Company Brain doet: het brengt samen wat je mensen weten en wat je systemen weten. Je ziet wat erin staat, elk stuk kennis heeft een eigenaar, en je ziet altijd waar een antwoord vandaan komt.",
@@ -32,40 +32,40 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We brengen in kaart welke workflows zich het best lenen voor AI, en hoe je begint.",
+        desc: "We brengen in kaart welke taken zich het best lenen voor AI, en hoe je begint.",
         detail: "Je weet daarna precies waar de kansen liggen.",
       },
       {
-        num: "2", title: "Build",
-        desc: "Samen bouwen we je Company Brain, waarin de kennis uit je mensen en je systemen samenkomt.",
-        detail: "Merkidentiteit, processen, marktdata, gespreksverslagen en een eigen CRM: geordend, met een eigenaar per onderdeel.",
+        num: "2", title: "Eerste taak",
+        desc: "We zetten je eerste taak neer en brengen de kennis bij elkaar die daarvoor nodig is.",
+        detail: "Elke taak gebruikt de kennis uit je Brain, dus het resultaat past bij hoe jullie werken.",
       },
       {
-        num: "3", title: "Deploy",
-        desc: "We zetten workflows in die gevoed worden vanuit jouw Company Brain en echt werk leveren.",
-        detail: "Elke workflow gebruikt de kennis uit je Brain, dus het resultaat past bij hoe jullie werken.",
+        num: "3", title: "Groeien",
+        desc: "Elke nieuwe taak voegt kennis toe aan je Brain.",
+        detail: "Je hele team werkt met dezelfde kennis, ook vanuit je eigen ChatGPT of Claude.",
       },
     ],
     startScan: "Start met een Scan",
     trustEU: "EU-datahosting",
     trustGDPR: "GDPR-compliant",
-    closerTitle: "Klaar om te ontdekken wat jouw bedrijf écht weet?",
+    closerTitle: "Klaar om je eerste taak uit handen te geven?",
     closerSub: "Plan een gesprek. We laten zien wat AI doet als het jullie eigen kennis kent.",
     closerCta: "Plan een gesprek",
   },
   en: {
-    heroTitle: "AI that uses what your client said last week, and does the work with it by your own rules.",
-    heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails, in conversations and in separate tools nobody shares.",
-    heroSub2: "nativ brings that knowledge together in one Company Brain. AI workflows run on it and deliver work with your own prices, way of working and tone. Your whole team uses the same knowledge and shares what it learns. Already using ChatGPT or Claude? Then you simply connect the Brain to it.",
+    heroTitle: "Your monthly report is ready before anyone asks for it.",
+    heroSub1: "Your company’s knowledge is scattered: in systems, in your people’s heads, in emails and in conversations.",
+    heroSub2: "We bring that knowledge together in a Company Brain, one task at a time. You start with one task that AI takes over, and your Brain grows with every task.",
     ctaScan: "Take the free AI scan",
     ctaPrimary: "Book a call",
     proofScore: "4.5 / 5 on Sortlist",
     proofQuote: "",
     proofWho: "Dirk Westdijk, CEO, JobTraining",
     proofAria: "Rated 4.5 out of 5",
-    heroSeoLine: "A Company Brain with AI workflows for SMEs.",
+    heroSeoLine: "AI does that, with the knowledge in your Company Brain.",
     problemTitle: "What changes once it is all in one place",
-    problemP1: "You can put workflows to work that deliver genuinely high-quality output, because they draw on what your company actually knows.",
+    problemP1: "Then AI can take over tasks and deliver the work the way you would yourselves, because it draws on what your company actually knows.",
     problemP2a: "A new colleague is up to speed in days, not months.",
     problemP2b: "And when someone leaves, what they knew stays behind.",
     problemP3: "That is what a Company Brain does: it brings together what your people know and what your systems know. You can see what is in it, every piece of knowledge has an owner, and you can always see where an answer came from.",
@@ -74,24 +74,24 @@ const translations = {
     steps: [
       {
         num: "1", title: "Scan",
-        desc: "We map which workflows are best suited to AI, and how to start.",
+        desc: "We map which tasks are best suited to AI, and how to start.",
         detail: "You come out knowing exactly where the opportunities are.",
       },
       {
-        num: "2", title: "Build",
-        desc: "Together we build your Company Brain, where the knowledge from your people and your systems comes together.",
-        detail: "Brand identity, processes, market data, meeting notes and a CRM of your own: ordered, with an owner for each part.",
+        num: "2", title: "First task",
+        desc: "We set up your first task and bring together the knowledge it needs.",
+        detail: "Every task uses the knowledge in your Brain, so the result fits how you work.",
       },
       {
-        num: "3", title: "Deploy",
-        desc: "We deploy workflows that are fed from your Company Brain and deliver real work.",
-        detail: "Every workflow uses the knowledge in your Brain, so the result fits how you work.",
+        num: "3", title: "Grow",
+        desc: "Every new task adds knowledge to your Brain.",
+        detail: "Your whole team works with the same knowledge, including from your own ChatGPT or Claude.",
       },
     ],
     startScan: "Start with a Scan",
     trustEU: "EU data hosting",
     trustGDPR: "GDPR compliant",
-    closerTitle: "Ready to discover what your company really knows?",
+    closerTitle: "Ready to hand over your first task?",
     closerSub: "Book a call. We'll show you what AI does once it knows your own knowledge.",
     closerCta: "Book a call",
   },
@@ -251,16 +251,16 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-center">
           <FadeIn className="md:col-span-7">
             <h1 className="font-serif text-grey">{c.heroTitle}</h1>
-            <p className="mt-6 max-w-[640px] text-grey leading-relaxed">
-              {c.heroSub1}{" "}
-              <br className="hidden md:block" />
-              {c.heroSub2}
-            </p>
             {c.heroSeoLine && (
               <h2 className="mt-5 font-medium text-muted max-w-[640px]">
                 {c.heroSeoLine}
               </h2>
             )}
+            <p className="mt-6 max-w-[640px] text-grey leading-relaxed">
+              {c.heroSub1}{" "}
+              <br className="hidden md:block" />
+              {c.heroSub2}
+            </p>
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
               <Button href="/scan">{c.ctaScan}</Button>
               <Button variant="secondary" href="/contact">{c.ctaPrimary}</Button>
