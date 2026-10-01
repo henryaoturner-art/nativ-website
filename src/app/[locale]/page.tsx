@@ -252,9 +252,9 @@ export default function HomePage() {
           <FadeIn className="md:col-span-7">
             <h1 className="font-serif text-grey">{c.heroTitle}</h1>
             {c.heroSeoLine && (
-              <h2 className="mt-5 font-medium text-muted max-w-[640px]">
+              <p className="mt-4 text-[20px] leading-snug text-muted max-w-[640px]">
                 {c.heroSeoLine}
-              </h2>
+              </p>
             )}
             <p className="mt-6 max-w-[640px] text-grey leading-relaxed">
               {c.heroSub1}{" "}
